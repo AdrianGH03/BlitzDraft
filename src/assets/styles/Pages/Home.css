@@ -1,0 +1,206 @@
+/*TEXT*/
+
+
+.desktop-text {
+    display: none;
+}
+.home-div p{
+    color: white;
+}
+.mobile-text{
+    max-width: 200px;
+    line-height: 1.5;
+}
+
+
+/*LAYOUT*/
+.home-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.home-div-container{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+    margin-top: 2rem;
+}
+.home-content{
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+    position: relative;
+}
+.home-background {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0);
+    flex-grow: 1;
+    
+}
+
+.home-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.5)), url('../../../assets/placeholders/MissFortune_50.jpeg');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+.home {
+    min-height: 100%;
+  }
+
+
+
+/*Home Play Button*/
+.home-play-container{
+    border: 2px solid var(--electric-blue);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    align-self: center;
+    margin-bottom: 4rem;
+}
+.home-play{
+    font-size: 2rem;
+    font-family: 'Fugaz One', cursive;
+    white-space: nowrap;
+    position: relative; 
+    z-index: 1; 
+    
+}
+.home-play-container {
+    position: relative; 
+    overflow: hidden; 
+}
+.home-play-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: white;
+    transition: left 0.4s ease-in-out;
+    
+}
+.home-play-container:hover::before {
+    left: 0;
+}
+.home-play-container:hover .home-play {
+    color: black;
+    transition: left 0.4s ease-in-out;
+}
+
+
+/*Images*/
+.home-emote{
+    width: 100%;
+    max-width: 70px;
+    max-height: 70px;
+}
+.home-bgimg {
+    
+    position: absolute;
+    opacity: 0.4;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+img.home-biglogo{
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+}
+
+@media(min-width: 281px){
+    .home-emote{
+        
+        max-width: 110px;
+        max-height: 100%;
+    }
+}
+@media(max-width: 320px){
+    .home-emote{
+        max-height: 110px;
+
+    }
+
+}
+
+@media(min-width: 520px){
+    .home-play{
+        font-size: 3rem ;
+    }
+}
+
+@media(min-width: 640px){
+    .home-emote{
+        width: 100%;
+        max-width: 200px;
+    }
+    .home-play-container{
+        align-self: end;
+    }
+}
+
+@media(min-width: 821px){
+    /*TEXT*/
+    .desktop-text {
+        display: block;
+        max-width: 400px;
+        line-height: 1.5;
+        text-align: right;  
+    }
+    .mobile-text {
+        display: none;
+    }
+
+    /*LAYOUT*/
+    .home-div-container{
+        margin-top: 2rem;
+        
+        padding-right: 15rem;
+    }
+
+    /*Home Play Button*/
+    .home-play-container{
+        margin-right: 2rem;
+    }
+
+    /*Images*/
+    .home-div .home-emote{
+        max-width: 250px;
+        position: relative;
+        top: -6rem;
+
+    }
+    img.home-biglogo{
+        max-width: 450px;
+        padding-right: 2.1rem;
+    }
+    .home-content{
+        margin-bottom: -5rem;
+    }
+    .home-bgimg {
+    
+        
+        height: 140%;
+        
+        
+    }
+    
+    
+}
+

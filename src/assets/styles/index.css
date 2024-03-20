@@ -1,0 +1,89 @@
+@import './reset.css';
+@import './Layout/Header.css';
+@import './Layout/Footer.css';
+@import './Pages/Home.css';
+@import './Pages/Auth.css';
+@import './Pages/UserProfile.css';
+@import 'tippy.js/dist/tippy.css'; 
+@import 'tippy.js/animations/shift-away-subtle.css'; 
+
+
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* PARAGRAPH TEXT ^ font-family: "Asap Condensed", sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fugaz+One&display=swap');
+/* HEADER/MENU TEXT ^ font-family: 'Fugaz One', cursive; */
+
+:root{
+    --rich-black: #07031aff;
+    --dark-purple: #221e37ff;
+    --rich-black-2: #08051bff;
+    --rich-black-3: #0a051aff;
+    --french-gray: #b2b2bcff;
+    --dark-purple-2: rgba(34, 30, 55, 0.6);
+
+    --black: #000000ff;
+    --black-2: #000000ff;
+    --dark-slate-gray: #455e63ff;
+    --electric-blue: #5be0e5ff;
+    --night: #0b0b0bff;
+}
+#root{
+    background: linear-gradient(90deg, rgba(2,28,65,1) 0%, rgba(36,41,99,1) 48%, rgba(2,28,65,1) 100%, rgba(0,212,255,1) 100%);
+}
+*{
+    font-family: "Asap Condensed", sans-serif;
+}
+a:hover, button:hover, input[type="submit"]:hover, input[type="reset"]:hover {
+    cursor: pointer;
+}
+p, span, h1, h2, h3, h4, h5, h6, label, a{
+    color: white;
+}
+input[type="text"] {
+    color: black;
+}
+a {
+    text-decoration: none;
+    color: var(--electric-blue);
+}
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.header{
+    flex-shrink: 0;
+    position: relative;
+    z-index: 100;
+}
+
+.content {
+  flex-grow: 2;
+  background: linear-gradient(90deg, rgba(2,28,65,1) 0%, rgba(36,41,99,1) 48%, rgba(2,28,65,1) 100%, rgba(0,212,255,1) 100%);
+}
+
+.footer {
+    flex-grow: 0;
+    position: relative;
+    z-index: 100;
+}
+.tippy-box{
+    background-color: var(--electric-blue);
+}
+.tippy-arrow{
+    color: var(--electric-blue);
+}
+.tippy-content {
+    color: white;
+}
+
+
+
+
+
+
+
+
+    
