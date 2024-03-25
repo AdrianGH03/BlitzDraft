@@ -52,3 +52,86 @@ body{
     min-height: 100vh;
 }
 
+
+
+
+
+
+
+/* TEST FILE*/
+.test{
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.test .parent{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	gap: 20px;
+  }
+  
+  .test .child{
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+	width: 30vw;
+  }
+  .test .child label{
+	
+	
+	overflow: ellipsis;
+	color: white;
+	text-align: center;
+	font-size: 2rem;
+	font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  .test .buttons{
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+  }
+  .test .buttons button{
+	padding: 0.5rem 1rem;
+	font-size: 1.5rem;
+	border: none;
+	color: white;
+	background-color: red;
+	border-radius: 5px;
+  }
+  .test img{
+	max-width: 100px;
+	max-height: 50px;
+  }
+  .test .images{
+	display: flex;
+	
+	
+	justify-content: space-around;
+  }
+  .test .label {
+	max-width: 560px; /* Adjust this value to match the width of your iframe */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+  }
+
+  
+  .test .players{
+	display: flex;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	overflow: auto;
+	justify-content: space-around;
+	align-items: center;
+  }
+  .test .players img{
+	max-width: 500px;
+	max-height: 400px;
+  }

@@ -1,11 +1,18 @@
-//eslint-disable-next-line
+// Hooks
 import { useState, useContext, useEffect } from 'react';
-import Skeleton from 'react-loading-skeleton';
-import { AuthContext } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useProfileImage } from '../../hooks/useProfileImage';
-import { ChangePFP } from '../../components/User/ChangePFP';
+
+// NPM/React
+import { CustomSkeleton } from '../../components/CustomSkeleton';
 import Tippy from '@tippyjs/react';
+
+//Contexts
+import { AuthContext } from '../../contexts/AuthContext';
+import { StyleContext } from '../../contexts/StyleContext';
+
+// Misc
+import { ChangePFP } from '../../components/User/ChangePFP';
 import lolplaceholder from '../../assets/placeholders/lolplaceholder.png';
 
 export const UserProfile = () => {
@@ -16,11 +23,12 @@ export const UserProfile = () => {
     setUserInfo, 
     fetchWithToken,
   } = useContext(AuthContext);
+  const { isLoading, setIsLoading } = useContext(StyleContext);
   const navigate = useNavigate();
   var profileImageFetch = useProfileImage();
   const [changePFP, setChangePFP] = useState(false);
   const [profileImage, setProfileImage] = useState(profileImageFetch);
-  const [isLoading, setIsLoading] = useState(true); 
+  
 
   useEffect(() => {
     if(profileImageFetch) {
@@ -56,7 +64,7 @@ export const UserProfile = () => {
       <div className="profile-container">
         <div className="profile-content">
 
-
+      
           <div className="profile-header">
             <h1>{changePFP ? 'CHANGE PROFILE PICTURE' : 'PROFILE'}</h1>
           </div>
@@ -75,22 +83,22 @@ export const UserProfile = () => {
 
 
             <div className="profile-details">
-              <div className="profile-details-username">
-                <h1>{isLoading ? <Skeleton count={1} /> : (isAuthenticated && userInfo && userInfo.username)}</h1>
-              </div>
+                <div className="profile-details-username">
+                  <h1>{isLoading ? <CustomSkeleton count={1} /> : (isAuthenticated && userInfo && userInfo.username)}</h1>
+                </div>
               {!changePFP ? (
                 <div className="profile-details-info">
                   <div className="">
                     <h3>EMAIL</h3>
-                    <p>{isLoading ? <Skeleton count={1} /> : (isAuthenticated && userInfo && userInfo.email)}</p>
+                    <p>{isLoading ? <CustomSkeleton count={1} /> : (isAuthenticated && userInfo && userInfo.email)}</p>
                   </div>
                   <div className="">
                     <h3>RANK</h3>
-                    <p>{isLoading ? <Skeleton count={1} /> : '#40'}</p>
+                    <p>{isLoading ? <CustomSkeleton count={1} /> : '#40'}</p>
                   </div>
                   <div className="">
                     <h3>POINTS</h3>
-                    <p>{isLoading ? <Skeleton count={1} /> : '#1037'}</p>
+                    <p>{isLoading ? <CustomSkeleton count={1} /> : '#1037'}</p>
                   </div>
                 </div>
               ) : (

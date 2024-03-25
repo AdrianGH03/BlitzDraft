@@ -147,10 +147,10 @@ img.nav-profile{
 }
 .user-info-mobile p{
     color: white;
-    font-family: 'Fugaz One', cursive;
+    font-family: 'Rubik Mono One', cursive;
 }
 
-@media(min-width: 820px){
+@media(min-width: 900px){
 
     /* LAYOUT */
     .header{
@@ -177,10 +177,10 @@ img.nav-profile{
         gap: 0 3rem;
     }
     .desk-nav-left a{
-        font-size: 1.1rem;
+        font-size: 1rem;
         text-decoration: none;
         color: var(--electric-blue);
-        font-family: 'Fugaz One', cursive;
+        font-family: 'Rubik Mono One', cursive;
         padding-bottom: 0.5rem;
         border-bottom: 2px solid var(--electric-blue)
     }
@@ -224,52 +224,9 @@ img.nav-profile{
 
     /* PLAY BUTTON */
     .play-container {
-      background: #fff;
-      border: 2px solid var(--electric-blue);
-      padding: 10px 20px;
-      display: inline-block;
-      font-size: 15px;
-      font-weight: 600;
-      text-transform: uppercase;
-      cursor: pointer;
-      transform: skew(-21deg);
+      
     }
-    .desk-nav-play {
-      display: inline-block;
-      transform: skew(21deg);
-      color: black;
-      overflow: hidden;
-    }
-    .play-container {
-      height: 15px; 
-      white-space: nowrap; 
-    }
-    .desk-nav-play {
-      display: inline-block;
-      overflow: hidden;
-      text-overflow: ellipsis; 
-      max-width: 100%; 
-    }
-    .play-container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 100%;
-      left: 0;
-      background: rgb(20, 20, 20);
-      opacity: 0;
-      z-index: -1;
-      transition: all 0.5s;
-    }
-    .play-container:hover a {
-      color: #fff;
-    }
-    .play-container:hover::before {
-      left: 0;
-      right: 0;
-      opacity: 1;
-    }
+    
 
     /* LOGIN BUTTON */
     a.desk-nav-account{

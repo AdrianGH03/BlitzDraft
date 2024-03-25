@@ -1,5 +1,10 @@
+// Hooks
 import { useState, useEffect, useContext } from 'react';
+
+//Contexts
 import { AuthContext } from '../../contexts/AuthContext';
+
+//NPM/REACT
 import Tippy from '@tippyjs/react';
 import PropTypes from 'prop-types';
 
@@ -10,7 +15,10 @@ export const ChangePFP = ({ setProfileImage, setChangePFP }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedPicture, setSelectedPicture] = useState(null);
   const [picturesPerPage, setPicturesPerPage] = useState(window.innerWidth < 820 ? 12 : 18);
+  const [disableSave, setDisableSave] = useState(false);
+
   const { isAuthenticated, fetchWithToken, success, setSuccess, error, setError } = useContext(AuthContext);
+  
   
 
   
@@ -48,10 +56,11 @@ export const ChangePFP = ({ setProfileImage, setChangePFP }) => {
               
               setSuccess('Profile picture updated successfully. Please wait...');
               setProfileImage(`${import.meta.env.VITE_APP_GET_PICTURES}/${selectedPicture}`);
-              
+              setDisableSave(true);
               setTimeout(() => {
                 setSuccess('');
                 window.location.reload();
+                setDisableSave(false);
               }, 3000);
   
             }
@@ -72,7 +81,7 @@ export const ChangePFP = ({ setProfileImage, setChangePFP }) => {
   const indexOfFirstPicture = indexOfLastPicture - picturesPerPage;
   const currentPictures = pictures.slice(indexOfFirstPicture, indexOfLastPicture);
   const totalPages = Math.ceil(pictures.length / picturesPerPage);
-  console.log(error)
+
   const nextPage = () => {
       setCurrentPage(currentPage + 1);
   };
@@ -104,7 +113,7 @@ export const ChangePFP = ({ setProfileImage, setChangePFP }) => {
                 <button onClick={nextPage} disabled={currentPage === totalPages}><i className="bi bi-arrow-right-circle-fill"></i></button>
             </Tippy>
             <Tippy content={'Save'} className="tippy-tooltip" animation={'shift-away-subtle'} roundArrow={true} >
-                <button onClick={saveProfilePicture} className="profile-save-button"><i className="bi bi-cloud-download"></i></button>
+                <button onClick={saveProfilePicture} disabled={disableSave} className="profile-save-button"><i className="bi bi-cloud-download"></i></button>
             </Tippy>
             <Tippy content={'Go Back'} className="tippy-tooltip" animation={'shift-away-subtle'} roundArrow={true} >
                 <button onClick={() => setChangePFP(false)} className="profile-save-button"><i className="bi bi-arrow-90deg-left"></i></button>
@@ -123,7 +132,7 @@ ChangePFP.propTypes = {
     profileImage: PropTypes.string,
     setChangePFP: PropTypes.func,
     setProfileImage: PropTypes.func,
-  };
+};
 
 
 

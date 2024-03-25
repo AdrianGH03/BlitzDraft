@@ -1,14 +1,18 @@
-import { Layout } from './views/Layout';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { AuthContext } from './contexts/AuthContext'; 
-import { StyleContext } from './contexts/StyleContext';
+//Hooks
 import { useEffect, useState } from 'react';
 import { useUserInfo } from './hooks/useUserInfo'; 
+
+// Contexts
+import { AuthContext } from './contexts/AuthContext'; 
+import { StyleContext } from './contexts/StyleContext';
+
+//NPM/React
 import axios from 'axios';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+//Pages
+import { Layout } from './views/Layout';
 import { AppRoutes } from './routes/Routes';
-
-
-
 
 
 export function App() {
@@ -22,8 +26,9 @@ export function App() {
   });
   const [isAuthenticated, setIsAuthenticated] = useState(false); 
   var { userInfo, setUserInfo } = useUserInfo(isAuthenticated, fetchWithToken); 
-  const [error, setError] = useState('testing');
+  const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   
 
@@ -56,7 +61,7 @@ export function App() {
        fetchWithToken, 
        success, setSuccess, 
       }}>
-      <StyleContext.Provider value={{}}>
+      <StyleContext.Provider value={{ isLoading, setIsLoading}}>
         <Router>
           <Layout>
             <AppRoutes />

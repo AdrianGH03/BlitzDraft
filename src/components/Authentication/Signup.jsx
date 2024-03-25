@@ -1,9 +1,16 @@
+// Hooks
 import { useState, useEffect } from 'react';
-import { Button } from '../Forms/Button';
-import { InputField } from '../Forms/InputField';
-import nunuEmote from '../../assets/emotes/nunu1.png';
+
+//Contexts
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
+
+//Components
+import { Button } from '../Forms/Button';
+import { InputField } from '../Forms/InputField';
+
+//Assets
+import nunuEmote from '../../assets/emotes/nunu1.png';
 
 
 
@@ -13,7 +20,6 @@ function Signup({ setIsLogin }) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
-  //Context
   const {  
     setIsAuthenticated, 
     setUserInfo, 
@@ -46,12 +52,9 @@ function Signup({ setIsLogin }) {
       setUsername('');
       setPassword('');
       setEmail('');
-
-      
   
       const response = await fetchWithToken.get(import.meta.env.VITE_APP_GET_USER_INFO, { withCredentials: true });
       setUserInfo(response.data.user);
-      
       
       setSuccess('');
       

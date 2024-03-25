@@ -1,9 +1,15 @@
-
+//Hooks
 import  { useContext, useState } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
+
+//Contexts
+import { AuthContext } from '../../contexts/AuthContext';
+
+//Components
 import { Button } from '../../components/Forms/Button';
 import { InputField } from '../../components/Forms/InputField';
+
+//Assets
 import biglogo from '../../assets/logoImages/BigLogo.png';
 import teemoEmote from '../../assets/emotes/teemo1.png';
 

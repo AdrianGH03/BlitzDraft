@@ -1,0 +1,235 @@
+.difficulty-container{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.5)), url('../../../placeholders/LeeSin_31.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.difficulty-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--dark-purple-2);
+    width: 80%;
+    max-height: 90%;
+    margin-top: 2rem;
+    padding: 0 1rem 2rem 0;
+    margin-bottom: 2rem;
+}
+.difficulty-title{
+    width: 120%;
+    padding: 1rem 0;
+    text-align: center;
+    background-color: var(--rich-black-2);
+    border: 3px solid white;
+}
+.difficulty-settings-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem 3rem;
+    
+}
+.difficulty-buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 80%;
+}
+.difficulty-settings{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    padding-left: 2rem;
+    margin-bottom: 0.5rem;
+}
+.difficulty-play-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.difficulty-note-container{
+    text-align: center;
+    padding: 1rem 0;
+}
+.difficulty-settings-setting{
+    display: flex;
+    flex-direction: column;
+    
+}
+.difficulty-settings-setting .settings{
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    
+}
+.difficulty-settings-setting .settings span{
+    font-family: 'Jomhuria', cursive;
+    font-size: 1.3rem;
+}
+
+
+
+
+/*Styles*/
+.difficulty-title h1{
+    font-size: 1.5rem;
+    color: var(--electric-blue);
+    font-family: 'Fugaz One', cursive;
+    
+}
+.difficulty-buttons button{
+    border: 3px solid transparent;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Asap Condensed', cursive;
+}
+.difficulty-buttons .easy{
+    background-color: lime;
+}
+.difficulty-buttons .medium{
+    background-color: rgb(250, 197, 23);
+}
+.difficulty-buttons .hard{
+    background-color: red;
+}
+.difficulty-buttons .easy:hover{
+    background-color: rgb(1, 212, 1);
+}
+.difficulty-buttons .medium:hover{
+    background-color: rgb(224, 160, 42);
+}
+.difficulty-buttons .hard:hover{
+    background-color: rgb(201, 29, 29);
+}
+.difficulty-settings h1{
+    font-size: 1.5rem;
+    color: var(--electric-blue);
+    font-family: 'Fugaz One', cursive;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--electric-blue);
+    margin-bottom: 1rem;
+    white-space: nowrap;
+}
+.difficulty-emote{
+    
+    display: flex;
+    justify-content: center;
+}
+.difficulty-emote img{
+    width: 100%;
+    height: 70%;
+}
+.difficulty-play-container button{
+    width: 80%;
+    padding: 1rem 0;
+    
+    font-weight: bold;
+    color: white;
+    font-family: 'Rubik Mono One', sans-serif;
+}
+
+.difficulty-play-container button:hover{
+    background-color: #34e011;
+    color: white;
+}
+.difficulty-note-container p{
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: red;
+    font-family: 'Asap Condensed', cursive;
+}
+
+
+
+@media(min-width: 700px){
+    .difficulty-content{
+        margin-top: 3rem;
+        width: 90%;
+    }
+    .difficulty-title{
+        padding: 1.5rem 0;
+    }
+    .difficulty-settings-container{
+        flex-direction: row;
+        align-items: start;
+        padding-top: 2rem;
+        padding-left: 0rem;
+        
+    }
+    .difficulty-buttons{
+        width: 30%;
+    }
+
+
+    .difficulty-buttons button{
+        font-size: 1.2rem;
+        width: 130%; 
+        
+    }
+    .difficulty-emote img{
+        width: 100%;
+        height: auto;
+        margin-top: 0rem;
+        margin-right: 0rem;
+    }
+    .difficulty-settings-setting .settings{
+        min-width: 100px;
+        
+    }
+    .difficulty-play-container button{
+        width: 50%;
+        
+    }
+    
+}
+@media(min-width: 820px){
+    .difficulty-content{
+        width: 90%;
+        height: 80%;
+    }
+    .difficulty-buttons button{
+        width: 110%;
+    }
+    .difficulty-play-container button{
+        font-size: 1.5rem;
+    }
+    
+}
+
+@media(min-width: 1028px){
+    .difficulty-content{
+        width: 70%;
+    }
+    .difficulty-settings span{
+        font-size: 1.2rem;
+    }
+}
+@media(min-width: 1200px){
+    .difficulty-content{
+        width: 60%;
+    }
+    .difficulty-settings span{
+        font-size: 1.5rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+

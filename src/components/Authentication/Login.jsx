@@ -1,11 +1,14 @@
+//Hooks
 import { useState, useContext } from 'react';
+
+//Context
+import { AuthContext } from '../../contexts/AuthContext';
+
+//Assets
 import { Button } from '../Forms/Button';
 import { InputField } from '../Forms/InputField';
 import ezrealEmote from '../../assets/emotes/ezreal1.png';
 import udyrEmote from '../../assets/emotes/udyr1.png';
-import { AuthContext } from '../../contexts/AuthContext';
-
-
 
 //eslint-disable-next-line
 function Login({  setForgotPassword, forgotPassword }) {

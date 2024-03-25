@@ -1,20 +1,28 @@
+//Hooks
 import { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+//Contexts
+import { AuthContext } from '../../contexts/AuthContext';
+
+//Components
 import Login from '../../components/Authentication/Login';
 import Signup from '../../components/Authentication/Signup';
+
+//Assets
 import biglogo from '../../assets/logoImages/BigLogo.png';
-import { AuthContext } from '../../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+
 
 function AuthPage() {
   const [isLogin, setIsLogin] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
   const navigate = useNavigate();
-  //eslint-disable-next-line
   const {  
     userInfo, 
     error, 
     success
   } = useContext(AuthContext);
+  
 
   
 
@@ -25,6 +33,7 @@ function AuthPage() {
   }, [userInfo, navigate]);
 
   return (
+
     <div className='auth-parent-container' >
         
         <div className="auth-parent">

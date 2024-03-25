@@ -73,7 +73,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 100%;
     padding: 5px 20px;
 }
 .profile-pagination{
@@ -137,7 +137,7 @@
     padding: 1rem 2rem;
     text-align: center;
     font-size: 1rem;
-    font-family: 'Fugaz One', cursive;
+    font-family: 'Rubik Mono One', cursive;
 }
 .profile-image{
     width: 100px;
@@ -170,7 +170,7 @@
     border: 2px solid white;
     font-size: 1.5rem;
     transition: all 0.4s ease-in-out;
-    font-family: 'Fugaz One', cursive;
+    font-family: 'Rubik Mono One', cursive;
 }
 .profile-content .gradient-button:hover {
     background-color: var(--electric-blue);
@@ -342,7 +342,7 @@
         width: 90%;
     }
     .profile-image-grid-container img {
-        width: 80%;
+        width: 100%;
         height: auto;
     }
 }
