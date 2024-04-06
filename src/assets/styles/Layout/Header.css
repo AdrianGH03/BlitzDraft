@@ -12,6 +12,7 @@
     position: relative; 
 }
 
+
 .navbar-desk {
     display: none;
 }
@@ -20,6 +21,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 .nav-logo {
@@ -36,9 +38,11 @@
     position: absolute;
     top: 100%; 
     left: 0;
-    background-color: var(--rich-black-2);
+    background-color: var( --night);
     transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
     transform: translateX(-100%);
+    padding-top: 0.5rem;
+    height: 90vh;
 }
 
 .nav-right {
@@ -51,13 +55,17 @@
 .nav-leaderboard,
 .nav-faq,
 .nav-tutorial,
+.nav-guides,
 .nav-play {
     padding: 1rem;
-    border-bottom: 1px solid var(--french-gray);
+    
+    
 }
-
+.nav-guides{
+    margin-bottom: 1rem;
+}
 .nav-account {
-    border-top: 1px solid var(--french-gray);
+    padding-top: 1rem;
 }
 
 .nav-left a {
@@ -67,13 +75,22 @@
     font-family: 'Fugaz One', cursive;
 }
 
-.nav-left a:nth-child(odd) {
+
+
+.nav-left a, .nav-left a span {
+    color: var(--french-gray);
+    display: flex;
+    gap: 0 1rem;
+    
+}
+.nav-left a:hover, .nav-left a:hover span{
     color: var(--electric-blue);
+    transition: all 0.3s ease-in-out;
+}
+.nav-left a span{
+    font-family: 'Rubik Mono One', sans-serif;
 }
 
-.nav-left a:nth-child(even) {
-    color: var(--french-gray);
-}
 
 .navbar-mobile .nav-left .nav-play {
     color: rgb(255, 255, 255);
@@ -113,9 +130,19 @@
 }
 
 .nav-left.open {
+    display: flex;
+    flex-direction: column;
     visibility: visible;
     opacity: 1;
+    width: 100%;
+    top: 0; 
+    left: 0;
+    
+    transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
     transform: translateX(0);
+    z-index: 9999; 
+    margin-top: 4rem;
+    height: 100vh;
 }
 
 .nav-left.open {
@@ -128,7 +155,6 @@
     padding-left: 1rem;
     object-fit: cover;
     display: flex;
-    
     align-items: center;
     gap: 0 1rem;
     border-bottom: 1px solid var(--french-gray);
@@ -136,7 +162,14 @@
 }
 .nav-play{
     border-bottom: 5px solid white;
-
+    border-top: 5px solid white;
+    text-align: center;
+    background-color: rgb(6, 6, 90);
+    display: flex;
+    justify-content: center;
+}
+a.nav-play{
+    font-family: 'Press Start 2P', cursive;
 }
 img.nav-profile{
     width: 35px;
@@ -148,6 +181,22 @@ img.nav-profile{
 .user-info-mobile p{
     color: white;
     font-family: 'Rubik Mono One', cursive;
+}
+.user-info-mobile{
+    padding: 2rem 1rem;
+    border-bottom: 3px solid white;
+}
+@media(min-width: 600px){
+    .nav-left{
+        
+        width: 50%;
+        height: 90vh;
+    }
+    .nav-left.open{
+        width: 50%;
+        
+    }
+    
 }
 
 @media(min-width: 900px){
@@ -179,14 +228,24 @@ img.nav-profile{
     .desk-nav-left a{
         font-size: 1rem;
         text-decoration: none;
-        color: var(--electric-blue);
-        font-family: 'Rubik Mono One', cursive;
-        padding-bottom: 0.5rem;
-        border-bottom: 2px solid var(--electric-blue)
-    }
-    .desk-nav-left a:hover{
         color: white;
-        border-bottom: white 2px solid;
+        font-family: 'Rubik Mono One', cursive;
+        white-space: nowrap;
+        
+    }
+    .desk-nav-left a{
+        display: flex;
+        gap: 0 0.5rem;
+    }
+    .desk-nav-left a span{
+        font-size: 1rem;
+        text-decoration: none;
+        color: white;
+        font-family: 'Rubik Mono One', cursive;
+        white-space: nowrap;
+    }
+    .desk-nav-left a:hover span, .desk-nav-left a:hover{
+        color: var(--electric-blue);
         transition: all 0.3s ease-in-out;
     }
     .desk-nav-right{
@@ -196,10 +255,7 @@ img.nav-profile{
         gap: 0 1rem;
         align-items: center;
     }
-    .desk-nav-account{
-        padding: 0.5rem 1rem;
-        background-color: var(--dark-purple);
-    }
+    
     .desk-nav-logo {
         width: 100px; 
         height: auto; 
@@ -223,21 +279,14 @@ img.nav-profile{
 
 
     /* PLAY BUTTON */
-    .play-container {
-      
-    }
     
 
     /* LOGIN BUTTON */
-    a.desk-nav-account{
-      color: white;
-      border: 2px solid white;
-      padding: 0.5rem 1rem;
-    }
-    a.desk-nav-account:hover{
-      color: white;
-      border: 2px solid var(--electric-blue);
-      background-color: var(--electric-blue);
-      transition: all 0.4s ease-in-out;
-    }
+    
 }
+
+@media (max-width: 1166px) {
+    .desk-nav-left a span {
+      display: none;
+    }
+  }

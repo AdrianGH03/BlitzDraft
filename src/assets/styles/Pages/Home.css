@@ -155,17 +155,9 @@ img.home-biglogo{
     }
 }
 
-@media(min-width: 821px){
+@media(min-width: 1280px){
     /*TEXT*/
-    .desktop-text {
-        display: block;
-        max-width: 400px;
-        line-height: 1.5;
-        text-align: right;  
-    }
-    .mobile-text {
-        display: none;
-    }
+    
 
     /*LAYOUT*/
     .home-div-container{
@@ -200,7 +192,16 @@ img.home-biglogo{
         
         
     }
-    
+    .desktop-text {
+        display: block;
+        max-width: 400px;
+        line-height: 1.5;
+        text-align: right;  
+    }
+    .mobile-text {
+        display: none;
+    }
     
 }
+
 

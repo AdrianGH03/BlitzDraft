@@ -5,6 +5,7 @@
     background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.5)), url('../../../placeholders/LeeSin_31.jpg');
     background-size: cover;
     background-position: center;
+    
 }
 .difficulty-content{
     display: flex;
@@ -16,6 +17,8 @@
     margin-top: 2rem;
     padding: 0 1rem 2rem 0;
     margin-bottom: 2rem;
+    overflow-x: hidden;
+    border-radius: 10px;
 }
 .difficulty-title{
     width: 120%;
@@ -31,7 +34,7 @@
     padding-top: 1rem;
     justify-content: center;
     align-items: center;
-    gap: 2rem 3rem;
+    gap: 2rem;
     
 }
 .difficulty-buttons{
@@ -39,12 +42,14 @@
     flex-direction: column;
     gap: 0.5rem;
     width: 80%;
+    
+    align-items: end;
 }
 .difficulty-settings{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    
+
     padding-left: 2rem;
     margin-bottom: 0.5rem;
 }
@@ -70,7 +75,10 @@
 }
 .difficulty-settings-setting .settings span{
     font-family: 'Jomhuria', cursive;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    min-width: 120px;
+
+        white-space: nowrap;
 }
 
 
@@ -91,6 +99,8 @@
     cursor: pointer;
     transition: 0.3s;
     font-family: 'Asap Condensed', cursive;
+    border-radius: 7px;
+    width: 100%;
 }
 .difficulty-buttons .easy{
     background-color: lime;
@@ -131,7 +141,7 @@
 .difficulty-play-container button{
     width: 80%;
     padding: 1rem 0;
-    
+    border-radius: 10px;
     font-weight: bold;
     color: white;
     font-family: 'Rubik Mono One', sans-serif;
@@ -172,7 +182,7 @@
 
     .difficulty-buttons button{
         font-size: 1.2rem;
-        width: 130%; 
+        width: 90%; 
         
     }
     .difficulty-emote img{
@@ -186,7 +196,7 @@
         
     }
     .difficulty-play-container button{
-        width: 50%;
+        width: 45%;
         
     }
     
@@ -197,7 +207,7 @@
         height: 80%;
     }
     .difficulty-buttons button{
-        width: 110%;
+        width: 80%;
     }
     .difficulty-play-container button{
         font-size: 1.5rem;

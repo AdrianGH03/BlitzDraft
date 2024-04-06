@@ -1,0 +1,156 @@
+.end-game-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    margin: 2rem 0 3rem 0;
+}
+.end-game-heading-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0 0.5rem;
+}
+.end-game-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 0 1rem;
+}
+.end-game-details .end-game-text{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem 0;
+    padding: 2rem 0;
+}
+.end-game-players{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0 3rem;
+    width: 100%;
+}
+.end-game-players > div{
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+}
+.end-game-players div div{
+    max-width: 60px;
+    max-height: 60px;
+    display: flex;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.end-game-heading-container{
+    width: 100%;
+    
+}
+.end-game-heading{
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.end-game-details .end-game-text p{
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #fff;
+    font-family: 'Fugaz One', cursive; 
+}
+.end-game-details .end-game-emote img{
+    max-width: 100px;
+}
+.end-game-players span{
+    font-family: 'Jomhuria', cursive;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.end-game-players img.player-image{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+.end-game-players img.role-icon{
+    max-width: 100%;
+    max-height: 100%;
+    
+}
+.end-game-details-playagain-button{
+    background-color: #000;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    padding: 0.7rem 2rem !important;
+    border: 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    
+}
+.end-game-details-playagain-button:hover{
+    background-color: var(--dark-purple);
+    border: 1px solid white;
+    transition: all 0.3s ease-in-out;
+    color: #000;
+}
+.end-game-details-playagain-button span, .end-game-details-playagain-button > div{
+    font-size: 0.45rem;
+}
+
+
+
+
+
+@media(min-width: 820px){
+    .end-game-container{
+        justify-content: start;
+        margin-top: 1rem;
+    }
+    .end-game-details{
+        gap: 0 1rem;
+    }
+    .end-game-details .end-game-text{
+        padding: 1rem 0;
+    }
+
+
+
+    .end-game-details .end-game-emote img{
+        max-width: 150px;
+    }
+    .end-game-details .end-game-text p{
+        font-size: 1rem;
+    }
+    .end-game-details-playagain-button span, .end-game-details-playagain-button > div{
+        font-size: 0.6rem;
+        white-space: nowrap;
+    }
+    
+}
+@media(min-width: 1280px){
+    .end-game-details .end-game-emote img{
+        max-width: 200px;
+    }
+    .end-game-details .end-game-text p{
+        font-size: 1.5rem;
+    }
+    
+}

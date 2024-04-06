@@ -11,10 +11,27 @@ import { CustomSkeleton } from '../components/CustomSkeleton';
 //Assets
 import bigLogo from '../assets/logoImages/BigLogo.png';
 import azirEmote from '../assets/emotes/azir1.png';
+import '../assets/styles/Pages/Home.css';
 
 export const Home = () => {
     var { isLoading, setIsLoading } = useContext(StyleContext);
     const [loadedImages, setLoadedImages] = useState(new Set());
+    const [isCssLoaded, setIsCssLoaded] = useState(false);
+
+    useEffect(() => {
+      const checkCssLoaded = () => {
+          const marker = document.getElementById('css-loaded-marker');
+          const style = window.getComputedStyle(marker);
+          if (style.color === 'rgb(18, 52, 86)') {
+              setIsCssLoaded(true);
+          }
+      };
+  
+      checkCssLoaded();
+      const intervalId = setInterval(checkCssLoaded, 100);
+  
+      return () => clearInterval(intervalId); // Clean up interval on unmount
+    }, []);
 
     useEffect(() => {
       if (loadedImages.size === 2) { 
@@ -34,8 +51,13 @@ export const Home = () => {
       img2.src = azirEmote;
     }, []);
 
+    
+
     return (
-      <div className="home-background">
+      <>
+      <div id="css-loaded-marker"></div>
+      {isCssLoaded ? (
+        <div className="home-background">
         <div className="home-div">
           <div className="home-div-container">
             {isLoading ? (
@@ -70,12 +92,14 @@ export const Home = () => {
             {
                 isLoading ? <CustomSkeleton /> : (
                     <div className="home-play-container">
-                        <Link to="/test" className="home-play">PLAY NOW</Link>
+                        <Link to="/game/difficulty" className="home-play">PLAY NOW</Link>
                     </div>
                 )
             }
           </div>
         </div>
       </div>
+      ) : <span className="loader"></span>}
+      </>
     )
   } 

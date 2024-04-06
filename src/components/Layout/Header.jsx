@@ -13,6 +13,9 @@ import { StyleContext } from '../../contexts/StyleContext';
 //Assets
 import lolplaceholder from '../../assets/placeholders/lolplaceholder.png';
 import logo from '../../assets/logoImages/SmallLogo.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrophy, faPersonCircleQuestion, faBook, faGamepad, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
+
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +26,9 @@ export const Header = () => {
   
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    const newIsOpen = !isOpen;
+    setIsOpen(newIsOpen);
+    document.body.style.overflow = newIsOpen ? 'hidden' : 'auto';
   };
 
   function goHome() {
@@ -59,19 +64,46 @@ export const Header = () => {
     }
   }, [userInfo, profileImage, isLoading]);
 
+  
+
   return (
     <>
       <div className="header">
         <div className="navbar-desk">
           <div className="navbar">
             <div className="desk-nav-left">
-            <div className="user-info" onClick={() => sendToProfile()} style={{ display: isAuthenticated ? 'block' : 'none' }}>
+              <div className="user-info" onClick={() => sendToProfile()} style={{ display: isAuthenticated ? 'block' : 'none' }}>
                 <img src={profileImage ? profileImage : lolplaceholder} alt='profile' className='desk-nav-profile' crossOrigin={"anonymous"} />
               </div>
-              <Link to="/auth" className="desk-nav-account" style={{ display: isAuthenticated === false ? 'block' : 'none' }}>SIGN UP</Link>
-              <Link to="/" className="desk-nav-leaderboard">LEADERBOARD</Link>
-              <Link to="/" className="desk-nav-faq">FAQ</Link>
-              <Link to="/" className="desk-nav-tutorial">TUTORIAL</Link>
+              <Link to="/auth" className="desk-nav-account" style={{ display: isAuthenticated === false ? 'block' : 'none' }}>
+                <FontAwesomeIcon icon={faRightToBracket} />&nbsp;
+                <span>SIGN UP</span>
+                
+              </Link>
+
+              <Link to="/" className="desk-nav-leaderboard">
+                <FontAwesomeIcon icon={faTrophy} />
+                <span>LEADERBOARD</span> 
+                
+              </Link>
+
+              <Link to="/" className="desk-nav-faq">
+                <FontAwesomeIcon icon={faPersonCircleQuestion} />
+                <span>FAQ</span>
+            
+              </Link>
+
+              <Link to="/" className="desk-nav-tutorial">
+                <FontAwesomeIcon icon={faGamepad} />  
+                <span>TUTORIAL</span>
+                
+              </Link>
+              <Link to="/" className='desk-nav-guides'>
+                <FontAwesomeIcon icon={faBook} />
+                <span>GUIDES</span>
+                
+              </Link>
+              
             </div>
             <div className="desk-nav-right">
               <div className="play-container">
@@ -99,16 +131,37 @@ export const Header = () => {
             userInfo && Object.keys(userInfo).length !== 0 && profileImage != '' ? (
               <div className="user-info-mobile" onClick={() => sendToProfile()}>
                 <img src={profileImage ? profileImage : lolplaceholder} alt='profile' className='nav-profile' crossOrigin={"anonymous"} />
-                <p>{userInfo.username.toUpperCase()}&apos;S PROFILE</p>
+                <p>{(userInfo.username.length > 11 ? userInfo.username.substring(0, 11) + "..." : userInfo.username).toUpperCase()}&apos;S PROFILE</p>
               </div>
             ) : (
-              <Link to="/auth" className="nav-account" onClick={() => closeMenu()}>SIGN UP</Link>
+              <Link to="/auth" className="nav-account" onClick={() => closeMenu()}>
+                <FontAwesomeIcon icon={faRightToBracket} />
+                <span>SIGN UP</span>
+              </Link>
             )
           }
-            <Link to="/" className="nav-leaderboard" onClick={() => closeMenu()}>LEADERBOARD</Link>
-            <Link to="/" className="nav-faq" onClick={() => closeMenu()}>FAQ</Link>
-            <Link to="/" className="nav-tutorial" onClick={() => closeMenu()}>TUTORIAL</Link>
-            <Link to="/test" className="nav-play" onClick={() => closeMenu()}>PLAY</Link>
+            <Link to="/" className="nav-leaderboard" onClick={() => closeMenu()}>
+              <FontAwesomeIcon icon={faTrophy} />
+                <span>LEADERBOARD</span> 
+                
+            </Link>
+            
+            <Link to="/" className="nav-faq" onClick={() => closeMenu()}>
+              <FontAwesomeIcon icon={faPersonCircleQuestion} />
+              <span>FAQ</span>
+             
+            </Link>
+            <Link to="/" className="nav-tutorial" onClick={() => closeMenu()}>
+              <FontAwesomeIcon icon={faGamepad} />
+              <span>TUTORIAL</span>
+            </Link>
+
+            <Link to="/" className='nav-guides' onClick={() => closeMenu()}>
+              <FontAwesomeIcon icon={faBook} />
+              <span>GUIDES</span>
+            </Link>
+
+            <Link to="/game/difficulty" className="nav-play" onClick={() => closeMenu()}>PLAY</Link>
           </div>
           <div className="nav-right">
             <div className="logo-container">

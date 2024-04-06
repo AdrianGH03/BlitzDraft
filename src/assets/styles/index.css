@@ -5,9 +5,13 @@
 @import './Pages/Auth.css';
 @import './Pages/UserProfile.css';
 @import './Pages/Game/Difficulty.css';
+@import './Pages/Game/Game.css';
+@import './Pages/Game/EndGame.css';
 @import 'tippy.js/dist/tippy.css'; 
 @import 'tippy.js/animations/shift-away-subtle.css'; 
-@import 'react-perfect-scrollbar/dist/css/styles.css';
+
+
+@import 'simplebar-react/dist/simplebar.min.css';
 
 
 /* FONTS */
@@ -26,7 +30,10 @@
 /* GAME TEXT ^ font-family: 'Press Start 2P', cursive; */
 
 
-
+#css-loaded-marker {
+  display: none;
+  color: #123456; /* This color is arbitrary, just make sure it's unique */
+}
 .react-loading-skeleton {
     height: 20px;
     margin-bottom: 10px;
@@ -43,11 +50,26 @@
     --black-2: #000000ff;
     --dark-slate-gray: #455e63ff;
     --electric-blue: #5be0e5ff;
+    --electric-blue-2: rgb(17, 150, 177);
     --night: #0b0b0bff;
+
+    
 }
 #root{
     background: linear-gradient(90deg, rgba(2,28,65,1) 0%, rgba(36,41,99,1) 48%, rgba(2,28,65,1) 100%, rgba(0,212,255,1) 100%);
 }
+/* For Firefox */
+#root {
+  scrollbar-width: thin;
+  scrollbar-color: var(--dark-purple);
+}
+
+/* For Chrome, Edge, and Safari */
+body::-webkit-scrollbar {
+  width: 0px;
+}
+
+
 *{
     font-family: "Asap Condensed", sans-serif;
     box-sizing: border-box;
@@ -66,6 +88,7 @@ a {
     text-decoration: none;
     color: var(--electric-blue);
 }
+
 .layout-container {
     display: flex;
     flex-direction: column;
@@ -80,6 +103,7 @@ a {
 .content {
   flex-grow: 2;
   background: linear-gradient(90deg, rgba(2,28,65,1) 0%, rgba(36,41,99,1) 48%, rgba(2,28,65,1) 100%, rgba(0,212,255,1) 100%);
+  
 }
 
 .footer {
@@ -130,6 +154,7 @@ a {
   -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
   padding: 0;
   text-transform: uppercase;
+  border-radius: 8px;
 }
 
 .btn-23:disabled {
@@ -232,6 +257,7 @@ a {
   margin: 0;
   -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
   padding: 0;
+  border-radius: 8px;
 }
 
 .btn-53:disabled {
@@ -326,6 +352,9 @@ a {
   width: 70px;
   height: 70px;
   color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
   .loader:before,
   .loader:after {

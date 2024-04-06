@@ -1,0 +1,152 @@
+//hooks and context
+import { useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
+import { StyleContext } from '../../contexts/StyleContext';
+
+//Assets
+import topIcon from '../../assets/placeholders/topIcon.png';
+import jgIcon from '../../assets/placeholders/jungleIcon.png';
+import midIcon from '../../assets/placeholders/midIcon.png';
+import adcIcon from '../../assets/placeholders/botIcon.png';
+import supIcon from '../../assets/placeholders/supportIcon.png';
+import placeholder from '../../assets/placeholders/lolplaceholder.png';
+
+export function TeamContainer({ gameData, team, setStartGame, startGame, setSkipCard, skipCard, isComplete, setIsComplete, revealedCards, setRevealedCards}) {
+  const bans = gameData.gameData.body.champSplashes?.bans;
+  const picks = gameData.gameData.body.champSplashes?.picks;
+  const gameDataTeam = gameData.gameData.body.game.data;
+  const startingRosters = gameData.gameData.body.startingRosters;
+  const pickOrder = gameData.gameData.body.difficultySettings.order;
+  const picksByRoleOrder = gameDataTeam[`${team}PicksByRoleOrder`].split(',');
+
+  const { setIsLoading } = useContext(StyleContext);
+
+  
+  const sortedPickKeys = picksByRoleOrder.map(pick => {
+    const pickKey = Object.keys(gameDataTeam).find(key => gameDataTeam[key] === pick);
+    return pickKey;
+  });
+
+  const [nextCard, setNextCard] = useState('');
+
+  useEffect(() => {
+    if(isComplete) {
+      setNextCard('');
+    }
+  }, [isComplete]);
+
+
+  useEffect(() => {
+    let interval;
+  
+    const startInterval = () => {
+      if (startGame) {
+        setNextCard(pickOrder[revealedCards.length]);
+        if (pickOrder.length === revealedCards.length && !isComplete) {
+          setIsLoading(true);
+          setTimeout(() => {
+            setIsComplete(true);
+            setIsLoading(false);
+          }, 2000);
+        }
+        const timerInterval = (localStorage.getItem('timer') || 5) * 1000;
+        let initialDelay = revealedCards.length === 0 ? timerInterval : 0; 
+  
+        setTimeout(() => {
+          interval = setInterval(() => {
+            if (pickOrder.length > revealedCards.length && revealedCards.length > 0) {
+              setRevealedCards([...revealedCards, pickOrder[revealedCards.length]]);
+            }
+          }, timerInterval);
+        }, initialDelay);
+      }
+    };
+  
+    startInterval();
+  
+    return () => {
+      clearInterval(interval);
+    };
+  }, [revealedCards, pickOrder, isComplete, startGame]);
+  
+  
+  useEffect(() => {
+    if(skipCard) {
+      if (pickOrder.length > revealedCards.length) {
+        setRevealedCards([...revealedCards, pickOrder[revealedCards.length]]);
+      }
+      setSkipCard(false);
+    }
+  }, [skipCard, pickOrder, revealedCards, setSkipCard]);
+
+
+
+  return (
+    <div className={`game-team1-container`}>
+  
+      <div className={`game-team1-bans`}>
+        <h2>{team} BANS</h2>
+        {bans && (
+          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className={nextCard === `${team}Ban${i + 1}` ? 'flash-animation' : ''} style={{ flex: '1 0 20%', maxWidth: '20%' }}>
+                <img 
+                  src={isComplete ? bans[`${team}Ban${i + 1}`] : revealedCards.includes(`${team}Ban${i + 1}`) ? bans[`${team}Ban${i + 1}`] : placeholder} 
+                  alt={`${team}Ban${i + 1}`} 
+                  style={{ 
+                    width: '100%', 
+                    height: 'auto', 
+                    objectFit: isComplete || revealedCards.includes(`${team}Ban${i + 1}`) ? 'cover' : 'contain',
+                    border: nextCard === `${team}Ban${i + 1}` ? '1px solid yellow' : '1px solid red'
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+  
+      <h2>PICKS &nbsp;(TOP &nbsp;&nbsp;&nbsp;&nbsp;→&nbsp;&nbsp;&nbsp;&nbsp; SUPP)</h2>
+      <div className={`game-team1-picks`}>
+        {picks && (
+          <>
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className={nextCard === `${team}Pick${i + 1}` && !isComplete ? 'flash-animation' : ''}>
+                <img 
+                  className="crop-expand" 
+                  src={isComplete ? picks[sortedPickKeys[i]] : revealedCards.includes(`${team}Pick${i + 1}`) ? picks[`${team}Pick${i + 1}`] : placeholder} 
+                  alt={`${team}Pick${i + 1}`} 
+                  style={{ 
+                    border: nextCard === `${team}Pick${i + 1}` && !isComplete ? '1px solid yellow' : (team === 'Team1' ? '2px solid #5be0e5ff' : '2px solid white'),
+                    objectFit: isComplete || revealedCards.includes(`${team}Pick${i + 1}`) ? 'cover' : 'contain'
+                  }}
+                />
+                <div className='game-team-names'>
+                  <span
+                    style={{ color: team === 'Team1' ? 'white' : 'white' }}
+                  > {isComplete ? gameDataTeam[sortedPickKeys[i]] : revealedCards.includes(`${team}Pick${i + 1}`) ? gameDataTeam[`${team}Pick${i + 1}`] : 'Hidden'}</span>
+                  <span>{startingRosters[`${team}Players`].split(',')[i].split("(")[0]} 
+                    <img src={i === 0 ? topIcon : i === 1 ? jgIcon : i === 2 ? midIcon : i === 3 ? adcIcon : supIcon} alt='role' className='role-icon' crossOrigin={"anonymous"}/>
+                  </span>
+                </div>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+TeamContainer.propTypes = {
+  gameData: PropTypes.object,
+  team: PropTypes.string,
+  setStartGame: PropTypes.func,
+  startGame: PropTypes.bool,
+  setSkipCard: PropTypes.func,
+  skipCard: PropTypes.bool,
+  isComplete: PropTypes.bool,
+  setIsComplete: PropTypes.func,
+  revealedCards: PropTypes.array,
+  setRevealedCards: PropTypes.func
+};

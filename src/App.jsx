@@ -9,6 +9,7 @@ import { StyleContext } from './contexts/StyleContext';
 //NPM/React
 import axios from 'axios';
 import { BrowserRouter as Router } from 'react-router-dom';
+import SimpleBar from 'simplebar-react';
 
 //Pages
 import { Layout } from './views/Layout';
@@ -63,9 +64,11 @@ export function App() {
       }}>
       <StyleContext.Provider value={{ isLoading, setIsLoading}}>
         <Router>
-          <Layout>
-            <AppRoutes />
+        
+          <Layout>          
+              <AppRoutes />
           </Layout>
+          
         </Router>
       </StyleContext.Provider>
     </AuthContext.Provider>

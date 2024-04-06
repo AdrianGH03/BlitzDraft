@@ -1,0 +1,342 @@
+/*Layouts*/
+.game-container{
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.5)), url('../../../placeholders/champselect.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.game-container .loader-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    width: 10%;
+    align-self: center;
+    margin-bottom: 5rem;
+}
+.game-team1-container{
+    display: flex;
+    flex-direction: column;
+    
+    max-width: 100%;
+}
+.game-team1-picks{
+    display: flex;
+    flex-direction: row;
+    max-height: 42px;
+}
+.game-team1-picks > div{
+    width: 20%;
+    
+}
+.game-team1-bans{
+   
+}
+.game-team1-bans > div{
+    display: flex;
+}
+.game-team1-bans img{
+    width: 100%;
+}
+.game-team1-picks img{
+    width: 100%;
+    max-height: 100%;
+    background-color: #080c14;
+}
+
+.game-team1-picks .game-team-names img{
+    background-color: transparent;
+}
+.game-search-container{
+    margin-bottom: 2rem;
+}
+.game-searchbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid white;
+    background-color: var(--rich-black-2);
+    padding: 1rem;
+}
+.game-searchbar input{
+    background-color: #313131;
+    border: 2px solid black;
+    color: white;
+}
+.game-searchbar input::placeholder{
+    color: rgb(168, 168, 168);
+    
+    font-size: 0.5rem;
+}
+.game-role-filters{
+    display: flex;
+}
+.game-search-champions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); 
+  gap: 5px;
+  padding: 0.5rem 1rem;
+  justify-items: center;
+}
+
+.champ-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem 0;
+  margin: 5px 0;
+}
+.game-search-submit{
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 1rem 0 1rem;
+    margin-top: 1rem;
+    align-items: center;
+    gap: 0 1rem;
+}
+.game-team-names{
+    display: none;
+}
+.game-team-names span{
+    display: flex;
+    align-items: center;
+    gap: 0 1rem;
+}
+
+
+
+
+
+
+/*Styles*/
+.game-team1-bans img{
+    border: 1px solid red;
+}
+
+.game-team-names img{
+    max-width: 20px;
+    max-height: 20px;
+}
+.game-role-filters img{
+    width: 25px;
+    height: 25px;
+    margin: 0 0.2rem;
+    
+}
+.game-role-filters img:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.3s;
+    
+}
+.champ-container span{
+    font-size: 12px;
+}
+.game-timer {
+    width: 100%;
+    background-color: #121212;
+    
+}
+.champ-container img {
+    width: 70px;
+    height: auto;
+    border: 1px solid white;
+}
+.champ-container img:hover{
+    border: 2px solid var(--electric-blue);
+    transform: scale(1.1);
+    transition: 0.3s;
+    cursor: pointer;
+}
+.game-search-submit button{
+    width: 50%;
+    background-color: var(--rich-black-2);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    border-radius: 5px;
+    font-size: 0.5rem;
+    padding: 1rem 0;
+}
+.team-image {
+    width: 50px; 
+    height: 50px; 
+    object-fit: contain;
+}
+.game-team1-bans h2{
+    width: 100%; 
+    background-color: rgb(54, 2, 2);
+    padding: 0.2rem 1rem;
+}
+.game-team1-container > h2{
+    width: 100%; 
+    background-color: var(--rich-black-2);
+    padding: 0.4rem 1rem;
+
+}
+.game-guess-button{
+    font-size: 1rem;
+}
+.game-guess-button span{
+    font-size: 0.7rem;
+    font-family: 'Rubik Mono One', cursive;
+}
+.game-guess-button:hover{
+    cursor: pointer;
+    background-color: #161616;
+}
+.game-start-button span{
+    font-size: 1rem;
+}
+.clicked {
+    transform: scale(0.8);
+    transition: transform 0.1s ease;
+}
+@keyframes flash {
+  0% { opacity: 1; }
+  50% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+.flash-animation {
+  animation: flash 2s linear infinite;
+}
+.flash-animation:hover{
+    animation: none;
+}
+
+
+
+
+@media(max-height: 600px){
+    .game-container{
+        margin-bottom: 5rem;
+    }
+}
+@media(min-width: 540px) and (max-width: 840px){
+    .game-team1-bans{
+        justify-content: center;
+    }
+    .game-team1-bans div div{
+        background-color: #080c14;
+        border: 1px solid red;
+        display: flex;
+        justify-content: center;
+    }
+    .game-team1-bans div div img{
+        max-width: 40%;
+        
+    }
+}
+
+@media(min-width: 840px){
+    /*LAYOUTS*/
+    .game-container{
+        flex-direction: row;
+        justify-content: space-around;
+        padding-top: 2rem;
+    }
+    .game-team1-picks{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem 0;
+    }
+    .game-search-container{
+        width: 300px;
+    }
+    .game-team-names{
+        display: block;
+    }
+    .game-team1-container h2{
+        display: none;
+    }
+
+    /*STYLES*/
+    .game-team1-bans img{
+        max-width: 50px;
+    }
+    .game-team1-picks img {
+        height: 80px; 
+        width: 250px; 
+        object-fit: cover; 
+        object-position: 50% 10%;
+    }
+    .game-team1-picks div, .game-team2-picks div {
+      position: relative;
+    }
+    
+    .game-team1-picks div div, .game-team2-picks div div {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        color: white; 
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem 0;
+        padding: 1rem 0.5rem;
+    }
+    
+    .game-team-names > span{
+        font-size: 1rem;
+        font-family: 'Rubik Mono One', sans-serif;
+        color: #ffffff;
+        white-space: nowrap;
+    }
+    .game-team-names span + span{
+        font-size: 0.8rem;
+        font-family: "Asap Condensed", sans-serif;
+        color: rgb(197, 197, 197);
+    }
+    .game-searchbar{
+        background-color: var(--dark-purple-2);
+    }
+
+    
+    
+    
+}
+@media(min-width: 1024px){
+    .game-search-container{
+        width: 500px;
+    }
+    .game-container{
+        padding-top: 5rem;
+        padding: 5rem 2rem 0 3rem
+    }
+    .game-team1-container{
+        align-items: center;
+    }
+    .game-team1-picks img{
+        width: 250px;
+    }
+    
+}
+
+@media(min-width: 1280px){
+    .game-search-container{
+        width: 600px;
+    }
+    .game-team1-picks img {
+        height: 80px; 
+        width: 350px; 
+        object-fit: cover; 
+        object-position: 50% 10%;
+    }
+    .game-team2-container{
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+        align-items: flex-end;
+    }
+}
+
+
+  

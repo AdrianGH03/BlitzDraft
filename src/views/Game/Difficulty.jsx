@@ -13,22 +13,25 @@ export const Difficulty = () => {
   //eslint-disable-next-line
   const [difficultySettings, setDifficultySettings] = useState({
     easy: {
-      pick: 8.33,
+      pick: 10,
       ban: 8.33,
-      cardsShown: 14,
+      startCard: 'Team1Ban5',
+      cardsShown: 15,
       total: 50
     },
     medium: {
-      pick: 15,
+      pick: 10,
       ban: 15,
+      startCard: 'Team1Pick3',
       cardsShown: 10,
-      total: 150
+      total: 100
     },
     hard: {
-      pick: 16.66,
+      pick: 10,
       ban: 16.66,
+      startCard: 'Team2Ban3',
       cardsShown: 5,
-      total: 250
+      total: 150
     }
   });
   const { fetchWithToken } = useContext(AuthContext);
@@ -43,7 +46,6 @@ export const Difficulty = () => {
     setDifficulty(difficulty);
   }
 
-  console.log(difficulty)
 
   function handleGetGame() {
     setGameLoaded(false);
@@ -81,6 +83,7 @@ export const Difficulty = () => {
           </div>
 
           <div className="difficulty-settings-container">
+            
             <div className="difficulty-buttons">
               <button className="btn-23 difficulty-button easy" onClick={() => handleDifficulty('easy')}
                 style={difficulty === 'easy' ? { border: '3px solid white' } : {}}
@@ -101,23 +104,29 @@ export const Difficulty = () => {
                 <span aria-hidden="" className="marquee">HARD</span>
               </button>
             </div>
+
+
             <div className="difficulty-settings">
               <div className="difficulty-settings-setting">
                 <h1>{difficulty.toUpperCase()}</h1>
                 {difficulty && (
                   <>
                   <div className="settings">
-                    <span>PICK: &nbsp;{difficultySettings[difficulty].pick}</span>
-                    <span>BAN: &nbsp;{difficultySettings[difficulty].ban}</span>
+                    <span>PICK/BAN PER: &nbsp;{difficultySettings[difficulty].pick}</span>
+                    <span>START: &nbsp;{difficultySettings[difficulty].startCard}</span>
                     <span>CARDS SHOWN: &nbsp;{difficultySettings[difficulty].cardsShown}</span>
-                    <span>TOTAL: &nbsp;{difficultySettings[difficulty].total}</span>
+                    <span>TOTAL POINTS: &nbsp;{difficultySettings[difficulty].total}</span>
                     </div>
                   </>
                 )}
               </div>
+
+
               <div className="difficulty-emote">
                 <img src={leeSinEmote} alt="Lee Sin Emote" />
               </div>
+
+
             </div>
           </div>
 

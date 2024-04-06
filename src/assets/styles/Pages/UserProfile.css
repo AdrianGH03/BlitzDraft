@@ -56,26 +56,6 @@
     padding: 1rem 0;
     width: 100%;
 }
-.profile-images-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    width: 100%;
-    grid-gap: 10px;
-    align-self: center;
-    padding: 20px;
-    border: 2px solid white;
-    border-radius: 10px;
-    justify-items: center;
-    align-items: center;
-    
-}
-.profile-image-grid-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 5px 20px;
-}
 .profile-pagination{
     display: flex;
     justify-content: center;
@@ -115,7 +95,15 @@
 
 .profile-details-username h1{
     font-size: 1.5rem;
-    
+    word-wrap: break-word;
+}
+.profile-details-info div h3{
+    background-color: var(--rich-black);
+    padding: 0.5rem 2rem;
+    border: 2px solid var(--electric-blue);
+}
+.profile-details-info div p{
+    word-wrap: break-word;
 }
 .profile-details-username{
     text-align: center;
@@ -131,7 +119,7 @@
     padding-bottom: 1rem;
     margin-bottom: 1rem;
     border-bottom: 3px solid var(--electric-blue);
-    color: var(--electric-blue);
+    color: white;
 }
 .profile-header h1{
     padding: 1rem 2rem;
@@ -177,10 +165,6 @@
     color: white;
     
 }
-.profile-image-grid-container img {
-    width: 100%;
-    height: auto;
-}
 .profile-image-grid-container img:hover{
     cursor: pointer;
     transform: scale(1.1);
@@ -201,103 +185,25 @@
 
 
 /* PLACEHOLDERS FOR ALL ELEMENTS USING ::BEFORE */
-.profile-image-container::before{
-    content: " ";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--dark-purple-2);
-    z-index: -1;
+.profile-images-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
 }
-.profile-header::before{
-    content: " ";
-    position: absolute;
-    top: 0;
-    left: 0;
+.profile-image-grid-container{
+    position: relative;
     width: 100%;
-    height: 100%;
-    background-color: var(--rich-black);
-    z-index: -1;
-}
-.profile-images-grid::before{
-    content: " ";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--dark-purple-2);
-    z-index: -1;
-}
-.profile-details::before{
-    content: " ";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--dark-purple-2);
-    z-index: -1;
-}
-.profile-info::before{
-    content: " ";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--dark-purple-2);
-    z-index: -1;
-}
-.profile-status::before{
-    content: " ";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--dark-purple-2);
-    z-index: -1;
-}
-.profile-save-button::before{
-    content: " ";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--dark-purple-2);
-    z-index: -1;
-}
-.profile-details-username::before{
-    content: " ";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--dark-purple-2);
-    z-index: -1;
-}
-.profile-details-info::before{
-    content: " ";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--dark-purple-2);
-    z-index: -1;
-}
-.profile-details-info div::before {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 1rem;
-}
+    height: auto;
+    
 
+}
+.profile-images-grid img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 2px solid white;
+}
 
 
 
@@ -308,6 +214,7 @@
     .profile-header h1{
         font-size: 1.5rem;
     }
+    
 }
 @media (min-width: 768px) {
     .profile-status p{ 
@@ -323,7 +230,7 @@
         padding: 1rem 0 5rem 0;
     }
     .profile-content{
-        width: 80%;
+        width: 100%;
         
     }
     .profile-details-info{
@@ -336,17 +243,21 @@
     .profile-details-username h1{
         font-size: 2rem;
     }
-    .profile-images-grid {
-        grid-template-columns: repeat(6, 6fr);
-        align-self: center;
-        width: 90%;
-    }
-    .profile-image-grid-container img {
-        width: 100%;
+    .profile-images-grid{
+        grid-template-columns: repeat(6, 1fr);
+    }.profile-image-grid-container{
+        position: relative;
+        width: 80%;
         height: auto;
     }
+    
 }
 @media(min-width: 1028px){
+    .profile-content{
+        width: 70%;
+    }
+}
+@media(min-width: 1280px){
     .profile-content{
         width: 60%;
     }
