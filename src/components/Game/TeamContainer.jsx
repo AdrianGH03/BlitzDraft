@@ -2,6 +2,7 @@
 import { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { StyleContext } from '../../contexts/StyleContext';
+import { GameContext } from '../../contexts/GameContext';
 
 //Assets
 import topIcon from '../../assets/placeholders/topIcon.png';
@@ -11,7 +12,7 @@ import adcIcon from '../../assets/placeholders/botIcon.png';
 import supIcon from '../../assets/placeholders/supportIcon.png';
 import placeholder from '../../assets/placeholders/lolplaceholder.png';
 
-export function TeamContainer({ gameData, team, setStartGame, startGame, setSkipCard, skipCard, isComplete, setIsComplete, revealedCards, setRevealedCards}) {
+export function TeamContainer({ gameData, team}) {
   const bans = gameData.gameData.body.champSplashes?.bans;
   const picks = gameData.gameData.body.champSplashes?.picks;
   const gameDataTeam = gameData.gameData.body.game.data;
@@ -20,11 +21,24 @@ export function TeamContainer({ gameData, team, setStartGame, startGame, setSkip
   const picksByRoleOrder = gameDataTeam[`${team}PicksByRoleOrder`].split(',');
 
   const { setIsLoading } = useContext(StyleContext);
+  const { 
+    startGame,
+    skipCard, setSkipCard, 
+    isComplete, setIsComplete, 
+    revealedCards, setRevealedCards 
+  } = useContext(GameContext);
+
 
   
   const sortedPickKeys = picksByRoleOrder.map(pick => {
     const pickKey = Object.keys(gameDataTeam).find(key => gameDataTeam[key] === pick);
     return pickKey;
+  });
+
+  const imageUrls = Object.values(picks).concat(Object.values(bans));
+  imageUrls.forEach(url => {
+    const img = new Image();
+    img.src = url;
   });
 
   const [nextCard, setNextCard] = useState('');
@@ -79,7 +93,7 @@ export function TeamContainer({ gameData, team, setStartGame, startGame, setSkip
     }
   }, [skipCard, pickOrder, revealedCards, setSkipCard]);
 
-
+  
 
   return (
     <div className={`game-team1-container`}>
@@ -140,13 +154,5 @@ export function TeamContainer({ gameData, team, setStartGame, startGame, setSkip
 
 TeamContainer.propTypes = {
   gameData: PropTypes.object,
-  team: PropTypes.string,
-  setStartGame: PropTypes.func,
-  startGame: PropTypes.bool,
-  setSkipCard: PropTypes.func,
-  skipCard: PropTypes.bool,
-  isComplete: PropTypes.bool,
-  setIsComplete: PropTypes.func,
-  revealedCards: PropTypes.array,
-  setRevealedCards: PropTypes.func
+  team: PropTypes.string
 };

@@ -4,6 +4,7 @@ import { useSpring, animated } from 'react-spring';
 
 //Contexts
 import { AuthContext } from '../../contexts/AuthContext';
+import { GameContext } from '../../contexts/GameContext';
 import PropTypes from 'prop-types';
 
 //assets
@@ -14,8 +15,14 @@ import midIcon from '../../assets/placeholders/midIcon.png';
 import botIcon from '../../assets/placeholders/botIcon.png';
 import supportIcon from '../../assets/placeholders/supportIcon.png';
 
-export function SearchContainer({ gameData, setStartGame, startGame, setSkipCard, skipCard, isComplete, setIsComplete, guesses, setGuesses }) {
+export function SearchContainer({ gameData }) {
     const { fetchWithToken } = useContext(AuthContext);
+    const { 
+      setStartGame, startGame,
+      setSkipCard,
+      isComplete, setIsComplete,
+      setGuesses
+    } = useContext(GameContext);
     
     //Style states
     const [isButtonClicked, setIsButtonClicked] = useState(false);
@@ -75,7 +82,7 @@ export function SearchContainer({ gameData, setStartGame, startGame, setSkipCard
               if (prevTimer === 1) {
                 clearInterval(interval);
                 if (currentGuess === '') {
-                  setGuesses(prevGuesses => ({ ...prevGuesses, [currentCard]: 'None' }));
+                  setTimeout(() => setGuesses(prevGuesses => ({ ...prevGuesses, [currentCard]: 'None' })), 0);
                 }
                 let currentCardIndex = pickOrder.findIndex(card => card === currentCard);
                 let nextCard = pickOrder[currentCardIndex + 1];
@@ -85,13 +92,11 @@ export function SearchContainer({ gameData, setStartGame, startGame, setSkipCard
                 }
                 if (nextCard !== undefined) {
                   setCurrentCard(nextCard);
-                  // Clear interval before setting timer
                   clearInterval(interval);
                   startInterval();
                 } else {
                   setIsComplete(true); 
                 }
-                // Reset timer to 30 and update localStorage
                 localStorage.setItem('timer', 5);
                 return 30;
               } else {
@@ -109,7 +114,7 @@ export function SearchContainer({ gameData, setStartGame, startGame, setSkipCard
           }
         };
       }
-    }, [startGame, currentCard, pickOrder, revealedCards, isComplete]);
+    }, [startGame, currentCard, currentGuess, pickOrder, revealedCards, isComplete, setGuesses]);
 
     const correctNames = {
       "MonkeyKing": "Wukong",
@@ -215,16 +220,18 @@ export function SearchContainer({ gameData, setStartGame, startGame, setSkipCard
     const handleGuessButtonClick = () => {
       if(currentGuess === '') return;
       setGuesses(prevGuesses => ({ ...prevGuesses, [currentCard]: currentGuess }));
-      setRevealedCards(prevRevealed => [...prevRevealed, currentCard]);
+    
+      const newRevealedCards = [...revealedCards, currentCard];
+      setRevealedCards(newRevealedCards);
       setCurrentGuess('');
       setSkipCard(true); 
     
-      setTimer(30);
+      
       localStorage.setItem('timer', 5);
     
       let currentCardIndex = pickOrder.findIndex(card => card === currentCard);
       let nextCard = pickOrder[currentCardIndex + 1];
-      while (nextCard !== undefined && revealedCards.includes(nextCard)) {
+      while (nextCard !== undefined && newRevealedCards.includes(nextCard)) {
         currentCardIndex += 1;
         nextCard = pickOrder[currentCardIndex + 1];
       }
@@ -344,13 +351,5 @@ export function SearchContainer({ gameData, setStartGame, startGame, setSkipCard
 }
 
 SearchContainer.propTypes = {
-    gameData: PropTypes.object,
-    setStartGame: PropTypes.func,
-    startGame: PropTypes.bool,
-    setSkipCard: PropTypes.func,
-    skipCard: PropTypes.bool,
-    isComplete: PropTypes.bool,
-    setIsComplete: PropTypes.func,
-    guesses: PropTypes.object,
-    setGuesses: PropTypes.func
+    gameData: PropTypes.object
 };

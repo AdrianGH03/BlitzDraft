@@ -1,6 +1,7 @@
 //Context
 import { AuthContext } from '../../contexts/AuthContext';
 import { StyleContext } from '../../contexts/StyleContext';
+import { GameContext } from '../../contexts/GameContext';
 
 //Hooks
 import { useContext, useState, useEffect } from 'react';
@@ -18,6 +19,11 @@ export function Game() {
   const { isLoading, setIsLoading } = useContext(StyleContext);
   const [isComplete, setIsComplete] = useState(false);
   const [showEndGame, setShowEndGame] = useState(true);
+
+  const [startGame, setStartGame] = useState(false);
+  const [skipCard, setSkipCard] = useState(false);
+  const [guesses, setGuesses] = useState({});
+  const [revealedCards, setRevealedCards] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -66,13 +72,20 @@ export function Game() {
 
   return (
     <>
+    <GameContext.Provider value={{ 
+        showEndGame,
+        isComplete, setIsComplete,
+        guesses, setGuesses,
+        revealedCards, setRevealedCards,
+        startGame, setStartGame,
+        skipCard, setSkipCard,
+      }}>
         <GameContainer 
           token={token}
           fetchWithToken={fetchWithToken}
           setIsLoading={setIsLoading} 
-          setShowEndGame={setShowEndGame} showEndGame={showEndGame} 
-          isComplete={isComplete} setIsComplete={setIsComplete}
         />
+      </GameContext.Provider>
     </>
   )
 }

@@ -1,6 +1,7 @@
 //Hooks and Context
 import { useContext, useEffect, useState } from 'react';
 import { StyleContext } from '../../contexts/StyleContext';
+import { GameContext } from '../../contexts/GameContext';
 import PropTypes from 'prop-types';
 
 
@@ -10,15 +11,19 @@ import { SearchContainer } from './SearchContainer';
 import { EndGameContainer } from './EndGameContainer';
 import { AudioPlayer } from './AudioPlayer';
 
-export function GameContainer({token, setIsLoading, fetchWithToken, isComplete, setIsComplete, showEndGame}) {
+export function GameContainer({token, setIsLoading, fetchWithToken}) {
     const [gameData, setGameData] = useState({});
-    const [startGame, setStartGame] = useState(false);
-    const [skipCard, setSkipCard] = useState(false);
-    const [guesses, setGuesses] = useState({});
-    const [revealedCards, setRevealedCards] = useState([]);
     const timer = localStorage.getItem('timer') || 0;
   
     const { isLoading } = useContext(StyleContext);
+    const {
+        showEndGame,
+        isComplete, setIsComplete,
+        guesses, setGuesses,
+        revealedCards, setRevealedCards,
+        startGame, setStartGame,
+        skipCard, setSkipCard,
+    } = useContext(GameContext);
 
     useEffect(() => {
       fetchWithToken.get(`${import.meta.env.VITE_APP_GET_GAME_TOKEN}/${token}`)
@@ -33,10 +38,7 @@ export function GameContainer({token, setIsLoading, fetchWithToken, isComplete, 
             setTimeout(() => {
               setStartGame(true);
             }, 1000);
-            if(timer && timer < 3){
-              setSkipCard(true);
-              localStorage.setItem('timer', 5);
-            }
+            
           }
         } else if(response.data.gameData?.body?.difficultySettings?.cardsRevealed) {
           setRevealedCards(response.data.gameData.body.difficultySettings.cardsRevealed);
@@ -61,7 +63,7 @@ export function GameContainer({token, setIsLoading, fetchWithToken, isComplete, 
     
     useEffect(() => {
       if (startGame && !showEndGame) {
-        fetchWithToken.put(`${import.meta.VITE_APP_SAVE_GAME}`, {
+        fetchWithToken.put(`${import.meta.env.VITE_APP_SAVE_GAME}`, {
           token: token,
           guesses: guesses,
           cardsRevealed: revealedCards,
@@ -69,15 +71,17 @@ export function GameContainer({token, setIsLoading, fetchWithToken, isComplete, 
       }
     }, [startGame, guesses, revealedCards]);
   
-    
+    useEffect(() => {
+      
+        console.log(guesses)
+      
+    } , [guesses])
   
     return (
       <>
       {gameData && gameData.gameData && gameData.gameData.body && revealedCards && (
         <div className="game-container">
-          <TeamContainer gameData={gameData} team="Team1" setStartGame={setStartGame} startGame={startGame} 
-            setSkipCard={setSkipCard} skipCard={skipCard} isComplete={isComplete} setIsComplete={setIsComplete}
-            revealedCards={revealedCards} setRevealedCards={setRevealedCards}
+          <TeamContainer gameData={gameData} team="Team1" 
           />
           {showEndGame == true ? (
             <EndGameContainer 
@@ -90,14 +94,10 @@ export function GameContainer({token, setIsLoading, fetchWithToken, isComplete, 
               <span className="loader"></span>
             </div>
           ) : (
-            <SearchContainer gameData={gameData} setStartGame={setStartGame} startGame={startGame}  
-              setSkipCard={setSkipCard} skipCard={skipCard} isComplete={isComplete} setIsComplete={setIsComplete}
-              setGuesses={setGuesses} guesses={guesses} 
+            <SearchContainer gameData={gameData} 
             />
           )}
-          <TeamContainer gameData={gameData} team="Team2" setStartGame={setStartGame} startGame={startGame}  
-            setSkipCard={setSkipCard} skipCard={skipCard} isComplete={isComplete} setIsComplete={setIsComplete}
-            revealedCards={revealedCards} setRevealedCards={setRevealedCards}
+          <TeamContainer gameData={gameData} team="Team2" 
           />
           
         </div>
@@ -107,11 +107,7 @@ export function GameContainer({token, setIsLoading, fetchWithToken, isComplete, 
 }
 
 GameContainer.propTypes = {
-
     token: PropTypes.string,
     setIsLoading: PropTypes.func,
     fetchWithToken: PropTypes.func,
-    isComplete: PropTypes.bool,
-    setIsComplete: PropTypes.func,
-    showEndGame: PropTypes.bool
 };
