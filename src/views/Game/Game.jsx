@@ -19,11 +19,10 @@ export function Game() {
   const { isLoading, setIsLoading } = useContext(StyleContext);
   const [isComplete, setIsComplete] = useState(false);
   const [showEndGame, setShowEndGame] = useState(true);
-
-  const [startGame, setStartGame] = useState(false);
-  const [skipCard, setSkipCard] = useState(false);
   const [guesses, setGuesses] = useState({});
+  const [skipCard, setSkipCard] = useState(false);
   const [revealedCards, setRevealedCards] = useState([]);
+  const [startGame, setStartGame] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -66,25 +65,25 @@ export function Game() {
     checkGameComplete();
   }, [token]);
   
-  
+  useEffect(() => {
+    console.log("Guesses", guesses)
+    console.log("Revealed Cards", revealedCards)
+  },[guesses, revealedCards])
 
   
 
   return (
     <>
     <GameContext.Provider value={{ 
-        showEndGame,
-        isComplete, setIsComplete,
-        guesses, setGuesses,
-        revealedCards, setRevealedCards,
-        startGame, setStartGame,
-        skipCard, setSkipCard,
-      }}>
-        <GameContainer 
-          token={token}
-          fetchWithToken={fetchWithToken}
-          setIsLoading={setIsLoading} 
-        />
+      isComplete, setIsComplete, 
+      showEndGame, setShowEndGame,
+      token, 
+      guesses, setGuesses,
+      revealedCards, setRevealedCards,
+      skipCard, setSkipCard,
+      startGame, setStartGame,
+    }} >
+        <GameContainer />
       </GameContext.Provider>
     </>
   )

@@ -34,7 +34,7 @@ export const Difficulty = () => {
       total: 150
     }
   });
-  const { fetchWithToken } = useContext(AuthContext);
+  const { fetchWithToken, error, setError } = useContext(AuthContext);
   //eslint-disable-next-line
   const [modifiedGameData, setModifiedGameData] = useState({});
   const [gameLoaded, setGameLoaded] = useState(true);
@@ -49,6 +49,7 @@ export const Difficulty = () => {
 
   function handleGetGame() {
     setGameLoaded(false);
+    setError('');
     fetchWithToken.get(`${import.meta.env.VITE_APP_ALL_GAME_DATA}?difficulty=${difficulty}`)
       .then(response => {
         if (response.data) {
@@ -62,6 +63,9 @@ export const Difficulty = () => {
             })
             .catch(error => {
               console.error('Error:', error);
+              setError("Something went wrong. Please try again.");
+              setGameLoaded(true);
+              setGameLink('');
             });
         }
       })
@@ -160,6 +164,10 @@ export const Difficulty = () => {
           <div className="difficulty-note-container">
             {!gameLoaded ? (
               ''
+            ) : error ? (
+              <p className="difficulty-note">
+                {error}
+              </p>
             ) : (
               <p className="difficulty-note">
                 Points will not be awarded for non-registered users. 

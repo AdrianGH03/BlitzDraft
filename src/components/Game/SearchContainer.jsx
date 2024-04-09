@@ -5,6 +5,7 @@ import { useSpring, animated } from 'react-spring';
 //Contexts
 import { AuthContext } from '../../contexts/AuthContext';
 import { GameContext } from '../../contexts/GameContext';
+import { StyleContext } from '../../contexts/StyleContext';
 import PropTypes from 'prop-types';
 
 //assets
@@ -17,21 +18,23 @@ import supportIcon from '../../assets/placeholders/supportIcon.png';
 
 export function SearchContainer({ gameData }) {
     const { fetchWithToken } = useContext(AuthContext);
-    const { 
-      setStartGame, startGame,
+    const {
+      isComplete, setIsComplete,  
+      setGuesses,
+      revealedCards, setRevealedCards,
       setSkipCard,
-      isComplete, setIsComplete,
-      setGuesses
+      startGame, setStartGame,
+      setShowEndGame,
     } = useContext(GameContext);
+    const { isLoading, setIsLoading } = useContext(StyleContext);
     
     //Style states
     const [isButtonClicked, setIsButtonClicked] = useState(false);
 
     //Game states
     const [currentCard, setCurrentCard] = useState(null);
-    const [timer, setTimer] = useState(5);
+    const [timer, setTimer] = useState(30);
     const [currentGuess, setCurrentGuess] = useState('');
-    const [revealedCards, setRevealedCards] = useState([]);
 
     //Search states
     const [champions, setChampions] = useState({});
@@ -43,7 +46,7 @@ export function SearchContainer({ gameData }) {
     //Gamedata endpoints
     const gameDataMatch = gameData.gameData.body.game.match;
     const pickOrder = gameData.gameData.body.difficultySettings.order;
-    const cardsRevealed = gameData.gameData.body.difficultySettings.cardsRevealed;
+    
     let teamNames;
     if(gameDataMatch){
       teamNames = gameDataMatch.split(' vs ');
@@ -58,31 +61,26 @@ export function SearchContainer({ gameData }) {
     // Sets the current card to the next card in the pick order that has not been revealed
     useEffect(() => {
       if (startGame) {
-        let currentCardIndex = pickOrder.findIndex(card => !cardsRevealed.includes(card));
+        let currentCardIndex = pickOrder.findIndex(card => !revealedCards.includes(card));
         if (currentCardIndex !== -1) {
           setCurrentCard(pickOrder[currentCardIndex]);
         }
       }
-    }, [startGame, pickOrder, cardsRevealed]);
+    }, [startGame, pickOrder, revealedCards]);
 
 
     // Timer for each card
     useEffect(() => {
       if (startGame && currentCard) {
-        let savedTimer = localStorage.getItem('timer');
-        if (savedTimer) {
-          setTimer(parseInt(savedTimer, 10));
-        } else {
-          setTimer(5);
-        }
         let interval;
         const startInterval = () => {
+          setTimer(30);
           interval = setInterval(() => {
             setTimer(prevTimer => {
               if (prevTimer === 1) {
                 clearInterval(interval);
                 if (currentGuess === '') {
-                  setTimeout(() => setGuesses(prevGuesses => ({ ...prevGuesses, [currentCard]: 'None' })), 0);
+                  setGuesses(prevGuesses => ({ ...prevGuesses, [currentCard]: 'None' }));
                 }
                 let currentCardIndex = pickOrder.findIndex(card => card === currentCard);
                 let nextCard = pickOrder[currentCardIndex + 1];
@@ -92,15 +90,9 @@ export function SearchContainer({ gameData }) {
                 }
                 if (nextCard !== undefined) {
                   setCurrentCard(nextCard);
-                  clearInterval(interval);
-                  startInterval();
-                } else {
-                  setIsComplete(true); 
-                }
-                localStorage.setItem('timer', 5);
+                } 
                 return 30;
               } else {
-                localStorage.setItem('timer', prevTimer - 1);
                 return prevTimer - 1;
               }
             });
@@ -109,12 +101,9 @@ export function SearchContainer({ gameData }) {
         startInterval();
         return () => {
           clearInterval(interval);
-          if (isComplete) {
-            localStorage.removeItem('timer');
-          }
         };
       }
-    }, [startGame, currentCard, currentGuess, pickOrder, revealedCards, isComplete, setGuesses]);
+    }, [startGame, currentCard, pickOrder, revealedCards, isComplete]);
 
     const correctNames = {
       "MonkeyKing": "Wukong",
@@ -220,18 +209,16 @@ export function SearchContainer({ gameData }) {
     const handleGuessButtonClick = () => {
       if(currentGuess === '') return;
       setGuesses(prevGuesses => ({ ...prevGuesses, [currentCard]: currentGuess }));
-    
-      const newRevealedCards = [...revealedCards, currentCard];
-      setRevealedCards(newRevealedCards);
+      setRevealedCards(prevRevealed => [...prevRevealed, currentCard]);
       setCurrentGuess('');
       setSkipCard(true); 
     
-      
-      localStorage.setItem('timer', 5);
+      setTimer(30);
+     
     
       let currentCardIndex = pickOrder.findIndex(card => card === currentCard);
       let nextCard = pickOrder[currentCardIndex + 1];
-      while (nextCard !== undefined && newRevealedCards.includes(nextCard)) {
+      while (nextCard !== undefined && revealedCards.includes(nextCard)) {
         currentCardIndex += 1;
         nextCard = pickOrder[currentCardIndex + 1];
       }
@@ -242,7 +229,7 @@ export function SearchContainer({ gameData }) {
 
     const { width } = useSpring({
       from: { width: '100%' },
-      to: { width: `${(timer / 5) * 100}%` },
+      to: { width: `${(timer / 30) * 100}%` },
       config: { duration: 1000 }
     });
 
@@ -351,5 +338,5 @@ export function SearchContainer({ gameData }) {
 }
 
 SearchContainer.propTypes = {
-    gameData: PropTypes.object
+  gameData: PropTypes.object
 };

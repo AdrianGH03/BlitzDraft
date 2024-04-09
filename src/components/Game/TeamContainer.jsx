@@ -12,7 +12,7 @@ import adcIcon from '../../assets/placeholders/botIcon.png';
 import supIcon from '../../assets/placeholders/supportIcon.png';
 import placeholder from '../../assets/placeholders/lolplaceholder.png';
 
-export function TeamContainer({ gameData, team}) {
+export function TeamContainer({ gameData, team }) {
   const bans = gameData.gameData.body.champSplashes?.bans;
   const picks = gameData.gameData.body.champSplashes?.picks;
   const gameDataTeam = gameData.gameData.body.game.data;
@@ -22,23 +22,14 @@ export function TeamContainer({ gameData, team}) {
 
   const { setIsLoading } = useContext(StyleContext);
   const { 
-    startGame,
-    skipCard, setSkipCard, 
     isComplete, setIsComplete, 
-    revealedCards, setRevealedCards 
+    revealedCards, setRevealedCards,
+    startGame
   } = useContext(GameContext);
-
-
   
   const sortedPickKeys = picksByRoleOrder.map(pick => {
     const pickKey = Object.keys(gameDataTeam).find(key => gameDataTeam[key] === pick);
     return pickKey;
-  });
-
-  const imageUrls = Object.values(picks).concat(Object.values(bans));
-  imageUrls.forEach(url => {
-    const img = new Image();
-    img.src = url;
   });
 
   const [nextCard, setNextCard] = useState('');
@@ -57,13 +48,13 @@ export function TeamContainer({ gameData, team}) {
       if (startGame) {
         setNextCard(pickOrder[revealedCards.length]);
         if (pickOrder.length === revealedCards.length && !isComplete) {
+          setIsComplete(true);
           setIsLoading(true);
           setTimeout(() => {
-            setIsComplete(true);
             setIsLoading(false);
           }, 2000);
         }
-        const timerInterval = (localStorage.getItem('timer') || 5) * 1000;
+        const timerInterval = 30000;
         let initialDelay = revealedCards.length === 0 ? timerInterval : 0; 
   
         setTimeout(() => {
@@ -84,16 +75,8 @@ export function TeamContainer({ gameData, team}) {
   }, [revealedCards, pickOrder, isComplete, startGame]);
   
   
-  useEffect(() => {
-    if(skipCard) {
-      if (pickOrder.length > revealedCards.length) {
-        setRevealedCards([...revealedCards, pickOrder[revealedCards.length]]);
-      }
-      setSkipCard(false);
-    }
-  }, [skipCard, pickOrder, revealedCards, setSkipCard]);
 
-  
+
 
   return (
     <div className={`game-team1-container`}>

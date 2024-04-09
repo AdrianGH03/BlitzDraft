@@ -94,11 +94,11 @@ export const UserProfile = () => {
                   </div>
                   <div className="">
                     <h3>RANK</h3>
-                    <p>{isLoading ? <CustomSkeleton count={1} /> : '#40'}</p>
+                    <p>{isLoading ? <CustomSkeleton count={1} /> : 'N/A'}</p>
                   </div>
                   <div className="">
                     <h3>POINTS</h3>
-                    <p>{isLoading ? <CustomSkeleton count={1} /> : '#1037'}</p>
+                    <p>{isLoading ? <CustomSkeleton count={1} /> : (isAuthenticated && userInfo && userInfo.points)}</p>
                   </div>
                 </div>
               ) : (

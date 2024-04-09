@@ -1,13 +1,14 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
+
+import { AuthContext } from '../../contexts/AuthContext'
 
 import lowscoreEmote from '../../assets/emotes/lowscore.png'
 import highscoreEmote from '../../assets/emotes/highscore.png'
 import medscoreEmote from '../../assets/emotes/medscore.png'
 //assets
-import SimpleBar from 'simplebar-react';
 import topIcon from '../../assets/placeholders/topIcon.png';
 import jungleIcon from '../../assets/placeholders/jungleIcon.png';
 import midIcon from '../../assets/placeholders/midIcon.png';
@@ -19,8 +20,10 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken }) => {
     const [scoreRange, setScoreRange] = React.useState(0)
     const [emote, setEmote] = React.useState(null)
     const [totalPoints, setTotalPoints] = React.useState(0)
+    const [actualScore, setActualScore] = React.useState(0)
     const icons = [topIcon, jungleIcon, midIcon, botIcon, supportIcon];
     const navigate = useNavigate();
+    const { userInfo } = useContext(AuthContext);
 
 
     const gameDataMatch = gameData.gameData.body.game.match;
@@ -31,14 +34,21 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken }) => {
 
     useEffect(() => {
         if(Object.keys(gameData).length > 0 && Object.keys(guesses).length > 0 && gameData.difficulty) {
-            fetchWithToken.post('http://localhost:3000/game/calculate-score', {
-               gameData: gameData.gameData.body.game.data,
-               difficulty: gameData.difficulty,
-               guesses: guesses
-            })
+            const requestBody = {
+                gameData: gameData.gameData.body.game.data,
+                difficulty: gameData.difficulty,
+                guesses: guesses
+            };
+    
+            if (userInfo) {
+                requestBody.userInfo = userInfo;
+            }
+    
+            fetchWithToken.post(`${import.meta.env.VITE_APP_CALCULATE_SCORE}`, requestBody)
             .then(response => {
                 setScoreRange((response.data.totalScore / response.data.outOf) * 100)
                 setTotalPoints(response.data.outOf)
+                setActualScore(response.data.totalScore)
                 if((response.data.totalScore / response.data.outOf) * 100 < 33) {
                     setEmote(lowscoreEmote) 
                 } else if((response.data.totalScore / response.data.outOf) * 100 < 66) {
@@ -51,7 +61,7 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken }) => {
             console.error('Error:', error);
             });
         }
-      }, []);
+    }, []);
 
     const goToGame = () => {
         navigate('/game/difficulty')
@@ -77,7 +87,7 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken }) => {
                         <p className="end-game-details-text"
                             style={scoreRange < 33 ? {color: 'red'} : scoreRange < 66 ? {color: 'orange'} : {color: 'lime'}}
                         >ACCURACY: {Number.isInteger(scoreRange) ? scoreRange : Number(scoreRange).toFixed(2)}%</p>
-                        <p className="end-game-details-text">TOTAL: {Number.isInteger(scoreRange) ? scoreRange : Number(scoreRange).toFixed(2)}/{Number.isInteger(totalPoints) ? totalPoints : Number(totalPoints).toFixed(2)}</p>
+                        <p className="end-game-details-text">TOTAL: {Number.isInteger(actualScore) ? actualScore : Number(actualScore).toFixed(2)}/{Number.isInteger(totalPoints) ? totalPoints : Number(totalPoints).toFixed(2)}</p>
                         <p className="end-game-details-text">REGION: {gameData.gameData.body.region}</p>
                         <p className="end-game-details-text">PATCH: {gameData.gameData.body.game.data.Patch}</p>
                         <button className="btn-53 end-game-details-playagain-button" onClick={() => goToGame()}>
