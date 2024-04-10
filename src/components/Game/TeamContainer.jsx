@@ -15,10 +15,12 @@ import placeholder from '../../assets/placeholders/lolplaceholder.png';
 export function TeamContainer({ gameData, team }) {
   const bans = gameData.gameData.body.champSplashes?.bans;
   const picks = gameData.gameData.body.champSplashes?.picks;
+  const picksMobile = gameData.gameData.body.champSplashes?.picksMobile;
   const gameDataTeam = gameData.gameData.body.game.data;
   const startingRosters = gameData.gameData.body.startingRosters;
   const pickOrder = gameData.gameData.body.difficultySettings.order;
   const picksByRoleOrder = gameDataTeam[`${team}PicksByRoleOrder`].split(',');
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const { setIsLoading } = useContext(StyleContext);
   const { 
@@ -33,6 +35,18 @@ export function TeamContainer({ gameData, team }) {
   });
 
   const [nextCard, setNextCard] = useState('');
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+  
+    window.addEventListener('resize', handleResize);
+  
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     if(isComplete) {
@@ -93,7 +107,7 @@ export function TeamContainer({ gameData, team }) {
                   style={{ 
                     width: '100%', 
                     height: 'auto', 
-                    objectFit: isComplete || revealedCards.includes(`${team}Ban${i + 1}`) ? 'cover' : 'contain',
+                    objectFit: isComplete || revealedCards.includes(`${team}Ban${i + 1}`) ? 'contain' : 'contain',
                     border: nextCard === `${team}Ban${i + 1}` ? '1px solid yellow' : '1px solid red'
                   }}
                 />
@@ -104,14 +118,20 @@ export function TeamContainer({ gameData, team }) {
       </div>
   
       <h2>PICKS &nbsp;(TOP &nbsp;&nbsp;&nbsp;&nbsp;→&nbsp;&nbsp;&nbsp;&nbsp; SUPP)</h2>
-      <div className={`game-team1-picks`}>
+      <div className={'game-team1-picks'}>
         {picks && (
           <>
             {[...Array(5)].map((_, i) => (
               <div key={i} className={nextCard === `${team}Pick${i + 1}` && !isComplete ? 'flash-animation' : ''}>
                 <img 
                   className="crop-expand" 
-                  src={isComplete ? picks[sortedPickKeys[i]] : revealedCards.includes(`${team}Pick${i + 1}`) ? picks[`${team}Pick${i + 1}`] : placeholder} 
+                  src={
+                    isComplete 
+                      ? (windowWidth <= 768 ? picksMobile[sortedPickKeys[i]] : picks[sortedPickKeys[i]]) 
+                      : revealedCards.includes(`${team}Pick${i + 1}`) 
+                        ? (windowWidth <= 768 ? picksMobile[`${team}Pick${i + 1}`] : picks[`${team}Pick${i + 1}`]) 
+                        : placeholder
+                  } 
                   alt={`${team}Pick${i + 1}`} 
                   style={{ 
                     border: nextCard === `${team}Pick${i + 1}` && !isComplete ? '1px solid yellow' : (team === 'Team1' ? '2px solid #5be0e5ff' : '2px solid white'),

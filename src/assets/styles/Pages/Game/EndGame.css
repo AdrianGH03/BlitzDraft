@@ -5,6 +5,7 @@
     align-items: center;
     padding: 0 1rem;
     margin: 2rem 0 3rem 0;
+    
 }
 .end-game-heading-container{
     display: flex;
@@ -29,9 +30,10 @@
 .end-game-players{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    gap: 0 3rem;
+    gap: 0rem 3rem;
+    margin-left: -2rem;
     width: 100%;
 }
 .end-game-players > div{
@@ -40,8 +42,8 @@
     align-items: space-around;
 }
 .end-game-players div div{
-    max-width: 60px;
-    max-height: 60px;
+    max-width: 50px;
+    max-height: 50px;
     display: flex;
     
 }

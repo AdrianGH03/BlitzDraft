@@ -65,10 +65,10 @@ export function Game() {
     checkGameComplete();
   }, [token]);
   
-  useEffect(() => {
-    console.log("Guesses", guesses)
-    console.log("Revealed Cards", revealedCards)
-  },[guesses, revealedCards])
+  // useEffect(() => {
+  //   console.log("Guesses", guesses)
+  //   console.log("Revealed Cards", revealedCards)
+  // },[guesses, revealedCards])
 
   
 
