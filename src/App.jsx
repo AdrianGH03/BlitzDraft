@@ -22,7 +22,6 @@ export function App() {
     headers: {
       'x-server-token': import.meta.env.VITE_APP_SERVER_DOOR,
       'x-server-secret': import.meta.env.VITE_APP_SERVER_USER,
-      'Access-Control-Allow-Origin': 'https://blitz-draft-kappa.vercel.app',
     },
     withCredentials: true,
   });
