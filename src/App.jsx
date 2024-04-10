@@ -21,7 +21,8 @@ export function App() {
   const fetchWithToken = axios.create({
     headers: {
       'x-server-token': import.meta.env.VITE_APP_SERVER_DOOR,
-      'x-server-secret': import.meta.env.VITE_APP_SERVER_USER
+      'x-server-secret': import.meta.env.VITE_APP_SERVER_USER,
+      'Access-Control-Allow-Origin': `${import.meta.env.VITE_APP_FRONTEND_URL}`,
     },
     withCredentials: true,
   });
