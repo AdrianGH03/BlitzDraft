@@ -5,7 +5,6 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { PasswordReset } from '../views/Auth/PasswordReset';
 import { UserProfile } from '../views/User/UserProfile';
 import { Home } from '../views/Home';
-import { Test } from '../tests/Test';
 import { Difficulty } from '../views/Game/Difficulty';
 import { Game } from '../views/Game/Game';
 import AuthPage from '../views/Auth/AuthPage'; 
@@ -20,7 +19,6 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/test" element={<Test />} />
 
       {/* Auth Routes */}
       <Route path="/auth" element={isAuthenticated ? <Navigate to="/user/profile" /> : <AuthPage />} />
