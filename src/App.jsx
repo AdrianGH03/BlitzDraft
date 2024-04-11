@@ -20,8 +20,8 @@ export function App() {
   
   const fetchWithToken = axios.create({
     headers: {
-      'x-server-token': import.meta.env.VITE_APP_SERVER_DOOR,
-      'x-server-secret': import.meta.env.VITE_APP_SERVER_USER,
+      'x-server-token': import.meta.env.SERVER_DOOR,
+      'x-server-secret': import.meta.env.SERVER_USER,
     },
     withCredentials: true,
   });
