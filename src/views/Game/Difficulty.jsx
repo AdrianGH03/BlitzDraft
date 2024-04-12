@@ -1,6 +1,6 @@
 //Hooks
 import { useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 //REACT/NODEJS
 import { AuthContext } from '../../contexts/AuthContext';
@@ -86,7 +86,7 @@ export const Difficulty = () => {
             <h1>DIFFICULTY</h1>
           </div>
 
-          <div className="difficulty-settings-container">
+          <div className="difficulty-settings-container fade-in-fwd">
             
             <div className="difficulty-buttons">
               <button className="btn-23 difficulty-button easy" onClick={() => handleDifficulty('easy')}
@@ -110,7 +110,7 @@ export const Difficulty = () => {
             </div>
 
 
-            <div className="difficulty-settings">
+            <div className="difficulty-settings fade-in-fwd">
               <div className="difficulty-settings-setting">
                 <h1>{difficulty.toUpperCase()}</h1>
                 {difficulty && (
@@ -126,7 +126,7 @@ export const Difficulty = () => {
               </div>
 
 
-              <div className="difficulty-emote">
+              <div className="difficulty-emote fade-in-fwd">
                 <img src={leeSinEmote} alt="Lee Sin Emote" />
               </div>
 
@@ -134,7 +134,7 @@ export const Difficulty = () => {
             </div>
           </div>
 
-          <div className="difficulty-play-container">
+          <div className="difficulty-play-container fade-in-fwd">
             
           {!gameLoaded ? (
             <span className="loader"></span>
@@ -161,7 +161,7 @@ export const Difficulty = () => {
           )}
           </div>
 
-          <div className="difficulty-note-container">
+          <div className="difficulty-note-container fade-in-fwd">
             {!gameLoaded ? (
               ''
             ) : error ? (
@@ -169,9 +169,14 @@ export const Difficulty = () => {
                 {error}
               </p>
             ) : (
-              <p className="difficulty-note">
-                Points will not be awarded for non-registered users. 
-              </p>
+              <>
+                <p className="difficulty-note">
+                  Points will not be awarded for non-registered users. 
+                </p>
+                <p className='difficulty-guide'>
+                  <Link to="/tutorial">Lost? Check out the tutorial for more information.</Link>
+                </p>
+              </>
             )}
           </div>
         </div>

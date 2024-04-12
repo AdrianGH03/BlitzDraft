@@ -1,14 +1,12 @@
 .profile-container{
     width: 100%;
-    height: 100%;
+    height: 90vh;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: start;
     justify-content: center;
-    background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.5)), url('../../../assets/placeholders/Lissandra_33.jpg');
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 1rem;
+
+    padding-top: 3rem;
 }
 .profile-content{
     width: 80%;
@@ -46,8 +44,9 @@
 }
 .profile-header{
     max-width: 100%;
-    background-color: var(--rich-black);
-    border: 2px solid white;
+    background-color: var(--dark-purple);
+    border: 2px solid var(--french-gray);
+    font-family: 'Fugaz One', cursive;
 }
 .profile-image-container{
     display: flex;
@@ -98,9 +97,10 @@
     word-wrap: break-word;
 }
 .profile-details-info div h3{
-    background-color: var(--rich-black);
+    background-color: var(--dark-purple-2);
     padding: 0.5rem 2rem;
-    border: 2px solid var(--electric-blue);
+    border: 2px solid var(--french-gray);
+    
 }
 .profile-details-info div p{
     word-wrap: break-word;
@@ -118,14 +118,14 @@
     font-size: 2rem;
     padding-bottom: 1rem;
     margin-bottom: 1rem;
-    border-bottom: 3px solid var(--electric-blue);
+    border-bottom: 2px solid var(--electric-blue);
     color: white;
 }
 .profile-header h1{
     padding: 1rem 2rem;
     text-align: center;
     font-size: 1rem;
-    font-family: 'Rubik Mono One', cursive;
+    font-family: 'Fugaz One', cursive;
 }
 .profile-image{
     width: 100px;
@@ -153,12 +153,13 @@
 .profile-content .gradient-button {
     width: 100%;
     padding: 1rem 0;
-    background-color: var(--rich-black);
+    background-color: var(--dark-purple);
     color: white;
-    border: 2px solid white;
-    font-size: 1.5rem;
+    border: 2px solid var(--french-gray);
+    font-size: 1rem;
     transition: all 0.4s ease-in-out;
-    font-family: 'Rubik Mono One', cursive;
+    font-family: 'Fugaz One', cursive;
+    margin-bottom: 5rem;
 }
 .profile-content .gradient-button:hover {
     background-color: var(--electric-blue);
@@ -187,7 +188,7 @@
 /* PLACEHOLDERS FOR ALL ELEMENTS USING ::BEFORE */
 .profile-images-grid{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     margin-top: 1rem;
 }
@@ -205,13 +206,19 @@
     border: 2px solid white;
 }
 
-
-
 @media(min-width: 540px){
     .profile-image-container{
         width: auto;
+
+    }
+    .profile-container{
+        padding-top: 0rem;
+        
     }
     .profile-header h1{
+        font-size: 1.5rem;
+    }
+    .profile-content .gradient-button{
         font-size: 1.5rem;
     }
     
@@ -220,8 +227,18 @@
     .profile-status p{ 
         font-size: 1.2rem; 
     }
+    .profile-container{
+        align-items: center;
+        
+    }
 }
-@media(min-width: 820px){
+@media(min-width: 768px){
+    .profile-images-grid img{
+        width: 70%;
+        height: 100%;
+        object-fit: cover;
+        border: 2px solid white;
+    }
     .profile-info{
         flex-direction: row;
         gap: 0 1.5rem;
@@ -243,6 +260,7 @@
     .profile-details-username h1{
         font-size: 2rem;
     }
+    
     .profile-images-grid{
         grid-template-columns: repeat(6, 1fr);
     }.profile-image-grid-container{
@@ -250,7 +268,13 @@
         width: 80%;
         height: auto;
     }
-    
+    .profile-details-info div h3{
+        background-color: transparent;
+        padding: 0.5rem 2rem;
+        border: none;
+        border-bottom: 2px solid var(--french-gray);
+        
+    }
 }
 @media(min-width: 1028px){
     .profile-content{

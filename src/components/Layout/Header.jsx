@@ -14,7 +14,7 @@ import { StyleContext } from '../../contexts/StyleContext';
 import lolplaceholder from '../../assets/placeholders/lolplaceholder.png';
 import logo from '../../assets/logoImages/SmallLogo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrophy, faPersonCircleQuestion, faBook, faGamepad, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
+import { faTrophy, faPersonCircleQuestion, faBook, faGamepad, faRightToBracket, faChessQueen } from '@fortawesome/free-solid-svg-icons'
 
 
 export const Header = () => {
@@ -93,12 +93,12 @@ export const Header = () => {
             
               </Link>
 
-              <Link to="/" className="desk-nav-tutorial">
+              <Link to="/tutorial" className="desk-nav-tutorial">
                 <FontAwesomeIcon icon={faGamepad} />  
                 <span>TUTORIAL</span>
                 
               </Link>
-              <Link to="/" className='desk-nav-guides'>
+              <Link to="/guides" className='desk-nav-guides'>
                 <FontAwesomeIcon icon={faBook} />
                 <span>GUIDES</span>
                 
@@ -151,17 +151,20 @@ export const Header = () => {
               <span>FAQ</span>
              
             </Link>
-            <Link to="/" className="nav-tutorial" onClick={() => closeMenu()}>
+            <Link to="/tutorial" className="nav-tutorial" onClick={() => closeMenu()}>
               <FontAwesomeIcon icon={faGamepad} />
               <span>TUTORIAL</span>
             </Link>
 
-            <Link to="/" className='nav-guides' onClick={() => closeMenu()}>
+            <Link to="/guides" className='nav-guides' onClick={() => closeMenu()}>
               <FontAwesomeIcon icon={faBook} />
               <span>GUIDES</span>
             </Link>
 
-            <Link to="/game/difficulty" className="nav-play" onClick={() => closeMenu()}>PLAY</Link>
+            <Link to="/game/difficulty" className="nav-play" onClick={() => closeMenu()}>
+              <FontAwesomeIcon icon={faChessQueen} style={{color: '#b2b2bcff'}}/>
+              <span>PLAY</span>
+            </Link>
           </div>
           <div className="nav-right">
             <div className="logo-container">

@@ -6,6 +6,8 @@ import { PasswordReset } from '../views/Auth/PasswordReset';
 import { UserProfile } from '../views/User/UserProfile';
 import { Home } from '../views/Home';
 import { Difficulty } from '../views/Game/Difficulty';
+import { Tutorial } from '../views/Tutorial';
+import { Guides } from '../views/Guides';
 import { Game } from '../views/Game/Game';
 import AuthPage from '../views/Auth/AuthPage'; 
 
@@ -22,11 +24,14 @@ export function AppRoutes() {
 
       {/* Auth Routes */}
       <Route path="/auth" element={isAuthenticated ? <Navigate to="/user/profile" /> : <AuthPage />} />
-
       <Route path="/reset/:token" element={<PasswordReset />} /> 
 
       {/* User Routes */}
       <Route path="/user/profile" element={isAuthenticated ? <UserProfile /> : <Navigate to="/auth" />} />
+
+      {/* Nav Routes */}
+      <Route path="/tutorial" element={<Tutorial />} />
+      <Route path="/guides" element={<Guides />} />
 
       {/* Game Routes */}
       <Route path="/game/difficulty" element={<Difficulty />} />

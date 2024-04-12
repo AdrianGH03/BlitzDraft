@@ -25,7 +25,7 @@ export function GameContainer() {
       guesses, setGuesses,
       revealedCards, setRevealedCards,
       setSkipCard,
-      startGame, 
+      startGame,  
     } = useContext(GameContext);
     
 
@@ -87,6 +87,7 @@ export function GameContainer() {
           
         </div>
       )}
+      <AudioPlayer startGame={startGame}/>
       </>
   );
 }

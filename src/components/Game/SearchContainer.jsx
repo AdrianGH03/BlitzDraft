@@ -79,9 +79,6 @@ export function SearchContainer({ gameData }) {
             setTimer(prevTimer => {
               if (prevTimer === 1) {
                 clearInterval(interval);
-                if (currentGuess === '') {
-                  setGuesses(prevGuesses => ({ ...prevGuesses, [currentCard]: 'None' }));
-                }
                 let currentCardIndex = pickOrder.findIndex(card => card === currentCard);
                 let nextCard = pickOrder[currentCardIndex + 1];
                 while (nextCard !== undefined && revealedCards.includes(nextCard)) {

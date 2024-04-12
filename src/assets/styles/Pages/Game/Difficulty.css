@@ -2,7 +2,7 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.5)), url('../../../placeholders/LeeSin_31.jpg');
+    background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.5)), url('../../../placeholders/animated-arcade.gif');
     background-size: cover;
     background-position: center;
     
@@ -18,14 +18,13 @@
     padding: 0 1rem 2rem 0;
     margin-bottom: 2rem;
     overflow-x: hidden;
-    border-radius: 10px;
 }
 .difficulty-title{
     width: 120%;
     padding: 1rem 0;
     text-align: center;
     background-color: var(--rich-black-2);
-    border: 3px solid white;
+    border: 2px solid var(--french-gray);
 }
 .difficulty-settings-container{
     display: flex;
@@ -87,7 +86,7 @@
 /*Styles*/
 .difficulty-title h1{
     font-size: 1.5rem;
-    color: var(--electric-blue);
+    color: white;
     font-family: 'Fugaz One', cursive;
     
 }
@@ -151,13 +150,23 @@
     background-color: #34e011;
     color: white;
 }
-.difficulty-note-container p{
+.difficulty-note-container p.difficulty-note{
     font-size: 0.7rem;
     font-weight: bold;
     color: red;
     font-family: 'Asap Condensed', cursive;
 }
-
+.difficulty-note-container p.difficulty-guide{
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: var(--electric-blue);
+    margin-top: 1rem;
+    font-family: 'Asap Condensed', cursive;
+}
+.difficulty-note-container p.difficulty-guide:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
 
 
 @media(min-width: 700px){
@@ -166,7 +175,7 @@
         width: 90%;
     }
     .difficulty-title{
-        padding: 1.5rem 0;
+        padding: 1rem 0;
     }
     .difficulty-settings-container{
         flex-direction: row;

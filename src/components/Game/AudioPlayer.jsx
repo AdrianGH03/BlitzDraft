@@ -22,7 +22,7 @@ export function AudioPlayer({ startGame }) {
     const playAudio = () => {
         if (audioRef.current.paused) {
             audioRef.current.src = tracks[currentTrack];
-            audioRef.current.volume = 0.01;
+            audioRef.current.volume = 10 / 100;
             audioRef.current.play();
         }
     }

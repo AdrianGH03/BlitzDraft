@@ -36,7 +36,7 @@ function AuthPage() {
 
     <div className='auth-parent-container' >
         
-        <div className="auth-parent">
+        <div className="auth-parent fade-in-fwd">
             <div className='auth-tab'>
                 {forgotPassword ? (
                     <button className='auth-tab-top' style={{ backgroundColor: isLogin ? '#5be0e5ff' : '#221e37ff',}}>
@@ -57,7 +57,7 @@ function AuthPage() {
             {isLogin ? <Login forgotPassword={forgotPassword} setForgotPassword={setForgotPassword} /> : 
             <Signup setIsLogin={setIsLogin} />}
         </div>
-        <div className="auth-status">
+        <div className="auth-status fade-in-fwd">
             <img src={biglogo} alt="big logo" className='auth-big-logo' />
             {success && <p className='auth-success'>{success}</p>}
             {error && <p className='auth-error'>{error}</p>}

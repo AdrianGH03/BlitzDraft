@@ -96,7 +96,7 @@ export function TeamContainer({ gameData, team }) {
     <div className={`game-team1-container`}>
   
       <div className={`game-team1-bans`}>
-        <h2>{team} BANS</h2>
+        <h2>{team == 'Team1' ? 'BLUE' : 'RED'} SIDE BANS</h2>
         {bans && (
           <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             {[...Array(5)].map((_, i) => (
@@ -117,7 +117,7 @@ export function TeamContainer({ gameData, team }) {
         )}
       </div>
   
-      <h2>PICKS &nbsp;(TOP &nbsp;&nbsp;&nbsp;&nbsp;→&nbsp;&nbsp;&nbsp;&nbsp; SUPP)</h2>
+      <h2>{team == 'Team1' ? 'BLUE' : 'RED'} SIDE PICKS &nbsp;(TOP &nbsp;&nbsp;&nbsp;&nbsp;→&nbsp;&nbsp;&nbsp;&nbsp; SUPP)</h2>
       <div className={'game-team1-picks'}>
         {picks && (
           <>
