@@ -17,7 +17,7 @@ export function Game() {
   const { fetchWithToken } = useContext(AuthContext);
   //eslint-disable-next-line
   const { isLoading, setIsLoading } = useContext(StyleContext);
-  const [isComplete, setIsComplete] = useState(true);
+  const [isComplete, setIsComplete] = useState(false);
   const [showEndGame, setShowEndGame] = useState(true);
   const [guesses, setGuesses] = useState({});
   const [skipCard, setSkipCard] = useState(false);
