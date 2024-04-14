@@ -73,7 +73,7 @@ body{
 }
 /* For Firefox */
 
-#root{
+body{
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
