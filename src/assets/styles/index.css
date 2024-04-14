@@ -73,7 +73,7 @@ body{
 }
 /* For Firefox */
 
-body, #root{
+#root{
   overflow-y: scroll;
 }
 /* For Chrome, Edge, and Safari */
