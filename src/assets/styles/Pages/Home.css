@@ -54,8 +54,8 @@
   justify-content: center;
 }
 .home-div img {
-  max-width: 300px; 
-  max-height: 300px;
+  max-width: 250px; 
+  max-height: 250px;
   object-fit: cover;
 }
 
@@ -98,6 +98,7 @@ button.home-play{
 .home-images-mobile img{
   border: 2px solid var(--electric-blue);
   border-radius: 15px;
+  margin-bottom: 10rem;
 }
 .home-images-desktop{
   display: none;

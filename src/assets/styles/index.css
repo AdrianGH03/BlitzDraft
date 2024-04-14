@@ -71,11 +71,6 @@ body{
 
 /* For Firefox */
 
-#root{
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-  
-}
 /* For Chrome, Edge, and Safari */
 body::-webkit-scrollbar, .content::-webkit-scrollbar, #root::-webkit-scrollbar {
   width: 0px;
@@ -107,6 +102,9 @@ input[type="text"], input[type="password"], input[type="email"] {
     color: white;
     
 }
+body, #root{
+  overflow-y: hidden;
+}
 a {
     text-decoration: none;
     color: var(--electric-blue);
@@ -128,6 +126,11 @@ a {
 .content {
   flex-grow: 2;
   padding-top: 4rem;
+}
+.content{
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  
 }
 
 .footer {
