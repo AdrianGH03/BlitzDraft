@@ -71,7 +71,7 @@ body{
 
 /* For Firefox */
 
-#root, body, .content{
+#root, body{
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
