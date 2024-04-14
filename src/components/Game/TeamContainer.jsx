@@ -11,6 +11,8 @@ import midIcon from '../../assets/placeholders/midIcon.png';
 import adcIcon from '../../assets/placeholders/botIcon.png';
 import supIcon from '../../assets/placeholders/supportIcon.png';
 import placeholder from '../../assets/placeholders/lolplaceholder.png';
+import pickSound from '../../assets/audio/pickSound.ogg';
+import banSound from '../../assets/audio/banSound.ogg';
 
 export function TeamContainer({ gameData, team }) {
   const bans = gameData.gameData.body.champSplashes?.bans;
@@ -21,6 +23,10 @@ export function TeamContainer({ gameData, team }) {
   const pickOrder = gameData.gameData.body.difficultySettings.order;
   const picksByRoleOrder = gameDataTeam[`${team}PicksByRoleOrder`].split(',');
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const pickSoundAudio = new Audio(pickSound);
+  const banSoundAudio = new Audio(banSound);
+  pickSoundAudio.volume = 0.07; 
+  banSoundAudio.volume = 0.07;
 
   const { setIsLoading } = useContext(StyleContext);
   const { 
@@ -54,7 +60,14 @@ export function TeamContainer({ gameData, team }) {
     }
   }, [isComplete]);
 
-
+  useEffect(() => {
+    const imgUrls = Object.values(gameData.gameData.body.champSplashes?.picks || {});
+    imgUrls.forEach(url => {
+      const img = new Image();
+      img.src = url;
+    });
+  }, [gameData]);
+  
   useEffect(() => {
     let interval;
   
@@ -75,6 +88,11 @@ export function TeamContainer({ gameData, team }) {
           interval = setInterval(() => {
             if (pickOrder.length > revealedCards.length && revealedCards.length > 0) {
               setRevealedCards([...revealedCards, pickOrder[revealedCards.length]]);
+              if (pickOrder[revealedCards.length].includes('Pick')) {
+                pickSoundAudio.play();
+              } else if (pickOrder[revealedCards.length].includes('Ban')) {
+                banSoundAudio.play();
+              }
             }
           }, timerInterval);
         }, initialDelay);
@@ -124,7 +142,7 @@ export function TeamContainer({ gameData, team }) {
             {[...Array(5)].map((_, i) => (
               <div key={i} className={nextCard === `${team}Pick${i + 1}` && !isComplete ? 'flash-animation' : ''}>
                 <img 
-                  className="crop-expand" 
+                  className={isComplete || revealedCards.includes(`${team}Pick${i + 1}`) ? 'card-image' : 'placeholder-image'}
                   src={
                     isComplete 
                       ? (windowWidth <= 768 ? picksMobile[sortedPickKeys[i]] : picks[sortedPickKeys[i]]) 

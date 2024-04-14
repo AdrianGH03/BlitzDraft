@@ -46,6 +46,9 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken }) => {
     
             fetchWithToken.post(`${import.meta.env.VITE_APP_CALCULATE_SCORE}`, requestBody)
             .then(response => {
+                if(response === 400){
+                    navigate('/game/difficulty')
+                }
                 setScoreRange((response.data.totalScore / response.data.outOf) * 100)
                 setTotalPoints(response.data.outOf)
                 setActualScore(response.data.totalScore)
@@ -125,6 +128,13 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken }) => {
 
             </section>
         )}
+
+        {Object.keys(guesses).length === 0 && (
+                <>
+                <span className='noguesses'>You made no guesses. Your score was not calculated.</span>
+                </>
+            )
+        }
     </>
   )
 }

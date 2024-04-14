@@ -9,6 +9,8 @@
 @import './Pages/Game/EndGame.css';
 @import './Pages/Navbar/Tutorial.css';
 @import './Pages/Navbar/Guides.css';
+@import './Pages/Navbar/Help.css';
+@import './Pages/404.css';
 @import 'tippy.js/dist/tippy.css'; 
 @import 'tippy.js/animations/shift-away-subtle.css'; 
 
@@ -31,6 +33,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 /* GAME TEXT ^ font-family: 'Press Start 2P', cursive; */
 
+@import url('https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap');
+/* LEAGUE BUTTON TEXT ^ font-family: 'Marcellus SC', serif; */
+
 
 #css-loaded-marker {
   display: none;
@@ -44,6 +49,7 @@
     --rich-black: #07031aff;
     --dark-purple: #221e37ff;
     --rich-black-2: #08051bff;
+    --rich-black-22: rgba(8, 5, 27, 0.6);
     --rich-black-3: #0a051aff;
     --french-gray: #b2b2bcff;
     --dark-purple-2: rgba(34, 30, 55, 0.6);
@@ -54,7 +60,7 @@
     --electric-blue: #5be0e5ff;
     --electric-blue-2: rgb(17, 150, 177);
     --night: #0b0b0bff;
-
+    
     
 }
 #root{
@@ -67,17 +73,17 @@
 }
 
 /* For Chrome, Edge, and Safari */
-.content::-webkit-scrollbar {
+body::-webkit-scrollbar, .content::-webkit-scrollbar {
   width: 0px;
 }
-.content::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track, .content::-webkit-scrollbar-track {
   background: transparent;
 }
-.content::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb, .content::-webkit-scrollbar-thumb {
   background-color: var(--dark-purple);
   border-radius: 20px;
 }
-.content::-webkit-scrollbar-thumb:hover {
+body::-webkit-scrollbar-thumb:hover, .content::-webkit-scrollbar-thumb:hover {
   background-color: var(--dark-purple-2);
 }
 
@@ -93,8 +99,8 @@ a:hover, button:hover, input[type="submit"]:hover, input[type="reset"]:hover {
 p, span, h1, h2, h3, h4, h5, h6, label, a{
     color: white;
 }
-input[type="text"] {
-    color: black;
+input[type="text"], input[type="password"], input[type="email"] {
+    color: white;
     
 }
 a {
@@ -122,8 +128,10 @@ a {
 }
 
 .footer {
-    flex-grow: 0;
-    position: relative;
+    flex-shrink: 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     z-index: 100;
 }
 .tippy-box{
@@ -278,6 +286,7 @@ a {
   -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
   padding: 0;
   border-radius: 8px;
+  box-shadow: 1rem black;
 }
 
 .btn-53:disabled {
@@ -291,6 +300,7 @@ a {
 .btn-53 svg {
   display: block;
   vertical-align: middle;
+  
 }
 
 .btn-53 [hidden] {
@@ -298,7 +308,7 @@ a {
 }
 
 .btn-53 {
-  border: 1px solid;
+  border: 2px solid #fff;
   
   box-sizing: border-box;
   display: block;
@@ -318,6 +328,7 @@ a {
   position: absolute;
   transition: transform 0.2s cubic-bezier(0.87, 0, 0.13, 1);
   font-family: 'Press Start 2P', cursive;
+  
 }
 
 .btn-53:hover .original {
@@ -481,4 +492,33 @@ a {
             transform: translateZ(0);
     opacity: 1;
   }
+}
+
+
+.league-button{
+  font-family: 'Marcellus SC', serif;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 5px 15px; 
+  background: #1e2328;
+  color: #cdbe91;
+  box-shadow: inset 0 0 2px #000000;
+  border-image: linear-gradient(to bottom, #5a400d, #7a5c29);
+  border-image-slice: 1;
+  border-width: 2px;
+}
+
+.league-button:hover {
+  text-shadow: 0 0 5px #ffffff80;
+  box-shadow: 0 0 8px 0 #ffffff50;
+  background: linear-gradient(to bottom, #1e2328, #433d2b);
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.league-button:active {
+  text-shadow: none;
+  box-shadow: none;
+  color: #cdbe9130;
 }

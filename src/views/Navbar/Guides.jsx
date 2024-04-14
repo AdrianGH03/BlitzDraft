@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useYoutubeVideos } from '../hooks/useYoutubeVideos';
-import { CustomSkeleton } from '../components/CustomSkeleton';
+import { useYoutubeVideos } from '../../hooks/useYoutubeVideos';
+import { CustomSkeleton } from '../../components/CustomSkeleton';
 
 export const Guides = () => {
 
@@ -12,11 +12,11 @@ export const Guides = () => {
   }, [youtubeVideos]);
 
   return (
-    <article className='guides-container'>
+    <article className='guides-container fade-in-fwd'>
         <h1 className='fade-in-fwd'>GUIDES</h1>
         <div className="guides-wrapper">
         {youtubeVideos.map((video, index) => {
-            const title = video.TITLE.length > 42 ? video.TITLE.substring(0, 42) + '...' : video.TITLE;
+            const title = video.TITLE.length > 35 ? video.TITLE.substring(0, 35) + '...' : video.TITLE;
             return (
                 <section key={index} className='fade-in-fwd'>
                     {!videoLoaded ? <CustomSkeleton count={5} /> : 

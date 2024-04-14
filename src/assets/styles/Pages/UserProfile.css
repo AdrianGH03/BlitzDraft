@@ -265,7 +265,7 @@
         grid-template-columns: repeat(6, 1fr);
     }.profile-image-grid-container{
         position: relative;
-        width: 80%;
+        width: 100%;
         height: auto;
     }
     .profile-details-info div h3{

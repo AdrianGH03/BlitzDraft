@@ -7,6 +7,9 @@
     margin: 2rem 0 3rem 0;
     
 }
+.noguesses{
+    text-align: center;
+}
 .end-game-heading-container{
     display: flex;
     justify-content: space-around;
@@ -96,20 +99,20 @@
     max-height: 100%;
     
 }
-.end-game-details-playagain-button{
+.btn-53.end-game-details-playagain-button{
     background-color: #000;
     color: #fff;
     font-family: 'Press Start 2P', cursive;
     padding: 0.7rem 2rem !important;
-    border: 1px solid;
-    border-radius: 5px;
+    border: 2px solid #fff;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     
 }
+
 .end-game-details-playagain-button:hover{
     background-color: var(--dark-purple);
-    border: 1px solid white;
+    border: 2px solid white;
     transition: all 0.3s ease-in-out;
     color: #000;
 }

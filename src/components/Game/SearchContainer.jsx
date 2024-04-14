@@ -15,6 +15,10 @@ import jungleIcon from '../../assets/placeholders/jungleIcon.png';
 import midIcon from '../../assets/placeholders/midIcon.png';
 import botIcon from '../../assets/placeholders/botIcon.png';
 import supportIcon from '../../assets/placeholders/supportIcon.png';
+import pickSound from '../../assets/audio/pickSound.ogg';
+import banSound from '../../assets/audio/banSound.ogg';
+import timerTick from '../../assets/audio/timerTick.ogg';
+import timerTick2 from '../../assets/audio/timerTick2.ogg';
 
 export function SearchContainer({ gameData }) {
     const { fetchWithToken } = useContext(AuthContext);
@@ -27,6 +31,14 @@ export function SearchContainer({ gameData }) {
       setShowEndGame,
     } = useContext(GameContext);
     const { isLoading, setIsLoading } = useContext(StyleContext);
+    const pickSoundAudio = new Audio(pickSound);
+    const banSoundAudio = new Audio(banSound);
+    const timerTickAudio = new Audio(timerTick);
+    const timerTick2Audio = new Audio(timerTick2);
+    pickSoundAudio.volume = 0.07; 
+    banSoundAudio.volume = 0.07;
+    timerTickAudio.volume = 0.07;
+    timerTick2Audio.volume = 0.07;
     
     //Style states
     const [isButtonClicked, setIsButtonClicked] = useState(false);
@@ -90,6 +102,11 @@ export function SearchContainer({ gameData }) {
                 } 
                 return 30;
               } else {
+                if(prevTimer <= 5){
+                  timerTick2Audio.play();
+                } else {
+                  timerTickAudio.play();
+                }
                 return prevTimer - 1;
               }
             });
@@ -207,6 +224,11 @@ export function SearchContainer({ gameData }) {
       if(currentGuess === '') return;
       setGuesses(prevGuesses => ({ ...prevGuesses, [currentCard]: currentGuess }));
       setRevealedCards(prevRevealed => [...prevRevealed, currentCard]);
+      if (pickOrder[revealedCards.length].includes('Pick')) {
+        pickSoundAudio.play();
+      } else if (pickOrder[revealedCards.length].includes('Ban')) {
+        banSoundAudio.play();
+      }
       setCurrentGuess('');
       setSkipCard(true); 
     

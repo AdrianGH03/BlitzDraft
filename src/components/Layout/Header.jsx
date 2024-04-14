@@ -13,6 +13,7 @@ import { StyleContext } from '../../contexts/StyleContext';
 //Assets
 import lolplaceholder from '../../assets/placeholders/lolplaceholder.png';
 import logo from '../../assets/logoImages/SmallLogo.png';
+import bigLogo from '../../assets/logoImages/BigLogo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrophy, faPersonCircleQuestion, faBook, faGamepad, faRightToBracket, faChessQueen } from '@fortawesome/free-solid-svg-icons'
 
@@ -81,15 +82,10 @@ export const Header = () => {
                 
               </Link>
 
-              <Link to="/" className="desk-nav-leaderboard">
-                <FontAwesomeIcon icon={faTrophy} />
-                <span>LEADERBOARD</span> 
-                
-              </Link>
 
-              <Link to="/" className="desk-nav-faq">
+              <Link to="/help" className="desk-nav-faq">
                 <FontAwesomeIcon icon={faPersonCircleQuestion} />
-                <span>FAQ</span>
+                <span>HELP</span>
             
               </Link>
 
@@ -135,36 +131,33 @@ export const Header = () => {
               </div>
             ) : (
               <Link to="/auth" className="nav-account" onClick={() => closeMenu()}>
-                <FontAwesomeIcon icon={faRightToBracket} />
+                <FontAwesomeIcon icon={faRightToBracket} style={{color: '#fff'}}/>
                 <span>SIGN UP</span>
               </Link>
             )
           }
-            <Link to="/" className="nav-leaderboard" onClick={() => closeMenu()}>
-              <FontAwesomeIcon icon={faTrophy} />
-                <span>LEADERBOARD</span> 
-                
-            </Link>
             
-            <Link to="/" className="nav-faq" onClick={() => closeMenu()}>
-              <FontAwesomeIcon icon={faPersonCircleQuestion} />
-              <span>FAQ</span>
+            <Link to="/help" className="nav-faq" onClick={() => closeMenu()}>
+              <FontAwesomeIcon icon={faPersonCircleQuestion} style={{color: '#fff'}}/>
+              <span>HELP</span>
              
             </Link>
             <Link to="/tutorial" className="nav-tutorial" onClick={() => closeMenu()}>
-              <FontAwesomeIcon icon={faGamepad} />
+              <FontAwesomeIcon icon={faGamepad} style={{color: '#fff'}}/>
               <span>TUTORIAL</span>
             </Link>
 
             <Link to="/guides" className='nav-guides' onClick={() => closeMenu()}>
-              <FontAwesomeIcon icon={faBook} />
+              <FontAwesomeIcon icon={faBook} style={{color: '#fff'}}/>
               <span>GUIDES</span>
             </Link>
 
             <Link to="/game/difficulty" className="nav-play" onClick={() => closeMenu()}>
-              <FontAwesomeIcon icon={faChessQueen} style={{color: '#b2b2bcff'}}/>
+              <FontAwesomeIcon icon={faChessQueen} style={{color: '#fff'}}/>
               <span>PLAY</span>
             </Link>
+
+            <img src={bigLogo} alt='logo' className='nav-logo' onClick={() => { goHome(); closeMenu() }} />
           </div>
           <div className="nav-right">
             <div className="logo-container">

@@ -1,5 +1,5 @@
 //Hooks
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
 //REACT/NODEJS
@@ -7,6 +7,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 //Assets
 import leeSinEmote from '../../assets/emotes/leesin1.png';
+import azirEmote from '../../assets/emotes/nasus1.png';
 
 export const Difficulty = () => {
   const [difficulty, setDifficulty] = useState('easy');
@@ -74,35 +75,40 @@ export const Difficulty = () => {
       });
   }
 
-  function goToGame() {
-    navigate(gameLink);
-  }
+  useEffect(() => {
+    if(gameLink) {
+      navigate(gameLink);
+    }
+  }, [gameLink, navigate]);
 
   return (
     <>
-      <div className="difficulty-container" style={{ overflowY: 'scroll', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+      <div className="difficulty-container fade-in-fwd" style={{ overflowY: 'scroll', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+      
         <div className="difficulty-content" style={{ overflowY: 'scroll', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           <div className="difficulty-title">
             <h1>DIFFICULTY</h1>
           </div>
 
           <div className="difficulty-settings-container fade-in-fwd">
+
+            
             
             <div className="difficulty-buttons">
               <button className="btn-23 difficulty-button easy" onClick={() => handleDifficulty('easy')}
-                style={difficulty === 'easy' ? { border: '3px solid white' } : {}}
+                style={difficulty === 'easy' ? { border: '2px solid #b2b2bcff' } : { border: '2px solid transparent'}}
               >
                 <span className="text">EASY</span>
                 <span aria-hidden="" className="marquee">EASY</span>
               </button>
               <button className="btn-23 difficulty-button medium" onClick={() => handleDifficulty('medium')}
-                style={difficulty === 'medium' ? { border: '3px solid white' } : {}}
+                style={difficulty === 'medium' ? { border: '2px solid #b2b2bcff' } : { border: '2px solid transparent'}}
               >
                 <span className="text">MEDIUM</span>
                 <span aria-hidden="" className="marquee">MEDIUM</span>
               </button>
               <button className="btn-23 difficulty-button hard" onClick={() => handleDifficulty('hard')}
-                style={difficulty === 'hard' ? { border: '3px solid white' } : {}}
+                style={difficulty === 'hard' ? { border: '2px solid #b2b2bcff' } : { border: '2px solid transparent'}}
               >
                 <span className="text">HARD</span>
                 <span aria-hidden="" className="marquee">HARD</span>
@@ -112,7 +118,9 @@ export const Difficulty = () => {
 
             <div className="difficulty-settings fade-in-fwd">
               <div className="difficulty-settings-setting">
-                <h1>{difficulty.toUpperCase()}</h1>
+                <h1
+                  style={difficulty === 'easy' ? { color: 'lime' } : difficulty === 'medium' ? { color: 'orange' } : { color: 'red' }}
+                >{difficulty.toUpperCase()}</h1>
                 {difficulty && (
                   <>
                   <div className="settings">
@@ -126,7 +134,7 @@ export const Difficulty = () => {
               </div>
 
 
-              <div className="difficulty-emote fade-in-fwd">
+              <div className="difficulty-emote">
                 <img src={leeSinEmote} alt="Lee Sin Emote" />
               </div>
 
@@ -135,29 +143,13 @@ export const Difficulty = () => {
           </div>
 
           <div className="difficulty-play-container fade-in-fwd">
-            
+              <p className='difficulty-guide'>
+                  <Link to="/tutorial">Lost? Check out the tutorial for more information.</Link>
+                </p>
           {!gameLoaded ? (
             <span className="loader"></span>
-          ) : gameLink ? (
-            <button className="btn-53 difficulty-play-button" onClick={() => goToGame()}>
-              <div className="original">GAME READY</div>
-              <div className="letters">
-                <span>P</span>
-                <span>L</span>
-                <span>A</span>
-                <span>Y</span>
-              </div>
-            </button>
           ) : (
-            <button className="btn-53 difficulty-play-button" onClick={() => handleGetGame()}>
-              <div className="original">GET GAME</div>
-              <div className="letters">
-                <span>L</span>
-                <span>O</span>
-                <span>A</span>
-                <span>D</span>
-              </div>
-            </button>
+            <button className='league-button' onClick={() => handleGetGame()}>PLAY</button>
           )}
           </div>
 
@@ -171,14 +163,19 @@ export const Difficulty = () => {
             ) : (
               <>
                 <p className="difficulty-note">
-                  Points will not be awarded for non-registered users. 
+                  Points will not be stored for non-registered users. 
                 </p>
-                <p className='difficulty-guide'>
-                  <Link to="/tutorial">Lost? Check out the tutorial for more information.</Link>
-                </p>
+                
               </>
             )}
           </div>
+            {!gameLoaded ? (
+              <div></div>
+            ) : (
+              <div className="difficulty-emote-side">
+                <img src={azirEmote} alt="Lee Sin Emote" />
+              </div>
+            )}
         </div>
       </div>
     </>

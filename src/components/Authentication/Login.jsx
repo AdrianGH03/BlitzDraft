@@ -91,7 +91,7 @@ function Login({  setForgotPassword, forgotPassword }) {
           <InputField label="Username" type="text" name="username" value={username} onChange={e => setUsername(e.target.value)} className={'auth-input'} />
           <InputField label="Password" type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} className={'auth-input'} />
           <div className="auth-bar"></div>
-          <Button type="submit" className={'auth-button'} onClick={handleSubmit}>LOGIN</Button>
+          <Button type="submit" className={'league-button'} onClick={handleSubmit}>LOGIN</Button>
           <div className="auth-alr-have-account">
             <p onClick={() => handleForgotPassword()}>Forgot your password?</p>
             <img src={ezrealEmote} alt="nunu emote" className='auth-emote-nunu' />
@@ -102,7 +102,7 @@ function Login({  setForgotPassword, forgotPassword }) {
           <InputField label="Username" type="text" name="username" value={username} onChange={e => setUsername(e.target.value)} className={'auth-input'} />
           <InputField label="Email" type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} className={'auth-input'} />
           <div className="auth-bar"></div>
-          <Button type="submit" className={'auth-button'} onClick={handleForgotPassReq}>RESET PASSWORD</Button>
+          <Button type="submit" className={'league-button'} onClick={handleForgotPassReq}>RESET PASSWORD</Button>
           <div className="auth-alr-have-account">
             <p onClick={() => handleForgotPassword()}>Go back to login</p>
             <img src={udyrEmote} alt="nunu emote" className='auth-emote-nunu' />

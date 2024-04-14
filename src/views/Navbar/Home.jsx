@@ -3,21 +3,21 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 //Contexts
-import { StyleContext } from '../contexts/StyleContext';
+import { StyleContext } from '../../contexts/StyleContext';
 
 //NPM/React
 import { Link } from 'react-router-dom';
-import { CustomSkeleton } from '../components/CustomSkeleton';
+import { CustomSkeleton } from '../../components/CustomSkeleton';
 
 
 //Assets
-import bigLogo from '../assets/logoImages/BigLogo.png';
-import azirEmote from '../assets/emotes/azir1.png';
-import home1 from '../assets/placeholders/home1.jpg';
-import home2 from '../assets/placeholders/home2.jpg';
-import home3 from '../assets/placeholders/home3.png';
-import home4 from '../assets/placeholders/home4.png';
-import '../assets/styles/Pages/Home.css';
+import bigLogo from '../../assets/logoImages/BigLogo.png';
+import azirEmote from '../../assets/emotes/azir1.png';
+import home1 from '../../assets/placeholders/home1.jpg';
+import home2 from '../../assets/placeholders/home2.jpg';
+import home3 from '../../assets/placeholders/home3.png';
+import home4 from '../../assets/placeholders/home4.png';
+import '../../assets/styles/Pages/Home.css';
 
 export const Home = () => {
     var { isLoading, setIsLoading } = useContext(StyleContext);

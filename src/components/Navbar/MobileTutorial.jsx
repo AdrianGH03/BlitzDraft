@@ -7,7 +7,7 @@ import tutorial5 from '../../assets/placeholders/tutoriallast2.png';
 import Tippy from '@tippyjs/react';
 
 const tutorials = [
-  { image: tutorial1, text: 'Head over to the difficulty page to choose your difficulty. Difficulty is dependent on cards revealed. Click the "Get Game" button to load a game. The button will then show "Game Ready" when your game loads.' },
+  { image: tutorial1, text: 'Head over to the difficulty page to choose your difficulty. Click the "Play" button to load a game. Games are only from the current season.' },
   { 
     image: tutorial2, 
     text: [
@@ -47,6 +47,14 @@ export const MobileTutorial = () => {
       <section className="tutorial-container-mobile">
         <h1 className="auth-tab-top">TUTORIAL</h1>
         <img src={tutorials[currentTutorial].image} alt={`Tutorial ${currentTutorial + 1}`} />
+        <div className="tutorial-mobile-pagination">
+            
+                <button onClick={prevTutorial}><i className="bi bi-arrow-left-circle-fill"></i></button>
+            
+            
+                <button onClick={nextTutorial}><i className="bi bi-arrow-right-circle-fill"></i></button>
+           
+        </div>
         <div className="tutorial-mobile-text">
           {Array.isArray(tutorials[currentTutorial].text) ? (
             <ul>
@@ -68,14 +76,7 @@ export const MobileTutorial = () => {
             </p>
           )}
         </div>
-        <div className="tutorial-mobile-pagination">
-            <Tippy content={'Previous'} className="tippy-tooltip" animation={'shift-away-subtle'} roundArrow={true} >
-                <button onClick={prevTutorial}><i className="bi bi-arrow-left-circle-fill"></i></button>
-            </Tippy>
-            <Tippy content={'Next'} className="tippy-tooltip" animation={'shift-away-subtle'} roundArrow={true} >
-                <button onClick={nextTutorial}><i className="bi bi-arrow-right-circle-fill"></i></button>
-            </Tippy>
-        </div>
+        
       </section>
     </>
   );

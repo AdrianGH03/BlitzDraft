@@ -71,7 +71,7 @@ function Signup({ setIsLogin }) {
       <InputField label="Email" type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} className={'auth-input'} />
       <div className="auth-bar"></div>
 
-      <Button type="submit" className={'auth-button'} onClick={handleSubmit}>SUBMIT</Button>
+      <Button type="submit" className={'league-button'} onClick={handleSubmit}>SUBMIT</Button>
 
       <div className="auth-alr-have-account">
         <p onClick={() => setIsLogin(true)}>Already have an account?</p>

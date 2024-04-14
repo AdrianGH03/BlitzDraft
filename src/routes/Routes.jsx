@@ -4,12 +4,18 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 //Views
 import { PasswordReset } from '../views/Auth/PasswordReset';
 import { UserProfile } from '../views/User/UserProfile';
-import { Home } from '../views/Home';
-import { Difficulty } from '../views/Game/Difficulty';
-import { Tutorial } from '../views/Tutorial';
-import { Guides } from '../views/Guides';
-import { Game } from '../views/Game/Game';
 import AuthPage from '../views/Auth/AuthPage'; 
+
+import { Tutorial } from '../views/Navbar/Tutorial';
+import { Guides } from '../views/Navbar/Guides';
+import { Help } from '../views/Navbar/Help';
+import { Home } from '../views/Navbar/Home';
+
+import { Difficulty } from '../views/Game/Difficulty';
+import { Game } from '../views/Game/Game';
+
+import { NotFound } from '../views/NotFound';
+
 
 //Contexts
 import { useContext } from 'react';
@@ -32,10 +38,15 @@ export function AppRoutes() {
       {/* Nav Routes */}
       <Route path="/tutorial" element={<Tutorial />} />
       <Route path="/guides" element={<Guides />} />
+      <Route path="/help" element={<Help />} />
 
       {/* Game Routes */}
       <Route path="/game/difficulty" element={<Difficulty />} />
       <Route path='/game/:token' element={<Game />} />
+
+      {/* 404 */}
+      <Route path="*" element={<NotFound />} />
+      
     </Routes>
   );
 }

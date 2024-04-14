@@ -4,14 +4,14 @@
    align-items: center;
    justify-content: center;
    margin-bottom: auto;
+   margin-top: 2rem;
 }
 .guides-wrapper{
     display: grid;
     grid-template-columns: 1fr;
     gap: 4rem 1rem;
-    padding: 4rem 1rem;
+    padding: 1rem 1rem;
     padding-bottom: 8rem;
-    background-color: var(--dark-purple-2);
     width: 100%;
     margin-bottom: 5rem;
 }
@@ -20,17 +20,18 @@
     flex-direction: column;
     justify-content: center;
     padding: 2rem;
-    background-color: var(--rich-black-2);
     border-radius: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
+   
 }
 .guides-wrapper section .guide-content{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
+    align-items: center;
     gap: 0.5rem;
     margin-top: 1rem;
-    
 }
 .guides-container > h1{
     font-size: 1.5rem;
@@ -38,15 +39,15 @@
     padding: 1rem 2rem;
     width: 100%;
     text-align: center;
-    background-color: var(--dark-purple);
-    border: 2px solid var(--french-gray);
-    font-family: 'Fugaz One', cursive;
+    
     
 }
 
 .guides-wrapper iframe{
     max-width: 100%;
     height: 200px;
+    border: 1px solid var(--french-gray);
+    border-radius: 10px;
 }
 .guides-wrapper a:hover{
     transition: all 0.3s;
@@ -58,17 +59,13 @@
         flex-direction: row;
         gap: 2rem;
     }
-    .guides-container{
-        background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.5)), url('../../../placeholders/snowdown.gif');
-        background-size: cover;
-        background-position: center;
-    }
 }
 
 
 @media(min-width: 1024px){
     .guides-container{
         padding: 2rem 3rem 0 3rem;
+        margin-top: 0;
     }
     .guides-wrapper > section{
         flex-direction: column;
@@ -109,6 +106,7 @@
         width: 80%;
     }
     .guides-wrapper{
-        padding: 4rem 4rem;
+        padding: 1rem 4rem;
+        padding-bottom: 4rem;
     }
 }

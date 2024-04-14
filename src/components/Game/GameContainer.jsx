@@ -63,7 +63,7 @@ export function GameContainer() {
       }
     }, [startGame, guesses, revealedCards]);
   
-    
+    console.log(gameData)
   
     return (
       <>
@@ -87,7 +87,7 @@ export function GameContainer() {
           
         </div>
       )}
-      <AudioPlayer startGame={startGame}/>
+      {showEndGame == false ? <AudioPlayer startGame={startGame} /> : ''}
       </>
   );
 }

@@ -1,0 +1,115 @@
+.help-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+}
+.help-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.help-wrapper > h1{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+.help-container-questions{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    justify-content: center;
+    gap: 1rem;
+    min-width: 70vw;
+    max-width: 70vw;
+}
+.help-question-container > p{
+    line-height: 1.5;
+    background-color: var(--dark-purple-2);
+    font-size: 0.8rem;
+}
+.help-question-container > p.open {
+    padding: 10px;
+}
+
+.help-container button{
+    min-width: 70vw;
+    max-width: 70vw;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: var(--dark-purple);
+    border: 1px solid var(--french-gray);
+    color: white;
+    
+}
+.help-container button p{
+    text-align: end;
+    font-size: 1rem;
+}
+.help-container-2{
+    
+    display: flex;
+    flex-direction: column;
+}
+.help-usefullinks{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1.5rem;
+    
+}
+.help-usefullinks a{
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    font-size: 1rem;
+    color: rgb(221, 111, 221);
+}
+.help-usefullinks a:hover{
+    color: rgb(192, 84, 192);
+    border-bottom: 1px solid purple;
+}
+
+@media(min-width: 600px){
+    .help-container{
+        flex-direction: row;
+    }
+    .help-container-questions{
+        min-width: 45vw;
+        max-width: 45vw;
+    }
+    .help-container button{
+        min-width: 45vw;
+        max-width: 45vw;
+    }
+    .help-wrapper > h1{
+        margin-left: -16rem;
+    }
+}
+
+@media(min-width: 1024px){
+    .help-container-questions{
+        min-width: 30vw;
+        max-width: 30vw;
+    }
+    .help-container button{
+        min-width: 30vw;
+        max-width: 30vw;
+    }
+}
+
+@media(min-width: 1440px){
+    .help-container-questions{
+        min-width: 25vw;
+        max-width: 25vw;
+    }
+    .help-container button{
+        min-width: 25vw;
+        max-width: 25vw;
+    }
+}

@@ -1,7 +1,7 @@
 
 
-import { DesktopTutorial } from '../components/Navbar/DesktopTutorial';
-import { MobileTutorial } from '../components/Navbar/MobileTutorial';
+import { DesktopTutorial } from '../../components/Navbar/DesktopTutorial';
+import { MobileTutorial } from '../../components/Navbar/MobileTutorial';
 
 export const Tutorial = () => {
   return (

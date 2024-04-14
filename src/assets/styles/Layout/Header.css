@@ -38,9 +38,7 @@
     position: absolute;
     top: 100%; 
     left: 0;
-    background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.5)), url('../../../assets/placeholders/Nunu_0.jpg');
-    background-size: cover;
-    background-position: center;
+    background-color: var(--rich-black);
     transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
     transform: translateX(-100%);
     padding-top: 0rem;
@@ -76,7 +74,7 @@
 
 
 
-.nav-left a, .nav-left a span, .nav-left a i{
+.nav-left a, .nav-left a span{
     color: var(--french-gray);
     display: flex;
     gap: 0 1rem;
@@ -172,6 +170,11 @@ img.nav-profile{
 .user-info-mobile p{
     color: white;
     font-family: 'Rubik Mono One', cursive;
+}
+.nav-left img{
+    width: 70%;
+    align-self: center;
+    padding-top: 3rem;
 }
 
 @media(min-width: 600px){
