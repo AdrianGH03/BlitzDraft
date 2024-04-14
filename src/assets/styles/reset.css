@@ -43,9 +43,7 @@ table {
 	border-spacing: 0;
 }
 
-body{
-    background-color: #071330;
-}
+
 #root {
     display: flex;
     flex-direction: column;

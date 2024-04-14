@@ -174,17 +174,18 @@ img.nav-profile{
 .nav-left img{
     width: 70%;
     align-self: center;
-    padding-top: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 5rem;
 }
 
 @media(min-width: 600px){
     .nav-left{
         
-        width: 100%;
+        width: 50%;
         height: 90vh;
     }
     .nav-left.open{
-        width: 100%;
+        width: 50%;
         
     }
     

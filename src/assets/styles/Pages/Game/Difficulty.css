@@ -5,7 +5,7 @@
     background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.5)), url('../../../placeholders/animated-arcade.gif');
     background-size: cover;
     background-position: center;
-    
+    padding-bottom: 5rem;
 }
 .difficulty-content{
     display: flex;
@@ -180,6 +180,7 @@ p.difficulty-guide:hover{
     .difficulty-content{
         margin-top: 3rem;
         width: 90%;
+        padding-bottom: 0rem;
     }
     .difficulty-title{
         padding: 1rem 0;
