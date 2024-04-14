@@ -75,6 +75,7 @@ body{
 
 #root{
   overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 /* For Chrome, Edge, and Safari */
 body::-webkit-scrollbar, .content::-webkit-scrollbar, #root::-webkit-scrollbar {
