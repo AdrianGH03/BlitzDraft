@@ -9,7 +9,7 @@
     background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.5)), url('../../../placeholders/champselect.jpg');
     background-size: cover;
     background-position: center;
-    padding-bottom: 4.3rem;
+    padding-bottom: 3.5rem;
 }
 .game-container .loader-container{
     display: flex;
