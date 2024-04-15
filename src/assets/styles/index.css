@@ -162,6 +162,12 @@ a {
   .content {
     padding-top: 4.5rem;
   }
+  
+}
+@media(max-width: 840px){
+  .game-container .loader-container{
+    margin: 13rem;
+  }
 }
 
 
@@ -404,9 +410,6 @@ a {
 .difficulty-container .loader{
   margin-top: 1rem;
   
-}
-.game-container .loader-container{
-  margin: 13rem;
 }
   .loader:before,
   .loader:after {
