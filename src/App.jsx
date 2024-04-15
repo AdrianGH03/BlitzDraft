@@ -66,9 +66,9 @@ export function App() {
       <StyleContext.Provider value={{ isLoading, setIsLoading}}>
         <Router>
         
-                  
+          <Layout>          
               <AppRoutes />
-          
+          </Layout>
           
         </Router>
       </StyleContext.Provider>
