@@ -42,6 +42,7 @@ export const Header = () => {
     if (isOpen) {
       setIsOpen(false);
     }
+    window.scrollTo(0, 0);
   }
 
   function sendToProfile() {
