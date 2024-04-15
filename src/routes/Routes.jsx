@@ -24,9 +24,11 @@ import { NotFound } from '../views/NotFound';
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 
+
 export function AppRoutes() {
   const { isAuthenticated } = useContext(AuthContext);
-  
+  const reload = () => window.location.reload();
+
   return (
     <Routes>
       {/* Home Route */}
@@ -50,6 +52,7 @@ export function AppRoutes() {
 
       {/* 404 */}
       <Route path="*" element={<NotFound />} />
+      
       
     </Routes>
   );

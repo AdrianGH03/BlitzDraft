@@ -16,6 +16,7 @@ import { Layout } from './views/Layout';
 import { AppRoutes } from './routes/Routes';
 
 
+
 export function App() {
   
   const fetchWithToken = axios.create({
@@ -65,9 +66,9 @@ export function App() {
       <StyleContext.Provider value={{ isLoading, setIsLoading}}>
         <Router>
         
-          <Layout>          
+                  
               <AppRoutes />
-          </Layout>
+          
           
         </Router>
       </StyleContext.Provider>
