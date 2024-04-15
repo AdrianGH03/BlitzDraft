@@ -27,7 +27,7 @@ import { AuthContext } from '../contexts/AuthContext';
 
 export function AppRoutes() {
   const { isAuthenticated } = useContext(AuthContext);
-  const reload = () => window.location.reload();
+  
 
   return (
     <Routes>
