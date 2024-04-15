@@ -84,7 +84,7 @@ export function TeamContainer({ gameData, team }) {
           setIsLoading(true);
           setTimeout(() => {
             setIsLoading(false);
-          }, 500);
+          }, 1000);
         }
         const timerInterval = 30000;
         let initialDelay = revealedCards.length === 0 ? timerInterval : 0; 

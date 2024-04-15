@@ -405,6 +405,10 @@ a {
 }
 .difficulty-container .loader{
   margin-top: 1rem;
+  
+}
+.game-container .loader-container{
+  margin: 13rem;
 }
   .loader:before,
   .loader:after {
