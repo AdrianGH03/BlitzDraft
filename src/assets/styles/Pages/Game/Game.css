@@ -246,7 +246,7 @@
         justify-content: center;
     }
     .game-team1-bans div div img{
-        max-width: 40%;
+        max-width: 70%;
         
     }
     .game-team1-picks{
@@ -263,7 +263,7 @@
         display: none;
     }
     .game-team1-picks div img{
-        max-width: 40%;
+        max-width: 70%;
         
     }
     .game-searchbar input{

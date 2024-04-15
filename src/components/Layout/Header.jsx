@@ -1,5 +1,5 @@
 // Hooks
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useProfileImage } from '../../hooks/useProfileImage';
 import { useState, useContext, useEffect } from 'react';
 
@@ -24,6 +24,7 @@ export const Header = () => {
   const { isLoading, setIsLoading } = useContext(StyleContext);
   const navigate = useNavigate();
   var profileImage = useProfileImage();
+  const location = useLocation();
   
 
   const toggleMenu = () => {
@@ -65,7 +66,9 @@ export const Header = () => {
     }
   }, [userInfo, profileImage, isLoading]);
 
-  
+  useEffect(() => {
+    closeMenu();
+  }, [location]);
 
   return (
     <>
