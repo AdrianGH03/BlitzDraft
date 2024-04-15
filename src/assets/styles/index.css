@@ -64,7 +64,7 @@
     
 }
 body{
-  background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.7)), url('../placeholders/arcade.gif');
+  background-color: var(--rich-black);
   background-size: cover;
   background-position: center;
 }
@@ -161,7 +161,6 @@ a {
     background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.7)), url('../placeholders/arcade.gif');
     background-size: cover;
     background-position: center;
-   
     padding-top: 4.5rem;
   }
 }
