@@ -6,6 +6,7 @@
     background-size: cover;
     background-position: center;
     padding-bottom: 5rem;
+    margin-top: -0.1rem;
 }
 .difficulty-content{
     display: flex;

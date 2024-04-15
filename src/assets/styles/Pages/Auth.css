@@ -9,6 +9,7 @@
     gap: 1rem;
     position: relative;
     background-color: rgba(0, 0, 0, 0);
+    
 }
 .auth-parent-container::before {
     content: "";

@@ -19,7 +19,7 @@ export const useProfileImage = () => {
           console.error('Error fetching profile image:', error);
         });
     }
-    //eslint-disable-next-line
+    
   }, [isAuthenticated, userInfo]);
 
   return profileImage;

@@ -171,7 +171,7 @@ img.nav-profile{
     color: white;
     font-family: 'Rubik Mono One', cursive;
 }
-.nav-left img{
+.nav-left img.nav-logo{
     width: 70%;
     align-self: center;
     padding-top: 2rem;

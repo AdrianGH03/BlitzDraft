@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { StyleContext } from '../../contexts/StyleContext';
 
 //NPM/React
-import { Link } from 'react-router-dom';
 import { CustomSkeleton } from '../../components/CustomSkeleton';
 
 

@@ -1,10 +1,13 @@
+//Hooks
 import { useState } from 'react';
+
+//Assets
 import tutorial1 from '../../assets/placeholders/tutorialm1.png';
 import tutorial2 from '../../assets/placeholders/tutorialm2.png';
 import tutorial3 from '../../assets/placeholders/tutorialm3.png';
 import tutorial4 from '../../assets/placeholders/home3.png';
 import tutorial5 from '../../assets/placeholders/tutoriallast2.png';
-import Tippy from '@tippyjs/react';
+
 
 const tutorials = [
   { image: tutorial1, text: 'Head over to the difficulty page to choose your difficulty. Click the "Play" button to load a game. Games are only from the current season.' },

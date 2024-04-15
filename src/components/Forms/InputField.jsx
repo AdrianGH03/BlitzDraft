@@ -1,4 +1,4 @@
-// eslint-disable-next-line
+
 export function InputField({ label, type, name, value, onChange, className }) {
     return (
       <div className={className} >

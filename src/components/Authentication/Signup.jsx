@@ -13,8 +13,6 @@ import { InputField } from '../Forms/InputField';
 import nunuEmote from '../../assets/emotes/nunu1.png';
 
 
-
-//eslint-disable-next-line
 function Signup({ setIsLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -59,8 +57,11 @@ function Signup({ setIsLogin }) {
       setSuccess('');
       
     } catch (error) {
-      //eslint-disable-next-line
-      setError(error.response.data.error);
+      if(error.response.status === 429) {
+        setError('Too many requests. Please try again later.');
+      } else {
+        setError(error.response.data.error);
+      }
     }
   };
 

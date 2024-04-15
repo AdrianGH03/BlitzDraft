@@ -1,4 +1,7 @@
+//Hooks
 import { useState } from 'react';
+
+//Assets
 import tutorial1 from '../../assets/placeholders/tutorial11.jpg';
 import tutorial2 from '../../assets/placeholders/tutorial1.jpg';
 import tutorial3 from '../../assets/placeholders/tutorial2.jpg';

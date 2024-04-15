@@ -1,13 +1,18 @@
+//Hooks
 import { useState } from "react";
 import { useHelpQuestions } from "../../hooks/useHelpQuestions"
+
+//NPM/React
+import { Link } from "react-router-dom";
+
+//Assets
+import alligator1 from '../../assets/emotes/alligator1.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
-import { Link } from "react-router-dom";
-import alligator1 from '../../assets/emotes/alligator1.png';
 
 export const Help = () => {
     const [helpQuestions] = useHelpQuestions();
-    const [openIndex, setOpenIndex] = useState(null); // Index of the currently open dropdown
+    const [openIndex, setOpenIndex] = useState(null); 
   
     const toggleDropdown = (index) => {
       setOpenIndex(openIndex === index ? null : index);

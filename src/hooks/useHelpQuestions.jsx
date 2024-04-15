@@ -32,7 +32,7 @@ export const useHelpQuestions = () => {
         },
         {
             question: "I lost my game, how do I go back?",
-            answer: "Games are saved every time a pick or ban is revealed. Games expire after 2 hours. If you wish to go back to your game, simply go back to the tab."
+            answer: "Games are saved every time a pick or ban is revealed. Games expire after 1 hour. If you wish to go back to your game, simply go back to the tab."
         }
     ]);
     

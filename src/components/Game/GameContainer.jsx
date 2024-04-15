@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { StyleContext } from '../../contexts/StyleContext';
 import { GameContext } from '../../contexts/GameContext';
 import { AuthContext } from '../../contexts/AuthContext';
-
+import { useNavigate } from 'react-router-dom';
 
 
 //Components
@@ -15,9 +15,10 @@ import { AudioPlayer } from './AudioPlayer';
 export function GameContainer() {
     const [gameData, setGameData] = useState({});
     const timer = localStorage.getItem('timer') || 0;
-  
+    const navigate = useNavigate();
+
     const { isLoading, setIsLoading } = useContext(StyleContext);
-    const { fetchWithToken } = useContext(AuthContext);
+    const { fetchWithToken, error } = useContext(AuthContext);
     const {
       isComplete,  
       showEndGame, 
@@ -26,6 +27,7 @@ export function GameContainer() {
       revealedCards, setRevealedCards,
       setSkipCard,
       startGame,  
+      mute
     } = useContext(GameContext);
     
 
@@ -48,6 +50,9 @@ export function GameContainer() {
         }
       })
       .catch(error => {
+        if(error.response.status === 404) {
+          navigate('*');
+        }
         console.error('Error:', error);
         setIsLoading(false);
       });
@@ -63,14 +68,12 @@ export function GameContainer() {
       }
     }, [startGame, guesses, revealedCards]);
   
-    console.log(gameData)
-  
     return (
       <>
       {gameData && gameData.gameData && gameData.gameData.body && revealedCards && (
         <div className="game-container">
           <TeamContainer gameData={gameData} team="Team1" />
-          {showEndGame == true ? (
+          {showEndGame == true && !isLoading ? (
             <EndGameContainer 
               gameData={gameData} 
               guesses={guesses}
@@ -80,14 +83,16 @@ export function GameContainer() {
             <div className="loader-container">
               <span className="loader"></span>
             </div>
-          ) :  (
+          ) : error ? (
+              <h1>Too many requests. Please try again later.</h1>
+          ) : (
             <SearchContainer gameData={gameData} />
           )}
           <TeamContainer gameData={gameData} team="Team2" />
           
         </div>
       )}
-      {showEndGame == false ? <AudioPlayer startGame={startGame} /> : ''}
+        <AudioPlayer startGame={startGame} mute={mute} />
       </>
   );
 }

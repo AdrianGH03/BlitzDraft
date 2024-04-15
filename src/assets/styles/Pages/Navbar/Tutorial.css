@@ -2,7 +2,11 @@
     display: none;
 }
 .tutorial-container{
-    height: 100%;
+    min-height: 100%;
+    background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.7)), url('../../../placeholders/arcade2.gif');
+    background-size: cover;
+    background-position: center;
+    margin-top: -0.1rem;
 }
 .tutorial-desktop-highlight{
     color: red;

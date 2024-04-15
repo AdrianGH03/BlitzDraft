@@ -1,5 +1,5 @@
 
-
+//Components
 import { DesktopTutorial } from '../../components/Navbar/DesktopTutorial';
 import { MobileTutorial } from '../../components/Navbar/MobileTutorial';
 

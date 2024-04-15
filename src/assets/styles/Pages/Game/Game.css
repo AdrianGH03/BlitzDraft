@@ -52,11 +52,13 @@
 }
 .game-search-container{
     margin-bottom: 2rem;
+    
 }
 .game-searchbar{
     display: flex;
     justify-content: space-between;
     align-items: end;
+    
     padding-bottom: 1rem;
     border-bottom: 3px solid white;
     background-color: var(--rich-black-2);
@@ -74,6 +76,16 @@
 }
 .game-role-filters{
     display: flex;
+    gap: 0 0.2rem;
+    align-items: center;
+}
+.fa-volume-high, .fa-volume-xmark{
+    color: white;
+}
+.fa-volume-xmark:hover, .fa-volume-high:hover{
+    cursor: pointer;
+    color: rgb(187, 187, 187);
+    transition: 0.3s ease;
 }
 .game-search-champions {
   display: grid;
@@ -83,9 +95,7 @@
   justify-items: center;
   
 }
-.game-search-container{
-    
-}
+
 .champ-container {
   display: flex;
   flex-direction: column;

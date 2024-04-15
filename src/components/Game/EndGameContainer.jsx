@@ -1,13 +1,12 @@
-import React from 'react'
+//Hooks
 import { useEffect, useState, useContext } from 'react'
-import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
+
+//Contexts
 import { AuthContext } from '../../contexts/AuthContext'
 
-import lowscoreEmote from '../../assets/emotes/lowscore.png'
-import highscoreEmote from '../../assets/emotes/highscore.png'
-import medscoreEmote from '../../assets/emotes/medscore.png'
 //assets
 import topIcon from '../../assets/placeholders/topIcon.png';
 import jungleIcon from '../../assets/placeholders/jungleIcon.png';
@@ -15,15 +14,39 @@ import midIcon from '../../assets/placeholders/midIcon.png';
 import botIcon from '../../assets/placeholders/botIcon.png';
 import supportIcon from '../../assets/placeholders/supportIcon.png';
 
+import lowscoreEmote from '../../assets/emotes/lowscore.png'
+import lowScoreEmote2 from '../../assets/emotes/lowscore2.png'
+import lowScoreEmote3 from '../../assets/emotes/lowscore3.png'
+import lowScoreEmote4 from '../../assets/emotes/lowscore4.png'
+import lowScoreEmote5 from '../../assets/emotes/lowscore5.png'
+
+import highscoreEmote from '../../assets/emotes/highscore.png'
+import highScoreEmote2 from '../../assets/emotes/highscore2.png'
+import highScoreEmote3 from '../../assets/emotes/highscore3.png'
+import highScoreEmote4 from '../../assets/emotes/highscore4.png'
+import highScoreEmote5 from '../../assets/emotes/highscore5.png'
+
+import medscoreEmote from '../../assets/emotes/medscore.png'
+import medScoreEmote2 from '../../assets/emotes/medscore2.png'
+import medScoreEmote3 from '../../assets/emotes/medscore3.png'
+import medScoreEmote4 from '../../assets/emotes/medscore4.png'
+import medScoreEmote5 from '../../assets/emotes/medscore5.png'
+
 export const EndGameContainer = ({guesses, gameData, fetchWithToken }) => {
 
-    const [scoreRange, setScoreRange] = React.useState(0)
-    const [emote, setEmote] = React.useState(null)
-    const [totalPoints, setTotalPoints] = React.useState(0)
-    const [actualScore, setActualScore] = React.useState(0)
+    const [scoreRange, setScoreRange] = useState(0)
+    const [emote, setEmote] = useState(null)
+    const [totalPoints, setTotalPoints] = useState(0)
+    const [actualScore, setActualScore] = useState(0)
     const icons = [topIcon, jungleIcon, midIcon, botIcon, supportIcon];
     const navigate = useNavigate();
     const { userInfo } = useContext(AuthContext);
+
+    const emotes = {
+        lowscore: [lowscoreEmote, lowScoreEmote2, lowScoreEmote3, lowScoreEmote4, lowScoreEmote5],
+        highscore: [highscoreEmote, highScoreEmote2, highScoreEmote3, highScoreEmote4, highScoreEmote5],
+        medscore: [medscoreEmote, medScoreEmote2, medScoreEmote3, medScoreEmote4, medScoreEmote5]
+    }
 
 
     const gameDataMatch = gameData.gameData.body.game.match;
@@ -52,13 +75,19 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken }) => {
                 setScoreRange((response.data.totalScore / response.data.outOf) * 100)
                 setTotalPoints(response.data.outOf)
                 setActualScore(response.data.totalScore)
-                if((response.data.totalScore / response.data.outOf) * 100 < 33) {
-                    setEmote(lowscoreEmote) 
-                } else if((response.data.totalScore / response.data.outOf) * 100 < 66) {
-                    setEmote(medscoreEmote)
+                let scorePercentage = (response.data.totalScore / response.data.outOf) * 100;
+                let selectedEmotesArray;
+
+                if(scorePercentage < 33) {
+                    selectedEmotesArray = emotes.highscore;
+                } else if(scorePercentage < 66) {
+                    selectedEmotesArray = emotes.medscore;
                 } else {
-                    setEmote(highscoreEmote)
+                    selectedEmotesArray = emotes.highscore;
                 }
+
+                let randomEmote = selectedEmotesArray[Math.floor(Math.random() * selectedEmotesArray.length)];
+                setEmote(randomEmote);
             })
             .catch(error => {
             console.error('Error:', error);

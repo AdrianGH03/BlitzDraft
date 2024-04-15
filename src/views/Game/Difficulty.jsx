@@ -11,7 +11,7 @@ import azirEmote from '../../assets/emotes/nasus1.png';
 
 export const Difficulty = () => {
   const [difficulty, setDifficulty] = useState('easy');
-  //eslint-disable-next-line
+  
   const [difficultySettings, setDifficultySettings] = useState({
     easy: {
       pick: 10,
@@ -36,7 +36,7 @@ export const Difficulty = () => {
     }
   });
   const { fetchWithToken, error, setError } = useContext(AuthContext);
-  //eslint-disable-next-line
+  
   const [modifiedGameData, setModifiedGameData] = useState({});
   const [gameLoaded, setGameLoaded] = useState(true);
   const [gameLink, setGameLink] = useState('');
@@ -63,10 +63,20 @@ export const Difficulty = () => {
               }
             })
             .catch(error => {
-              console.error('Error:', error);
-              setError("Something went wrong. Please try again.");
-              setGameLoaded(true);
-              setGameLink('');
+              if(error.response.status === 429) {
+                setError("Too many requests, please try again later.");
+                setGameLoaded(true);
+                setGameLink('');
+              } else if(error.response.status === 500) {
+                setError("Internal server error. Please try again.");
+                setGameLoaded(true);
+                setGameLink('');
+              } else {
+                console.error('Error:', error);
+                setError("Something went wrong. Please try again.");
+                setGameLoaded(true);
+                setGameLink('');
+              }
             });
         }
       })

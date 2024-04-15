@@ -19,6 +19,8 @@ import pickSound from '../../assets/audio/pickSound.ogg';
 import banSound from '../../assets/audio/banSound.ogg';
 import timerTick from '../../assets/audio/timerTick.ogg';
 import timerTick2 from '../../assets/audio/timerTick2.ogg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVolumeHigh, faVolumeXmark } from '@fortawesome/free-solid-svg-icons';
 
 export function SearchContainer({ gameData }) {
     const { fetchWithToken } = useContext(AuthContext);
@@ -29,17 +31,21 @@ export function SearchContainer({ gameData }) {
       setSkipCard,
       startGame, setStartGame,
       setShowEndGame,
+      mute, setMute
     } = useContext(GameContext);
     const { isLoading, setIsLoading } = useContext(StyleContext);
+
+    //Audio
     const pickSoundAudio = new Audio(pickSound);
     const banSoundAudio = new Audio(banSound);
     const timerTickAudio = new Audio(timerTick);
     const timerTick2Audio = new Audio(timerTick2);
-    pickSoundAudio.volume = 0.07; 
-    banSoundAudio.volume = 0.07;
-    timerTickAudio.volume = 0.07;
-    timerTick2Audio.volume = 0.07;
-    
+    pickSoundAudio.volume = 0.3; 
+    banSoundAudio.volume = 0.3;
+    timerTickAudio.volume = 0.35;
+    timerTick2Audio.volume = 0.35;
+    const muteRef = useRef(mute);
+
     //Style states
     const [isButtonClicked, setIsButtonClicked] = useState(false);
 
@@ -70,7 +76,7 @@ export function SearchContainer({ gameData }) {
       }
     }, [startGame]);
     
-    // Sets the current card to the next card in the pick order that has not been revealed
+    
     useEffect(() => {
       if (startGame) {
         let currentCardIndex = pickOrder.findIndex(card => !revealedCards.includes(card));
@@ -80,8 +86,11 @@ export function SearchContainer({ gameData }) {
       }
     }, [startGame, pickOrder, revealedCards]);
 
+    useEffect(() => {
+      muteRef.current = mute;
+    }, [mute]);
 
-    // Timer for each card
+    
     useEffect(() => {
       if (startGame && currentCard) {
         let interval;
@@ -102,9 +111,9 @@ export function SearchContainer({ gameData }) {
                 } 
                 return 30;
               } else {
-                if(prevTimer <= 5){
+                if(prevTimer <= 5 && !muteRef.current){
                   timerTick2Audio.play();
-                } else {
+                } else if (!muteRef.current) {
                   timerTickAudio.play();
                 }
                 return prevTimer - 1;
@@ -141,7 +150,7 @@ export function SearchContainer({ gameData }) {
       "AurelionSol": "Aurelion Sol",
     };
     
-    // Fetches all champion sprites and sets them to the champions state SEARCH CONTAINER
+    
     useEffect (() => {
       fetchWithToken.get(`${import.meta.env.VITE_APP_ALL_CHAMPS}`)
         .then(response => {
@@ -176,7 +185,7 @@ export function SearchContainer({ gameData }) {
         });
     }, []);
 
-    // Scrolls to the top of the search container when the selected role changes
+    
     useEffect(() => {
       if (scrollableContainerRef.current) {
         const scrollElement = scrollableContainerRef.current.getScrollElement();
@@ -184,7 +193,7 @@ export function SearchContainer({ gameData }) {
       }
     }, [selectedRole]);
 
-    // Resets the timer when the game is complete
+    
     useEffect(() => {
       if (isComplete) {
         setTimer(0);
@@ -192,7 +201,7 @@ export function SearchContainer({ gameData }) {
     }, [isComplete]);
 
 
-    // Filters the champions based on the selected role and search term
+    
     let addedChampions = [];
     const filteredChampions = Object.keys(champions).reduce((acc, role) => {
       if (selectedRole && selectedRole !== role) {
@@ -214,7 +223,7 @@ export function SearchContainer({ gameData }) {
       return acc;
     }, {});
 
-    // Handles the click event for a champion in the search container
+    
     const handleChampionClick = (champ) => {
       if(!startGame) return;
       setCurrentGuess(champ);
@@ -224,9 +233,9 @@ export function SearchContainer({ gameData }) {
       if(currentGuess === '') return;
       setGuesses(prevGuesses => ({ ...prevGuesses, [currentCard]: currentGuess }));
       setRevealedCards(prevRevealed => [...prevRevealed, currentCard]);
-      if (pickOrder[revealedCards.length].includes('Pick')) {
+      if (pickOrder[revealedCards.length].includes('Pick') && !mute) {
         pickSoundAudio.play();
-      } else if (pickOrder[revealedCards.length].includes('Ban')) {
+      } else if (pickOrder[revealedCards.length].includes('Ban') && !mute) {
         banSoundAudio.play();
       }
       setCurrentGuess('');
@@ -259,11 +268,13 @@ export function SearchContainer({ gameData }) {
               {
                 isComplete ? '' : 
                 <div className="game-timer">
-                  <animated.div style={{ 
-                    width, 
-                    backgroundColor: 'white', 
-                    height: '5px' 
-                  }} />
+                    <animated.div
+                      style={{
+                        width,
+                        backgroundColor: timer <= 5 ? '#c2c0c0' : 'white',
+                        height: '5px'
+                      }}
+                    />
                 </div>
               }
 
@@ -284,6 +295,13 @@ export function SearchContainer({ gameData }) {
                 <img src={supportIcon} alt="Support" onClick={() => selectedRole === 'support' ? (setSelectedRole(''), setSearchTerm('')) : setSelectedRole('support')} 
                   style={{border: selectedRole === 'support' ? '2px solid #FFD700' : ''}}
                 />
+                {
+                  mute ? (
+                    <FontAwesomeIcon className='fa-volume-xmark' icon={faVolumeXmark} onClick={() => setMute(false)} />
+                  ) : (
+                    <FontAwesomeIcon className='fa-volume-high' icon={faVolumeHigh} onClick={() => setMute(true)} />
+                  )
+                }
               </div>
               <input
                 type="text"
@@ -297,7 +315,7 @@ export function SearchContainer({ gameData }) {
               forceVisible="y"
               autoHide={false}
               style={{
-                maxHeight: window.innerWidth > 1024 ? 400 : window.innerWidth > 540 ? 300 : 200
+                maxHeight: window.innerWidth > 1024 ? 400 : window.innerWidth > 540 ? 300 : 300
               }}
               ref={scrollableContainerRef} 
             >

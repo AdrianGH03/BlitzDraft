@@ -1,11 +1,10 @@
 //Context
 import { AuthContext } from '../../contexts/AuthContext';
-import { StyleContext } from '../../contexts/StyleContext';
 import { GameContext } from '../../contexts/GameContext';
 
 //Hooks
 import { useContext, useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 
 //Assets
@@ -14,15 +13,16 @@ import { GameContainer } from '../../components/Game/GameContainer';
 
 export function Game() {
   const { token } = useParams();
-  const { fetchWithToken } = useContext(AuthContext);
-  //eslint-disable-next-line
-  const { isLoading, setIsLoading } = useContext(StyleContext);
+  const { fetchWithToken, error, setError } = useContext(AuthContext);
   const [isComplete, setIsComplete] = useState(false);
   const [showEndGame, setShowEndGame] = useState(true);
   const [guesses, setGuesses] = useState({});
   const [skipCard, setSkipCard] = useState(false);
   const [revealedCards, setRevealedCards] = useState([]);
   const [startGame, setStartGame] = useState(false);
+  const [mute, setMute] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -31,6 +31,7 @@ export function Game() {
           .then(response => {
             if(response.data.message == 'Game completed') {
               setShowEndGame(true);
+              setStartGame(false);
             }
           })
           .catch(error => {
@@ -51,6 +52,9 @@ export function Game() {
         return false;
       }
     } catch (error) {
+      if(error.response.status === 429) {
+        setError('Too many requests, please try again later');
+      }
       console.error('Error:', error);
       return false;
     }
@@ -65,10 +69,6 @@ export function Game() {
     checkGameComplete();
   }, [token]);
   
-  useEffect(() => {
-    console.log(guesses)
-  }, [guesses])
-  
 
   return (
     <>
@@ -80,6 +80,7 @@ export function Game() {
       revealedCards, setRevealedCards,
       skipCard, setSkipCard,
       startGame, setStartGame,
+      mute, setMute
     }} >
         <GameContainer />
       </GameContext.Provider>

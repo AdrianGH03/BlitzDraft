@@ -1,4 +1,3 @@
-// AudioPlayer.jsx
 import { useEffect, useState, useRef } from 'react';
 
 // Audio files
@@ -13,31 +12,41 @@ import track8 from '../../assets/audio/playlistSong8.wav'; //Worlds 2017 theme
 import track9 from '../../assets/audio/playlistSong9.wav'; //Worlds 2021 orchestral theme
 import track10 from '../../assets/audio/playlistSong10.wav'; //2017 login screen
 
-const tracks = [track1, track2, track3, track4, track5, track6, track7, track8, track9, track10];
+const tracks = [track1, track2, track3, track4, track5, track7, track8, track9, track10];
 
-export function AudioPlayer({ startGame }) {
+export function AudioPlayer({ startGame, mute }) {
     const [currentTrack, setCurrentTrack] = useState(Math.floor(Math.random() * tracks.length));
     const audioRef = useRef(null);
 
+    useEffect(() => {
+        audioRef.current.src = tracks[currentTrack];
+        audioRef.current.currentTime = 7;
+    }, [currentTrack]);
+
     const playAudio = () => {
         if (audioRef.current.paused) {
-            audioRef.current.src = tracks[currentTrack];
-            audioRef.current.volume = 0.02;
-            audioRef.current.currentTime = 5; 
+            audioRef.current.volume = 0.3;
             audioRef.current.play();
         }
     }
 
+    const stopAudio = () => {
+        audioRef.current.pause();
+    }
+
     useEffect(() => {
-        if (startGame) {
+        if (mute) {
+            stopAudio();
+        } else if (startGame) {
+            playAudio();
             window.addEventListener('mousemove', playAudio);
             return () => {
                 window.removeEventListener('mousemove', playAudio);
             }
         } else {
-            audioRef.current.pause();
+            stopAudio();
         }
-    }, [startGame, currentTrack]);
+    }, [startGame, mute]);
 
     useEffect(() => {
         if (audioRef.current.ended) {

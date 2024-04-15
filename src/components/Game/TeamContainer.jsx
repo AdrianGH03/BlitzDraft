@@ -15,6 +15,7 @@ import pickSound from '../../assets/audio/pickSound.ogg';
 import banSound from '../../assets/audio/banSound.ogg';
 
 export function TeamContainer({ gameData, team }) {
+  //Game Data
   const bans = gameData.gameData.body.champSplashes?.bans;
   const picks = gameData.gameData.body.champSplashes?.picks;
   const picksMobile = gameData.gameData.body.champSplashes?.picksMobile;
@@ -23,16 +24,20 @@ export function TeamContainer({ gameData, team }) {
   const pickOrder = gameData.gameData.body.difficultySettings.order;
   const picksByRoleOrder = gameDataTeam[`${team}PicksByRoleOrder`].split(',');
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  //Audio
   const pickSoundAudio = new Audio(pickSound);
   const banSoundAudio = new Audio(banSound);
-  pickSoundAudio.volume = 0.07; 
-  banSoundAudio.volume = 0.07;
+  pickSoundAudio.volume = 0.3; 
+  banSoundAudio.volume = 0.3;
 
+  //Context
   const { setIsLoading } = useContext(StyleContext);
   const { 
     isComplete, setIsComplete, 
     revealedCards, setRevealedCards,
-    startGame
+    startGame,
+    mute
   } = useContext(GameContext);
   
   const sortedPickKeys = picksByRoleOrder.map(pick => {
@@ -88,9 +93,9 @@ export function TeamContainer({ gameData, team }) {
           interval = setInterval(() => {
             if (pickOrder.length > revealedCards.length && revealedCards.length > 0) {
               setRevealedCards([...revealedCards, pickOrder[revealedCards.length]]);
-              if (pickOrder[revealedCards.length].includes('Pick')) {
+              if (pickOrder[revealedCards.length].includes('Pick') && !mute) {
                 pickSoundAudio.play();
-              } else if (pickOrder[revealedCards.length].includes('Ban')) {
+              } else if (pickOrder[revealedCards.length].includes('Ban') && !mute) {
                 banSoundAudio.play();
               }
             }

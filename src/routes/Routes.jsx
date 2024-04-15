@@ -6,14 +6,17 @@ import { PasswordReset } from '../views/Auth/PasswordReset';
 import { UserProfile } from '../views/User/UserProfile';
 import AuthPage from '../views/Auth/AuthPage'; 
 
+//Navbar routes
 import { Tutorial } from '../views/Navbar/Tutorial';
 import { Guides } from '../views/Navbar/Guides';
 import { Help } from '../views/Navbar/Help';
 import { Home } from '../views/Navbar/Home';
 
+//Game Routes
 import { Difficulty } from '../views/Game/Difficulty';
 import { Game } from '../views/Game/Game';
 
+//404
 import { NotFound } from '../views/NotFound';
 
 
@@ -26,6 +29,7 @@ export function AppRoutes() {
   
   return (
     <Routes>
+      {/* Home Route */}
       <Route path="/" element={<Home />} />
 
       {/* Auth Routes */}

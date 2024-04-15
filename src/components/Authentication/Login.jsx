@@ -10,7 +10,7 @@ import { InputField } from '../Forms/InputField';
 import ezrealEmote from '../../assets/emotes/ezreal1.png';
 import udyrEmote from '../../assets/emotes/udyr1.png';
 
-//eslint-disable-next-line
+
 function Login({  setForgotPassword, forgotPassword }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

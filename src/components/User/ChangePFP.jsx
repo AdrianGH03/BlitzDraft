@@ -43,7 +43,6 @@ export const ChangePFP = ({ setProfileImage, setChangePFP }) => {
           .catch(error => {
                 console.error('Error fetching profile pictures', error);
           });
-          //eslint-disable-next-line
   }, [isAuthenticated]);
 
 
