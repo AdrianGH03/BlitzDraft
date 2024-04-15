@@ -131,7 +131,7 @@ export function TeamContainer({ gameData, team }) {
                     width: '100%', 
                     height: 'auto', 
                     objectFit: isComplete || revealedCards.includes(`${team}Ban${i + 1}`) ? 'contain' : 'contain',
-                    border: nextCard === `${team}Ban${i + 1}` ? '1px solid yellow' : '1px solid red'
+                    border: nextCard === `${team}Ban${i + 1}` ? '1.5px solid yellow' : '1.5px solid #800020'
                   }}
                 />
               </div>
@@ -157,7 +157,7 @@ export function TeamContainer({ gameData, team }) {
                   } 
                   alt={`${team}Pick${i + 1}`} 
                   style={{ 
-                    border: nextCard === `${team}Pick${i + 1}` && !isComplete ? '1px solid yellow' : (team === 'Team1' ? '2px solid #5be0e5ff' : '2px solid white'),
+                    border: nextCard === `${team}Pick${i + 1}` && !isComplete ? '1px solid yellow' : (team === 'Team1' ? '2px solid #5be0e5ff' : '2px solid red'),
                     objectFit: isComplete || revealedCards.includes(`${team}Pick${i + 1}`) ? 'cover' : 'contain'
                   }}
                 />
