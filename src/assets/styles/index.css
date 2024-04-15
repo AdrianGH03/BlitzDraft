@@ -158,9 +158,9 @@ a {
   justify-content: center;
   align-items: center;
 }
-@media(min-width: 840px){
+@media(max-width: 840px){
   .content {
-    padding-top: 4.5rem;
+    padding-top: 4rem;
   }
   
 }
