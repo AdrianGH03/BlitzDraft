@@ -130,7 +130,10 @@ a {
 .content{
   overflow-y: scroll;
   scroll-behavior: smooth;
-  
+  flex-grow: 2;
+  background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.7)), url('../placeholders/arcade.gif');
+  background-size: cover;
+  background-position: center;
 }
 
 .footer {
@@ -155,15 +158,11 @@ a {
   justify-content: center;
   align-items: center;
 }
-
+@media(min-width: 840px){
   .content {
-    flex-grow: 2;
-    background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.7)), url('../placeholders/arcade.gif');
-    background-size: cover;
-    background-position: center;
     padding-top: 4.5rem;
   }
-
+}
 
 
 
