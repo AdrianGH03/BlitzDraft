@@ -119,7 +119,9 @@ export function TeamContainer({ gameData, team }) {
     <div className={`game-team1-container`}>
   
       <div className={`game-team1-bans`}>
-        <h2>{team == 'Team1' ? 'Blue' : 'Red'} side bans</h2>
+        <h2
+          style={{ fontSize: '0.6rem', textAlign: 'start', color: 'red', padding: '10px'}}
+        >{team == 'Team1' ? 'Blue' : 'Red'} side bans</h2>
         {bans && (
           <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             {[...Array(5)].map((_, i) => (
@@ -140,7 +142,9 @@ export function TeamContainer({ gameData, team }) {
         )}
       </div>
   
-      <h2>{team == 'Team1' ? 'Blue' : 'Red'} side picks &nbsp;(Top → Support)</h2>
+      <h2
+        style={{ fontSize: '0.6rem', textAlign: 'end', color: team === 'Team1' ? '#5be0e5ff' : 'red', padding: '10px'}}
+      >{team == 'Team1' ? 'Blue' : 'Red'} side picks &nbsp;(Top → Support)</h2>
       <div className={'game-team1-picks'}>
         {picks && (
           <>
@@ -157,7 +161,7 @@ export function TeamContainer({ gameData, team }) {
                   } 
                   alt={`${team}Pick${i + 1}`} 
                   style={{ 
-                    border: nextCard === `${team}Pick${i + 1}` && !isComplete ? '1px solid yellow' : (team === 'Team1' ? '2px solid #5be0e5ff' : '2px solid red'),
+                    border: nextCard === `${team}Pick${i + 1}` && !isComplete ? '1px solid yellow' : (team === 'Team1' ? '1px solid #5be0e5ff' : '1px solid red'),
                     objectFit: isComplete || revealedCards.includes(`${team}Pick${i + 1}`) ? 'cover' : 'contain'
                   }}
                 />
