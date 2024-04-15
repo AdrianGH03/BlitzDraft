@@ -39,6 +39,7 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken }) => {
     const [totalPoints, setTotalPoints] = useState(0)
     const [actualScore, setActualScore] = useState(0)
     const icons = [topIcon, jungleIcon, midIcon, botIcon, supportIcon];
+    const [windowSize, setWindowSize] = useState(window.innerWidth)
     const navigate = useNavigate();
     const { userInfo } = useContext(AuthContext);
 
@@ -54,6 +55,17 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken }) => {
     if(gameDataMatch){
       teamNames = gameDataMatch.split(' vs ');
     }
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowSize(window.innerWidth);
+        };
+    
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     useEffect(() => {
         if(Object.keys(gameData).length > 0 && Object.keys(guesses).length > 0 && gameData.difficulty) {
@@ -140,8 +152,10 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken }) => {
                 <section className="end-game-players">
                     {
                         gameData.gameData.body.playerImages && Object.keys(gameData.gameData.body.playerImages).map((team, index) => (
-                            <div key={index} className={`team-${index}`}>
-                                <span className='team-name'>{team.toUpperCase()}</span>
+                            <div key={index} className={`team-${index}`}> 
+                                <span className='team-name'
+                                    style={windowSize < 768 ? {maxWidth: '70px', minWidth: '70px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'} : {maxWidth: '90px', minWidth: '90px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}}
+                                >{team.toUpperCase()}</span>
                                 {gameData.gameData.body.playerImages[team].map((player, playerIndex) => (
                                     <div key={playerIndex}>
                                         <img src={player.image} alt={player.player} className='player-image' />

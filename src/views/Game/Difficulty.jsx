@@ -105,6 +105,13 @@ export const Difficulty = () => {
     }
   }, [gameLink, navigate]);
 
+  useEffect(() => {
+    return () => {
+
+      setError('');
+    };
+  }, []);
+
   return (
     <>
       <div className="difficulty-container fade-in-fwd" style={{ overflowY: 'scroll', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>

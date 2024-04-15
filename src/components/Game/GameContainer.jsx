@@ -83,7 +83,7 @@ export function GameContainer() {
             <div className="loader-container">
               <span className="loader"></span>
             </div>
-          ) : error ? (
+          ) : error  ? (
               <h1>Too many requests. Please try again later.</h1>
           ) : (
             <SearchContainer gameData={gameData} />
