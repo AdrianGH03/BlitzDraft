@@ -40,10 +40,10 @@ export function SearchContainer({ gameData }) {
     const banSoundAudio = new Audio(banSound);
     const timerTickAudio = new Audio(timerTick);
     const timerTick2Audio = new Audio(timerTick2);
-    pickSoundAudio.volume = 0.3; 
-    banSoundAudio.volume = 0.3;
-    timerTickAudio.volume = 0.35;
-    timerTick2Audio.volume = 0.35;
+    pickSoundAudio.volume = 0.6; 
+    banSoundAudio.volume = 0.6;
+    timerTickAudio.volume = 0.7;
+    timerTick2Audio.volume = 0.7;
     const muteRef = useRef(mute);
 
     //Style states

@@ -28,8 +28,8 @@ export function TeamContainer({ gameData, team }) {
   //Audio
   const pickSoundAudio = new Audio(pickSound);
   const banSoundAudio = new Audio(banSound);
-  pickSoundAudio.volume = 0.3; 
-  banSoundAudio.volume = 0.3;
+  pickSoundAudio.volume = 0.6; 
+  banSoundAudio.volume = 0.6;
 
   //Context
   const { setIsLoading } = useContext(StyleContext);
@@ -119,7 +119,7 @@ export function TeamContainer({ gameData, team }) {
     <div className={`game-team1-container`}>
   
       <div className={`game-team1-bans`}>
-        <h2>{team == 'Team1' ? 'BLUE' : 'RED'} SIDE BANS</h2>
+        <h2>{team == 'Team1' ? 'Blue' : 'Red'} side bans</h2>
         {bans && (
           <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             {[...Array(5)].map((_, i) => (
@@ -140,7 +140,7 @@ export function TeamContainer({ gameData, team }) {
         )}
       </div>
   
-      <h2>{team == 'Team1' ? 'BLUE' : 'RED'} SIDE PICKS &nbsp;(TOP &nbsp;&nbsp;&nbsp;&nbsp;→&nbsp;&nbsp;&nbsp;&nbsp; SUPP)</h2>
+      <h2>{team == 'Team1' ? 'Blue' : 'Red'} side picks &nbsp;(Top → Support)</h2>
       <div className={'game-team1-picks'}>
         {picks && (
           <>

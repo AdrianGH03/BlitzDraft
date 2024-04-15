@@ -9,7 +9,8 @@
     background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.5)), url('../../../placeholders/champselect.jpg');
     background-size: cover;
     background-position: center;
-    padding-bottom: 10rem;
+    padding-bottom: 6rem;
+    
 }
 .game-container .loader-container{
     display: flex;
@@ -68,6 +69,7 @@
     background-color: #313131;
     border: 2px solid black;
     color: white;
+    width: 100%;
 }
 .game-searchbar input::placeholder{
     color: rgb(168, 168, 168);
@@ -76,11 +78,12 @@
 }
 .game-role-filters{
     display: flex;
-    gap: 0 0.2rem;
+    gap: 0 0rem;
     align-items: center;
 }
 .fa-volume-high, .fa-volume-xmark{
     color: white;
+    padding: 0 1rem;
 }
 .fa-volume-xmark:hover, .fa-volume-high:hover{
     cursor: pointer;
@@ -263,6 +266,9 @@
         max-width: 40%;
         
     }
+    .game-searchbar input{
+        width: 30%;
+    }
 }
 
 @media(min-width: 840px){
@@ -285,6 +291,9 @@
     }
     .game-team1-container h2{
         display: none;
+    }
+    .game-searchbar input{
+        width: 30%;
     }
 
     /*STYLES*/

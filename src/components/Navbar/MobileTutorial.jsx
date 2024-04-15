@@ -2,15 +2,16 @@
 import { useState } from 'react';
 
 //Assets
-import tutorial1 from '../../assets/placeholders/tutorialm1.png';
+import tutorial1 from '../../assets/placeholders/tutorialgetgamemobile.gif';
 import tutorial2 from '../../assets/placeholders/tutorialm2.png';
 import tutorial3 from '../../assets/placeholders/tutorialm3.png';
 import tutorial4 from '../../assets/placeholders/home3.png';
 import tutorial5 from '../../assets/placeholders/tutoriallast2.png';
+import tutoriallast from '../../assets/placeholders/tutorialguessmobile.gif';
 
 
 const tutorials = [
-  { image: tutorial1, text: 'Head over to the difficulty page to choose your difficulty. Click the "Play" button to load a game. Games are only from the current season.' },
+  { image: tutorial1, text: 'Head over to the difficulty page (navigation menu). Choose your difficulty and click the "Play" button to load a game.' },
   { 
     image: tutorial2, 
     text: [
@@ -30,6 +31,7 @@ const tutorials = [
     ].map((item, index) => index === 0 ? item : `${index}. ${item}`),
   },
   { image: tutorial3, text: 'A total of 20 cards will be shown. The amount of cards revealed when loading a game depends on your difficulty. The order in which they appear is shown above as marked by 1-20.' },
+  { image: tutoriallast, text: 'The current card will be flashing yellow. To make a guess, select a champion and click the guess button. If you fail to make a guess, the game will still continue.' },
   { image: tutorial4, text: 'When all cards are revealed, the game will be set to complete and showcase your score and accuracy. Picks ARE sorted by role order here.' },
   { image: tutorial5, text: 'If you are confused about drafting, head on over to the guides page in the navigation menu to watch videos that educate you on how drafting works.' },
 ];

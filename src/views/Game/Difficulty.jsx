@@ -81,7 +81,21 @@ export const Difficulty = () => {
         }
       })
       .catch(error => {
-        console.error('Error:', error);
+        if(error.response.status === 429) {
+          setError("Too many requests, please try again later.");
+          setGameLoaded(true);
+          setGameLink('');
+        } else if(error.response.status === 500) {
+          setError("Internal server error. Please try again.");
+          setGameLoaded(true);
+          setGameLink('');
+        } else {
+          console.error('Error:', error);
+          setError("Something went wrong. Please try again.");
+          setGameLoaded(true);
+          setGameLink('');
+        }
+        
       });
   }
 

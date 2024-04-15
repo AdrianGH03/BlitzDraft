@@ -11,8 +11,10 @@ import track7 from '../../assets/audio/playlistSong7.wav'; //Worlds 2022 theme o
 import track8 from '../../assets/audio/playlistSong8.wav'; //Worlds 2017 theme
 import track9 from '../../assets/audio/playlistSong9.wav'; //Worlds 2021 orchestral theme
 import track10 from '../../assets/audio/playlistSong10.wav'; //2017 login screen
+import track11 from '../../assets/audio/ekko1.mp3'; //Ekko theme
+import track12 from '../../assets/audio/sett1.wav'; //Sett theme
 
-const tracks = [track1, track2, track3, track4, track5, track7, track8, track9, track10];
+const tracks = [track1, track2, track3, track4, track5, track7, track8, track9, track10, track11, track12];
 
 export function AudioPlayer({ startGame, mute }) {
     const [currentTrack, setCurrentTrack] = useState(Math.floor(Math.random() * tracks.length));
@@ -25,7 +27,7 @@ export function AudioPlayer({ startGame, mute }) {
 
     const playAudio = () => {
         if (audioRef.current.paused) {
-            audioRef.current.volume = 0.3;
+            audioRef.current.volume = 0.06;
             audioRef.current.play();
         }
     }

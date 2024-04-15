@@ -401,6 +401,9 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  
+}
+.difficulty-container .loader{
   margin-top: 1rem;
 }
   .loader:before,

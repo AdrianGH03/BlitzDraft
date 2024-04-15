@@ -79,7 +79,7 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken }) => {
                 let selectedEmotesArray;
 
                 if(scorePercentage < 33) {
-                    selectedEmotesArray = emotes.highscore;
+                    selectedEmotesArray = emotes.lowscore;
                 } else if(scorePercentage < 66) {
                     selectedEmotesArray = emotes.medscore;
                 } else {
