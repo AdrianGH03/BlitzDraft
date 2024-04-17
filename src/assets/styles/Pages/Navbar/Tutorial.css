@@ -4,7 +4,7 @@
 .tutorial-container{
     min-height: 100%;
     margin-top: -0.1rem;
-    padding-bottom: 5rem;
+    padding-bottom: 10rem;
    
 }
 .tutorial-desktop-highlight{
@@ -124,8 +124,8 @@
         padding: 0.1rem;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         border-radius: 15px;
-        padding: 1rem 0;
-        background-color: var(--rich-black-2);
+        
+        
     }
     
     .tutorial-wrapper-desktop{
@@ -147,6 +147,16 @@
         align-items: center;
         
         transition: transform 0.5s;
+    }
+    .tutorial-images-desktop {
+      min-height: 425px; 
+      max-height: 425px;
+      overflow: hidden;
+    }
+    
+    .tutorial-image {
+      max-height: 100%;
+      width: auto;
     }
     
     .tutorial-wrapper-desktop > div img {
@@ -171,8 +181,8 @@
     }
     
     .tutorial-desktop-text{
-        max-width: 60%;
-        min-width: 60%;
+        max-width: 80%;
+        min-width: 80%;
         min-height: auto;
         max-height: auto;
         padding: 1rem;
@@ -184,7 +194,7 @@
     }
     .tutorial-desktop-text p{
         color: white;
-        font-size: 1.2rem;
+        font-size: 1rem;
         text-align: start;
         max-width: 60%;
         line-height: 1.5;
@@ -204,5 +214,12 @@
 }
 
 @media(min-width: 1024px){
-    
+    .tutorial-desktop-text{
+        max-width: 60%;
+        min-width: 60%;
+    }
+    .tutorial-desktop-text p{
+        font-size: 1.2rem;
+        max-width: 60%;
+    }
 }

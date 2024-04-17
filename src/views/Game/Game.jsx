@@ -21,6 +21,7 @@ export function Game() {
   const [revealedCards, setRevealedCards] = useState([]);
   const [startGame, setStartGame] = useState(false);
   const [mute, setMute] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const navigate = useNavigate();
 
@@ -80,7 +81,8 @@ export function Game() {
       revealedCards, setRevealedCards,
       skipCard, setSkipCard,
       startGame, setStartGame,
-      mute, setMute
+      mute, setMute,
+      imagesLoaded, setImagesLoaded
     }} >
         <GameContainer />
       </GameContext.Provider>

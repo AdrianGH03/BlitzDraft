@@ -70,7 +70,7 @@ export function GameContainer() {
   
     return (
       <>
-      {gameData && gameData.gameData && gameData.gameData.body && revealedCards && (
+      {gameData && gameData.gameData && gameData.gameData.body && revealedCards ? (
         <div className="game-container">
           <TeamContainer gameData={gameData} team="Team1" />
           {showEndGame == true && isComplete ? (
@@ -92,7 +92,13 @@ export function GameContainer() {
           <TeamContainer gameData={gameData} team="Team2" />
           
         </div>
-      )}
+      ) : (
+        <div className="loader-container">
+          <span className="loader"></span>
+        </div>
+      )
+      
+    }
         <AudioPlayer startGame={startGame} mute={mute} />
       </>
   );

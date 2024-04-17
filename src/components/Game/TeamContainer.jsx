@@ -37,7 +37,8 @@ export function TeamContainer({ gameData, team }) {
     isComplete, setIsComplete, 
     revealedCards, setRevealedCards,
     startGame,
-    mute
+    mute,
+    imagesLoaded, setImagesLoaded
   } = useContext(GameContext);
   
   const sortedPickKeys = picksByRoleOrder.map(pick => {
@@ -46,6 +47,7 @@ export function TeamContainer({ gameData, team }) {
   });
 
   const [nextCard, setNextCard] = useState('');
+  
 
   useEffect(() => {
     const handleResize = () => {
@@ -67,10 +69,22 @@ export function TeamContainer({ gameData, team }) {
 
   useEffect(() => {
     const imgUrls = Object.values(gameData.gameData.body.champSplashes?.picks || {});
-    imgUrls.forEach(url => {
-      const img = new Image();
-      img.src = url;
+    const imagePromises = imgUrls.map(url => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = url;
+        img.onload = resolve;
+        img.onerror = reject;
+      });
     });
+  
+    Promise.all(imagePromises)
+      .then(() => 
+      setTimeout(() => {
+        setImagesLoaded(true);
+      }, 0)
+    )
+      .catch(err => console.error(`Failed to load images: ${err}`));
   }, [gameData]);
   
   useEffect(() => {
@@ -116,7 +130,7 @@ export function TeamContainer({ gameData, team }) {
 
 
   return (
-    <div className={`game-team1-container`}>
+    imagesLoaded && (<div className={`game-team1-container`}>
   
       <div className={`game-team1-bans`}>
         <h2
@@ -179,6 +193,7 @@ export function TeamContainer({ gameData, team }) {
         )}
       </div>
     </div>
+    )
   );
 }
 

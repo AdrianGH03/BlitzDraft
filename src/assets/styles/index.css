@@ -129,7 +129,7 @@ a {
   overflow-y: scroll;
   scroll-behavior: smooth;
   flex-grow: 2;
-  background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.7)), url('../placeholders/arcade2.gif');
+  background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.3)), url('../placeholders/arcademfah.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -152,8 +152,9 @@ a {
 .tippy-content {
     color: white;
 }
-.loading-container{
+.content .loader-container{
   height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

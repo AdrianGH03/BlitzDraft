@@ -31,7 +31,8 @@ export function SearchContainer({ gameData }) {
       setSkipCard,
       startGame, setStartGame,
       setShowEndGame,
-      mute, setMute
+      mute, setMute,
+      imagesLoaded
     } = useContext(GameContext);
     const { isLoading, setIsLoading } = useContext(StyleContext);
 
@@ -49,6 +50,7 @@ export function SearchContainer({ gameData }) {
     //Style states
     const [isButtonClicked, setIsButtonClicked] = useState(false);
 
+    
     //Game states
     const [currentCard, setCurrentCard] = useState(null);
     const [timer, setTimer] = useState(30);
@@ -261,9 +263,8 @@ export function SearchContainer({ gameData }) {
       config: { duration: 1000 }
     });
 
-  
     return (
-        <div className="game-search-container">
+       imagesLoaded && ( <div className="game-search-container">
 
               {
                 isComplete ? '' : 
@@ -323,7 +324,9 @@ export function SearchContainer({ gameData }) {
               {Object.keys(filteredChampions).map(role =>
                 Object.keys(filteredChampions[role]).map(champ => (
                   <div className="champ-container" key={champ} onClick={() => handleChampionClick(champ)}>
-                    <img src={filteredChampions[role][champ]} alt={champ} style={{ border: currentGuess === champ ? '2px solid #5be0e5ff' : '' }} />
+                    <img src={filteredChampions[role][champ]} alt={champ} style={{ border: currentGuess === champ ? '2px solid #5be0e5ff' : '' }}
+                      
+                    />
                     <span>{champ}</span>
                   </div>
                 ))
@@ -371,6 +374,7 @@ export function SearchContainer({ gameData }) {
 
             
         </div>
+        )
     )
 }
 

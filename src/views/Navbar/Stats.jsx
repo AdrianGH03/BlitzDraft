@@ -89,10 +89,12 @@ export const Stats = () => {
       };
   }, []);
   
-  
+  console.log(table)
   return (
     <>
-        <section className="stats-container fade-in-fwd">
+        { table ? (
+          Object.keys(table).length > 50 && champs && (
+          <section className="stats-container fade-in-fwd">
             <h1>STATS</h1>
             <div className="stats-region-images fade-in-fwd">
                 <img src={lplLogo} alt="LPL" />
@@ -162,6 +164,12 @@ export const Stats = () => {
 
 
         </section>
+        )
+        ) : (
+          <div className="loader-container">
+            <div className="loader"></div>
+          </div>
+        )}
     </>
   )
 }
