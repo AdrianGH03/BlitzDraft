@@ -130,7 +130,7 @@ export const Home = () => {
             </div>
           </div>
       </div>
-      ) : <div className="loading-container">
+      ) : <div className="loader-container">
             <span className="loader"></span>
           </div>
       }
