@@ -24,15 +24,19 @@ export const useHelpQuestions = () => {
         },
         {
             question: "I encountered a bug, how do I report it?",
-            answer: "For now, you can report bugs at draftsimlol@gmail.com, but a discord will be created in the future to make this easier."
+            answer: "You can report bugs in the discord, located in the navigation menu."
         },
         {
             question: "I have X feedback or X suggestion, how can I share it?",
-            answer: "For now, you can suggest things or leave feedback at draftsimlol@gmail.com, but a discord will be created in the future to make this easier."
+            answer: "You can share feedback or suggestions in the discord, located in the navigation menu."
         },
         {
             question: "I lost my game, how do I go back?",
             answer: "Games are saved every time a pick or ban is revealed. Games expire after 1 hour. If you wish to go back to your game, simply go back to the tab."
+        },
+        {
+            question: "I have a suggestion about the design for the website.",
+            answer: "Please feel free to suggest any design changes in the discord. I am by no means a web designer, I am a web developer, so any suggestions are welcome."
         }
     ]);
     

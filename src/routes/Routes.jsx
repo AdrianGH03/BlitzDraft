@@ -11,6 +11,7 @@ import { Tutorial } from '../views/Navbar/Tutorial';
 import { Guides } from '../views/Navbar/Guides';
 import { Help } from '../views/Navbar/Help';
 import { Home } from '../views/Navbar/Home';
+import { Stats } from '../views/Navbar/Stats';
 
 //Game Routes
 import { Difficulty } from '../views/Game/Difficulty';
@@ -45,6 +46,7 @@ export function AppRoutes() {
       <Route path="/tutorial" element={<Tutorial />} />
       <Route path="/guides" element={<Guides />} />
       <Route path="/help" element={<Help />} />
+      <Route path="/stats" element={<Stats />} />
 
       {/* Game Routes */}
       <Route path="/game/difficulty" element={<Difficulty />} />

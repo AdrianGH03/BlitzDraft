@@ -10,7 +10,7 @@ import Login from '../../components/Authentication/Login';
 import Signup from '../../components/Authentication/Signup';
 
 //Assets
-import biglogo from '../../assets/logoImages/BigLogo.png';
+import biglogo from '../../assets/logoImages/BigLogo2.png';
 
 
 function AuthPage() {

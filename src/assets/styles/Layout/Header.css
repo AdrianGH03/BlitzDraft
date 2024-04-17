@@ -172,12 +172,22 @@ img.nav-profile{
     font-family: 'Rubik Mono One', cursive;
 }
 .nav-left img.nav-logo{
-    width: 70%;
+    width: 55%;
     align-self: center;
     padding-top: 2rem;
     padding-bottom: 5rem;
 }
-
+.nav-logo:hover{
+    cursor: pointer;
+}
+.nav-discord{
+    max-width: 30px;
+    margin-right: 2rem;
+}
+.nav-discord:hover{
+    cursor: pointer;
+    transform: scale(0.9);
+}
 @media(min-width: 600px){
     .nav-left{
         
@@ -189,6 +199,14 @@ img.nav-profile{
         
     }
     
+}
+@media(min-height: 700px){
+    .nav-left img.nav-logo{
+        width: 70%;
+        align-self: center;
+        padding-top: 2rem;
+        padding-bottom: 5rem;
+    }
 }
 
 @media(min-width: 900px){

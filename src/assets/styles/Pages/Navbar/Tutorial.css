@@ -3,11 +3,9 @@
 }
 .tutorial-container{
     min-height: 100%;
-    background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.7)), url('../../../placeholders/arcade2.gif');
-    background-size: cover;
-    background-position: center;
     margin-top: -0.1rem;
     padding-bottom: 5rem;
+   
 }
 .tutorial-desktop-highlight{
     color: red;
@@ -27,6 +25,7 @@
     
     min-height: 500px;
     max-height: 500px;
+    
     border: 1px solid var(--french-gray);;
 }
 .tutorial-mobile-text{
@@ -77,20 +76,14 @@
     
     
 }
-@media(min-width: 600px){
-    .tutorial-container-mobile img{
-        min-width: 55%;
-        max-width: 55%;
-        height: 55%;
-    }
+@media(min-width: 800px){
+    
     .tutorial-mobile-text{
         max-width: 55%;
         min-width: 55%;
         max-height: 55%;
     }
-    .tutorial-container-mobile .auth-tab-top{
-        max-width: 55%;
-    }
+    
 }
 
 @media screen and (min-width: 840px) and (min-height: 700px){
@@ -114,7 +107,7 @@
         font-size: 2rem;
         text-align: center;
         padding: 1rem;
-        
+        padding-top: 3rem;
     }
     .tutorial-container-desktop{
         display: flex;
@@ -127,11 +120,12 @@
     .tutorial-container-desktop img{
         width: 100%;
         height: 100%;
-        outline: 1px solid var(--french-gray);
-        border: 1px solid blue;
+        
         padding: 0.1rem;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         border-radius: 15px;
+        padding: 1rem 0;
+        background-color: var(--rich-black-2);
     }
     
     .tutorial-wrapper-desktop{
@@ -156,18 +150,23 @@
     }
     
     .tutorial-wrapper-desktop > div img {
-        max-width: 25%;
+        max-width: 45%;
         transition: all 0.5s;
         opacity: 0.6;
+        
     }
     
     .tutorial-wrapper-desktop > div img.main {
         max-width: 60%;
         opacity: 1;
+        margin: 0 -30rem;
+        z-index: 2;
+        border: 1px solid var(--french-gray);
     }
     
     .tutorial-wrapper-desktop > div img.prev,
     .tutorial-wrapper-desktop > div img.next {
+        z-index: 1;
         transform: scale(0.8);
     }
     

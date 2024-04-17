@@ -2,9 +2,6 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    background-image: linear-gradient(rgba(82, 82, 82, 0.5), rgba(0, 0, 0, 0.5)), url('../../../placeholders/animated-arcade.gif');
-    background-size: cover;
-    background-position: center;
     padding-bottom: 5rem;
     margin-top: -0.1rem;
 }
@@ -33,7 +30,6 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    
 }
 .difficulty-buttons{
     display: flex;
@@ -238,6 +234,11 @@ p.difficulty-guide:hover{
         display: flex;
         margin-top: -2rem;
         width: 80%;
+    }
+    .difficulty-emote-side img{
+        width: 25%;
+        height: auto;
+    
     }
 }
 

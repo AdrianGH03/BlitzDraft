@@ -13,10 +13,10 @@ import { StyleContext } from '../../contexts/StyleContext';
 //Assets
 import lolplaceholder from '../../assets/placeholders/lolplaceholder.png';
 import logo from '../../assets/logoImages/SmallLogo.png';
-import bigLogo from '../../assets/logoImages/BigLogo.png';
+import bigLogo from '../../assets/logoImages/BigLogo2.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrophy, faPersonCircleQuestion, faBook, faGamepad, faRightToBracket, faChessQueen } from '@fortawesome/free-solid-svg-icons'
-
+import { faTrophy, faPersonCircleQuestion, faBook, faGamepad, faRightToBracket, faChessQueen, faSquarePollVertical } from '@fortawesome/free-solid-svg-icons'
+import discordLogo from '../../assets/logoImages/discordIcon.png';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,11 +38,13 @@ export const Header = () => {
   }
 
   function closeMenu() {
-
     if (isOpen) {
       setIsOpen(false);
+      const contentContainer = document.querySelector('.content');
+      if (contentContainer) {
+        contentContainer.scrollTop = 0;
+      }
     }
-    window.scrollTo(0, 0);
   }
 
   function sendToProfile() {
@@ -103,9 +105,16 @@ export const Header = () => {
                 <span>GUIDES</span>
                 
               </Link>
+
+              <Link to="/stats" className='desk-nav-guides'>
+                <FontAwesomeIcon icon={faSquarePollVertical} />
+                <span>STATS</span>
+                
+              </Link>
               
             </div>
             <div className="desk-nav-right">
+              <Link to="https://discord.gg/MgweDDrMHt" target='_blank'><img src={discordLogo} alt='logo' className='nav-discord' /></Link>
               <div className="play-container">
                 
                 <button className="btn-23 desk-nav-play" onClick={() => goToDifficulty()}>
@@ -156,15 +165,23 @@ export const Header = () => {
               <span>GUIDES</span>
             </Link>
 
+            <Link to="/stats" className="nav-guides" onClick={() => closeMenu()}>
+              <FontAwesomeIcon icon={faSquarePollVertical} style={{color: '#fff'}}/>
+              <span>STATS</span>
+            </Link>
+
             <Link to="/game/difficulty" className="nav-play" onClick={() => closeMenu()}>
               <FontAwesomeIcon icon={faChessQueen} style={{color: '#fff'}}/>
               <span>PLAY</span>
             </Link>
 
+            
+
             <img src={bigLogo} alt='logo' className='nav-logo' onClick={() => { goHome(); closeMenu() }} />
           </div>
           <div className="nav-right">
             <div className="logo-container">
+              <Link to="https://discord.gg/MgweDDrMHt" target='_blank'><img src={discordLogo} alt='logo' className='nav-discord' /></Link>
               <img src={logo} alt='logo' className='nav-logo' onClick={() => { goHome(); closeMenu() }} />
             </div>
           </div>

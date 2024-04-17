@@ -73,11 +73,12 @@ export function GameContainer() {
       {gameData && gameData.gameData && gameData.gameData.body && revealedCards && (
         <div className="game-container">
           <TeamContainer gameData={gameData} team="Team1" />
-          {showEndGame == true && !isLoading ? (
+          {showEndGame == true && isComplete ? (
             <EndGameContainer 
               gameData={gameData} 
               guesses={guesses}
               fetchWithToken={fetchWithToken}
+              showEndGame={showEndGame}
             />
           ) : isLoading ? (
             <div className="loader-container">

@@ -32,7 +32,7 @@ import medScoreEmote3 from '../../assets/emotes/medscore3.png'
 import medScoreEmote4 from '../../assets/emotes/medscore4.png'
 import medScoreEmote5 from '../../assets/emotes/medscore5.png'
 
-export const EndGameContainer = ({guesses, gameData, fetchWithToken }) => {
+export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame }) => {
 
     const [scoreRange, setScoreRange] = useState(0)
     const [emote, setEmote] = useState(null)
@@ -172,7 +172,7 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken }) => {
             </section>
         )}
 
-        {Object.keys(guesses).length === 0 && (
+        {Object.keys(guesses).length == 0 && showEndGame && (
                 <>
                 <span className='noguesses'>You made no guesses. Your score was not calculated.</span>
                 </>
@@ -185,5 +185,6 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken }) => {
 EndGameContainer.propTypes = {
     guesses: PropTypes.object,
     gameData: PropTypes.object,
-    fetchWithToken: PropTypes.func
+    fetchWithToken: PropTypes.func,
+    showEndGame: PropTypes.bool
 }

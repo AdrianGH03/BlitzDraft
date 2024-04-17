@@ -4,7 +4,9 @@
    align-items: center;
    justify-content: center;
    margin-bottom: auto;
-   margin-top: 2rem;
+   padding-top: 2rem;
+   
+   
 }
 .guides-wrapper{
     display: grid;

@@ -25,11 +25,7 @@ export const Guides = () => {
                     {!videoLoaded ? <CustomSkeleton count={5} /> : 
                         <iframe src={video.Link} width="500" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen onLoad={() => setVideoLoaded(true)}></iframe>
                     }
-                    <div className="guide-content">
-                        <h3><a href={video.LinkTo} target="_blank" rel="noopener noreferrer">{title}</a></h3>
-                        <p>Channel: <a href={video.LinkToChannel} target="_blank" rel="noopener noreferrer">{video.Channel}</a></p>
-                        <p>Date Posted: {video.DatePosted}</p>
-                    </div>
+                    
                 </section>
             )
         })}
