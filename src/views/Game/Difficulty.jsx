@@ -71,6 +71,14 @@ export const Difficulty = () => {
                 setError("Internal server error. Please try again.");
                 setGameLoaded(true);
                 setGameLink('');
+              } else if (error.response.status === 504) {
+                setError("Gateway Timeout. Please try again.");
+                setGameLoaded(true);
+                setGameLink('');
+              } else if (error.message.includes('cors')) {
+                setError("CORS policy error. Please try again.");
+                setGameLoaded(true);
+                setGameLink('');
               } else {
                 console.error('Error:', error);
                 setError("Something went wrong. Please try again.");
@@ -87,6 +95,14 @@ export const Difficulty = () => {
           setGameLink('');
         } else if(error.response.status === 500) {
           setError("Internal server error. Please try again.");
+          setGameLoaded(true);
+          setGameLink('');
+        } else if (error.response.status === 504) {
+          setError("Gateway Timeout. Please try again.");
+          setGameLoaded(true);
+          setGameLink('');
+        } else if (error.message.includes('cors')) {
+          setError("CORS policy error. Please try again.");
           setGameLoaded(true);
           setGameLink('');
         } else {
