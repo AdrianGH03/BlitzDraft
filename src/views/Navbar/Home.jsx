@@ -14,7 +14,7 @@ import bigLogo from '../../assets/logoImages/BigLogo2.png';
 import azirEmote from '../../assets/emotes/azir1.png';
 import home1 from '../../assets/placeholders/ahripng.png';
 import home2 from '../../assets/placeholders/ahripng2.png';
-import home3 from '../../assets/placeholders/home3.png';
+import home3 from '../../assets/placeholders/home5.png';
 import home4 from '../../assets/placeholders/home4.png';
 import playbutton from '../../assets/placeholders/playbutton.png';
 import '../../assets/styles/Pages/Home.css';

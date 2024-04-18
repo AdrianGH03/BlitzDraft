@@ -12,6 +12,7 @@ export const Stats = () => {
   const [table, setTable] = useState([]);
   const [champs, setChamps] = useState([]);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [error, setError] = useState('');
 
   const correctNames = {
     "Wukong": "MonkeyKing",
@@ -41,7 +42,13 @@ export const Stats = () => {
         setChamps(response.data);
       })
       .catch(error => {
-        console.error(error);
+        if(error.response.status == 429){
+          setError('Too many requests. Please try again later.');
+        } else {
+          setError('An error occurred. Please try again later.');
+          console.error(error);
+        }
+
       });
   }, []);
   
@@ -77,7 +84,12 @@ export const Stats = () => {
           setTable(jsonData);
         })
         .catch(error => {
-          console.error(error);
+          if(error.response.status == 429){
+            setError('Too many requests. Please try again later.');
+          } else {
+            setError('An error occurred. Please try again later.');
+            console.error(error);
+          }
         });
     }
   }, [champs]);
@@ -98,7 +110,7 @@ export const Stats = () => {
   
   return (
     <>
-        { table ? (
+        { table && !error ? (
           Object.keys(table).length > 50 && champs && (
           <section className="stats-container fade-in-fwd">
             <h1>STATS</h1>
@@ -175,7 +187,12 @@ export const Stats = () => {
 
         </section>
         )
-        ) : (
+        ) : error ? (
+          <div className="error-container">
+            <h1>{error}</h1>
+          </div>
+        ) :
+        (
           <div className="loader-container">
             <div className="loader"></div>
           </div>

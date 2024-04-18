@@ -104,16 +104,16 @@ button.home-play img:hover{
     gap: 1rem;
 }
 .home-images-mobile img{
-  border: 2px solid var(--electric-blue);
+  
   border-radius: 15px;
-  margin-bottom: 10rem;
+  
 }
 .home-images-desktop{
   display: none;
 }
 @media(max-height: 800px){
   .home-background{
-    margin-bottom: 15rem;
+    margin-bottom: 5rem;
   }
 }
 

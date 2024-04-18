@@ -143,6 +143,9 @@ a {
     width: 100%;
     z-index: 100;
 }
+.tippy-box{
+  margin-top: 0.3rem;
+}
 .tippy-box.move-left{
     margin-right: 2rem;
 }

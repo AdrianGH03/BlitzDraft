@@ -136,6 +136,7 @@
         width: 90%;
         height: 100%;
         gap: 3rem;
+        
     }
     .tutorial-container-desktop {
         perspective: 1000px;
@@ -152,18 +153,19 @@
       min-height: 425px; 
       max-height: 425px;
       overflow: hidden;
+      
     }
     
     .tutorial-image {
       max-height: 100%;
       width: auto;
+      
     }
     
     .tutorial-wrapper-desktop > div img {
         max-width: 45%;
         transition: all 0.5s;
         opacity: 0.6;
-        
     }
     
     .tutorial-wrapper-desktop > div img.main {
@@ -172,12 +174,15 @@
         margin: 0 -30rem;
         z-index: 2;
         border: 1px solid var(--french-gray);
+        
     }
     
     .tutorial-wrapper-desktop > div img.prev,
     .tutorial-wrapper-desktop > div img.next {
         z-index: 1;
         transform: scale(0.8);
+        padding: 5rem 0;
+        background-color: var(--dark-purple);
     }
     
     .tutorial-desktop-text{
