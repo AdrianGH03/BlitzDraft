@@ -61,6 +61,13 @@ export const Home = () => {
     function goToDifficulty() {
       navigate('/game/difficulty');
     }
+
+    function scrollToTop() {
+      const contentContainer = document.querySelector('.content');
+      if (contentContainer) {
+        contentContainer.scrollTop = 0;
+      }
+    }
     
 
     return (
@@ -112,7 +119,7 @@ export const Home = () => {
               </div>
               {
                   isLoading ? <CustomSkeleton /> : (
-                    <button className="home-play" onClick={() => goToDifficulty()}>
+                    <button className="home-play" onClick={() => { goToDifficulty(); scrollToTop(); }}>
                       <img src={playbutton} alt="Play Icon" />
                     </button>
                   )
