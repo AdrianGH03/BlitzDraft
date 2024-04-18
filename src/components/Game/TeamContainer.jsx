@@ -24,6 +24,7 @@ export function TeamContainer({ gameData, team }) {
   const pickOrder = gameData.gameData.body.difficultySettings.order;
   const picksByRoleOrder = gameDataTeam[`${team}PicksByRoleOrder`].split(',');
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [imagesLoadedCount, setImagesLoadedCount] = useState(0);
 
   //Audio
   const pickSoundAudio = new Audio(pickSound);
@@ -73,19 +74,24 @@ export function TeamContainer({ gameData, team }) {
       return new Promise((resolve, reject) => {
         const img = new Image();
         img.src = url;
-        img.onload = resolve;
+        img.onload = () => {
+          setImagesLoadedCount(prevCount => prevCount + 1);
+          resolve();
+        };
         img.onerror = reject;
       });
     });
   
     Promise.all(imagePromises)
-      .then(() => 
-      setTimeout(() => {
-        setImagesLoaded(true);
-      }, 0)
-    )
       .catch(err => console.error(`Failed to load images: ${err}`));
   }, [gameData]);
+  
+  useEffect(() => {
+    const totalImages = Object.values(gameData.gameData.body.champSplashes?.picks || {}).length;
+    if (imagesLoadedCount === totalImages) { 
+      setImagesLoaded(true);
+    }
+  }, [imagesLoadedCount]);
   
   useEffect(() => {
     let interval;
