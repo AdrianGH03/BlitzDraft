@@ -41,10 +41,10 @@ export function SearchContainer({ gameData }) {
     const banSoundAudio = new Audio(banSound);
     const timerTickAudio = new Audio(timerTick);
     const timerTick2Audio = new Audio(timerTick2);
-    pickSoundAudio.volume = 0.6; 
-    banSoundAudio.volume = 0.6;
-    timerTickAudio.volume = 0.7;
-    timerTick2Audio.volume = 0.7;
+    pickSoundAudio.volume = 0.3; 
+    banSoundAudio.volume = 0.3;
+    timerTickAudio.volume = 0.4;
+    timerTick2Audio.volume = 0.4;
     const muteRef = useRef(mute);
 
     //Style states
@@ -264,7 +264,7 @@ export function SearchContainer({ gameData }) {
     });
 
     return (
-       imagesLoaded && ( <div className="game-search-container">
+        <div className="game-search-container">
 
               {
                 isComplete ? '' : 
@@ -374,7 +374,7 @@ export function SearchContainer({ gameData }) {
 
             
         </div>
-        )
+        
     )
 }
 

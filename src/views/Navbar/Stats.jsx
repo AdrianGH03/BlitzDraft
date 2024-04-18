@@ -16,12 +16,12 @@ export const Stats = () => {
   const correctNames = {
     "Wukong": "MonkeyKing",
     "Miss Fortune": "MissFortune",
-    "Chogath": "Cho'Gath",
+    "ChoGath": "Cho'Gath",
     "TahmKench": "Tahm Kench",
     "RekSai": "RekSai",
-    "Velkoz": "Velkoz",
+    "VelKoz": "Velkoz",
     "KogMaw": "KogMaw",
-    "MasterYi": "MasterYi",
+    "Master Yi": "MasterYi",
     "Twisted Fate": "TwistedFate",
     "Dr. Mundo": "DrMundo",
     "Jarvan IV": "JarvanIV",
@@ -39,43 +39,49 @@ export const Stats = () => {
     fetchWithToken.get(`${import.meta.env.VITE_APP_ALL_CHAMPS}`)
       .then(response => {
         setChamps(response.data);
-        fetch('/AllRegions.xlsx')
-          .then(response => response.blob())
-          .then(blob => {
-            readXlsxFile(blob).then((rows) => {
-              const jsonData = {};
-              rows.slice(1, 135).forEach((row) => {
-                let correctedChampionName = correctNames[row[0]] || row[0];
-                let champImage;
-                for (let role in response.data) {
-                  if (response.data[role][correctedChampionName]) {
-                    champImage = response.data[role][correctedChampionName];
-                    break;
-                  }
-                }
-                const data = {
-                  Champion: row[0],
-                  Picks: row[1],
-                  Bans: row[2],
-                  Presence: row[3],
-                  Wins: row[4],
-                  Losses: row[5],
-                  Winrate: row[6],
-                  Image: champImage,
-                }
-                
-                if (Object.values(data).some(value => value !== null && value !== undefined && value !== '')) {
-                  jsonData[data.Champion] = data;
-                }
-              });
-              setTable(jsonData);
-            });
-          });
       })
       .catch(error => {
         console.error(error);
       });
   }, []);
+  
+  useEffect(() => {
+    if (champs && Object.keys(champs).length > 0){
+      fetchWithToken.get(`${import.meta.env.VITE_APP_GET_STATS}`)
+        .then(response => {
+          const jsonData = {};
+          response.data.data.forEach((row) => {
+            let correctedChampionName = correctNames[row[0]] || row[0];
+            let champImage;
+            for (let role in champs) {
+              if (champs[role][correctedChampionName]) {
+                champImage = champs[role][correctedChampionName];
+                break;
+              }
+            }
+            const data = {
+              Champion: row[0],
+              Picks: row[1],
+              Bans: row[2],
+              Presence: row[3],
+              Wins: row[4],
+              Losses: row[5],
+              Winrate: row[6],
+              Image: champImage,
+            }
+            
+            if (Object.values(data).some(value => value !== null && value !== undefined && value !== '')) {
+              jsonData[data.Champion] = data;
+            }
+          });
+          setTable(jsonData);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+  }, [champs]);
+    
   
 
   useEffect(() => {
@@ -89,7 +95,7 @@ export const Stats = () => {
       };
   }, []);
   
-  console.log(table)
+  
   return (
     <>
         { table ? (
@@ -102,6 +108,10 @@ export const Stats = () => {
                 <img src={lckLogo} alt="LCK" />
                 <img src={lcsLogo} alt="LCS" />
             </div>
+
+            <p>
+              The following table shows the most picked and banned champions in the current season for all 4 major regions above.
+            </p>
 
             <table className="stats-table fade-in-fwd">
                 <thead>
@@ -134,7 +144,7 @@ export const Stats = () => {
                             <h3>{table[champion].Bans}</h3>
                         </td>
                         <td className="stats-pres">
-                            <h3>{(table[champion].Presence * 100).toFixed(0)}%</h3>
+                            <h3>{table[champion].Presence}{table[champion].Presence ? '%' : ''}</h3>
                         </td>
                         <td className="stats-win">
                             <h3>{table[champion].Wins}</h3>
@@ -143,7 +153,7 @@ export const Stats = () => {
                             <h3>{table[champion].Losses}</h3>
                         </td>
                         <td className="stats-winrate">
-                            <h3>{(table[champion].Winrate * 100).toFixed(0)}%</h3>
+                            <h3>{table[champion].Winrate}{table[champion].Winrate ? '%' : ''}</h3>
                         </td>
                     </tr>
                     );
@@ -158,7 +168,7 @@ export const Stats = () => {
                   <p>
                       Data is brought forth by <a href="https://gol.gg/esports/home/" target='_blank'>Games of Legends.</a>
                   </p>
-                  <span>Last updated April 16th, 2024</span>
+                  <span>Updated every Sunday 00:00 GMT</span>
                 </div>
             </div>
 

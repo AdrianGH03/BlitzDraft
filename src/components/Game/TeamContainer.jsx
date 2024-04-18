@@ -29,8 +29,8 @@ export function TeamContainer({ gameData, team }) {
   //Audio
   const pickSoundAudio = new Audio(pickSound);
   const banSoundAudio = new Audio(banSound);
-  pickSoundAudio.volume = 0.6; 
-  banSoundAudio.volume = 0.6;
+  pickSoundAudio.volume = 0.3; 
+  banSoundAudio.volume = 0.3;
 
   //Context
   const { setIsLoading } = useContext(StyleContext);
@@ -100,11 +100,12 @@ export function TeamContainer({ gameData, team }) {
       if (startGame) {
         setNextCard(pickOrder[revealedCards.length]);
         if (pickOrder.length === revealedCards.length && !isComplete) {
-          setIsComplete(true);
+          
           setIsLoading(true);
           setTimeout(() => {
+            setIsComplete(true);
             setIsLoading(false);
-          }, 1000);
+          }, 1111500);
         }
         const timerInterval = 30000;
         let initialDelay = revealedCards.length === 0 ? timerInterval : 0; 
@@ -136,7 +137,7 @@ export function TeamContainer({ gameData, team }) {
 
 
   return (
-    imagesLoaded && (<div className={`game-team1-container`}>
+    <div className={`game-team1-container`}>
   
       <div className={`game-team1-bans`}>
         <h2
@@ -199,7 +200,7 @@ export function TeamContainer({ gameData, team }) {
         )}
       </div>
     </div>
-    )
+    
   );
 }
 

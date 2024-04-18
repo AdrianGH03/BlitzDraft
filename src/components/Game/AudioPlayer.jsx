@@ -15,6 +15,7 @@ import track11 from '../../assets/audio/ekko1.mp3'; //Ekko theme
 import track12 from '../../assets/audio/sett1.wav'; //Sett theme
 
 const tracks = [track1, track2, track3, track4, track5, track8, track9, track10, track11, track12];
+const volumes = [0.2, 0.1, 0.1, 0.1, 0.1, 0.02, 0.02, 0.02, 0.03, 0.02];
 
 export function AudioPlayer({ startGame, mute }) {
     const [currentTrack, setCurrentTrack] = useState(Math.floor(Math.random() * tracks.length));
@@ -27,7 +28,7 @@ export function AudioPlayer({ startGame, mute }) {
 
     const playAudio = () => {
         if (audioRef.current.paused) {
-            audioRef.current.volume = 0.1;
+            audioRef.current.volume = volumes[currentTrack];
             audioRef.current.play();
         }
     }

@@ -5,6 +5,7 @@ import { useState, useContext, useEffect } from 'react';
 
 //REACT/NODEJS
 import { Link } from 'react-router-dom';
+import Tippy from '@tippyjs/react';
 
 //Contexts
 import { AuthContext } from '../../contexts/AuthContext';
@@ -15,7 +16,7 @@ import lolplaceholder from '../../assets/placeholders/lolplaceholder.png';
 import logo from '../../assets/logoImages/SmallLogo.png';
 import bigLogo from '../../assets/logoImages/BigLogo2.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrophy, faPersonCircleQuestion, faBook, faGamepad, faRightToBracket, faChessQueen, faSquarePollVertical } from '@fortawesome/free-solid-svg-icons'
+import { faPersonCircleQuestion, faBook, faGamepad, faRightToBracket, faChessQueen, faSquarePollVertical } from '@fortawesome/free-solid-svg-icons'
 import discordLogo from '../../assets/logoImages/discordIcon.png';
 
 export const Header = () => {
@@ -60,6 +61,13 @@ export const Header = () => {
     }
   }
 
+  function scrollToTop() {
+    const contentContainer = document.querySelector('.content');
+    if (contentContainer) {
+      contentContainer.scrollTop = 0;
+    }
+  }
+
   useEffect(() => {
     if (userInfo && Object.keys(userInfo).length !== 0 && profileImage != '') {
       setIsLoading(false); 
@@ -82,48 +90,60 @@ export const Header = () => {
               <div className="user-info" onClick={() => sendToProfile()} style={{ display: isAuthenticated ? 'block' : 'none' }}>
                 <img src={profileImage ? profileImage : lolplaceholder} alt='profile' className='desk-nav-profile' crossOrigin={"anonymous"} />
               </div>
-              <Link to="/auth" className="desk-nav-account" style={{ display: isAuthenticated === false ? 'block' : 'none' }}>
-                <FontAwesomeIcon icon={faRightToBracket} />&nbsp;
-                <span>SIGN UP</span>
-                
-              </Link>
 
+              <Tippy content="Sign up for an account" placement="bottom" className='move-right'>
+                <Link to="/auth" className="desk-nav-account" style={{ display: isAuthenticated === false ? 'block' : 'none' }} onClick={() => scrollToTop()}>
+                  <FontAwesomeIcon icon={faRightToBracket} />&nbsp;
+                  <span>SIGN UP</span>
+                </Link>
+              </Tippy>
 
-              <Link to="/help" className="desk-nav-faq">
-                <FontAwesomeIcon icon={faPersonCircleQuestion} />
-                <span>HELP</span>
-            
-              </Link>
+              <Tippy content="Have questions?" placement="bottom" className='move-right'>
+                <Link to="/help" className="desk-nav-faq" onClick={() => scrollToTop()}>
+                  <FontAwesomeIcon icon={faPersonCircleQuestion} />
+                  <span>HELP</span>
+                </Link>
+              </Tippy>
 
-              <Link to="/tutorial" className="desk-nav-tutorial">
-                <FontAwesomeIcon icon={faGamepad} />  
-                <span>TUTORIAL</span>
-                
-              </Link>
-              <Link to="/guides" className='desk-nav-guides'>
-                <FontAwesomeIcon icon={faBook} />
-                <span>GUIDES</span>
-                
-              </Link>
+              <Tippy content="Learn how to play" placement="bottom" className='move-right'>
+                <Link to="/tutorial" className="desk-nav-tutorial" onClick={() => scrollToTop()}>
+                  <FontAwesomeIcon icon={faGamepad} />  
+                  <span>TUTORIAL</span>
+                </Link>
+              </Tippy>
 
-              <Link to="/stats" className='desk-nav-guides'>
-                <FontAwesomeIcon icon={faSquarePollVertical} />
-                <span>STATS</span>
-                
-              </Link>
+              <Tippy content="Learn drafting" placement="bottom" className='move-right'>
+                <Link to="/guides" className='desk-nav-guides' onClick={() => scrollToTop()}>
+                  <FontAwesomeIcon icon={faBook} />
+                  <span>GUIDES</span>
+                </Link>
+              </Tippy>
+
+              <Tippy content="View pick and ban stats" placement="bottom" className='move-right'>
+                <Link to="/stats" className='desk-nav-guides' onClick={() => scrollToTop()}>
+                  <FontAwesomeIcon icon={faSquarePollVertical} />
+                  <span>STATS</span>
+                </Link>
+              </Tippy>
               
             </div>
             <div className="desk-nav-right">
-              <Link to="https://discord.gg/MgweDDrMHt" target='_blank'><img src={discordLogo} alt='logo' className='nav-discord' /></Link>
+              <Tippy content="Join our Discord!" placement="bottom" className='move-left'>
+                <Link to="https://discord.gg/MgweDDrMHt" target='_blank'><img src={discordLogo} alt='logo' className='nav-discord' /></Link>
+              </Tippy>
               <div className="play-container">
-                
-                <button className="btn-23 desk-nav-play" onClick={() => goToDifficulty()}>
-                  <span className="text">PLAY</span>
-                  <span aria-hidden="" className="marquee">START GAME</span>
-                </button>
+
+                <Tippy content="Play a game">
+                  <button className="btn-23 desk-nav-play" onClick={() => goToDifficulty()}>
+                    <span className="text">PLAY</span>
+                    <span aria-hidden="" className="marquee">START GAME</span>
+                  </button>
+                </Tippy>
               </div>
               <div className="desk-logo-container">
-                <img src={logo} alt='logo' className='desk-nav-logo' onClick={() => goHome()} />
+                <Tippy content="Go to home page">
+                  <img src={logo} alt='logo' className='desk-nav-logo' onClick={() => goHome()} />
+                </Tippy>
               </div>
             </div>
           </div>
@@ -153,8 +173,8 @@ export const Header = () => {
             <Link to="/help" className="nav-faq" onClick={() => closeMenu()}>
               <FontAwesomeIcon icon={faPersonCircleQuestion} style={{color: '#fff'}}/>
               <span>HELP</span>
-             
             </Link>
+
             <Link to="/tutorial" className="nav-tutorial" onClick={() => closeMenu()}>
               <FontAwesomeIcon icon={faGamepad} style={{color: '#fff'}}/>
               <span>TUTORIAL</span>

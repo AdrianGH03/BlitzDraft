@@ -181,6 +181,7 @@ img.nav-profile{
     cursor: pointer;
 }
 .nav-discord{
+    min-width: 30px;
     max-width: 30px;
     margin-right: 2rem;
 }

@@ -42,6 +42,7 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
     const [windowSize, setWindowSize] = useState(window.innerWidth)
     const navigate = useNavigate();
     const { userInfo } = useContext(AuthContext);
+    const [imagesLoaded, setImagesLoaded] = useState(false);
 
     const emotes = {
         lowscore: [lowscoreEmote, lowScoreEmote2, lowScoreEmote3, lowScoreEmote4, lowScoreEmote5],
@@ -100,6 +101,29 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
 
                 let randomEmote = selectedEmotesArray[Math.floor(Math.random() * selectedEmotesArray.length)];
                 setEmote(randomEmote);
+
+                
+                const imageUrls = [topIcon, jungleIcon, midIcon, botIcon, supportIcon, lowscoreEmote, lowScoreEmote2, lowScoreEmote3, lowScoreEmote4, lowScoreEmote5, highscoreEmote, highScoreEmote2, highScoreEmote3, highScoreEmote4, highScoreEmote5, medscoreEmote, medScoreEmote2, medScoreEmote3, medScoreEmote4, medScoreEmote5];
+                let imagesToLoad = imageUrls.length;
+
+                
+                if (gameData.gameData && gameData.gameData.body && gameData.gameData.body.teamImages) {
+                    imagesToLoad += Object.values(gameData.gameData.body.teamImages).length;
+                    Object.values(gameData.gameData.body.teamImages).forEach(url => {
+                        imageUrls.push(url);
+                    });
+                }
+
+                imageUrls.forEach(url => {
+                    const img = new Image();
+                    img.onload = () => {
+                        imagesToLoad--;
+                        if (imagesToLoad === 0) {
+                            setImagesLoaded(true);
+                        }
+                    };
+                    img.src = url;
+                });
             })
             .catch(error => {
             console.error('Error:', error);
@@ -113,7 +137,7 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
 
   return (
     <>
-        {gameData.difficulty && Object.keys(guesses).length > 0 && Object.keys(gameData).length > 0 && (
+        {imagesLoaded && gameData && (
             <section className="end-game-container">
                 <header className="end-game-heading-container">
                     {gameData.gameData.body.teamImages[teamNames[0]] != '' &&

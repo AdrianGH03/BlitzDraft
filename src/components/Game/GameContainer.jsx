@@ -83,6 +83,7 @@ export function GameContainer() {
           ) : isLoading ? (
             <div className="loader-container">
               <span className="loader"></span>
+              <p>Calculating Score...</p>
             </div>
           ) : error  ? (
               <h1>Too many requests. Please try again later.</h1>
@@ -99,7 +100,11 @@ export function GameContainer() {
       )
       
     }
-        <AudioPlayer startGame={startGame} mute={mute} />
+        {
+          !isLoading && startGame && !showEndGame && !isComplete && (
+            <AudioPlayer startGame={startGame} mute={mute} />
+          )
+        }
       </>
   );
 }

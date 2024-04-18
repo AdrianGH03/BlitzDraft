@@ -4,8 +4,6 @@
   align-items: start;
   padding: 5rem;
   padding-top: 3rem;
-  height: auto;
-  
 }
 .home-background {
   position: relative;
@@ -113,7 +111,11 @@ button.home-play img:hover{
 .home-images-desktop{
   display: none;
 }
-
+@media(max-height: 800px){
+  .home-background{
+    margin-bottom: 15rem;
+  }
+}
 
 @media screen and (min-width: 500px){
     .home-images-mobile{

@@ -19,7 +19,7 @@ export const Guides = () => {
         <h1 className='fade-in-fwd'>GUIDES</h1>
         <div className="guides-wrapper">
         {youtubeVideos.map((video, index) => {
-            const title = video.TITLE.length > 35 ? video.TITLE.substring(0, 35) + '...' : video.TITLE;
+            
             return (
                 <section key={index} className='fade-in-fwd'>
                     {!videoLoaded ? <CustomSkeleton count={5} /> : 
