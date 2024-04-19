@@ -158,11 +158,16 @@
     font-family: 'Asap Condensed', cursive;
 }
 p.difficulty-guide{
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     font-weight: bold;
-    color: var(--electric-blue);
+    text-align: center;
+    line-height: 1.5;
+    max-width: 80%;
     margin-top: 1rem;
     font-family: 'Asap Condensed', cursive;
+}
+p.difficulty-guide a{
+    color: yellow;
 }
 p.difficulty-guide:hover{
     cursor: pointer;

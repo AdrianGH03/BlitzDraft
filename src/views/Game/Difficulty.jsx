@@ -190,8 +190,8 @@ export const Difficulty = () => {
           </div>
 
           <div className="difficulty-play-container fade-in-fwd">
-              <p className='difficulty-guide'>
-                  <Link to="/tutorial">Lost? Check out the tutorial for more information.</Link>
+              <p className='difficulty-guide flash-animation'>
+                  <Link to="/tutorial">We strongly recommend to check out the tutorial page. Click here.</Link>
                 </p>
           {!gameLoaded ? (
             <span className="loader"></span>
