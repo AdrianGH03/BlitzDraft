@@ -1,6 +1,5 @@
 
-import React, { useEffect, useState, useContext } from 'react';
-import readXlsxFile from 'read-excel-file';
+import  { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import lplLogo from '../../assets/logoImages/lpl.png';
 import lckLogo from '../../assets/logoImages/lck.png';
@@ -13,6 +12,25 @@ export const Stats = () => {
   const [champs, setChamps] = useState([]);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [error, setError] = useState('');
+
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [champImagesLoaded, setChampImagesLoaded] = useState(false);
+
+  useEffect(() => {
+    const images = [lplLogo, lckLogo, lecLogo, lcsLogo];
+    let imagesToLoad = images.length;
+
+    images.forEach((image) => {
+      const img = new Image();
+      img.src = image;
+      img.onload = () => {
+        imagesToLoad--;
+        if (imagesToLoad === 0) {
+          setImagesLoaded(true);
+        }
+      };
+    });
+  }, []);
 
   const correctNames = {
     "Wukong": "MonkeyKing",
@@ -35,11 +53,29 @@ export const Stats = () => {
     "Renata Glasc": "Renata",
     "Tahm Kench": "TahmKench",
   };
-
+  
   useEffect(() => {
     fetchWithToken.get(`${import.meta.env.VITE_APP_ALL_CHAMPS}`)
       .then(response => {
         setChamps(response.data);
+
+        let champImagesToLoad = 0;
+        for (let role in response.data) {
+          champImagesToLoad += Object.keys(response.data[role]).length;
+        }
+
+        for (let role in response.data) {
+          for (let champ in response.data[role]) {
+            const img = new Image();
+            img.src = response.data[role][champ];
+            img.onload = () => {
+              champImagesToLoad--;
+              if (champImagesToLoad === 0) {
+                setChampImagesLoaded(true);
+              }
+            };
+          }
+        }
       })
       .catch(error => {
         if(error.response.status == 429){
@@ -110,7 +146,7 @@ export const Stats = () => {
   
   return (
     <>
-        { table && !error ? (
+        { table && !error && champImagesLoaded && imagesLoaded ? (
           Object.keys(table).length > 50 && champs && (
           <section className="stats-container fade-in-fwd">
             <h1>STATS</h1>

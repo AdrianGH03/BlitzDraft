@@ -91,40 +91,39 @@ export const Header = () => {
                 <img src={profileImage ? profileImage : lolplaceholder} alt='profile' className='desk-nav-profile' crossOrigin={"anonymous"} />
               </div>
 
-              <Tippy content="Sign up for an account" placement="bottom" className='move-right'>
+              
                 <Link to="/auth" className="desk-nav-account" style={{ display: isAuthenticated === false ? 'block' : 'none' }} onClick={() => scrollToTop()}>
                   <FontAwesomeIcon icon={faRightToBracket} />&nbsp;
                   <span>SIGN UP</span>
                 </Link>
-              </Tippy>
-
-              <Tippy content="Have questions?" placement="bottom" className='move-right'>
+              
+              
                 <Link to="/help" className="desk-nav-faq" onClick={() => scrollToTop()}>
                   <FontAwesomeIcon icon={faPersonCircleQuestion} />
                   <span>HELP</span>
                 </Link>
-              </Tippy>
+              
 
-              <Tippy content="Learn how to play" placement="bottom" className='move-right'>
+              
                 <Link to="/tutorial" className="desk-nav-tutorial" onClick={() => scrollToTop()}>
                   <FontAwesomeIcon icon={faGamepad} />  
                   <span>TUTORIAL</span>
                 </Link>
-              </Tippy>
+              
 
-              <Tippy content="Learn drafting" placement="bottom" className='move-right'>
+              
                 <Link to="/guides" className='desk-nav-guides' onClick={() => scrollToTop()}>
                   <FontAwesomeIcon icon={faBook} />
                   <span>GUIDES</span>
                 </Link>
-              </Tippy>
+             
 
-              <Tippy content="View pick and ban stats" placement="bottom" className='move-right'>
+              
                 <Link to="/stats" className='desk-nav-guides' onClick={() => scrollToTop()}>
                   <FontAwesomeIcon icon={faSquarePollVertical} />
                   <span>STATS</span>
                 </Link>
-              </Tippy>
+              
               
             </div>
             <div className="desk-nav-right">
@@ -133,17 +132,17 @@ export const Header = () => {
               </Tippy>
               <div className="play-container">
 
-                <Tippy content="Play a game">
+                
                   <button className="btn-23 desk-nav-play" onClick={() => goToDifficulty()}>
                     <span className="text">PLAY</span>
                     <span aria-hidden="" className="marquee">START GAME</span>
                   </button>
-                </Tippy>
+                
               </div>
               <div className="desk-logo-container">
-                <Tippy content="Go to home page">
+                
                   <img src={logo} alt='logo' className='desk-nav-logo' onClick={() => goHome()} />
-                </Tippy>
+                
               </div>
             </div>
           </div>
