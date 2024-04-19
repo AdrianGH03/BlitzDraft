@@ -21,27 +21,23 @@ const thumbnails = [tn1, tn2, tn3, tn4, tn5, tn6, tn7, tn8, tn9];
 export const Guides = () => {
 
   const [youtubeVideos, setYoutubeVideos] = useYoutubeVideos();
-  const [videoLoaded, setVideoLoaded] = useState(false);
-
-  useEffect(() => {
-    setVideoLoaded(new Array(youtubeVideos.length).fill(false));
-  }, [youtubeVideos]);
+  
 
   return (
     <article className='guides-container fade-in-fwd'>
         <h1 className='fade-in-fwd'>GUIDES</h1>
-        <div className="guides-wrapper">
+        <div className="guides-wrapper fade-in-fwd">
         {thumbnails.map((video, index) => {
             
             return (
                 <section key={index} className='fade-in-fwd'>
-                    {!videoLoaded ? <CustomSkeleton count={5} /> : 
-                        <div className="image-container" onClick={() => window.open(youtubeVideos[index].LinkTo, "_blank")}>
-                          <img src={thumbnails[index]} width="500" 
-                            alt={youtubeVideos[index].TITLE}
-                          />
-                        </div>
-                    }
+                    
+                  <div className="image-container" onClick={() => window.open(youtubeVideos[index].LinkTo, "_blank")}>
+                    <img src={thumbnails[index]} width="500" 
+                      alt={youtubeVideos[index].TITLE}
+                    />
+                  </div>
+                    
                     
                 </section>
             )

@@ -6,6 +6,7 @@ import lckLogo from '../../assets/logoImages/lck.png';
 import lecLogo from '../../assets/logoImages/lec.png';
 import lcsLogo from '../../assets/logoImages/lcs.png';
 
+
 export const Stats = () => {
     const { fetchWithToken } = useContext(AuthContext);
   const [table, setTable] = useState([]);
@@ -158,7 +159,7 @@ export const Stats = () => {
             </div>
 
             <p>
-              The following table shows the most picked and banned champions in the current season for all 4 major regions above.
+              Most picked and banned champions in the current season for all 4 major regions
             </p>
 
             <table className="stats-table fade-in-fwd">

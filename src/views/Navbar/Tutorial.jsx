@@ -6,7 +6,7 @@ import { MobileTutorial } from '../../components/Navbar/MobileTutorial';
 export const Tutorial = () => {
   return (
     <>
-        <section className="tutorial-container">
+        <section className="tutorial-container fade-in-fwd">
             <div className="tutorial-desktop fade-in-fwd">
                 <DesktopTutorial />
             </div>

@@ -50,7 +50,7 @@
     font-size: 1rem;
 }
 .help-container-2{
-    
+    align-self: flex-start;
     display: flex;
     flex-direction: column;
 }

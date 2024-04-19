@@ -74,7 +74,7 @@ export const Home = () => {
       <>
       <div id="css-loaded-marker"></div>
       {isCssLoaded ? (
-        <div className="home-background">
+        <div className="home-background fade-in-fwd">
           
           <div className="home-div">
             <div className="home-image-container">

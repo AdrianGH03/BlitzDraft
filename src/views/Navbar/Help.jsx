@@ -19,25 +19,22 @@ export const Help = () => {
     };
   
     return (
-    <div className="help-wrapper    fade-in-fwd">
+    <div className="help-wrapper">
         <h1>HELP</h1>
     
-      <section className="help-container">
+      <section className="help-container fade-in-fwd">
         <div className="help-container-questions fade-in-fwd">
         {helpQuestions.map((question, index) => (
           <div key={index} className="help-question-container">
             <button onClick={() => toggleDropdown(index)}>
-                {
-                openIndex === index ? <FontAwesomeIcon icon={faCaretUp} /> 
-                : <FontAwesomeIcon icon={faCaretDown} /> 
-                }
+                
                 <p>{question.question}</p>
             </button>
-            {openIndex === index && 
+            
               <p className='open'>
                 <p>{question.answer}</p>
               </p>
-            }
+            
           </div>
         ))}
         </div>
