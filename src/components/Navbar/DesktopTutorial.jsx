@@ -2,22 +2,18 @@
 import { useState } from 'react';
 
 //Assets
-import tutorial1 from '../../assets/placeholders/tutorialgetgame.gif';
+
 import tutorial2 from '../../assets/placeholders/tutorial1.jpg';
 import tutorial3 from '../../assets/placeholders/tutorial2.jpg';
 import tutorial4 from '../../assets/placeholders/tutorial22.jpg';
-import tutoriallast from '../../assets/placeholders/tutoriallast1.jpg';
 import tutoriallast2 from '../../assets/placeholders/tutorialguess.gif';
-import tutorialstats from '../../assets/placeholders/tutorialstats.jpg';
+
 
 const tutorials = [
-  { image: tutorial1, text: 'Head over to the difficulty page (play button in top right). Choose your difficulty and click the "Play" button to load a game. Press the start button to play.' },
   { image: tutorial2, text: 'All parts of the game are showcased in the yellow text. The goal of the game is to guess the correct pick or ban as they appear. Cards are NOT sorted by role order.' },
   { image: tutorial3, text: 'A total of 20 cards will be shown. The order in which they appear is shown above as marked by 1-20.' },
   { image: tutoriallast2, text: 'The current card will be flashing yellow. To make a guess, select a champion and click the guess button. If you fail to make a guess, the game will still continue.' },
   { image: tutorial4, text: 'When all cards are revealed, the game will be set to complete and showcase your score and accuracy. Cards ARE sorted by role order here.' },
-  { image: tutoriallast, text: 'If you are confused about drafting, head on over to the guides page at the top to watch videos that educate you on how drafting works.' },
-  { image: tutorialstats, text: 'As a guide, you can also check out the pick and ban stats of champions in the current season using the Stats page. It is located in the navigation menu.' },
 ];
 
 export const DesktopTutorial = () => {
