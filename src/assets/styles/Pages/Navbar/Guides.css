@@ -89,7 +89,7 @@
 }
 
 
-@media(min-width: 1024px){
+@media(min-width: 700px){
     .guides-container{
         padding: 2rem 3rem 0 3rem;
         margin-top: 0;
@@ -106,7 +106,7 @@
         width: 80%;
     }
     .guides-wrapper img{
-        width: 80%;
+        width: 100%;
         height: 100%;
     }
     .guides-container > h1{
