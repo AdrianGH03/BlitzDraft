@@ -374,7 +374,7 @@ export function SearchContainer({ gameData }) {
               }
             </div>
 
-            <h5 className='search-container-sp'>For sequential picks, if the reveal order is swapped, set your guess to the previous champion pick shown.</h5>
+            <h5 className='search-container-sp'>For sequential picks, if the reveal order is swapped, set your next guess to the previous champion pick shown.</h5>
         </div>
         
     )
