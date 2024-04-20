@@ -29,8 +29,8 @@ const tutorials = [
     ].map((item, index) => index === 0 ? item : `${index}. ${item}`),
   },
   { image: tutorial3, text: 'A total of 20 cards will be shown. The amount of cards revealed when loading a game depends on your difficulty. The order in which they appear is shown above as marked by 1-20.' },
-  { image: tutoriallast, text: 'The current card will be flashing yellow. To make a guess, select a champion and click the guess button. If you fail to make a guess, the game will still continue.' },
-  { image: tutorial4, text: 'When all cards are revealed, the game will be set to complete and showcase your score and accuracy. Picks ARE sorted by role order here.' },
+  { image: tutoriallast, text: 'The current card will be flashing yellow. To make a guess, select a champion and click the guess button. Revealed champions are blocked by a red border.' },
+  { image: tutorial4, text: 'When all cards are revealed, the game will be set to complete and showcase your score and accuracy. Picks ARE sorted by role order here. Sequential picks are calculated as if they were swapped.' },
   
 ];
 
