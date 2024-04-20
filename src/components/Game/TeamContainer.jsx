@@ -39,7 +39,10 @@ export function TeamContainer({ gameData, team }) {
     revealedCards, setRevealedCards,
     startGame,
     mute,
-    imagesLoaded, setImagesLoaded
+    imagesLoaded, setImagesLoaded,
+    pairs,
+    currentCard, setCurrentCard,
+    nextCard, setNextCard
   } = useContext(GameContext);
   
   const sortedPickKeys = picksByRoleOrder.map(pick => {
@@ -47,7 +50,7 @@ export function TeamContainer({ gameData, team }) {
     return pickKey;
   });
 
-  const [nextCard, setNextCard] = useState('');
+  
   
 
   useEffect(() => {

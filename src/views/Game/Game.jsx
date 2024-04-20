@@ -22,8 +22,15 @@ export function Game() {
   const [startGame, setStartGame] = useState(false);
   const [mute, setMute] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
-
-  const navigate = useNavigate();
+  const pairs = [
+    ['Team1Pick2', 'Team1Pick3'],
+    ['Team2Pick1', 'Team2Pick2'],
+    ['Team1Pick4', 'Team1Pick5']
+  ];
+  const [currentCard, setCurrentCard] = useState(null);
+  const [nextCard, setNextCard] = useState('');
+  
+  
 
   useEffect(() => {
     async function fetchData() {
@@ -69,7 +76,12 @@ export function Game() {
     }
     checkGameComplete();
   }, [token]);
-  
+
+  console.log(
+    'Current Card:', currentCard,
+    'Pairs:', pairs,
+    'Next Card:', nextCard,
+  )
 
   return (
     <>
@@ -82,7 +94,10 @@ export function Game() {
       skipCard, setSkipCard,
       startGame, setStartGame,
       mute, setMute,
-      imagesLoaded, setImagesLoaded
+      imagesLoaded, setImagesLoaded,
+      pairs,
+      currentCard, setCurrentCard,
+      nextCard, setNextCard
     }} >
         <GameContainer />
       </GameContext.Provider>

@@ -32,7 +32,10 @@ export function SearchContainer({ gameData }) {
       startGame, setStartGame,
       setShowEndGame,
       mute, setMute,
-      imagesLoaded
+      imagesLoaded,
+      pairs,
+      currentCard, setCurrentCard,
+      nextCard, setNextCard
     } = useContext(GameContext);
     const { isLoading, setIsLoading } = useContext(StyleContext);
 
@@ -52,7 +55,6 @@ export function SearchContainer({ gameData }) {
 
     
     //Game states
-    const [currentCard, setCurrentCard] = useState(null);
     const [timer, setTimer] = useState(30);
     const [currentGuess, setCurrentGuess] = useState('');
 
@@ -66,7 +68,6 @@ export function SearchContainer({ gameData }) {
     //Gamedata endpoints
     const gameDataMatch = gameData.gameData.body.game.match;
     const pickOrder = gameData.gameData.body.difficultySettings.order;
-    const gameDataCards = gameData.gameData.body.game.data;
     
     let teamNames;
     if(gameDataMatch){
@@ -234,7 +235,6 @@ export function SearchContainer({ gameData }) {
     
     const handleGuessButtonClick = () => {
       if(currentGuess === '') return;
-      if(revealedCards.includes()) return;
       setGuesses(prevGuesses => ({ ...prevGuesses, [currentCard]: currentGuess }));
       setRevealedCards(prevRevealed => [...prevRevealed, currentCard]);
       if (pickOrder[revealedCards.length].includes('Pick') && !mute) {
@@ -323,53 +323,17 @@ export function SearchContainer({ gameData }) {
               ref={scrollableContainerRef} 
             >
             <div className="game-search-champions">
-            {Object.keys(filteredChampions).map(role =>
-              Object.keys(filteredChampions[role]).map(champ => {
-                const isChampInGameDataCards = Object.keys(gameDataCards).some(key => revealedCards.includes(key) && gameDataCards[key] === champ);
-                return (
-                  <div 
-                    className="champ-container" 
-                    key={champ} 
-                    onClick={() => {
-                      if (!isChampInGameDataCards) {
-                        handleChampionClick(champ)
-                      }
-                    }}
-                    style={{
-                      pointerEvents: isChampInGameDataCards ? 'none' : 'auto' 
-                    }}
-                  >
-                    <div className="img-container" style={{ 
-                      position: 'relative',
-                      display: 'inline-block',
-                    }}>
-                      <img 
-                        src={filteredChampions[role][champ]} 
-                        alt={champ} 
-                        style={{ 
-                          border: isChampInGameDataCards ? '2px solid red' : (currentGuess === champ ? '2px solid #5be0e5ff' : ''),
-                          position: 'relative',
-                          zIndex: 1,
-                        }}
-                      />
-                      {isChampInGameDataCards && (
-                        <div style={{
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          width: '100%',
-                          height: '100%',
-                          background: 'linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(255,255,255,0))',
-                          zIndex: 2,
-                        }}></div>
-                      )}
-                    </div>
+              {Object.keys(filteredChampions).map(role =>
+                Object.keys(filteredChampions[role]).map(champ => (
+                  <div className="champ-container" key={champ} onClick={() => handleChampionClick(champ)}>
+                    <img src={filteredChampions[role][champ]} alt={champ} style={{ border: currentGuess === champ ? '2px solid #5be0e5ff' : '' }}
+                      
+                    />
                     <span>{champ}</span>
                   </div>
-                );
-              })
-            )}
-          </div>
+                ))
+              )}
+            </div>
             </SimpleBar>
 
 
@@ -410,7 +374,7 @@ export function SearchContainer({ gameData }) {
               }
             </div>
 
-            
+            <h5 className='search-container-sp'>For sequential picks, if the reveal order is swapped, set your guess to the previous champion pick shown.</h5>
         </div>
         
     )
