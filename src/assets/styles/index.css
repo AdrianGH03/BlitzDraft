@@ -12,8 +12,10 @@
 @import './Pages/Navbar/Help.css';
 @import './Pages/404.css';
 @import './Pages/Navbar/Stats.css';
+@import './Pages/Test.css';
 @import 'tippy.js/dist/tippy.css'; 
 @import 'tippy.js/animations/shift-away-subtle.css'; 
+
 
 
 @import 'simplebar-react/dist/simplebar.min.css';
@@ -37,7 +39,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap');
 /* LEAGUE BUTTON TEXT ^ font-family: 'Marcellus SC', serif; */
 
-
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
 #css-loaded-marker {
   display: none;
   color: #123456; 
@@ -129,7 +132,7 @@ a {
   overflow-y: scroll;
   scroll-behavior: smooth;
   flex-grow: 2;
-  background-image: linear-gradient(rgba(82, 82, 82, 0.3), rgba(0, 0, 0, 0.6)), url('../wallpaperImages/arcademfah.png');
+  background-image: url('../wallpaperImages/w22.jpg');
   background-size: cover;
   background-position: center;
 }

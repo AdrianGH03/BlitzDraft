@@ -15,10 +15,6 @@ import jungleIcon from '../../assets/placeholders/jungleIcon.png';
 import midIcon from '../../assets/placeholders/midIcon.png';
 import botIcon from '../../assets/placeholders/botIcon.png';
 import supportIcon from '../../assets/placeholders/supportIcon.png';
-import pickSound from '../../assets/audio/pickSound.ogg';
-import banSound from '../../assets/audio/banSound.ogg';
-import timerTick from '../../assets/audio/timerTick.ogg';
-import timerTick2 from '../../assets/audio/timerTick2.ogg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeHigh, faVolumeXmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -31,7 +27,6 @@ export function SearchContainer({ gameData }) {
       setSkipCard,
       startGame, setStartGame,
       setShowEndGame,
-      mute, setMute,
       imagesLoaded,
       pairs,
       currentCard, setCurrentCard,
@@ -39,16 +34,8 @@ export function SearchContainer({ gameData }) {
     } = useContext(GameContext);
     const { isLoading, setIsLoading } = useContext(StyleContext);
 
-    //Audio
-    const pickSoundAudio = new Audio(pickSound);
-    const banSoundAudio = new Audio(banSound);
-    const timerTickAudio = new Audio(timerTick);
-    const timerTick2Audio = new Audio(timerTick2);
-    pickSoundAudio.volume = 0.3; 
-    banSoundAudio.volume = 0.3;
-    timerTickAudio.volume = 0.4;
-    timerTick2Audio.volume = 0.4;
-    const muteRef = useRef(mute);
+
+    
 
     //Style states
     const [isButtonClicked, setIsButtonClicked] = useState(false);
@@ -90,9 +77,7 @@ export function SearchContainer({ gameData }) {
       }
     }, [startGame, pickOrder, revealedCards]);
 
-    useEffect(() => {
-      muteRef.current = mute;
-    }, [mute]);
+    
 
     
     useEffect(() => {
@@ -115,11 +100,7 @@ export function SearchContainer({ gameData }) {
                 } 
                 return 30;
               } else {
-                if(prevTimer <= 5 && !muteRef.current){
-                  timerTick2Audio.play();
-                } else if (!muteRef.current) {
-                  timerTickAudio.play();
-                }
+                
                 return prevTimer - 1;
               }
             });
@@ -237,11 +218,6 @@ export function SearchContainer({ gameData }) {
       if(currentGuess === '') return;
       setGuesses(prevGuesses => ({ ...prevGuesses, [currentCard]: currentGuess }));
       setRevealedCards(prevRevealed => [...prevRevealed, currentCard]);
-      if (pickOrder[revealedCards.length].includes('Pick') && !mute) {
-        pickSoundAudio.play();
-      } else if (pickOrder[revealedCards.length].includes('Ban') && !mute) {
-        banSoundAudio.play();
-      }
       setCurrentGuess('');
       setSkipCard(true); 
     
@@ -298,13 +274,7 @@ export function SearchContainer({ gameData }) {
                 <img src={supportIcon} alt="Support" onClick={() => selectedRole === 'support' ? (setSelectedRole(''), setSearchTerm('')) : setSelectedRole('support')} 
                   style={{border: selectedRole === 'support' ? '2px solid #FFD700' : ''}}
                 />
-                {
-                  mute ? (
-                    <FontAwesomeIcon className='fa-volume-xmark' icon={faVolumeXmark} onClick={() => setMute(false)} />
-                  ) : (
-                    <FontAwesomeIcon className='fa-volume-high' icon={faVolumeHigh} onClick={() => setMute(true)} />
-                  )
-                }
+                
               </div>
               <input
                 type="text"
@@ -374,7 +344,7 @@ export function SearchContainer({ gameData }) {
               }
             </div>
 
-            <h5 className='search-container-sp'>For sequential picks, if the reveal order is swapped, set your next guess to the previous champion pick shown.</h5>
+            
         </div>
         
     )

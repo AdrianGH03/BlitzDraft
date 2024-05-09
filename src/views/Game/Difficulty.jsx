@@ -7,7 +7,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 //Assets
 import leeSinEmote from '../../assets/emotes/leesin1.png';
-import azirEmote from '../../assets/emotes/nasus1.png';
+import azirEmote from '../../assets/emotes/highscore2.png';
 
 export const Difficulty = () => {
   const [difficulty, setDifficulty] = useState('easy');

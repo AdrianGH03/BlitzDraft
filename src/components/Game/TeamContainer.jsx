@@ -11,8 +11,6 @@ import midIcon from '../../assets/placeholders/midIcon.png';
 import adcIcon from '../../assets/placeholders/botIcon.png';
 import supIcon from '../../assets/placeholders/supportIcon.png';
 import placeholder from '../../assets/placeholders/lolplaceholder.png';
-import pickSound from '../../assets/audio/pickSound.ogg';
-import banSound from '../../assets/audio/banSound.ogg';
 
 export function TeamContainer({ gameData, team }) {
   //Game Data
@@ -26,19 +24,12 @@ export function TeamContainer({ gameData, team }) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [imagesLoadedCount, setImagesLoadedCount] = useState(0);
 
-  //Audio
-  const pickSoundAudio = new Audio(pickSound);
-  const banSoundAudio = new Audio(banSound);
-  pickSoundAudio.volume = 0.3; 
-  banSoundAudio.volume = 0.3;
-
   //Context
   const { setIsLoading } = useContext(StyleContext);
   const { 
     isComplete, setIsComplete, 
     revealedCards, setRevealedCards,
     startGame,
-    mute,
     imagesLoaded, setImagesLoaded,
     pairs,
     currentCard, setCurrentCard,
@@ -117,11 +108,6 @@ export function TeamContainer({ gameData, team }) {
           interval = setInterval(() => {
             if (pickOrder.length > revealedCards.length && revealedCards.length > 0) {
               setRevealedCards([...revealedCards, pickOrder[revealedCards.length]]);
-              if (pickOrder[revealedCards.length].includes('Pick') && !mute) {
-                pickSoundAudio.play();
-              } else if (pickOrder[revealedCards.length].includes('Ban') && !mute) {
-                banSoundAudio.play();
-              }
             }
           }, timerInterval);
         }, initialDelay);

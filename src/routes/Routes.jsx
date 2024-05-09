@@ -5,7 +5,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { PasswordReset } from '../views/Auth/PasswordReset';
 import { UserProfile } from '../views/User/UserProfile';
 import AuthPage from '../views/Auth/AuthPage'; 
-
+import { Test } from '../tests/Test';
 //Navbar routes
 import { Tutorial } from '../views/Navbar/Tutorial';
 import { Guides } from '../views/Navbar/Guides';
@@ -47,6 +47,7 @@ export function AppRoutes() {
       <Route path="/guides" element={<Guides />} />
       <Route path="/help" element={<Help />} />
       <Route path="/stats" element={<Stats />} />
+      <Route path="/test" element={<Test />} />
 
       {/* Game Routes */}
       <Route path="/game/difficulty" element={<Difficulty />} />

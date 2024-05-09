@@ -10,6 +10,7 @@
     background-color: var(--rich-black);
     padding: 1rem;
     position: relative; 
+    border-bottom: 1.5px solid white;
 }
 
 
@@ -85,7 +86,8 @@
     transition: all 0.3s ease-in-out;
 }
 .nav-left a span{
-    font-family: 'Rubik Mono One', sans-serif;
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto;
 }
 
 
@@ -235,25 +237,29 @@ img.nav-profile{
         align-items: center;
         width: 50%;
         gap: 0 3rem;
+        min-height: 100%;
     }
     .desk-nav-left a{
         font-size: 1rem;
         text-decoration: none;
         color: white;
-        font-family: 'Rubik Mono One', cursive;
         white-space: nowrap;
         
     }
     .desk-nav-left a{
         display: flex;
         gap: 0 0.5rem;
+        padding: 0 0.8rem;
+        align-items: center;
     }
     .desk-nav-left a span{
         font-size: 1rem;
         text-decoration: none;
         color: white;
-        font-family: 'Rubik Mono One', cursive;
+        font-family: "Orbitron", sans-serif;
+        font-optical-sizing: auto;
         white-space: nowrap;
+        
     }
     .desk-nav-left a:hover span, .desk-nav-left a:hover{
         color: var(--electric-blue);

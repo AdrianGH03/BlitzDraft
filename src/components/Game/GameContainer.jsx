@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { TeamContainer } from './TeamContainer';
 import { SearchContainer } from './SearchContainer';
 import { EndGameContainer } from './EndGameContainer';
-import { AudioPlayer } from './AudioPlayer';
+
 
 export function GameContainer() {
     const [gameData, setGameData] = useState({});
@@ -27,7 +27,6 @@ export function GameContainer() {
       revealedCards, setRevealedCards,
       setSkipCard,
       startGame,  
-      mute
     } = useContext(GameContext);
     
 
@@ -100,11 +99,7 @@ export function GameContainer() {
       )
       
     }
-        {
-          !isLoading && startGame && !showEndGame && !isComplete && (
-            <AudioPlayer startGame={startGame} mute={mute} />
-          )
-        }
+        
       </>
   );
 }

@@ -20,7 +20,6 @@ export function Game() {
   const [skipCard, setSkipCard] = useState(false);
   const [revealedCards, setRevealedCards] = useState([]);
   const [startGame, setStartGame] = useState(false);
-  const [mute, setMute] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const pairs = [
     ['Team1Pick2', 'Team1Pick3'],
@@ -77,11 +76,6 @@ export function Game() {
     checkGameComplete();
   }, [token]);
 
-  console.log(
-    'Current Card:', currentCard,
-    'Pairs:', pairs,
-    'Next Card:', nextCard,
-  )
 
   return (
     <>
@@ -93,7 +87,6 @@ export function Game() {
       revealedCards, setRevealedCards,
       skipCard, setSkipCard,
       startGame, setStartGame,
-      mute, setMute,
       imagesLoaded, setImagesLoaded,
       pairs,
       currentCard, setCurrentCard,
