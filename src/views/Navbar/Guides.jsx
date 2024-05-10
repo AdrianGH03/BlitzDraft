@@ -25,7 +25,7 @@ export const Guides = () => {
 
   return (
     <article className='guides-container fade-in-fwd'>
-        <h1 className='fade-in-fwd'>GUIDES</h1>
+        <h1 className='fade-in-fwd'>Guides</h1>
         <div className="guides-wrapper fade-in-fwd">
         {thumbnails.map((video, index) => {
             

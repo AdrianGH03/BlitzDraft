@@ -13,10 +13,10 @@ import { StyleContext } from '../../contexts/StyleContext';
 
 //Assets
 import lolplaceholder from '../../assets/placeholders/lolplaceholder.png';
-import logo from '../../assets/logoImages/SmallLogo.png';
+import logo from '../../assets/logoImages/smallLogo.png';
 import bigLogo from '../../assets/logoImages/BigLogo2.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPersonCircleQuestion, faBook, faGamepad, faRightToBracket, faChessQueen, faSquarePollVertical } from '@fortawesome/free-solid-svg-icons'
+import { faPersonCircleQuestion, faPlay, faBook, faGamepad, faRightToBracket, faChessQueen, faSquarePollVertical } from '@fortawesome/free-solid-svg-icons'
 import discordLogo from '../../assets/logoImages/discordIcon.png';
 
 export const Header = () => {
@@ -94,34 +94,34 @@ export const Header = () => {
               
                 <Link to="/auth" className="desk-nav-account" style={{ display: isAuthenticated === false ? 'block' : 'none' }} onClick={() => scrollToTop()}>
                   <FontAwesomeIcon icon={faRightToBracket} />&nbsp;
-                  <span>SIGN UP</span>
+                  <span>&nbsp;Sign Up</span>
                 </Link>
               
               
                 <Link to="/help" className="desk-nav-faq" onClick={() => scrollToTop()}>
                   <FontAwesomeIcon icon={faPersonCircleQuestion} />
-                  <span>HELP</span>
+                  <span>Help</span>
                 </Link>
               
 
               
                 <Link to="/tutorial" className="desk-nav-tutorial" onClick={() => scrollToTop()}>
                   <FontAwesomeIcon icon={faGamepad} />  
-                  <span>TUTORIAL</span>
+                  <span>Tutorial</span>
                 </Link>
               
 
               
                 <Link to="/guides" className='desk-nav-guides' onClick={() => scrollToTop()}>
                   <FontAwesomeIcon icon={faBook} />
-                  <span>GUIDES</span>
+                  <span>Guides</span>
                 </Link>
              
 
               
                 <Link to="/stats" className='desk-nav-guides' onClick={() => scrollToTop()}>
                   <FontAwesomeIcon icon={faSquarePollVertical} />
-                  <span>STATS</span>
+                  <span>Stats</span>
                 </Link>
               
               
@@ -133,10 +133,10 @@ export const Header = () => {
               <div className="play-container">
 
                 
-                  <button className="btn-23 desk-nav-play" onClick={() => goToDifficulty()}>
-                    <span className="text">PLAY</span>
-                    <span aria-hidden="" className="marquee">START GAME</span>
-                  </button>
+              <Link to="/game/difficulty" className="header-play">
+                <FontAwesomeIcon icon={faPlay} />
+                <span>PLAY</span>
+              </Link>
                 
               </div>
               <div className="desk-logo-container">

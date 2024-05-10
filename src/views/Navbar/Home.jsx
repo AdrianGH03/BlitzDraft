@@ -1,146 +1,112 @@
-// Hooks
-import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+//Hooks
+import { useState, useContext, useEffect } from 'react'
+import msiLogo from '../../assets/logoImages/msi.png';
+import lecLogo from '../../assets/logoImages/lec.png';
+import lckLogo from '../../assets/logoImages/lck.png';
+import lcsLogo from '../../assets/logoImages/lcs.png';
+import lplLogo from '../../assets/logoImages/lpl.png';
+import vcsLogo from '../../assets/logoImages/vcs.png';
+import pcsLogo from '../../assets/logoImages/pcs.png';
+import cblolLogo from '../../assets/logoImages/cblol.png';
+import llaLogo from '../../assets/logoImages/lla.png';
+import logo from '../../assets/logoImages/logoTest-transformed.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay, faQuestion } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import test2 from '../../assets/placeholders/teamImages2.png';
+import home1 from '../../assets/placeholders/home1.jpg';
+import home2 from '../../assets/placeholders/home2.jpg';
+import home3 from '../../assets/placeholders/tutorial22.jpg';
 
-//Contexts
-import { StyleContext } from '../../contexts/StyleContext';
-
-//NPM/React
-import { CustomSkeleton } from '../../components/CustomSkeleton';
-
-
-//Assets
-import bigLogo from '../../assets/logoImages/BigLogo2.png';
-import azirEmote from '../../assets/emotes/azir1.png';
-import home1 from '../../assets/placeholders/ahripng.png';
-import home2 from '../../assets/placeholders/ahripng2.png';
-import home3 from '../../assets/placeholders/home5.png';
-import home4 from '../../assets/placeholders/home4.png';
-import playbutton from '../../assets/placeholders/playbutton.png';
-import '../../assets/styles/Pages/Home.css';
-
-export const Home = () => {
-    var { isLoading, setIsLoading } = useContext(StyleContext);
-    const [loadedImages, setLoadedImages] = useState(new Set());
-    const [isCssLoaded, setIsCssLoaded] = useState(false);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-      const checkCssLoaded = () => {
-          const marker = document.getElementById('css-loaded-marker');
-          const style = window.getComputedStyle(marker);
-          if (style.color === 'rgb(18, 52, 86)') {
-              setIsCssLoaded(true);
-          }
-      };
+export function Home() {
   
-      checkCssLoaded();
-      const intervalId = setInterval(checkCssLoaded, 100);
-  
-      return () => clearInterval(intervalId); 
-    }, []);
+  return (
+    <>
+      <main className="home-main-container">
 
-    useEffect(() => {
-      if (loadedImages.size === 2) { 
-        setIsLoading(false);
-      }
-      
-    }, [loadedImages]);
 
-    useEffect(() => {
-      const img1 = new Image();
-      const img2 = new Image();
+        <section className="home-top-container">
+          <main>
+            <img src={logo} className='home-top-logo' />
+            <div className="home-top-text">
+                  <p className="home-top-desktop-text">
+                      
+                      Guess drafts from professional LoL esports matches, and you&apos;ll gain insights into how draft compositions work.
+                      Spot patterns, understand strategies, and improve your game with BlitzDraft.
+                  </p>    
+                  <p className="home-top-mobile-text">
+                    Guess pro LoL esports drafts, understand strategies, and improve your game.
+                  </p>
+            </div>
+            <div className="home-top-tags">
+              <span className="home-top-tag">Drafting</span>
+              <span className="home-top-tag">Esports</span>
+              <span className="home-top-tag">Strategy</span>
+              <span className="home-top-tag">Improvement</span>
+            </div>
+            <div className="home-top-buttons">
+              <Link to="/tutorial" className="home-top-tutorial">
+                <FontAwesomeIcon icon={faQuestion} />
+                <span>TUTORIAL</span>
+              </Link>
+              <Link to="/game/difficulty" className="home-top-play">
+                <FontAwesomeIcon icon={faPlay} />
+                <span>PLAY</span>
+              </Link>
+            </div>
+          </main>
+          <img src={test2} className="home-top-image" />
+        </section>
 
-      img1.onload = () => setLoadedImages(prevSet => new Set(prevSet.add(img1.src)));
-      img2.onload = () => setLoadedImages(prevSet => new Set(prevSet.add(img2.src)));
 
-      img1.src = bigLogo;
-      img2.src = azirEmote;
-    }, []);
-
-    function goToDifficulty() {
-      navigate('/game/difficulty');
-    }
-
-    function scrollToTop() {
-      const contentContainer = document.querySelector('.content');
-      if (contentContainer) {
-        contentContainer.scrollTop = 0;
-      }
-    }
-    
-
-    return (
-      <>
-      <div id="css-loaded-marker"></div>
-      {isCssLoaded ? (
-        <div className="home-background fade-in-fwd">
+        <section className="home-bottom-container">
           
-          <div className="home-div">
-            <div className="home-image-container">
-              <div className="home-image-container2">
-                <img src={home1} alt="Home 1" className="home-image fade-in-fwd" />
-                <img src={home2} alt="Home 2" className="home-image fade-in-fwd push-left" />
-                
-              </div>
-            </div>
+          <ul className="home-bottom-regions-container">
+            <li className="home-bottom-region">
+              <span className="home-bottom-region-title">MSI 2024</span>
+              <img src={msiLogo} />
+            </li>
+            <li className="home-bottom-region">
+              <span className="home-bottom-region-title">LEC</span>
+              <img src={lecLogo} />
+            </li>
+            <li className="home-bottom-region">
+              <span className="home-bottom-region-title">LCK</span>
+              <img src={lckLogo} />
+            </li>
+            <li className="home-bottom-region">
+              <span className="home-bottom-region-title">LCS</span>
+              <img src={lcsLogo} />
+            </li>
+            <li className="home-bottom-region">
+              <span className="home-bottom-region-title">LPL</span>
+              <img src={lplLogo} />
+            </li>
+            <li className="home-bottom-region">
+              <span className="home-bottom-region-title">VCS</span>
+              <img src={vcsLogo} />
+            </li>
+            <li className="home-bottom-region">
+              <span className="home-bottom-region-title">PCS</span>
+              <img src={pcsLogo} />
+            </li>
+            <li className="home-bottom-region">
+              <span className="home-bottom-region-title">CBLOL</span>
+              <img src={cblolLogo} />
+            </li>
+            <li className="home-bottom-region">
+              <span className="home-bottom-region-title">LLA</span>
+              <img src={llaLogo} />
+            </li>
             
-              
-            <div className="home-div-container fade-in-fwd">
-              {isLoading ? (
-                <CustomSkeleton />
-              ) : (
-                <img
-                  src={bigLogo}
-                  alt="BlitzDraft Logo"
-                  className='home-biglogo'
-                />
-              )}
-              <div className="home-content">
-                
-                {isLoading ? (
-                  <CustomSkeleton />
-                ) : (
-                  <img
-                    src={azirEmote}
-                    alt="Azir Emote"
-                    className='home-emote'
-                  />
-                )}
-                <p className="desktop-text">
-                    {isLoading ? <CustomSkeleton /> : 
-                    'Welcome to BlitzDraft. ' +
-                    'Guess drafts from professional LoL esports matches, and you\'ll gain insights into how draft compositions work. ' +
-                    'Spot patterns, understand strategies, and improve your game with BlitzDraft.'}
-                </p>    
-                <p className="mobile-text">
-                  Welcome to BlitzDraft! Guess pro LoL esports drafts, understand strategies, and improve your game.
-                </p>
-              </div>
-              {
-                  isLoading ? <CustomSkeleton /> : (
-                    <button className="home-play" onClick={() => { goToDifficulty(); scrollToTop(); }}>
-                      <img src={playbutton} alt="Play Icon" />
-                    </button>
-                  )
-              }
-              <div className="home-image-mobile">
-                <div className="home-images-mobile">
-                  <img src={home3} alt="Home 3" className="home-image" />
-                  <img src={home4} alt="Home 4" className="home-image" />
-                </div>
-                <div className="home-images-desktop">
-                  <img src={home1} alt="Home 1" className="home-image fade-in-fwd" />
-                  <img src={home2} alt="Home 2" className="home-image fade-in-fwd" />
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-      ) : <div className="loader-container">
-            <span className="loader"></span>
-          </div>
-      }
-      </>
-    )
-  } 
+          </ul>
+
+        </section>
+
+
+        
+      </main>
+    </>
+  )
+}
+

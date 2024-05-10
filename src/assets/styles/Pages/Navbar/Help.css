@@ -4,7 +4,12 @@
     align-items: center;
     padding-top: 3rem;
     padding-bottom: 10rem;
-    
+    z-index: -1;
+    height: 100vh;
+    overflow-y: scroll;
+}
+.help-wrapper::-webkit-scrollbar{
+    display: none;
 }
 .help-container{
     display: flex;
@@ -13,8 +18,9 @@
     gap: 1rem;
 }
 .help-wrapper > h1{
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
+    font-family: 'Orbitron', sans-serif;
 }
 .help-container-questions{
     display: flex;
@@ -27,7 +33,7 @@
 }
 .help-question-container > p{
     line-height: 1.5;
-    background-color: var(--dark-purple-2);
+    background-color: rgb(247, 18, 18, 0.1);
     font-size: 0.8rem;
 }
 .help-question-container > p.open {
@@ -40,8 +46,8 @@
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
-    background-color: var(--dark-purple);
-    border: 1px solid var(--french-gray);
+    background-color: rgba(71, 6, 6, 0.9);
+    border: 2px solid rgba(80, 6, 82, 0.8);
     color: white;
     
 }
@@ -53,6 +59,18 @@
     align-self: flex-start;
     display: flex;
     flex-direction: column;
+}
+.help-container-2 h2{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+}
+.help-question-container p.help-question{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+}
+.help-question-container p.help-answer{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 0.7rem;
 }
 .help-usefullinks{
     display: flex;
@@ -69,11 +87,12 @@
     text-decoration: none;
     border-bottom: 1px solid transparent;
     font-size: 1rem;
-    color: var(--electric-blue);
+    color: rgb(233, 145, 225);
+    font-family: 'Varela Round', sans-serif;
 }
 .help-usefullinks a:hover{
-    color: rgb(14, 112, 168);
-    border-bottom: 1px solid rgb(14, 112, 168);
+    color: rgb(240, 116, 229);
+    border-bottom: 1px solid red;
 }
 
 @media(min-width: 600px){

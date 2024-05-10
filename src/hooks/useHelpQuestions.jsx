@@ -12,7 +12,7 @@ export const useHelpQuestions = () => {
         },
         {
             question: "How far back do games date?",
-            answer: "All games loaded are from the current season. Games are from all 4 majors regions (LPL, LCK, LCS, LEC) and range from regular season games to playoffs games. Worlds and MSI will be included accordingly."
+            answer: "All games loaded are from the current season. Games are from all 4 majors regions (LPL, LCK, LCS, LEC) and minor regions (VCS, PCS, CBLOL, LLA) and range from regular season games to playoffs games. Worlds and MSI will be included accordingly."
         },
         {
             question: "Do I even need an account?",
@@ -34,10 +34,6 @@ export const useHelpQuestions = () => {
             question: "I lost my game, how do I go back?",
             answer: "Please note that games are deleted every time you start a new game. Games are saved every time a pick or ban is revealed. Games expire after 1 hour. If you wish to go back to your current game, simply go back to the tab."
         },
-        {
-            question: "I have a suggestion about the design for the website.",
-            answer: "Please feel free to suggest any design changes in the discord. I would love to improve any design for the site, so any suggestions are welcome!"
-        }
     ]);
     
     return [helpQuestions, setHelpQuestions];

@@ -6,9 +6,8 @@ import { useHelpQuestions } from "../../hooks/useHelpQuestions"
 import { Link } from "react-router-dom";
 
 //Assets
-import alligator1 from '../../assets/emotes/alligator1.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
+import alligator1 from '../../assets/emotes/teemo2.png';
+
 
 export const Help = () => {
     const [helpQuestions] = useHelpQuestions();
@@ -20,7 +19,7 @@ export const Help = () => {
   
     return (
     <div className="help-wrapper">
-        <h1>HELP</h1>
+        <h1>Help</h1>
     
       <section className="help-container fade-in-fwd">
         <div className="help-container-questions fade-in-fwd">
@@ -28,11 +27,11 @@ export const Help = () => {
           <div key={index} className="help-question-container">
             <button onClick={() => toggleDropdown(index)}>
                 
-                <p>{question.question}</p>
+                <p className="help-question">{question.question}</p>
             </button>
             
               <p className='open'>
-                <p>{question.answer}</p>
+                <p className="help-answer">{question.answer}</p>
               </p>
             
           </div>
