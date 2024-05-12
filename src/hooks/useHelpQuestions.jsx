@@ -8,7 +8,7 @@ export const useHelpQuestions = () => {
         },
         {
             question: "What is the goal of the game, I'm so confused...?",
-            answer: "The goal of DraftBlitz is analyze professional LoL games and guess picks and bans as they would appear in a live esports game. A total of 20 cards are shown (10 bans, 10 picks), in which you will use your drafting analyzation skills to determine the correct pick or ban. This will significantly help you understand what works with what in League of Legends. Please note, pro matches are not reflective of your solo queue games, but may help with clash, etc."
+            answer: "The goal of BlitzDraft is analyze professional LoL games and guess picks and bans as they would appear in a live esports game. A total of 20 cards are shown (10 bans, 10 picks), in which you will use your drafting analyzation skills to determine the correct pick or ban. This will significantly help you understand what works with what in League of Legends team compositions. Please note, pro matches are not reflective of your solo queue games, but may help with clash, etc."
         },
         {
             question: "How far back do games date?",

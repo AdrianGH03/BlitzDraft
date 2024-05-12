@@ -22,7 +22,7 @@ export function Home() {
   
   return (
     <>
-      <main className="home-main-container">
+      <main className="home-main-container fade-in-fwd">
 
 
         <section className="home-top-container">

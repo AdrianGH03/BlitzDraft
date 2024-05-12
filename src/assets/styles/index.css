@@ -147,75 +147,71 @@ a {
 
 /* AUTH */
 .page-2{
-  background-image: url('../wallpaperImages/w22.jpg');
+  background-image: url('../wallpaperImages/w27.jpg');
   background-size: cover;
   background-position: center;
 }
 /* RESET PASSWORD */
 .page-3{
-  background-image: url('../wallpaperImages/w22.jpg');
+  background-image: url('../wallpaperImages/w27.jpg');
   background-size: cover;
   background-position: center;
 }
 /* USER PROFILE */
 .page-4{
-  background-image: url('../wallpaperImages/w22.jpg');
+  background-image: url('../wallpaperImages/w27.jpg');
   background-size: cover;
   background-position: center;
 }
 /* TUTORIAL */
 .page-5{
-  background-image: url('../wallpaperImages/w22.jpg');
+  background-image: url('../wallpaperImages/w27.jpg');
   background-size: cover;
   background-position: center;
 }
 /* GUIDES */
 .page-6{
-  background-image: url('../wallpaperImages/w22.jpg');
+  background-image: url('../wallpaperImages/w27.jpg');
   background-size: cover;
   background-position: center;
 }
 /* HELP */
 .page-7{
-  background-image: url('../wallpaperImages/w35.jpg');
+  background-image: url('../wallpaperImages/w27.jpg');
   background-size: cover;
   background-position: center;
 }
 /* STATS */
 .page-8{
-  background-image: url('../wallpaperImages/w22.jpg');
+  background-image: url('../wallpaperImages/w27.jpg');
   background-size: cover;
   background-position: center;
 }
 /* TEST */
 .page-9{
-  background-image: url('../placeholders/champselect.jpg');
+  background-image: url('../wallpaperImages/w27.jpg');
   background-size: cover;
   background-position: center;
 }
 /* DIFFICULTY */
 .page-10{
-  background-image: url('../wallpaperImages/w35.jpg');
+  background-image: url('../placeholders/champselect.jpg');
   background-size: cover;
   background-position: center;
 }
 /* GAME */
 .page-11{
-  background-image: url('../wallpaperImages/w35.jpg');
+  background-image: url('../placeholders/champselect.jpg');
   background-size: cover;
   background-position: center;
 }
 /* ERROR 404 */
 .page-12{
-  background-image: url('../placeholders/champselect.jpg');
+  background-image: url('../wallpaperImages/w27.jpg');
   background-size: cover;
   background-position: center;
 }
-@media(min-width: 840px){
-  .page-1{
-    background-image: url('../wallpaperImages/w35.jpg');
-  }
-}
+
 
 
 .footer {

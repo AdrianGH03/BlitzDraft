@@ -1,91 +1,55 @@
 //Hooks
-import  { useContext, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { RenewPassword } from '../../components/Authentication/RenewPassword';
+
+//Hooks
+import { useContext } from 'react';
 
 //Contexts
 import { AuthContext } from '../../contexts/AuthContext';
+import bigLogo from '../../assets/logoImages/logoTest-transformed.png';
+import briarEmote from '../../assets/emotes/teemo2.png';
 
-//Components
-import { Button } from '../../components/Forms/Button';
-import { InputField } from '../../components/Forms/InputField';
-
-//Assets
-import teemoEmote from '../../assets/emotes/teemo1.png';
-
-
-
-export const  PasswordReset = () => {
-   const [newPassword, setNewPassword] = useState('');
-   const [confirmPassword, setConfirmPassword] = useState('');
-   const { token } = useParams();
-   const navigate = useNavigate();
-
-   const {  
-       fetchWithToken,
-        error,
-        setError,
-        success,
-        setSuccess
-   } = useContext(AuthContext);
-
-  const handleResetPassword = async (e) => {
-      setError('');
-      e.preventDefault();
-      if(!newPassword || !confirmPassword) return setError('Please fill in all fields');
-      try {
-        await fetchWithToken.post(import.meta.env.VITE_APP_RESET_PASSWORD, { token, newPassword, confirmPassword });
-        setSuccess('Password has been reset. Redirecting...');
-        setNewPassword('');
-        setConfirmPassword('');
-        setTimeout(() => {
-            setSuccess('');
-            navigate('/auth');
-        }, 2000);
-      } catch (error) {
-        if (error.response.status === 429) {
-            setError('Too many requests. Please try again later.');
-        } else {
-            setError(error.response.data.error);
-        }
-      }
-  };
-
-
+export function PasswordReset() {
+  const {  
+    error, 
+    success,
+  } = useContext(AuthContext);
+  
   return (
     <>
-        <div className='auth-parent-container' >
-            <div className="auth-parent">
-                <div className='auth-tab'>
-                        <button className='auth-tab-top' style={{ backgroundColor: '#5be0e5ff'}}>
-                            <span style={{ color: '#221e37ff' }}>FORGOT PASSWORD </span>
-                        </button>
-                </div>
-                <div className='auth-signup'>
-                        <InputField label="Password" type="password" name="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} className={'auth-input'} />
-                        <InputField label="Confirm Password" type="password" name="confirmPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} className={'auth-input'} />
-                        <div className="auth-bar"></div>
-                        
-                        <Button type="submit" className={'auth-button'} onClick={handleResetPassword}>RESET PASSWORD</Button>
-                        <div className="auth-alr-have-account">
-                            <img src={teemoEmote} alt="nunu emote" className='auth-emote-nunu' />
-                            <span>Link expires in 30 mins.</span>
-                            
-                        </div>
-                    <div className="error-mobile">
-                        {error && <p>{error}</p>}
-                    </div>
-
-                    <div className="success-mobile">
-                        {success && <p>{success}</p>}
-                    </div>
-                </div>
+      <main className="authen-container">
+        <div className="authen-content">
+          <section className="authen-topright-container">
+            <div className="authen-topright-top">
+              <h5>CHANGE PASSWORD</h5>
+              <h1>
+                <span>Blitz</span>
+                <span>Draft</span>
+              </h1>
+              <RenewPassword />
+              
+              <p className='authen-error'>
+              {
+                error ? error : success
+              }
+              </p>
             </div>
-            <div className="auth-status">
-                <img src={biglogo} alt="big logo" className='auth-big-logo' />
-                {success && <p className='auth-success'>{success}</p>}
-                {error && <p className='auth-error'>{error}</p>}
-            </div>
+            
+          </section>
         </div>
+        <div className="authen-images">
+            <section className="authen-botleft-container">
+                <img src={bigLogo} alt="big logo" className='authen-big-logo' />
+                <img src={briarEmote} className="authen-botleft-image" />
+            </section>
+        </div>
+        <div className="authen-guidelines">
+          <h1>GUIDELINES</h1>
+          <ul>
+            <li>Passwords must be at least 3-20 characters long with one special character (!?), one number, and one uppercase character.</li>
+          </ul>
+        </div>
+      </main>
     </>
   )
 }

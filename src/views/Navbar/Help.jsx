@@ -6,7 +6,7 @@ import { useHelpQuestions } from "../../hooks/useHelpQuestions"
 import { Link } from "react-router-dom";
 
 //Assets
-import alligator1 from '../../assets/emotes/teemo2.png';
+import alligator1 from '../../assets/emotes/highscore2.png';
 
 
 export const Help = () => {

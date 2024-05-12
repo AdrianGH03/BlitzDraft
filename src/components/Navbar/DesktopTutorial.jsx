@@ -1,67 +1,185 @@
 //Hooks
-import { useState } from 'react';
+import { useState } from 'react'
+import msiLogo from '../../assets/logoImages/msi.png';
+import lecLogo from '../../assets/logoImages/lec.png';
+import lckLogo from '../../assets/logoImages/lck.png';
+import lcsLogo from '../../assets/logoImages/lcs.png';
+import lplLogo from '../../assets/logoImages/lpl.png';
+import vcsLogo from '../../assets/logoImages/vcs.png';
+import pcsLogo from '../../assets/logoImages/pcs.png';
+import cblolLogo from '../../assets/logoImages/cblol.png';
+import llaLogo from '../../assets/logoImages/lla.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay, faQuestion } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
-//Assets
+import tutorial1 from '../../assets/placeholders/tutorialtest.png';
+import tutorial2 from '../../assets/placeholders/tutorialtest2.png';
+import tutorial3 from '../../assets/placeholders/tutorialtest4.png';
+import tutorial4 from '../../assets/placeholders/tutorialtest3.png';
+import tutorial0 from '../../assets/placeholders/tutorialtest0.png';
 
-import tutorial2 from '../../assets/placeholders/tutorial1.jpg';
-import tutorial3 from '../../assets/placeholders/tutorial2.jpg';
-import tutorial4 from '../../assets/placeholders/tutorial22.jpg';
-import tutoriallast from '../../assets/placeholders/tutoriallast1.jpg';
-import tutoriallast2 from '../../assets/placeholders/tutorialguess.gif';
-import tutorialstats from '../../assets/placeholders/tutorialstats.jpg';
+export function DesktopTutorial() {
 
-const tutorials = [
-  { image: tutorial2, text: 'All parts of the game are showcased in the yellow text. The goal of the game is to guess the correct pick or ban as they appear. Cards are NOT sorted by role order.' },
-  { image: tutorial3, text: 'A total of 20 cards will be shown. The order in which they appear is shown above as marked by 1-20.' },
-  { image: tutoriallast2, text: 'The current card will be flashing yellow. To make a guess, select a champion and click the guess button.' },
-  { image: tutorial4, text: 'When all cards are revealed, the game will calculate your score. Cards ARE sorted by role order here. Sequential picks are calculated as if they were swapped.' },
-  { image: tutoriallast, text: 'If you are confused about drafting, head on over to the guides page at the top to watch videos that educate you on how drafting works.' },
-  { image: tutorialstats, text: 'As a guide, you can also check out the pick and ban stats of champions in the current season using the Stats page. It is located in the navigation menu.' },
-];
+  const tutorials = [
+    { image: tutorial0, text: 'Head over to the difficulty page to load a game. Feel free to select an available region or international of your choice or a random choice in the drop-down list. Points are not stored for non-registered users.' },
+    { image: tutorial1, text: 'All parts of the game are showcased in the yellow text. The goal of the game is to guess the correct pick or ban as they appear in a regular LoL esports game. Cards are NOT sorted by role order.' },
+    { image: tutorial2, text: 'A total of 20 cards will be shown. The order in which they appear is shown here marked 1-20. Each correct guess is 10 points. Sequential picks will be flashing on hover.' },
+    { image: tutorial3, text: 'The current card will be flashing yellow. To make a guess, select a champion and click the guess button. You may also use the filters and search bar to narrow down your guess.' },
+    { image: tutorial4, text: 'When all cards are revealed, the game will calculate your score. Cards ARE sorted by role order here. Once a game is complete, it cannot be replayed.' },
+  ];
 
-export const DesktopTutorial = () => {
   const [currentTutorial, setCurrentTutorial] = useState(0);
 
   const nextTutorial = () => {
     setCurrentTutorial((prevTutorial) => (prevTutorial + 1) % tutorials.length);
   };
 
-  const prevTutorial = () => {
-    setCurrentTutorial((prevTutorial) => (prevTutorial - 1 + tutorials.length) % tutorials.length);
-  };
-
-  const prevIndex = (currentTutorial - 1 + tutorials.length) % tutorials.length;
-  const nextIndex = (currentTutorial + 1) % tutorials.length;
-
+  
+  
   return (
-    <section className="tutorial-container-desktop">
+    <>
+      <main className="tutorial-container-desk">
+        <section className="tutorial-top-container-desk">
+          <div className="tutorial-text-container-desk">
+            <h2>TUTORIAL {currentTutorial+1}</h2>
+            <div className="tutorial-text-desk">
+              {tutorials && currentTutorial >= 0 && (
+                <p>
+                  {tutorials[currentTutorial].text}
+                </p>
+                )
+              }
+            </div>
+          
+          </div>
 
-      <h1>TUTORIAL</h1>
-      
-      <div className="tutorial-wrapper-desktop">
-        <div className='tutorial-images-desktop'>
-          <img src={tutorials[prevIndex].image} alt={`Tutorial ${prevIndex + 1}`} className="tutorial-image prev" />
-          <img src={tutorials[currentTutorial].image} alt={`Tutorial ${currentTutorial + 1}`} className="tutorial-image main" />
-          <img src={tutorials[nextIndex].image} alt={`Tutorial ${nextIndex + 1}`} className="tutorial-image next" />
-        </div>
-        <div className="tutorial-desktop-text">
-          <button onClick={prevTutorial}><i className="bi bi-arrow-left-circle-fill"></i></button>
-          <p>
-            {tutorials[currentTutorial].text.includes('NOT') ? (
-            <>
-                {tutorials[currentTutorial].text.split('NOT')[0]}
-                <span className="tutorial-desktop-highlight">NOT</span>
-                {tutorials[currentTutorial].text.split('NOT')[1]}
-            </>
-            ) : (
-            tutorials[currentTutorial].text
-            )}
-          </p>
-          <button onClick={nextTutorial}><i className="bi bi-arrow-right-circle-fill"></i></button>
-        </div>
-      </div>
+          <div className="tutorial-img-container-desk">
+            <img src={tutorials[currentTutorial].image} alt="Tutorial" title="Next"
+              onClick={nextTutorial}
+            />
+            <div className="tutorial-navigation-desk">
+              {tutorials.map((tutorial, index) => (
+                <button
+                  key={index}
+                  className={`nav-button ${index === currentTutorial ? 'active' : ''}`}
+                  onClick={() => setCurrentTutorial(index)}
+                  style={{
+                    backgroundColor: index === currentTutorial && '#e63b3be6' 
+                    
+                  }}
+                />
+              ))}
+            </div>
 
-      
-    </section>
-  );
-};
+          </div>
+
+
+          <div className="tutorial-regions-container-desk">
+              <ul className="tutorial-regions-imagesL-desk">
+                <li className="tutorial-region-desk">
+                  
+                  <img src={msiLogo} />
+                </li>
+                <li className="tutorial-region-desk">
+                  
+                  <img src={lecLogo} />
+                </li>
+                <li className="tutorial-region-desk">
+                  
+                  <img src={lckLogo} />
+                </li>
+                <li className="tutorial-region-desk">
+                  
+                  <img src={lcsLogo} />
+                </li>
+                <li className="tutorial-region-desk">
+                  
+                  <img src={lplLogo} />
+                </li>
+                <li className="tutorial-region-desk">
+                  
+                  <img src={cblolLogo} />
+                </li>
+                <li className="tutorial-region-desk">
+                  
+                  <img src={vcsLogo} />
+                </li>
+                <li className="tutorial-region-desk">
+                 
+                  <img src={pcsLogo} />
+                </li>
+                <li className="tutorial-region-desk">
+                  
+                  <img src={llaLogo} />
+                </li>
+              </ul>
+
+          </div>
+
+        </section>
+
+        
+
+        <section className="tutorial-bot-container-desk">
+            <ul className="tutorial-regions-imagesL-desk-2">
+              <li className="tutorial-region-desk">
+                
+                <img src={msiLogo} />
+              </li>
+              <li className="tutorial-region-desk">
+                
+                <img src={lecLogo} />
+              </li>
+              <li className="tutorial-region-desk">
+                
+                <img src={lckLogo} />
+              </li>
+              <li className="tutorial-region-desk">
+                
+                <img src={lcsLogo} />
+              </li>
+              <li className="tutorial-region-desk">
+                
+                <img src={lplLogo} />
+              </li>
+              <li className="tutorial-region-desk">
+                
+                <img src={cblolLogo} />
+              </li>
+              <li className="tutorial-region-desk">
+                
+                <img src={vcsLogo} />
+              </li>
+              <li className="tutorial-region-desk">
+               
+                <img src={pcsLogo} />
+              </li>
+              <li className="tutorial-region-desk">
+                
+                <img src={llaLogo} />
+              </li>
+            </ul>
+          <div className="tutorial-bot-links">
+            <Link to="/game/difficulty" className="tutorial-bot-play">
+              <FontAwesomeIcon icon={faPlay} />
+              <span>PLAY</span>
+            </Link>
+
+            <Link to="/help" className="tutorial-bot-tutorial">
+              <FontAwesomeIcon icon={faQuestion} />
+              <span>HELP</span>
+            </Link>
+
+            <Link to="/guides" className="tutorial-bot-help">
+              <span>GUIDES</span>
+            </Link>
+          </div>
+
+        </section>
+
+      </main>
+    </>
+  )
+}
+

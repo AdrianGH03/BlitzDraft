@@ -23,6 +23,8 @@ export const Layout = ({ children }) => {
   };
   if (currentPage.startsWith('/game/') && currentPage !== '/game/difficulty') {
     currentPage = '/game/:token';
+  } else if(currentPage.startsWith('/reset/')) {
+    currentPage = '/reset/:token';
   }
   const pageClass = pageClasses[currentPage] || '';
   

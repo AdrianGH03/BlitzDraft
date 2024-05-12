@@ -7,9 +7,9 @@ export const Tutorial = () => {
   return (
     <>
         <section className="tutorial-container fade-in-fwd">
-            <div className="tutorial-desktop fade-in-fwd">
-                <DesktopTutorial />
-            </div>
+            
+            <DesktopTutorial />
+            
             <div className="tutorial-mobile fade-in-fwd">
                 <MobileTutorial />
             </div>

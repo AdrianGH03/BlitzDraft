@@ -4,7 +4,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 //Views
 import { PasswordReset } from '../views/Auth/PasswordReset';
 import { UserProfile } from '../views/User/UserProfile';
-import AuthPage from '../views/Auth/AuthPage'; 
+import { AuthPage } from '../views/Auth/AuthPage'; 
 import { Test } from '../tests/Test';
 //Navbar routes
 import { Tutorial } from '../views/Navbar/Tutorial';

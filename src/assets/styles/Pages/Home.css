@@ -165,7 +165,7 @@ left: 0;
       flex-direction: row;
       padding-left: 5rem;
       width: 100vw;
-      justify-content: space-between;
+      justify-content: center;
   }
   .home-top-container main{
       align-self: start;

@@ -1,72 +1,78 @@
 //Hooks
-import { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
+import { Login } from '../../components/Authentication/Login'
+import { Signup } from '../../components/Authentication/Signup'
+import  { PasswordReset }  from '../../components/Authentication/PasswordReset'
+//Hooks
+import { useContext } from 'react';
 
 //Contexts
 import { AuthContext } from '../../contexts/AuthContext';
+import bigLogo from '../../assets/logoImages/logoTest-transformed.png';
+import teamImages from '../../assets/placeholders/teamImages2.png';
+import briarEmote from '../../assets/emotes/teemo2.png';
 
-//Components
-import Login from '../../components/Authentication/Login';
-import Signup from '../../components/Authentication/Signup';
-
-//Assets
-import biglogo from '../../assets/logoImages/BigLogo2.png';
-
-
-function AuthPage() {
+export function AuthPage() {
   const [isLogin, setIsLogin] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
-  const navigate = useNavigate();
   const {  
-    userInfo, 
     error, 
-    success
+    success,
+    setError,
+    setSuccess,
   } = useContext(AuthContext);
   
-
-  
-
-  useEffect(() => {
-    if (Object.keys(userInfo).length !== 0) {
-      navigate('/');
-    }
-  }, [userInfo, navigate]);
-
   return (
-
-    <div className='auth-parent-container' >
-        
-        <div className="auth-parent fade-in-fwd">
-            <div className='auth-tab'>
-                {forgotPassword ? (
-                    <button className='auth-tab-top' style={{ backgroundColor: isLogin ? '#5be0e5ff' : '#221e37ff',}}>
-                        <span style={{ color: isLogin ? '#221e37ff' : 'white',}}>FORGOT PASSWORD </span>
-                    </button>
-                ) : (
-                  <>
-                    <button onClick={() => setIsLogin(true)} className='auth-tab-top' style={{ backgroundColor: isLogin ? '#5be0e5ff' : '#221e37ff',}}>
-                        <span style={{ color: isLogin ? '#221e37ff' : 'white',}}>LOGIN </span>
-                    </button>
-                    <button onClick={() => setIsLogin(false)} className='auth-tab-top'style={{ backgroundColor: isLogin ? '#221e37ff' : '#5be0e5ff',}}>
-                        <span style={{ color: isLogin ? 'white' : '#221e37ff',}}>SIGN UP</span>
-                    </button>
-                  </>
-                
-                )}
+    <>
+      <main className="authen-container">
+        <div className="authen-content">
+          <section className="authen-topright-container">
+            <div className="authen-topright-top">
+              <h5>{isLogin && !forgotPassword ? 'LOGIN' : forgotPassword ? 'RESET PASSWORD' : 'SIGN UP'}</h5>
+              <h1>
+                <span>Blitz</span>
+                <span>Draft</span>
+              </h1>
+              {isLogin && !forgotPassword ? <Login forgotPassword={forgotPassword} setForgotPassword={setForgotPassword}/> : forgotPassword ? <PasswordReset /> : <Signup />}
+              <p onClick={
+                () => {
+                  if(isLogin && !forgotPassword) {
+                    setIsLogin(prev => !prev);
+                  } else if (forgotPassword) {
+                    setError('');
+                    setSuccess('');
+                    setForgotPassword(false);
+                  } else {
+                    setIsLogin(prev => !prev);
+                  }
+              }} className='authen-switch'>
+                {isLogin && !forgotPassword ? 'Don\'t have an account?' : forgotPassword ? 'Go back to login?' : 'Already have an account?'}
+              </p>
+              <p className='authen-error'>
+              {
+                error ? error : success
+              }
+              </p>
             </div>
-            {isLogin ? <Login forgotPassword={forgotPassword} setForgotPassword={setForgotPassword} /> : 
-            <Signup setIsLogin={setIsLogin} />}
+            
+          </section>
         </div>
-        <div className="auth-status fade-in-fwd">
-            <img src={biglogo} alt="big logo" className='auth-big-logo' />
-            {success && <p className='auth-success'>{success}</p>}
-            {error && <p className='auth-error'>{error}</p>}
+        <div className="authen-images">
+            <section className="authen-botleft-container">
+                <img src={bigLogo} alt="big logo" className='authen-big-logo' />
+                <img src={briarEmote} className="authen-botleft-image" />
+            </section>
         </div>
-
-        
-        
-    </div>
-  );
+        <div className="authen-guidelines">
+          <h1>GUIDELINES</h1>
+          <ul>
+            <li>Username must be appropriate and 3-20 characters.</li>
+            <li>Emails must be valid and end in gmail.com, outlook.com, yahoo.com, etc.</li>
+            <li>Passwords must be at least 3-20 characters long with one special character (!?), one number, and one uppercase character.</li>
+          </ul>
+        </div>
+      </main>
+    </>
+  )
 }
 
-export default AuthPage;

@@ -1,19 +1,15 @@
-// Hooks
-import { useState, useEffect } from 'react';
+//Hooks
+import { useState, useContext, useEffect } from 'react';
 
-//Contexts
-import { useContext } from 'react';
+//Context
 import { AuthContext } from '../../contexts/AuthContext';
 
-//Components
+//Assets
 import { Button } from '../Forms/Button';
 import { InputField } from '../Forms/InputField';
 
-//Assets
-import nunuEmote from '../../assets/emotes/nunu1.png';
 
-
-function Signup({ setIsLogin }) {
+export const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -21,11 +17,9 @@ function Signup({ setIsLogin }) {
   const {  
     setIsAuthenticated, 
     setUserInfo, 
-    error, 
     setError,
     fetchWithToken,
     setSuccess,
-    success
   } = useContext(AuthContext);
 
   useEffect(() => {
@@ -66,35 +60,20 @@ function Signup({ setIsLogin }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='auth-signup'>
-      <InputField label="Username" type="text" name="username" value={username} onChange={e => setUsername(e.target.value)} className={'auth-input'} />
-      <InputField label="Password" type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} className={'auth-input'} />
-      <InputField label="Email" type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} className={'auth-input'} />
-      <div className="auth-bar"></div>
-
-      <Button type="submit" className={'league-button'} onClick={handleSubmit}>SUBMIT</Button>
-
-      <div className="auth-alr-have-account">
-        <p onClick={() => setIsLogin(true)}>Already have an account?</p>
-        <img src={nunuEmote} alt="nunu emote" className='auth-emote-nunu' />
+    <div className="authen-cred-container">
+      <div className="authen-input-container">
+        <InputField label="Email" type="text" name="email" value={email} onChange={e => setEmail(e.target.value)} className={'authen-input'} placeholder={"Email"} />
+        <p>Enter a valid email.</p>
       </div>
-
-
-      <div className="error-mobile">
-        {error && <p>{error}</p>}
+      <div className="authen-input-container">
+        <InputField label="Username" type="text" name="username" value={username} onChange={e => setUsername(e.target.value)} className={'authen-input'} placeholder={"Username"}/>
+        <p>Enter a valid username.</p>
       </div>
-
-      <div className="success-mobile">
-        {success && <p>{success}</p>}
+      <div className="authen-input-container">
+        <InputField label="Password" type="text" name="password" value={password} onChange={e => setPassword(e.target.value)} className={'authen-input'} placeholder={"Password"}/>
+        <p>Enter a valid password.</p>
       </div>
-    </form>
-  );
+      <Button type="submit" className={'authen-button'} onClick={handleSubmit}>SIGN UP</Button>
+    </div>
+  )
 }
-
-
-
-export default Signup;
-
-
-
-
