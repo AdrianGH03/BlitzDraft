@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useProfileImage } from '../../hooks/useProfileImage';
 
 // NPM/React
-import { CustomSkeleton } from '../../components/CustomSkeleton';
 import Tippy from '@tippyjs/react';
 
 //Contexts
@@ -12,10 +11,14 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { StyleContext } from '../../contexts/StyleContext';
 
 // Misc
-import { ChangePFP } from '../../components/User/ChangePFP';
 import lolplaceholder from '../../assets/placeholders/lolplaceholder.png';
+import bigLogo from '../../assets/logoImages/logoTest-transformed.png';
+import { HomeComponent } from '../../components/User/HomeComponent';
+import { EditPicture } from '../../components/User/EditPicture';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare, faHouse, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
-export const UserProfile = () => {
+export function UserProfile() {
   const { 
     isAuthenticated, 
     userInfo, 
@@ -23,12 +26,11 @@ export const UserProfile = () => {
     setUserInfo, 
     fetchWithToken,
   } = useContext(AuthContext);
-  const { isLoading, setIsLoading } = useContext(StyleContext);
+  const { setIsLoading } = useContext(StyleContext);
   const navigate = useNavigate();
   var profileImageFetch = useProfileImage();
-  const [changePFP, setChangePFP] = useState(false);
   const [profileImage, setProfileImage] = useState(profileImageFetch);
-  
+  const [activeComponent, setActiveComponent] = useState('home'); // New state variable
 
   useEffect(() => {
     if(profileImageFetch) {
@@ -55,64 +57,51 @@ export const UserProfile = () => {
     }
   };
 
-  const changeProfilePicture= () => {
-    setChangePFP(prev => !prev);
-  }
-
+  
   return (
     <>
-      <div className="profile-container">
-        <div className="profile-content">
+      <div className="profile-container2">
+        <main className="profile-content2">
 
-      
-          <div className="profile-header">
-            <h1>{changePFP ? 'CHANGE PROFILE PICTURE' : 'PROFILE'}</h1>
-          </div>
+          <section className="profile-topright">
 
+            <h1>PROFILE</h1>
 
-          <div className="profile-info">
+            <div className="profile-topright-content">
+              <nav className="profile-topright-nav">
+                <Tippy content="Home">
+                  <button onClick={() => setActiveComponent('home')} className="changePFP">
+                    <FontAwesomeIcon icon={faHouse} />
+                  </button>
+                </Tippy>
+                <Tippy content="Edit Picture">
+                  <button onClick={() => setActiveComponent('editPicture')} className="changePFP">
+                    <FontAwesomeIcon icon={faPenToSquare} />
+                  </button>
+                </Tippy>
+                <Tippy content="Log out">
+                  <button onClick={handleLogout} className="changePFP">
+                    <FontAwesomeIcon icon={faPowerOff} />
+                  </button>
+                </Tippy>
+              </nav>
 
-            <div className="profile-image-container">
-              <div className="image-icon-wrapper">
-                {!changePFP ? <Tippy content={'Change Picture'} className="tippy-tooltip" animation={'shift-away-subtle'} roundArrow={true} >
-                  <i className="bi bi-pencil-square image-icon" onClick={() => changeProfilePicture()}></i>
-                </Tippy> : ''}
-                <img src={profileImageFetch && profileImage ? profileImage : lolplaceholder} alt='profile' className='profile-image' crossOrigin={"anonymous"} />
-              </div>
+              <section className="profile-topright-ncontent">
+                {activeComponent === 'home' && <HomeComponent  
+                  profileImage={profileImage} 
+                  lolplaceholder={lolplaceholder} 
+                  userInfo={userInfo}
+                />}
+                {activeComponent === 'editPicture' && <EditPicture setProfileImage={setProfileImage} />}
+              </section>
             </div>
+          </section>
 
 
-            <div className="profile-details">
-                <div className="profile-details-username">
-                  <h1>{isLoading ? <CustomSkeleton count={1} /> : (isAuthenticated && userInfo && userInfo.username)}</h1>
-                </div>
-              {!changePFP ? (
-                <div className="profile-details-info">
-                  <div className="">
-                    <h3>EMAIL</h3>
-                    <p>{isLoading ? <CustomSkeleton count={1} /> : (isAuthenticated && userInfo && userInfo.email)}</p>
-                  </div>
-                  <div className="">
-                    <h3>RANK</h3>
-                    <p>{isLoading ? <CustomSkeleton count={1} /> : 'N/A'}</p>
-                  </div>
-                  <div className="">
-                    <h3>POINTS</h3>
-                    <p>{isLoading ? <CustomSkeleton count={1} /> : (isAuthenticated && userInfo && userInfo.points)}</p>
-                  </div>
-                </div>
-              ) : (
-                <ChangePFP setChangePFP={setChangePFP} profileImage={profileImage} setProfileImage={setProfileImage}/>
-              )}
-            </div>
-
-
-          </div>
-
-          <button onClick={handleLogout} className="gradient-button">LOGOUT</button>
-
-
-        </div>
+          <section className="profile-botleft">
+            <img src={bigLogo} alt="bigLogo" className="bigLogo" />
+          </section>
+        </main>
       </div>
     </>
   )

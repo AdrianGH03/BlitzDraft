@@ -18,7 +18,7 @@ export const Help = () => {
     };
   
     return (
-    <div className="help-wrapper">
+    <div className="help-wrapper fade-in-fwd">
         <h1>Help</h1>
     
       <section className="help-container fade-in-fwd">

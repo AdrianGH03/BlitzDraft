@@ -24,7 +24,7 @@ export function AuthPage() {
   
   return (
     <>
-      <main className="authen-container">
+      <main className="authen-container fade-in-fwd">
         <div className="authen-content">
           <section className="authen-topright-container">
             <div className="authen-topright-top">

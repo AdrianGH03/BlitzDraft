@@ -1,9 +1,14 @@
 .stats-container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    padding-top: 1rem;
+    padding-bottom: 5rem;
     align-items: center;
-    padding-bottom: 10rem;
+    overflow-y: auto;
+    
+}
+.stats-container::-webkit-scrollbar {
+    display: none;
 }
 .stats-container > h1{
     font-size: 2rem;

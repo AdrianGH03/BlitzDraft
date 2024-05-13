@@ -53,6 +53,8 @@ export const Stats = () => {
     "Aurelion Sol": "AurelionSol",
     "Renata Glasc": "Renata",
     "Tahm Kench": "TahmKench",
+    "Kai'Sa": "Kaisa",
+    "K'Sante": "KSante",
   };
   
   useEffect(() => {
@@ -91,11 +93,11 @@ export const Stats = () => {
   
   useEffect(() => {
     if (champs && Object.keys(champs).length > 0){
-      fetchWithToken.get(`${import.meta.env.VITE_APP_GET_STATS}`)
+      fetchWithToken.post(`http://localhost:3000/stats/cpicksbans`, { tournament: "LCS/2024 Season/Spring Season" })
         .then(response => {
           const jsonData = {};
-          response.data.data.forEach((row) => {
-            let correctedChampionName = correctNames[row[0]] || row[0];
+          Object.entries(response.data).forEach(([championName, championData]) => {
+            let correctedChampionName = correctNames[championName] || championName;
             let champImage;
             for (let role in champs) {
               if (champs[role][correctedChampionName]) {
@@ -104,13 +106,13 @@ export const Stats = () => {
               }
             }
             const data = {
-              Champion: row[0],
-              Picks: row[1],
-              Bans: row[2],
-              Presence: row[3],
-              Wins: row[4],
-              Losses: row[5],
-              Winrate: row[6],
+              Champion: correctedChampionName,
+              Picks: championData.picks,
+              Bans: championData.bans,
+              Presence: championData.presence,
+              Wins: championData.wins,
+              Losses: championData.losses,
+              Winrate: championData.winrate,
               Image: champImage,
             }
             
@@ -121,7 +123,7 @@ export const Stats = () => {
           setTable(jsonData);
         })
         .catch(error => {
-          if(error.response.status == 429){
+          if(error.response && error.response.status == 429){
             setError('Too many requests. Please try again later.');
           } else {
             setError('An error occurred. Please try again later.');
