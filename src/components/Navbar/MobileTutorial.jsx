@@ -17,6 +17,7 @@ import tutorial2 from '../../assets/placeholders/tutorialm2.png';
 import tutorial3 from '../../assets/placeholders/tutorialm3.png';
 import tutorial4 from '../../assets/placeholders/home3.png';
 import tutoriallast from '../../assets/placeholders/tutorialguessmobile.gif';
+import { TeamImages } from '../Layout/TeamImages';
 
 export function MobileTutorial() {
   const tutorials = [
@@ -116,35 +117,11 @@ export function MobileTutorial() {
                 <span>GUIDES</span>
               </Link>
             </div>
-            <ul className="tutorial-regions-imagesL-mb-2">
-              <li className="tutorial-region-mb">
-                <img src={msiLogo} />
-              </li>
-              <li className="tutorial-region-mb">
-                <img src={lecLogo} />
-              </li>
-              <li className="tutorial-region-mb">
-                <img src={lckLogo} />
-              </li>
-              <li className="tutorial-region-mb">
-                <img src={lcsLogo} />
-              </li>
-              <li className="tutorial-region-mb">
-                <img src={lplLogo} />
-              </li>
-              <li className="tutorial-region-mb">
-                <img src={cblolLogo} />
-              </li>
-              <li className="tutorial-region-mb">
-                <img src={vcsLogo} />
-              </li>
-              <li className="tutorial-region-mb">
-                <img src={pcsLogo} />
-              </li>
-              <li className="tutorial-region-mb">
-                <img src={llaLogo} />
-              </li>
-            </ul>
+            <TeamImages
+              containerClass="tutorial-regions-imagesL-mb-2"
+              itemClass="tutorial-region-mb"
+              showName={false}
+            />
 
         </section>
       </main>

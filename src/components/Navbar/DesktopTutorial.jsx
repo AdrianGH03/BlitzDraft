@@ -18,6 +18,7 @@ import tutorial2 from '../../assets/placeholders/tutorialtest2.png';
 import tutorial3 from '../../assets/placeholders/tutorialtest4.png';
 import tutorial4 from '../../assets/placeholders/tutorialtest3.png';
 import tutorial0 from '../../assets/placeholders/tutorialtest0.png';
+import { TeamImages } from '../Layout/TeamImages';
 
 export function DesktopTutorial() {
 
@@ -76,45 +77,11 @@ export function DesktopTutorial() {
 
 
           <div className="tutorial-regions-container-desk">
-              <ul className="tutorial-regions-imagesL-desk">
-                <li className="tutorial-region-desk">
-                  
-                  <img src={msiLogo} />
-                </li>
-                <li className="tutorial-region-desk">
-                  
-                  <img src={lecLogo} />
-                </li>
-                <li className="tutorial-region-desk">
-                  
-                  <img src={lckLogo} />
-                </li>
-                <li className="tutorial-region-desk">
-                  
-                  <img src={lcsLogo} />
-                </li>
-                <li className="tutorial-region-desk">
-                  
-                  <img src={lplLogo} />
-                </li>
-                <li className="tutorial-region-desk">
-                  
-                  <img src={cblolLogo} />
-                </li>
-                <li className="tutorial-region-desk">
-                  
-                  <img src={vcsLogo} />
-                </li>
-                <li className="tutorial-region-desk">
-                 
-                  <img src={pcsLogo} />
-                </li>
-                <li className="tutorial-region-desk">
-                  
-                  <img src={llaLogo} />
-                </li>
-              </ul>
-
+            <TeamImages
+              containerClass="tutorial-regions-imagesL-desk"
+              itemClass="tutorial-region-desk"
+              showName={false}
+            />
           </div>
 
         </section>
@@ -122,44 +89,11 @@ export function DesktopTutorial() {
         
 
         <section className="tutorial-bot-container-desk">
-            <ul className="tutorial-regions-imagesL-desk-2">
-              <li className="tutorial-region-desk">
-                
-                <img src={msiLogo} />
-              </li>
-              <li className="tutorial-region-desk">
-                
-                <img src={lecLogo} />
-              </li>
-              <li className="tutorial-region-desk">
-                
-                <img src={lckLogo} />
-              </li>
-              <li className="tutorial-region-desk">
-                
-                <img src={lcsLogo} />
-              </li>
-              <li className="tutorial-region-desk">
-                
-                <img src={lplLogo} />
-              </li>
-              <li className="tutorial-region-desk">
-                
-                <img src={cblolLogo} />
-              </li>
-              <li className="tutorial-region-desk">
-                
-                <img src={vcsLogo} />
-              </li>
-              <li className="tutorial-region-desk">
-               
-                <img src={pcsLogo} />
-              </li>
-              <li className="tutorial-region-desk">
-                
-                <img src={llaLogo} />
-              </li>
-            </ul>
+            <TeamImages
+              containerClass="tutorial-regions-imagesL-desk-2"
+              itemClass="tutorial-region-desk"
+              showName={false}
+            />
           <div className="tutorial-bot-links">
             <Link to="/game/difficulty" className="tutorial-bot-play">
               <FontAwesomeIcon icon={faPlay} />

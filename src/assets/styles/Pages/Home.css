@@ -132,7 +132,7 @@ left: 0;
   transform: scale(0.9);
 }
 .home-bottom-region{
-  background-color: rgba(65, 15, 99, 0.507);
+  background-color: rgba(212, 212, 212, 0.185);
   border-top: 3px solid rgb(230, 59, 59);
 }
 .home-bottom-region:hover{

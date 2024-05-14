@@ -17,7 +17,7 @@ import test2 from '../../assets/placeholders/teamImages2.png';
 import home1 from '../../assets/placeholders/home1.jpg';
 import home2 from '../../assets/placeholders/home2.jpg';
 import home3 from '../../assets/placeholders/tutorial22.jpg';
-
+import { TeamImages } from '../../components/Layout/TeamImages'
 export function Home() {
   
   return (
@@ -60,47 +60,12 @@ export function Home() {
 
 
         <section className="home-bottom-container">
-          
-          <ul className="home-bottom-regions-container">
-            <li className="home-bottom-region">
-              <span className="home-bottom-region-title">MSI 2024</span>
-              <img src={msiLogo} />
-            </li>
-            <li className="home-bottom-region">
-              <span className="home-bottom-region-title">LEC</span>
-              <img src={lecLogo} />
-            </li>
-            <li className="home-bottom-region">
-              <span className="home-bottom-region-title">LCK</span>
-              <img src={lckLogo} />
-            </li>
-            <li className="home-bottom-region">
-              <span className="home-bottom-region-title">LCS</span>
-              <img src={lcsLogo} />
-            </li>
-            <li className="home-bottom-region">
-              <span className="home-bottom-region-title">LPL</span>
-              <img src={lplLogo} />
-            </li>
-            <li className="home-bottom-region">
-              <span className="home-bottom-region-title">VCS</span>
-              <img src={vcsLogo} />
-            </li>
-            <li className="home-bottom-region">
-              <span className="home-bottom-region-title">PCS</span>
-              <img src={pcsLogo} />
-            </li>
-            <li className="home-bottom-region">
-              <span className="home-bottom-region-title">CBLOL</span>
-              <img src={cblolLogo} />
-            </li>
-            <li className="home-bottom-region">
-              <span className="home-bottom-region-title">LLA</span>
-              <img src={llaLogo} />
-            </li>
-            
-          </ul>
-
+          <TeamImages
+            containerClass="home-bottom-regions-container"
+            itemClass="home-bottom-region"
+            titleClass="home-bottom-region-title"
+            showName={true}
+          />
         </section>
 
 

@@ -93,7 +93,7 @@ body::-webkit-scrollbar-thumb:hover, .content::-webkit-scrollbar-thumb:hover, #r
 
 
 *{
-    font-family: "Asap Condensed", sans-serif;
+    font-family: 'Varela Round', sans-serif;
     box-sizing: border-box;
 }
 a:hover, button:hover, input[type="submit"]:hover, input[type="reset"]:hover {
@@ -144,56 +144,56 @@ a {
 
 /* HOME */
 .page-1{
-  background-image: url('../wallpaperImages/w27.jpg');
+  background-image: url('../placeholders/champselect.jpg');
   background-size: cover;
   background-position: center;
 }
 
 /* AUTH */
 .page-2{
-  background-image: url('../wallpaperImages/w27.jpg');
+  background-image: url('../placeholders/champselect.jpg');
   background-size: cover;
   background-position: center;
 }
 /* RESET PASSWORD */
 .page-3{
-  background-image: url('../wallpaperImages/w27.jpg');
+  background-image: url('../placeholders/champselect.jpg');
   background-size: cover;
   background-position: center;
 }
 /* USER PROFILE */
 .page-4{
-  background-image: url('../wallpaperImages/w27.jpg');
+  background-image: url('../placeholders/champselect.jpg');
   background-size: cover;
   background-position: center;
 }
 /* TUTORIAL */
 .page-5{
-  background-image: url('../wallpaperImages/w27.jpg');
+  background-image: url('../placeholders/champselect.jpg');
   background-size: cover;
   background-position: center;
 }
 /* GUIDES */
 .page-6{
-  background-image: url('../wallpaperImages/w27.jpg');
+  background-image: url('../placeholders/champselect.jpg');
   background-size: cover;
   background-position: center;
 }
 /* HELP */
 .page-7{
-  background-image: url('../wallpaperImages/w27.jpg');
+  background-image: url('../placeholders/champselect.jpg');
   background-size: cover;
   background-position: center;
 }
 /* STATS */
 .page-8{
-  background-image: url('../wallpaperImages/w27.jpg');
+  background-image: url('../placeholders/champselect.jpg');
   background-size: cover;
   background-position: center;
 }
 /* TEST */
 .page-9{
-  background-image: url('../wallpaperImages/w27.jpg');
+  background-image: url('../placeholders/champselect.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -211,7 +211,7 @@ a {
 }
 /* ERROR 404 */
 .page-12{
-  background-image: url('../wallpaperImages/w27.jpg');
+  background-image: url('../wallpaperImages/w2.jpg');
   background-size: cover;
   background-position: center;
 }

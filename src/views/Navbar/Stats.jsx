@@ -1,37 +1,32 @@
 
 import  { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
-import lplLogo from '../../assets/logoImages/lpl.png';
-import lckLogo from '../../assets/logoImages/lck.png';
-import lecLogo from '../../assets/logoImages/lec.png';
-import lcsLogo from '../../assets/logoImages/lcs.png';
+import { TeamImages } from '../../components/Layout/TeamImages';
+import { useTable, useSortBy } from 'react-table';
+import { useMemo } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSortUp, faSortDown, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { useTournaments } from '../../hooks/useTournaments';
+import { usePatches } from '../../hooks/usePatches';
 
 
-export const Stats = () => {
-    const { fetchWithToken } = useContext(AuthContext);
+export function Stats() {
+  const { fetchWithToken } = useContext(AuthContext);
   const [table, setTable] = useState([]);
   const [champs, setChamps] = useState([]);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [error, setError] = useState('');
-
+  const { tournaments } = useTournaments();
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [champImagesLoaded, setChampImagesLoaded] = useState(false);
 
-  useEffect(() => {
-    const images = [lplLogo, lckLogo, lecLogo, lcsLogo];
-    let imagesToLoad = images.length;
+  const [selectedTournament, setSelectedTournament] = useState({ name: '2024 Mid-Season Invitational', patchesPlayed: '14.1-14.2' });
+  const [selectedPatch, setSelectedPatch] = useState('');
+  const [selectedSide, setSelectedSide] = useState('');
 
-    images.forEach((image) => {
-      const img = new Image();
-      img.src = image;
-      img.onload = () => {
-        imagesToLoad--;
-        if (imagesToLoad === 0) {
-          setImagesLoaded(true);
-        }
-      };
-    });
-  }, []);
+  //14.1-14.24
+  const patches = usePatches();
+
 
   const correctNames = {
     "Wukong": "MonkeyKing",
@@ -39,13 +34,12 @@ export const Stats = () => {
     "ChoGath": "Cho'Gath",
     "TahmKench": "Tahm Kench",
     "RekSai": "RekSai",
-    "VelKoz": "Velkoz",
-    "KogMaw": "KogMaw",
+    "Vel'Koz": "Velkoz",
     "Master Yi": "MasterYi",
     "Twisted Fate": "TwistedFate",
     "Dr. Mundo": "DrMundo",
     "Jarvan IV": "JarvanIV",
-    "KhaZix": "Khazix",
+    "Kha'Zix": "Khazix",
     "LeBlanc": "Leblanc",
     "Lee Sin": "LeeSin",
     "Belveth": "Belveth",
@@ -55,6 +49,9 @@ export const Stats = () => {
     "Tahm Kench": "TahmKench",
     "Kai'Sa": "Kaisa",
     "K'Sante": "KSante",
+    "Rek'Sai": "RekSai",
+    "Bel'Veth": "Belveth",
+    "Kog'Maw": "KogMaw",
   };
   
   useEffect(() => {
@@ -83,159 +80,248 @@ export const Stats = () => {
       .catch(error => {
         if(error.response.status == 429){
           setError('Too many requests. Please try again later.');
+        } else if (error.response.status == 400){
+          setError('No games found for selected parameters.');
         } else {
           setError('An error occurred. Please try again later.');
           console.error(error);
         }
-
+        setTable([]);
       });
   }, []);
   
   useEffect(() => {
-    if (champs && Object.keys(champs).length > 0){
-      fetchWithToken.post(`http://localhost:3000/stats/cpicksbans`, { tournament: "LCS/2024 Season/Spring Season" })
-        .then(response => {
-          const jsonData = {};
-          Object.entries(response.data).forEach(([championName, championData]) => {
-            let correctedChampionName = correctNames[championName] || championName;
-            let champImage;
-            for (let role in champs) {
-              if (champs[role][correctedChampionName]) {
-                champImage = champs[role][correctedChampionName];
-                break;
-              }
-            }
-            const data = {
-              Champion: correctedChampionName,
-              Picks: championData.picks,
-              Bans: championData.bans,
-              Presence: championData.presence,
-              Wins: championData.wins,
-              Losses: championData.losses,
-              Winrate: championData.winrate,
-              Image: champImage,
-            }
-            
-            if (Object.values(data).some(value => value !== null && value !== undefined && value !== '')) {
-              jsonData[data.Champion] = data;
-            }
-          });
-          setTable(jsonData);
-        })
-        .catch(error => {
-          if(error.response && error.response.status == 429){
-            setError('Too many requests. Please try again later.');
-          } else {
-            setError('An error occurred. Please try again later.');
-            console.error(error);
-          }
-        });
-    }
+    handleChangeTable(selectedTournament)
   }, [champs]);
-    
+ 
+  function handleChangeTable(tournament, patch, side) {
+    setError('')
+    if (tournament || patch) {
+      const requestBody = {};
+      if (tournament) {
+        requestBody.tournament = tournament.name;
+      }
+      if (patch) {
+        requestBody.patch = patch;
+      }
+      if(side){
+        requestBody.side = side;
+      }
+      
+      fetchWithToken.post(`http://localhost:3000/stats/cpicksbans`, requestBody)
+         .then(response => {
+           const jsonData = {};
+           Object.entries(response.data).forEach(([championName, championData]) => {
+             let correctedChampionName = correctNames[championName] || championName;
+             let champImage;
+             for (let role in champs) {
+               if (champs[role][correctedChampionName]) {
+                 champImage = champs[role][correctedChampionName];
+                 break;
+               }
+             }
+             const data = {
+               Champion: correctedChampionName,
+               Picks: championData.picks,
+               Bans: championData.bans,
+               Presence: championData.presence,
+               Wins: championData.wins,
+               Losses: championData.losses,
+               Winrate: championData.winrate,
+               Image: champImage,
+             }
+             
+             if (Object.values(data).some(value => value !== null && value !== undefined && value !== '')) {
+               jsonData[data.Champion] = data;
+             }
+           });
+           setTable(jsonData);
+         })
+         .catch(error => {
+           if(error.response && error.response.status == 429){
+             setError('Too many requests. Please try again later.');
+           } else if (error.response.status == 400){
+            setError('No games found for selected parameters.');
+           } else {
+             setError('An error occurred. Please try again later.');
+             console.error(error);
+           }
+         });
+      }
+  }
+
+  const columns = useMemo(() => {
+    let cols = [
+      {
+        Header: 'Champion',
+        accessor: 'Champion',
+        Cell: ({ row }) => (
+          <div className='stat-champ-container'>
+            <img src={row.original.Image} alt="Champion" />
+            {row.original.Champion}
+          </div>
+        )
+      },
+      {
+        Header: 'Picks',
+        accessor: 'Picks',
+      },
+      {
+        Header: 'Bans',
+        accessor: 'Bans',
+      },
+      {
+        Header: 'Presence',
+        accessor: 'Presence',
+        Cell: ({ value }) => `${value != null ? value : '0'}%`,
+      },
+      {
+        Header: 'Winrate',
+        accessor: 'Winrate',
+        Cell: ({ value }) => `${value != null ? value : '0'}%`,
+      },
+      {
+        Header: 'Losses',
+        accessor: 'Losses',
+      },
+      {
+        Header: 'Wins',
+        accessor: 'Wins',
+      }
+    ];
   
-
-  useEffect(() => {
-      const handleResize = () => {
-          setWindowWidth(window.innerWidth);
-      };
-
-      window.addEventListener('resize', handleResize);
-      return () => {
-          window.removeEventListener('resize', handleResize);
-      };
+   
+  
+    return cols;
   }, []);
+  
+  const data = useMemo(() => Object.values(table), [table]);
+  
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+  } = useTable({ columns, data }, useSortBy);
+  
   
   
   return (
     <>
-        { table && !error && champImagesLoaded && imagesLoaded ? (
-          Object.keys(table).length > 50 && champs && (
-          <section className="stats-container fade-in-fwd">
-            <h1>STATS</h1>
-            <div className="stats-region-images fade-in-fwd">
-                <img src={lplLogo} alt="LPL" />
-                <img src={lecLogo} alt="LEC" />
-                <img src={lckLogo} alt="LCK" />
-                <img src={lcsLogo} alt="LCS" />
+    
+        { champImagesLoaded && (
+          champs && (
+          <main className="stat-container fade-in-fwd">
+            <h1 className="stat-header">
+                CHAMPION STATS
+            </h1>
+            <div className="stat-content">
+
+            <div className="stat-filters">
+              <div className="stat-filter">
+                <label htmlFor="tournament">Tournament</label>
+                <select id="tournament" onChange={e => {
+                  const tournamentName = e.target.value;
+                  const tournament = tournaments[tournamentName][0];
+                  setSelectedTournament(tournament);
+                  handleChangeTable(tournament, selectedPatch, selectedSide);
+                }}>
+                  {Object.keys(tournaments).map((tournamentName, index) => (
+                    <optgroup key={index} label={tournamentName}>
+                      {tournaments[tournamentName].map((tournament, i) => (
+                        <option key={i} value={tournamentName}>{tournament.name}</option>
+                      ))}
+                    </optgroup>
+                  ))}
+                </select>
+              </div>
+
+              <div className="stat-filter">
+                <label htmlFor="patch">Patch</label>
+                <select id="patch" onChange={e => {
+                  setSelectedPatch(e.target.value);
+                  handleChangeTable(selectedTournament, e.target.value, selectedSide);
+                }}>
+                  <option value="">All</option>
+                  {patches.map((patch, index) => (
+                    <option key={index} value={patch}>{patch}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="stat-filter">
+                <label htmlFor="side">Side</label>
+                <select id="side" onChange={e => {
+                  setSelectedSide(e.target.value);
+                  handleChangeTable(selectedTournament, selectedPatch, e.target.value);
+                }}>
+                  <option value="">All</option>
+                  <option value="Team1">Blue</option>
+                  <option value="Team2">Red</option>
+                </select>
+              </div>
             </div>
 
-            <p>
-              Most picked and banned champions in the current season for all 4 major regions
-            </p>
-
-            <table className="stats-table fade-in-fwd">
-                <thead>
-                <tr>
-                    <th>CHAMPIONS</th>
-                    <th>PICKS</th>
-                    <th>BANS</th>
-                    <th>PRESENCE</th>
-                    <th className='stats-table-hide'>WINS</th>
-                    <th className='stats-table-hide'>LOSSES</th>
-                    <th className='stats-table-hide'>WINRATE</th>
-                </tr>
-                </thead>
-                <tbody>
-                {table && Object.keys(table).map((champion, index) => {
-                    return (
-                    <tr key={index}>
-                        <td className="stats-champ">
-                            <img src={table[champion].Image} alt={champion} />
-                            <h3>{champion.length > 5 && windowWidth < 500
-                                ? `${champion.slice(0, 5    )}..` 
-                                : champion 
-                                
-                            }</h3>
-                        </td>
-                        <td className="stats-pick">
-                            <h3>{table[champion].Picks}</h3>
-                        </td>
-                        <td className="stats-ban">
-                            <h3>{table[champion].Bans}</h3>
-                        </td>
-                        <td className="stats-pres">
-                            <h3>{table[champion].Presence}{table[champion].Presence ? '%' : ''}</h3>
-                        </td>
-                        <td className="stats-win">
-                            <h3>{table[champion].Wins}</h3>
-                        </td>
-                        <td className="stats-loss">
-                            <h3>{table[champion].Losses}</h3>
-                        </td>
-                        <td className="stats-winrate">
-                            <h3>{table[champion].Winrate}{table[champion].Winrate ? '%' : ''}</h3>
-                        </td>
-                    </tr>
-                    );
-                })}
-                </tbody>
-            </table>
+            
 
 
-            <div className="stats-text">
-                
-                <div className="stats-extra">
-                  <p>
-                      Data is brought forth by <a href="https://gol.gg/esports/home/" target='_blank'>Games of Legends.</a>
-                  </p>
-                  <span>Updated every Sunday 00:00 GMT</span>
+            { error && <div className='stat-error'>{error}</div> }
+              { table && !error && Object.keys(table).length > 0 && (
+                <div className="stat-table-wrapper">
+                <div className="stat-table">
+                  <table {...getTableProps()}>
+                    <thead>
+                      {headerGroups.map((headerGroup, i) => (
+                        <tr {...headerGroup.getHeaderGroupProps()} key={i}>
+                          {headerGroup.headers.map((column, j) => (
+                            <th {...column.getHeaderProps(column.getSortByToggleProps())} key={j}>
+                              <div className='stat-table-header'>
+                                {column.render('Header')}
+                                <span className='testt'>
+                                  {column.isSorted
+                                    ? column.isSortedDesc
+                                      ? <FontAwesomeIcon icon={faSortDown} style={{width: '20px'}}/>
+                                      : <FontAwesomeIcon icon={faSortUp} style={{width: '20px'}}/>
+                                    : <FontAwesomeIcon icon={faPlus} style={{width: '20px'}}/>}
+                                </span>
+                              </div>
+                            </th>
+                          ))}
+                        </tr>
+                      ))}
+                    </thead>
+                    <tbody {...getTableBodyProps()}>
+                      {rows.map((row, i) => {
+                        prepareRow(row);
+                        return (
+                          <tr {...row.getRowProps()} key={i}>
+                            {row.cells.map((cell, j) => (
+                              <td {...cell.getCellProps()} key={j}>{cell.render('Cell')}</td>
+                            ))}
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                    </table>
                 </div>
+                </div>
+              )}
+            
+            <div className="stat-team-logos">
+              <TeamImages
+                containerClass="stat-teams-regions-container"
+                itemClass="stat-teams-region"
+                showName={false}
+              />
             </div>
+            </div>
+          </main>
+        
+         )
+     )} 
 
-
-        </section>
-        )
-        ) : error ? (
-          <div className="error-container">
-            <h1>{error}</h1>
-          </div>
-        ) :
-        (
-          <div className="loader-container">
-            <div className="loader"></div>
-          </div>
-        )}
+      
     </>
   )
 }

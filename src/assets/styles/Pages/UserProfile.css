@@ -6,7 +6,7 @@
     align-items: center;
     padding-top: 5rem;
     overflow-y: scroll;
-    padding-bottom: 50rem;
+    padding-bottom: 10rem;
 }
 .profile-container2::-webkit-scrollbar{
     display: none;

@@ -158,14 +158,8 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
                         <p className="end-game-details-text">TOTAL: {Number.isInteger(actualScore) ? actualScore : Number(actualScore).toFixed(2)}/{Number.isInteger(totalPoints) ? totalPoints : Number(totalPoints).toFixed(2)}</p>
                         <p className="end-game-details-text">REGION: {gameData.gameData.body.region}</p>
                         <p className="end-game-details-text">PATCH: {gameData.gameData.body.game.data.Patch}</p>
-                        <button className="btn-53 end-game-details-playagain-button" onClick={() => goToGame()}>
-                            <div className="original">PLAY AGAIN</div>
-                            <div className="letters">
-                                <span>P</span>
-                                <span>L</span>
-                                <span>A</span>
-                                <span>Y</span>
-                            </div>
+                        <button className="end-game-details-playagain-button" onClick={() => goToGame()}>
+                            PLAY AGAIN
                         </button>
                     </div>
                     <div className="end-game-emote">

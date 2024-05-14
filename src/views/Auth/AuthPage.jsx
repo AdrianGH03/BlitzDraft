@@ -10,7 +10,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import bigLogo from '../../assets/logoImages/logoTest-transformed.png';
 import teamImages from '../../assets/placeholders/teamImages2.png';
-import briarEmote from '../../assets/emotes/teemo2.png';
+import briarEmote from '../../assets/emotes/yasuo1.png';
 
 export function AuthPage() {
   const [isLogin, setIsLogin] = useState(false);

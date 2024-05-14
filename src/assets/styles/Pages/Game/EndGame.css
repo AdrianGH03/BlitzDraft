@@ -99,22 +99,21 @@
     max-height: 100%;
     
 }
-.btn-53.end-game-details-playagain-button{
-    background-color: #000;
-    color: #fff;
-    font-family: 'Press Start 2P', cursive;
-    padding: 0.7rem 2rem !important;
-    border: 2px solid #fff;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    
+.end-game-details-playagain-button{
+    padding: 1rem;
+    background-color: rgb(230, 59, 59);
+    font-family: 'Orbitron', sans-serif;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+    border: none;
 }
 
 .end-game-details-playagain-button:hover{
-    background-color: var(--dark-purple);
-    border: 2px solid white;
+    background-color: rgba(206, 44, 44, 0.9);
     transition: all 0.3s ease-in-out;
-    color: #000;
+    transform: scale(0.9);
 }
 .end-game-details-playagain-button span, .end-game-details-playagain-button > div{
     font-size: 0.45rem;

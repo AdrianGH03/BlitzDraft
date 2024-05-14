@@ -14,7 +14,7 @@ import { StyleContext } from '../../contexts/StyleContext';
 //Assets
 import lolplaceholder from '../../assets/placeholders/lolplaceholder.png';
 import logo from '../../assets/logoImages/smallLogo.png';
-import bigLogo from '../../assets/logoImages/BigLogo2.png';
+import bigLogo from '../../assets/logoImages/logoTest-transformed.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPersonCircleQuestion, faPlay, faBook, faGamepad, faRightToBracket, faChessQueen, faSquarePollVertical } from '@fortawesome/free-solid-svg-icons'
 import discordLogo from '../../assets/logoImages/discordIcon.png';
