@@ -1,25 +1,16 @@
 // RegionList.jsx
-import React from 'react';
-import msiLogo from '../../assets/logoImages/msi.png';
-import lecLogo from '../../assets/logoImages/lec.png';
-import lckLogo from '../../assets/logoImages/lck.png';
-import lcsLogo from '../../assets/logoImages/lcs.png';
-import lplLogo from '../../assets/logoImages/lpl.png';
-import vcsLogo from '../../assets/logoImages/vcs.png';
-import pcsLogo from '../../assets/logoImages/pcs.png';
-import cblolLogo from '../../assets/logoImages/cblol.png';
-import llaLogo from '../../assets/logoImages/lla.png';
+
 
 const logos = {
-  'MSI 2024': msiLogo,
-  'LEC': lecLogo,
-  'LCK': lckLogo,
-  'LCS': lcsLogo,
-  'LPL': lplLogo,
-  'VCS': vcsLogo,
-  'PCS': pcsLogo,
-  'CBLOL': cblolLogo,
-  'LLA': llaLogo,
+  'MSI 2024': '/logoImages/msi.png',
+  'LEC': '/logoImages/lec.png',
+  'LCK': '/logoImages/lck.png',
+  'LCS': '/logoImages/lcs.png',
+  'LPL': '/logoImages/lpl.png',
+  'VCS':'/logoImages/vcs.png',
+  'PCS': '/logoImages/pcs.png',
+  'CBLOL': '/logoImages/cblol.png',
+  'LLA': '/logoImages/lla.png',
 };
 
 const regions = ['MSI 2024', 'LEC', 'LCK', 'LCS', 'LPL', 'VCS', 'PCS', 'CBLOL', 'LLA'];

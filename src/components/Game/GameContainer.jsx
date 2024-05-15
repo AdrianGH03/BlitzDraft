@@ -27,6 +27,7 @@ export function GameContainer() {
       revealedCards, setRevealedCards,
       setSkipCard,
       startGame,  
+      nextCard
     } = useContext(GameContext);
     
 
@@ -58,14 +59,15 @@ export function GameContainer() {
     }, [token]);
     
     useEffect(() => {
-      if (startGame && !showEndGame && !isComplete) {
+      if (!isComplete && nextCard == undefined && !revealedCards.includes(nextCard)) {
         fetchWithToken.put(`${import.meta.env.VITE_APP_SAVE_GAME}`, {
           token: token,
           guesses: guesses,
           cardsRevealed: revealedCards,
         });
+        console.log("Game saved")
       }
-    }, [startGame, guesses, revealedCards]);
+    }, [isComplete, nextCard]);
   
     return (
       <>

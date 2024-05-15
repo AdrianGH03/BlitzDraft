@@ -8,11 +8,11 @@ import { useContext } from 'react';
 
 //Contexts
 import { AuthContext } from '../../contexts/AuthContext';
-import bigLogo from '../../assets/logoImages/logoTest-transformed.png';
-import teamImages from '../../assets/placeholders/teamImages2.png';
-import briarEmote from '../../assets/emotes/yasuo1.png';
+
 
 export function AuthPage() {
+  const bigLogo = '/logoImages/logoTest-transformed.png';
+  const yasuoEmote = '/emotes/yasuo1.png';
   const [isLogin, setIsLogin] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
   const {  
@@ -60,7 +60,7 @@ export function AuthPage() {
         <div className="authen-images">
             <section className="authen-botleft-container">
                 <img src={bigLogo} alt="big logo" className='authen-big-logo' />
-                <img src={briarEmote} className="authen-botleft-image" />
+                <img src={yasuoEmote} className="authen-botleft-image" />
             </section>
         </div>
         <div className="authen-guidelines">

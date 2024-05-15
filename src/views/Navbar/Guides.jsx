@@ -6,19 +6,20 @@ import { useYoutubeVideos } from '../../hooks/useYoutubeVideos';
 import { CustomSkeleton } from '../../components/CustomSkeleton';
 
 //assets
-import tn1 from '../../assets/guidesImages/tn1.jpg';
-import tn2 from '../../assets/guidesImages/tn2.jpg';
-import tn3 from '../../assets/guidesImages/tn3.jpg';
-import tn4 from '../../assets/guidesImages/tn4.jpg';
-import tn5 from '../../assets/guidesImages/tn5.jpg';
-import tn6 from '../../assets/guidesImages/tn6.jpg';
-import tn7 from '../../assets/guidesImages/tn7.jpg';
-import tn8 from '../../assets/guidesImages/tn8.jpg';
-import tn9 from '../../assets/guidesImages/tn9.jpg';
 
-const thumbnails = [tn1, tn2, tn3, tn4, tn5, tn6, tn7, tn8, tn9];
+
 
 export const Guides = () => {
+  const tn1 = '/guidesImages/tn1.jpg'
+  const tn2 = '/guidesImages/tn2.jpg'
+  const tn3 = '/guidesImages/tn3.jpg'
+  const tn4 = '/guidesImages/tn4.jpg'
+  const tn5 = '/guidesImages/tn5.jpg'
+  const tn6 = '/guidesImages/tn6.jpg'
+  const tn7 = '/guidesImages/tn7.jpg'
+  const tn8 = '/guidesImages/tn8.jpg'
+  const tn9 = '/guidesImages/tn9.jpg'
+  const thumbnails = [tn1, tn2, tn3, tn4, tn5, tn6, tn7, tn8, tn9];
 
   const [youtubeVideos, setYoutubeVideos] = useYoutubeVideos();
   

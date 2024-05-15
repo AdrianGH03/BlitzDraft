@@ -16,7 +16,7 @@ export const useHelpQuestions = () => {
         },
         {
             question: "Do I even need an account?",
-            answer: "No, not really, signing up is optional for those who wish to store their points. It really means nothing. For now (possible leaderboard in the future)."
+            answer: "Signing up is optional for those who wish to store their points. It really means nothing. For now (possible leaderboard in the future)."
         },
         {
             question: "Can't you just cheat in this game?",
@@ -24,15 +24,19 @@ export const useHelpQuestions = () => {
         },
         {
             question: "I encountered a bug, how do I report it?",
-            answer: "You can report bugs in the discord, located in the navigation menu."
+            answer: "You can report bugs in the discord, located in the header menu."
         },
         {
             question: "I have X feedback or X suggestion, how can I share it?",
-            answer: "You can share feedback or suggestions in the discord, located in the navigation menu."
+            answer: "You can share feedback or suggestions in the discord, located in the header menu."
         },
         {
             question: "I lost my game, how do I go back?",
-            answer: "Please note that games are deleted every time you start a new game. Games are saved every time a pick or ban is revealed. Games expire after 1 hour. If you wish to go back to your current game, simply go back to the tab."
+            answer: "Please note that games are deleted every time you start a new game. Games are saved every time you complete a game. Games expire after 30 minutes. If you wish to go back to your current game, simply go back to the tab."
+        },
+        {
+            question: "Why isn't X tournament here?",
+            answer: "Tournaments will be added as they start. If you want support for a specific tournament, please let me know in the discord."
         },
     ]);
     

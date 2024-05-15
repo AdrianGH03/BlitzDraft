@@ -5,14 +5,11 @@ import { useHelpQuestions } from "../../hooks/useHelpQuestions"
 //NPM/React
 import { Link } from "react-router-dom";
 
-//Assets
-import alligator1 from '../../assets/emotes/sion1.png';
-
 
 export const Help = () => {
     const [helpQuestions] = useHelpQuestions();
     const [openIndex, setOpenIndex] = useState(null); 
-  
+    const sionEmote = '/emotes/sion1.png'
     const toggleDropdown = (index) => {
       setOpenIndex(openIndex === index ? null : index);
     };
@@ -46,7 +43,7 @@ export const Help = () => {
             </div>
 
             <div className="help-emote">
-                <img src={alligator1} alt="thinking emoji" />
+                <img src={sionEmote} alt="thinking emoji" />
             </div>
         </div>
        

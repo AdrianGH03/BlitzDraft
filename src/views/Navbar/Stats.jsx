@@ -20,7 +20,7 @@ export function Stats() {
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [champImagesLoaded, setChampImagesLoaded] = useState(false);
 
-  const [selectedTournament, setSelectedTournament] = useState({ name: '2024 Mid-Season Invitational', patchesPlayed: '14.1-14.2' });
+  const [selectedTournament, setSelectedTournament] = useState({ name: '2024 Mid-Season Invitational', patchesPlayed: '14.8' });
   const [selectedPatch, setSelectedPatch] = useState('');
   const [selectedSide, setSelectedSide] = useState('');
 
@@ -55,44 +55,48 @@ export function Stats() {
   };
   
   useEffect(() => {
-    fetchWithToken.get(`${import.meta.env.VITE_APP_ALL_CHAMPS}`)
-      .then(response => {
-        setChamps(response.data);
-
-        let champImagesToLoad = 0;
-        for (let role in response.data) {
-          champImagesToLoad += Object.keys(response.data[role]).length;
-        }
-
-        for (let role in response.data) {
-          for (let champ in response.data[role]) {
-            const img = new Image();
-            img.src = response.data[role][champ];
-            img.onload = () => {
-              champImagesToLoad--;
-              if (champImagesToLoad === 0) {
-                setChampImagesLoaded(true);
-              }
-            };
+    const localStorageChamps = localStorage.getItem('champions');
+  
+    if (localStorageChamps) {
+      const champsData = JSON.parse(localStorageChamps);
+      setChamps(champsData);
+      loadChampImages(champsData);
+    } else {
+      fetchWithToken.get(`${import.meta.env.VITE_APP_ALL_CHAMPS}`)
+        .then(response => {
+          setChamps(response.data);
+          localStorage.setItem('champions', JSON.stringify(response.data));
+          loadChampImages(response.data);
+        })
+        .catch(error => {
+          if(error.response.status == 429){
+            setError('Too many requests. Please try again later.');
+          } else if (error.response.status == 400){
+            setError('No games found for selected parameters.');
+          } else {
+            setError('An error occurred. Please try again later.');
+            console.error(error);
           }
-        }
-      })
-      .catch(error => {
-        if(error.response.status == 429){
-          setError('Too many requests. Please try again later.');
-        } else if (error.response.status == 400){
-          setError('No games found for selected parameters.');
-        } else {
-          setError('An error occurred. Please try again later.');
-          console.error(error);
-        }
-        setTable([]);
-      });
+          setTable([]);
+        });
+    }
   }, []);
   
   useEffect(() => {
     handleChangeTable(selectedTournament)
   }, [champs]);
+
+  function getLocalStorageSize() {
+      let total = 0;
+      for(let x in localStorage) {
+          let amount = (localStorage[x].length * 2) / 1024;
+          if (!isNaN(amount) && localStorage.hasOwnProperty(x)) {
+              total += amount;
+          }
+      }
+      return total.toFixed(2);
+  }
+  console.log(getLocalStorageSize() + ' KB');
  
   function handleChangeTable(tournament, patch, side) {
     setError('')
@@ -107,47 +111,82 @@ export function Stats() {
       if(side){
         requestBody.side = side;
       }
-      
-      fetchWithToken.post(`http://localhost:3000/stats/cpicksbans`, requestBody)
-         .then(response => {
-           const jsonData = {};
-           Object.entries(response.data).forEach(([championName, championData]) => {
-             let correctedChampionName = correctNames[championName] || championName;
-             let champImage;
-             for (let role in champs) {
-               if (champs[role][correctedChampionName]) {
-                 champImage = champs[role][correctedChampionName];
-                 break;
-               }
-             }
-             const data = {
-               Champion: correctedChampionName,
-               Picks: championData.picks,
-               Bans: championData.bans,
-               Presence: championData.presence,
-               Wins: championData.wins,
-               Losses: championData.losses,
-               Winrate: championData.winrate,
-               Image: champImage,
-             }
-             
-             if (Object.values(data).some(value => value !== null && value !== undefined && value !== '')) {
-               jsonData[data.Champion] = data;
-             }
-           });
-           setTable(jsonData);
-         })
-         .catch(error => {
-           if(error.response && error.response.status == 429){
-             setError('Too many requests. Please try again later.');
-           } else if (error.response.status == 400){
-            setError('No games found for selected parameters.');
-           } else {
-             setError('An error occurred. Please try again later.');
-             console.error(error);
-           }
-         });
+  
+      // Create a unique key for this set of parameters
+      const cacheKey = JSON.stringify(requestBody);
+  
+      // Try to load the data from localStorage
+      const cachedData = localStorage.getItem(cacheKey);
+  
+      if (cachedData) {
+        // If data is found in cache, use it
+        setTable(JSON.parse(cachedData));
+      } else {
+        // If no data is found in cache, fetch it from the server
+        fetchWithToken.post(`http://localhost:3000/stats/cpicksbans`, requestBody)
+          .then(response => {
+            const jsonData = {};
+            Object.entries(response.data).forEach(([championName, championData]) => {
+              let correctedChampionName = correctNames[championName] || championName;
+              let champImage;
+              for (let role in champs) {
+                if (champs[role][correctedChampionName]) {
+                  champImage = champs[role][correctedChampionName];
+                  break;
+                }
+              }
+              const data = {
+                Champion: correctedChampionName,
+                Picks: championData.picks,
+                Bans: championData.bans,
+                Presence: championData.presence,
+                Wins: championData.wins,
+                Losses: championData.losses,
+                Winrate: championData.winrate,
+                Image: champImage,
+              }
+              
+              if (Object.values(data).some(value => value !== null && value !== undefined && value !== '')) {
+                jsonData[data.Champion] = data;
+              }
+            });
+            setTable(jsonData);
+  
+            // Save the data to localStorage for future use
+            localStorage.setItem(cacheKey, JSON.stringify(jsonData));
+          })
+          .catch(error => {
+            if(error.response && error.response.status == 429){
+              setError('Too many requests. Please try again later.');
+            } else if (error.response.status == 400){
+              setError('No games found for selected parameters.');
+            } else {
+              setError('An error occurred. Please try again later.');
+              console.error(error);
+            }
+          });
       }
+    }
+  }
+
+  function loadChampImages(champsData) {
+    let champImagesToLoad = 0;
+    for (let role in champsData) {
+      champImagesToLoad += Object.keys(champsData[role]).length;
+    }
+  
+    for (let role in champsData) {
+      for (let champ in champsData[role]) {
+        const img = new Image();
+        img.src = champsData[role][champ];
+        img.onload = () => {
+          champImagesToLoad--;
+          if (champImagesToLoad === 0) {
+            setChampImagesLoaded(true);
+          }
+        };
+      }
+    }
   }
 
   const columns = useMemo(() => {
@@ -206,7 +245,26 @@ export function Stats() {
   } = useTable({ columns, data }, useSortBy);
   
   
+  function generatePatches(patchesPlayed) {
+    const [start, end] = patchesPlayed.split('-').map(patch => parseFloat(patch));
+    const startInt = Math.floor(start);
+    const endInt = Math.floor(end);
+    const startDec = Math.round((start % 1) * 10);
+    const endDec = Math.round((end % 1) * 10);
   
+    const patches = [];
+  
+    for (let i = startInt; i <= endInt; i++) {
+      const startPatch = i === startInt ? startDec : 0;
+      const endPatch = i === endInt ? endDec : 9;
+  
+      for (let j = startPatch; j <= endPatch; j++) {
+        patches.push(`${i}.${j}`);
+      }
+    }
+  
+    return patches;
+  }
   return (
     <>
     
@@ -224,8 +282,11 @@ export function Stats() {
                 <select id="tournament" onChange={e => {
                   const tournamentName = e.target.value;
                   const tournament = tournaments[tournamentName][0];
+                  const nullPatch = ''
+                  setSelectedPatch('')
                   setSelectedTournament(tournament);
-                  handleChangeTable(tournament, selectedPatch, selectedSide);
+                  handleChangeTable(tournament, nullPatch, selectedSide);
+                  
                 }}>
                   {Object.keys(tournaments).map((tournamentName, index) => (
                     <optgroup key={index} label={tournamentName}>
@@ -244,7 +305,7 @@ export function Stats() {
                   handleChangeTable(selectedTournament, e.target.value, selectedSide);
                 }}>
                   <option value="">All</option>
-                  {patches.map((patch, index) => (
+                  {selectedTournament && generatePatches(selectedTournament.patchesPlayed).map((patch, index) => (
                     <option key={index} value={patch}>{patch}</option>
                   ))}
                 </select>

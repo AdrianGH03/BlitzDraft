@@ -11,14 +11,14 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { StyleContext } from '../../contexts/StyleContext';
 
 // Misc
-import lolplaceholder from '../../assets/placeholders/lolplaceholder.png';
-import bigLogo from '../../assets/logoImages/logoTest-transformed.png';
 import { HomeComponent } from '../../components/User/HomeComponent';
 import { EditPicture } from '../../components/User/EditPicture';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faHouse, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 export function UserProfile() {
+  const bigLogo = '/logoImages/logoTest-transformed.png'
+  const lolplaceholder = '/placeholders/lolplaceholder.png'
   const { 
     isAuthenticated, 
     userInfo, 

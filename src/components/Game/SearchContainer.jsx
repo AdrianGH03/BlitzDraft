@@ -10,13 +10,6 @@ import PropTypes from 'prop-types';
 
 //assets
 import SimpleBar from 'simplebar-react';
-import topIcon from '../../assets/placeholders/topIcon.png';
-import jungleIcon from '../../assets/placeholders/jungleIcon.png';
-import midIcon from '../../assets/placeholders/midIcon.png';
-import botIcon from '../../assets/placeholders/botIcon.png';
-import supportIcon from '../../assets/placeholders/supportIcon.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVolumeHigh, faVolumeXmark } from '@fortawesome/free-solid-svg-icons';
 
 export function SearchContainer({ gameData }) {
     const { fetchWithToken } = useContext(AuthContext);
@@ -34,7 +27,13 @@ export function SearchContainer({ gameData }) {
     } = useContext(GameContext);
     const { isLoading, setIsLoading } = useContext(StyleContext);
 
-
+    //Images
+    const topIcon = '/placeholders/topIcon.png'
+    const jungleIcon = '/placeholders/jungleIcon.png'
+    const midIcon = '/placeholders/midIcon.png'
+    const botIcon = '/placeholders/botIcon.png'
+    const supportIcon = '/placeholders/supportIcon.png'
+   
     
 
     //Style states
@@ -136,38 +135,57 @@ export function SearchContainer({ gameData }) {
     };
     
     
-    useEffect (() => {
-      fetchWithToken.get(`${import.meta.env.VITE_APP_ALL_CHAMPS}`)
-        .then(response => {
-          
-          const correctedData = Object.entries(response.data).reduce((acc, [role, champs]) => {
-            acc[role] = Object.entries(champs).reduce((accChamps, [champ, sprite]) => {
-              if (correctNames.hasOwnProperty(champ)) {
-                accChamps[correctNames[champ]] = sprite;
-              } else {
-                accChamps[champ] = sprite;
-              }
-              return accChamps;
-            }, {});
-            return acc;
-          }, {});
+    useEffect(() => {
+      // Try to get champions from local storage first
+      const storedChampions = localStorage.getItem('champions');
+      if (storedChampions) {
+        const parsedChampions = JSON.parse(storedChampions);
+        setChampions(parsedChampions);
     
-          setChampions(correctedData);
-    
-          let uniqueChamps = [];
-    
-          for (let role in correctedData) {
-            for (let champ in correctedData[role]) {
-              if (!uniqueChamps.includes(champ)) {
-                uniqueChamps.push(champ);
-              }
+        let uniqueChamps = [];
+        for (let role in parsedChampions) {
+          for (let champ in parsedChampions[role]) {
+            if (!uniqueChamps.includes(champ)) {
+              uniqueChamps.push(champ);
             }
           }
-          setUniqueChampions(uniqueChamps);
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
+        }
+        setUniqueChampions(uniqueChamps);
+      } else {
+        // If not in local storage, fetch from backend
+        fetchWithToken.get(`${import.meta.env.VITE_APP_ALL_CHAMPS}`)
+          .then(response => {
+            const correctedData = Object.entries(response.data).reduce((acc, [role, champs]) => {
+              acc[role] = Object.entries(champs).reduce((accChamps, [champ, sprite]) => {
+                if (correctNames.hasOwnProperty(champ)) {
+                  accChamps[correctNames[champ]] = sprite;
+                } else {
+                  accChamps[champ] = sprite;
+                }
+                return accChamps;
+              }, {});
+              return acc;
+            }, {});
+    
+            // Store champions in local storage
+            localStorage.setItem('champions', JSON.stringify(correctedData));
+    
+            setChampions(correctedData);
+    
+            let uniqueChamps = [];
+            for (let role in correctedData) {
+              for (let champ in correctedData[role]) {
+                if (!uniqueChamps.includes(champ)) {
+                  uniqueChamps.push(champ);
+                }
+              }
+            }
+            setUniqueChampions(uniqueChamps);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      }
     }, []);
 
     

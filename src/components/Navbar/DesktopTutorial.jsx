@@ -1,26 +1,18 @@
 //Hooks
 import { useState } from 'react'
-import msiLogo from '../../assets/logoImages/msi.png';
-import lecLogo from '../../assets/logoImages/lec.png';
-import lckLogo from '../../assets/logoImages/lck.png';
-import lcsLogo from '../../assets/logoImages/lcs.png';
-import lplLogo from '../../assets/logoImages/lpl.png';
-import vcsLogo from '../../assets/logoImages/vcs.png';
-import pcsLogo from '../../assets/logoImages/pcs.png';
-import cblolLogo from '../../assets/logoImages/cblol.png';
-import llaLogo from '../../assets/logoImages/lla.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faQuestion } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
-import tutorial1 from '../../assets/placeholders/tutorialtest.png';
-import tutorial2 from '../../assets/placeholders/tutorialtest2.png';
-import tutorial3 from '../../assets/placeholders/tutorialtest4.png';
-import tutorial4 from '../../assets/placeholders/tutorialtest3.png';
-import tutorial0 from '../../assets/placeholders/tutorialtest0.png';
+
 import { TeamImages } from '../Layout/TeamImages';
 
 export function DesktopTutorial() {
+  const tutorial1 = '/placeholders/tutorialtest.png'
+  const tutorial2 = '/placeholders/tutorialtest2.png'
+  const tutorial3 = '/placeholders/tutorialtest4.png'
+  const tutorial4 = '/placeholders/tutorialtest3.png'
+  const tutorial0 = '/placeholders/tutorialtest0.png'
 
   const tutorials = [
     { image: tutorial0, text: 'Head over to the difficulty page to load a game. Feel free to select an available region or international of your choice or a random choice in the drop-down list. Points are not stored for non-registered users.' },

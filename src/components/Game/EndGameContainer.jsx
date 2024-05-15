@@ -7,30 +7,6 @@ import PropTypes from 'prop-types'
 //Contexts
 import { AuthContext } from '../../contexts/AuthContext'
 
-//assets
-import topIcon from '../../assets/placeholders/topIcon.png';
-import jungleIcon from '../../assets/placeholders/jungleIcon.png';
-import midIcon from '../../assets/placeholders/midIcon.png';
-import botIcon from '../../assets/placeholders/botIcon.png';
-import supportIcon from '../../assets/placeholders/supportIcon.png';
-
-import lowscoreEmote from '../../assets/emotes/lowscore.png'
-import lowScoreEmote2 from '../../assets/emotes/lowscore2.png'
-import lowScoreEmote3 from '../../assets/emotes/lowscore3.png'
-import lowScoreEmote4 from '../../assets/emotes/lowscore4.png'
-import lowScoreEmote5 from '../../assets/emotes/lowscore5.png'
-
-import highscoreEmote from '../../assets/emotes/highscore.png'
-import highScoreEmote2 from '../../assets/emotes/highscore2.png'
-import highScoreEmote3 from '../../assets/emotes/highscore3.png'
-import highScoreEmote4 from '../../assets/emotes/highscore4.png'
-import highScoreEmote5 from '../../assets/emotes/highscore5.png'
-
-import medscoreEmote from '../../assets/emotes/medscore.png'
-import medScoreEmote2 from '../../assets/emotes/medscore2.png'
-import medScoreEmote3 from '../../assets/emotes/medscore3.png'
-import medScoreEmote4 from '../../assets/emotes/medscore4.png'
-import medScoreEmote5 from '../../assets/emotes/medscore5.png'
 
 export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame }) => {
 
@@ -43,6 +19,31 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
     const navigate = useNavigate();
     const { userInfo } = useContext(AuthContext);
     const [imagesLoaded, setImagesLoaded] = useState(false);
+
+    //images
+    const topIcon = '/placeholders/topIcon.png'
+    const jungleIcon = '/placeholders/jungleIcon.png'
+    const midIcon = '/placeholders/midIcon.png'
+    const botIcon = '/placeholders/botIcon.png'
+    const supportIcon = '/placeholders/supportIcon.png'
+
+    const lowscoreEmote = '/placeholders/lowscore.png'
+    const lowScoreEmote2 = '/placeholders/lowscore2.png'
+    const lowScoreEmote3 = '/placeholders/lowscore3.png'
+    const lowScoreEmote4 = '/placeholders/lowscore4.png'
+    const lowScoreEmote5 = '/placeholders/lowscore5.png'
+
+    const highscoreEmote = '/placeholders/highscore.png'
+    const highScoreEmote2 = '/placeholders/highscore2.png'
+    const highScoreEmote3 = '/placeholders/highscore3.png'
+    const highScoreEmote4 = '/placeholders/highscore4.png'
+    const highScoreEmote5 = '/placeholders/highscore5.png'
+
+    const medscoreEmote = '/placeholders/medscore.png'
+    const medScoreEmote2 = '/placeholders/medscore2.png'
+    const medScoreEmote3 = '/placeholders/medscore3.png'
+    const medScoreEmote4 = '/placeholders/medscore4.png'
+    const medScoreEmote5 = '/placeholders/medscore5.png'
 
     const emotes = {
         lowscore: [lowscoreEmote, lowScoreEmote2, lowScoreEmote3, lowScoreEmote4, lowScoreEmote5],
@@ -160,6 +161,7 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
                         <p className="end-game-details-text">PATCH: {gameData.gameData.body.game.data.Patch}</p>
                         <button className="end-game-details-playagain-button" onClick={() => goToGame()}>
                             PLAY AGAIN
+
                         </button>
                     </div>
                     <div className="end-game-emote">

@@ -132,6 +132,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    width: 100px;
 }
 .stat-champ-container img{
     max-width: 30px;
@@ -183,8 +184,12 @@
     margin-top: 1rem;
     font-family: 'Varela Round', sans-serif;
 }
-
-@media(min-width: 840px){
+@media(min-width: 700px){
+    .stat-filters{
+        width: 50vw;
+    }
+}
+@media(min-width: 1024px){
     .stat-content{
         flex-direction: row;
         align-items: start;

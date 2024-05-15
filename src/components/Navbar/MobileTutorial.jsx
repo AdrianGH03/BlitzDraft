@@ -1,25 +1,17 @@
 //Hooks
 import { useState } from 'react'
-import msiLogo from '../../assets/logoImages/msi.png';
-import lecLogo from '../../assets/logoImages/lec.png';
-import lckLogo from '../../assets/logoImages/lck.png';
-import lcsLogo from '../../assets/logoImages/lcs.png';
-import lplLogo from '../../assets/logoImages/lpl.png';
-import vcsLogo from '../../assets/logoImages/vcs.png';
-import pcsLogo from '../../assets/logoImages/pcs.png';
-import cblolLogo from '../../assets/logoImages/cblol.png';
-import llaLogo from '../../assets/logoImages/lla.png';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faQuestion } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-
-import tutorial2 from '../../assets/placeholders/tutorialm2.png';
-import tutorial3 from '../../assets/placeholders/tutorialm3.png';
-import tutorial4 from '../../assets/placeholders/home3.png';
-import tutoriallast from '../../assets/placeholders/tutorialguessmobile.gif';
 import { TeamImages } from '../Layout/TeamImages';
 
 export function MobileTutorial() {
+  const tutorial2 = '/placeholders/tutorialm2.png'
+  const tutorial3 = '/placeholders/tutorialm3.png'
+  const tutorial4 = '/placeholders/home3.png'
+  const tutoriallast = '/placeholders/tutorialguessmobile.gif'
+
   const tutorials = [
     { 
       image: tutorial2, 

@@ -5,12 +5,7 @@ import { StyleContext } from '../../contexts/StyleContext';
 import { GameContext } from '../../contexts/GameContext';
 
 //Assets
-import topIcon from '../../assets/placeholders/topIcon.png';
-import jgIcon from '../../assets/placeholders/jungleIcon.png';
-import midIcon from '../../assets/placeholders/midIcon.png';
-import adcIcon from '../../assets/placeholders/botIcon.png';
-import supIcon from '../../assets/placeholders/supportIcon.png';
-import placeholder from '../../assets/placeholders/lolplaceholder.png';
+
 
 export function TeamContainer({ gameData, team }) {
   //Game Data
@@ -23,6 +18,14 @@ export function TeamContainer({ gameData, team }) {
   const picksByRoleOrder = gameDataTeam[`${team}PicksByRoleOrder`].split(',');
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [imagesLoadedCount, setImagesLoadedCount] = useState(0);
+
+  //Images
+  const topIcon = '/placeholders/topIcon.png'
+  const jgIcon = '/placeholders/jungleIcon.png'
+  const midIcon = '/placeholders/midIcon.png'
+  const adcIcon = '/placeholders/botIcon.png'
+  const supIcon = '/placeholders/supportIcon.png'
+  const placeholder = '/placeholders/lolplaceholder.png'
 
   //Context
   const { setIsLoading } = useContext(StyleContext);

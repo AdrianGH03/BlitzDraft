@@ -12,12 +12,9 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { StyleContext } from '../../contexts/StyleContext';
 
 //Assets
-import lolplaceholder from '../../assets/placeholders/lolplaceholder.png';
-import logo from '../../assets/logoImages/smallLogo.png';
-import bigLogo from '../../assets/logoImages/logoTest-transformed.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPersonCircleQuestion, faPlay, faBook, faGamepad, faRightToBracket, faChessQueen, faSquarePollVertical } from '@fortawesome/free-solid-svg-icons'
-import discordLogo from '../../assets/logoImages/discordIcon.png';
+
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +23,12 @@ export const Header = () => {
   const navigate = useNavigate();
   var profileImage = useProfileImage();
   const location = useLocation();
+
+  //Images
+  const lolplaceholder = '/placeholders/lolplaceholder.png';
+  const logo = '/logoImages/smallLogo.png';
+  const bigLogo = '/logoImages/logoTest-transformed.png';
+  const discordLogo = '/logoImages/discordIcon.png';
   
 
   const toggleMenu = () => {
@@ -100,7 +103,7 @@ export const Header = () => {
               
                 <Link to="/help" className="desk-nav-faq" onClick={() => scrollToTop()}>
                   <FontAwesomeIcon icon={faPersonCircleQuestion} />
-                  <span>Help</span>
+                  <span>FAQ</span>
                 </Link>
               
 
@@ -171,7 +174,7 @@ export const Header = () => {
             
             <Link to="/help" className="nav-faq" onClick={() => closeMenu()}>
               <FontAwesomeIcon icon={faPersonCircleQuestion} style={{color: '#fff'}}/>
-              <span>HELP</span>
+              <span>FAQ</span>
             </Link>
 
             <Link to="/tutorial" className="nav-tutorial" onClick={() => closeMenu()}>

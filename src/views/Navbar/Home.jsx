@@ -1,22 +1,7 @@
 //Hooks
-import { useState, useContext, useEffect } from 'react'
-import msiLogo from '../../assets/logoImages/msi.png';
-import lecLogo from '../../assets/logoImages/lec.png';
-import lckLogo from '../../assets/logoImages/lck.png';
-import lcsLogo from '../../assets/logoImages/lcs.png';
-import lplLogo from '../../assets/logoImages/lpl.png';
-import vcsLogo from '../../assets/logoImages/vcs.png';
-import pcsLogo from '../../assets/logoImages/pcs.png';
-import cblolLogo from '../../assets/logoImages/cblol.png';
-import llaLogo from '../../assets/logoImages/lla.png';
-import logo from '../../assets/logoImages/logoTest-transformed.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faQuestion } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import test2 from '../../assets/placeholders/teamImages2.png';
-import home1 from '../../assets/placeholders/home1.jpg';
-import home2 from '../../assets/placeholders/home2.jpg';
-import home3 from '../../assets/placeholders/tutorial22.jpg';
 import { TeamImages } from '../../components/Layout/TeamImages'
 export function Home() {
   
@@ -27,7 +12,7 @@ export function Home() {
 
         <section className="home-top-container">
           <main>
-            <img src={logo} className='home-top-logo' />
+            <img src='/logoImages/logoTest-transformed.png' className='home-top-logo' />
             <div className="home-top-text">
                   <p className="home-top-desktop-text">
                       
@@ -55,7 +40,7 @@ export function Home() {
               </Link>
             </div>
           </main>
-          <img src={test2} className="home-top-image" />
+          <img src='/placeholders/teamImages2.png' className="home-top-image" />
         </section>
 
 
