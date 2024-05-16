@@ -86,7 +86,7 @@ export const Header = () => {
 
   return (
     <>
-      <div className="header">
+      <div className={isOpen ? "header header-open" : "header"}>
         <div className="navbar-desk">
           <div className="navbar">
             <div className="desk-nav-left">

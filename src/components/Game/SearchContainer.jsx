@@ -23,9 +23,13 @@ export function SearchContainer({ gameData }) {
       imagesLoaded,
       pairs,
       currentCard, setCurrentCard,
-      nextCard, setNextCard
+      nextCard, setNextCard,
+      sequentialPicks,
+      cardAhead, setCardAhead,
+      previousCard, setPreviousCard
     } = useContext(GameContext);
     const { isLoading, setIsLoading } = useContext(StyleContext);
+    
 
     //Images
     const topIcon = '/placeholders/topIcon.png'
@@ -90,6 +94,16 @@ export function SearchContainer({ gameData }) {
                 clearInterval(interval);
                 let currentCardIndex = pickOrder.findIndex(card => card === currentCard);
                 let nextCard = pickOrder[currentCardIndex + 1];
+                let cardAhead = pickOrder[currentCardIndex + 2];
+                let cardBehind = pickOrder[currentCardIndex - 1];
+                // Check if nextCard and cardAhead are a pair in sequentialPicks
+                const isSequentialPick = sequentialPicks.some(pair => pair.includes(nextCard) && pair.includes(cardAhead));
+    
+                // If they are a pair, wait for both guesses before revealing the next card
+                if (isSequentialPick && !revealedCards.includes(cardAhead)) {
+                  return 30;
+                }
+    
                 while (nextCard !== undefined && revealedCards.includes(nextCard)) {
                   currentCardIndex += 1;
                   nextCard = pickOrder[currentCardIndex + 1];
@@ -99,7 +113,6 @@ export function SearchContainer({ gameData }) {
                 } 
                 return 30;
               } else {
-                
                 return prevTimer - 1;
               }
             });
@@ -139,7 +152,21 @@ export function SearchContainer({ gameData }) {
       // Try to get champions from local storage first
       const storedChampions = localStorage.getItem('champions');
       if (storedChampions) {
-        const parsedChampions = JSON.parse(storedChampions);
+        let parsedChampions = JSON.parse(storedChampions);
+    
+        // Apply correctNames transformation to parsedChampions
+        parsedChampions = Object.entries(parsedChampions).reduce((acc, [role, champs]) => {
+          acc[role] = Object.entries(champs).reduce((accChamps, [champ, sprite]) => {
+            if (correctNames.hasOwnProperty(champ)) {
+              accChamps[correctNames[champ]] = sprite;
+            } else {
+              accChamps[champ] = sprite;
+            }
+            return accChamps;
+          }, {});
+          return acc;
+        }, {});
+    
         setChampions(parsedChampions);
     
         let uniqueChamps = [];
@@ -240,10 +267,19 @@ export function SearchContainer({ gameData }) {
       setSkipCard(true); 
     
       setTimer(30);
-     
     
       let currentCardIndex = pickOrder.findIndex(card => card === currentCard);
       let nextCard = pickOrder[currentCardIndex + 1];
+      let cardAhead = pickOrder[currentCardIndex + 2];
+    
+      // Check if nextCard and cardAhead are a pair in sequentialPicks
+      const isSequentialPick = sequentialPicks.some(pair => pair.includes(nextCard) && pair.includes(cardAhead));
+    
+      // If they are a pair, wait for both guesses before revealing the next card
+      if (isSequentialPick && !revealedCards.includes(cardAhead)) {
+        return;
+      }
+    
       while (nextCard !== undefined && revealedCards.includes(nextCard)) {
         currentCardIndex += 1;
         nextCard = pickOrder[currentCardIndex + 1];
@@ -259,6 +295,19 @@ export function SearchContainer({ gameData }) {
       config: { duration: 1000 }
     });
     
+
+    const isSequentialPick = (card) => {
+      // sequentialPicks is an array of pairs of sequential picks
+      const pair = sequentialPicks.find(pair => pair.includes(card));
+    
+      // If the card is part of a sequential pick and the other card in the pair has not been guessed yet
+      if (pair && !revealedCards.includes(pair[0] === card ? pair[1] : pair[0])) {
+        return true;
+      }
+      
+      return false;
+    };
+    const picks = gameData?.gameData?.body?.game?.data
     return (
         <div className="game-search-container">
 
@@ -313,9 +362,14 @@ export function SearchContainer({ gameData }) {
             <div className="game-search-champions">
               {Object.keys(filteredChampions).map(role =>
                 Object.keys(filteredChampions[role]).map(champ => (
-                  <div className="champ-container" key={champ} onClick={() => handleChampionClick(champ)}>
-                    <img src={filteredChampions[role][champ]} alt={champ} style={{ border: currentGuess === champ ? '2px solid #5be0e5ff' : '' }}
-                      
+                  <div className="champ-container" key={champ} onClick={
+                    (revealedCards.includes(Object.keys(picks).find(key => picks[key] === champ)) && !(isSequentialPick(previousCard) && picks[previousCard] === champ)) ? () => {} : () => handleChampionClick(champ)}
+                  >
+                    <img src={filteredChampions[role][champ]} alt={champ} 
+                      style={{ 
+                        border: currentGuess === champ ? '2px solid #5be0e5ff' : ((revealedCards.includes(Object.keys(picks).find(key => picks[key] === champ)) && !(isSequentialPick(previousCard) && picks[previousCard] === champ)) ? '2px solid red' : ''),
+                        pointerEvents: (revealedCards.includes(Object.keys(picks).find(key => picks[key] === champ)) && !(isSequentialPick(previousCard) && picks[previousCard] === champ)) ? 'none' : ''
+                      }}
                     />
                     <span>{champ}</span>
                   </div>

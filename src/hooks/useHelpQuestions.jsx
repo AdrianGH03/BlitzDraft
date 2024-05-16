@@ -36,7 +36,7 @@ export const useHelpQuestions = () => {
         },
         {
             question: "Why isn't X tournament here?",
-            answer: "Tournaments will be added as they start. If you want support for a specific tournament, please let me know in the discord."
+            answer: "Tournaments will be added as they start and have 10 games played (for population purposes). If you want support for a specific tournament, please let me know in the discord."
         },
     ]);
     

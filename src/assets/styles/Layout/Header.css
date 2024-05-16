@@ -16,7 +16,9 @@
     -webkit-backdrop-filter: blur(2px);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
+.header-open{
+    background-color: var(--rich-black);
+}
 
 .navbar-desk {
     display: none;
@@ -44,7 +46,7 @@
     position: absolute;
     top: 100%; 
     left: 0;
-    background-color: #121212;
+    background-color: var(--rich-black);
     transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
     transform: translateX(-100%);
     padding-top: 0rem;

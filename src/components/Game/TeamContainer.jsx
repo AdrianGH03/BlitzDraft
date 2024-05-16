@@ -18,7 +18,7 @@ export function TeamContainer({ gameData, team }) {
   const picksByRoleOrder = gameDataTeam[`${team}PicksByRoleOrder`].split(',');
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [imagesLoadedCount, setImagesLoadedCount] = useState(0);
-
+  
   //Images
   const topIcon = '/placeholders/topIcon.png'
   const jgIcon = '/placeholders/jungleIcon.png'
@@ -26,6 +26,8 @@ export function TeamContainer({ gameData, team }) {
   const adcIcon = '/placeholders/botIcon.png'
   const supIcon = '/placeholders/supportIcon.png'
   const placeholder = '/placeholders/lolplaceholder.png'
+
+  
 
   //Context
   const { setIsLoading } = useContext(StyleContext);
@@ -36,8 +38,12 @@ export function TeamContainer({ gameData, team }) {
     imagesLoaded, setImagesLoaded,
     pairs,
     currentCard, setCurrentCard,
-    nextCard, setNextCard
+    nextCard, setNextCard,
+    cardAhead, setCardAhead,
+    sequentialPicks,
+    previousCard, setPreviousCard
   } = useContext(GameContext);
+ 
   
   const sortedPickKeys = picksByRoleOrder.map(pick => {
     const pickKey = Object.keys(gameDataTeam).find(key => gameDataTeam[key] === pick);
@@ -89,15 +95,26 @@ export function TeamContainer({ gameData, team }) {
       setImagesLoaded(true);
     }
   }, [imagesLoadedCount]);
+
+  
   
   useEffect(() => {
     let interval;
   
     const startInterval = () => {
       if (startGame) {
-        setNextCard(pickOrder[revealedCards.length]);
-        if (pickOrder.length === revealedCards.length && !isComplete) {
-          
+        
+        const nextIndex = revealedCards.length;
+        setNextCard(pickOrder[nextIndex]);
+        setPreviousCard(pickOrder[nextIndex - 1]);
+        //check if there is a card ahead
+        if(pickOrder[nextIndex + 1]) {
+          setCardAhead(pickOrder[nextIndex + 1]);
+        } else {
+          setCardAhead('');
+        }
+  
+        if (pickOrder.length === nextIndex && !isComplete) {
           setIsLoading(true);
           setTimeout(() => {
             setIsComplete(true);
@@ -105,12 +122,12 @@ export function TeamContainer({ gameData, team }) {
           }, 1500);
         }
         const timerInterval = 30000;
-        let initialDelay = revealedCards.length === 0 ? timerInterval : 0; 
+        let initialDelay = nextIndex === 0 ? timerInterval : 0; 
   
         setTimeout(() => {
           interval = setInterval(() => {
-            if (pickOrder.length > revealedCards.length && revealedCards.length > 0) {
-              setRevealedCards([...revealedCards, pickOrder[revealedCards.length]]);
+            if (pickOrder.length > nextIndex && nextIndex > 0) {
+              setRevealedCards([...revealedCards, pickOrder[nextIndex]]);
             }
           }, timerInterval);
         }, initialDelay);
@@ -123,10 +140,23 @@ export function TeamContainer({ gameData, team }) {
       clearInterval(interval);
     };
   }, [revealedCards, pickOrder, isComplete, startGame]);
+
   
   
+  
+  const isSequentialPick = (card) => {
+    // sequentialPicks is an array of pairs of sequential picks
+    const pair = sequentialPicks.find(pair => pair.includes(card));
+  
+    // If the card is part of a sequential pick and the other card in the pair has not been guessed yet
+    if (pair && !revealedCards.includes(pair[0] === card ? pair[1] : pair[0])) {
+      return true;
+    }
+    
+    return false;
+  };
 
-
+ 
 
   return (
     <div className={`game-team1-container`}>
@@ -168,20 +198,26 @@ export function TeamContainer({ gameData, team }) {
                   src={
                     isComplete 
                       ? (windowWidth <= 768 ? picksMobile[sortedPickKeys[i]] : picks[sortedPickKeys[i]]) 
-                      : revealedCards.includes(`${team}Pick${i + 1}`) 
+                      : revealedCards.includes(`${team}Pick${i + 1}`) && !isSequentialPick(`${team}Pick${i + 1}`)
                         ? (windowWidth <= 768 ? picksMobile[`${team}Pick${i + 1}`] : picks[`${team}Pick${i + 1}`]) 
                         : placeholder
                   } 
                   alt={`${team}Pick${i + 1}`} 
                   style={{ 
-                    border: nextCard === `${team}Pick${i + 1}` && !isComplete ? '1px solid yellow' : (team === 'Team1' ? '1px solid #5be0e5ff' : '1px solid red'),
-                    objectFit: isComplete || revealedCards.includes(`${team}Pick${i + 1}`) ? 'cover' : 'contain'
+                    borderWidth: '1px',
+                    borderStyle: 'solid',
+                    borderColor: 
+                      ((nextCard === `${team}Pick${i + 1}` || cardAhead === `${team}Pick${i + 1}`) && isSequentialPick(currentCard)) 
+                      || ((currentCard === `${team}Pick${i+1}` || previousCard === `${team}Pick${i+1}`) && isSequentialPick(previousCard)) 
+                      ? 'lime' 
+                      : (nextCard === `${team}Pick${i + 1}` && !isComplete && previousCard !== `${team}Pick${i}` ? 'yellow' : (team === 'Team1' ? '#5be0e5ff' : 'red')),
+                    objectFit: isComplete || (revealedCards.includes(`${team}Pick${i + 1}`) && !isSequentialPick(`${team}Pick${i + 1}`)) ? 'cover' : 'contain',
                   }}
                 />
                 <div className='game-team-names'>
                   <span
                     style={{ color: team === 'Team1' ? 'white' : 'white' }}
-                  > {isComplete ? gameDataTeam[sortedPickKeys[i]] : revealedCards.includes(`${team}Pick${i + 1}`) ? gameDataTeam[`${team}Pick${i + 1}`] : 'Hidden'}</span>
+                  > {isComplete ? gameDataTeam[sortedPickKeys[i]] : revealedCards.includes(`${team}Pick${i + 1}`) && !isSequentialPick(`${team}Pick${i + 1}`) ? gameDataTeam[`${team}Pick${i + 1}`] : 'Hidden'}</span>
                   <span>{startingRosters[`${team}Players`].split(',')[i].split("(")[0]} 
                     <img src={i === 0 ? topIcon : i === 1 ? jgIcon : i === 2 ? midIcon : i === 3 ? adcIcon : supIcon} alt='role' className='role-icon' crossOrigin={"anonymous"}/>
                   </span>

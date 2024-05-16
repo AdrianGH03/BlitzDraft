@@ -24,6 +24,8 @@ export function Stats() {
   const [selectedPatch, setSelectedPatch] = useState('');
   const [selectedSide, setSelectedSide] = useState('');
 
+  const placeholder = '/placeholders/lolplaceholder.png'
+
   //14.1-14.24
   const patches = usePatches();
 
@@ -85,18 +87,6 @@ export function Stats() {
   useEffect(() => {
     handleChangeTable(selectedTournament)
   }, [champs]);
-
-  function getLocalStorageSize() {
-      let total = 0;
-      for(let x in localStorage) {
-          let amount = (localStorage[x].length * 2) / 1024;
-          if (!isNaN(amount) && localStorage.hasOwnProperty(x)) {
-              total += amount;
-          }
-      }
-      return total.toFixed(2);
-  }
-  console.log(getLocalStorageSize() + ' KB');
  
   function handleChangeTable(tournament, patch, side) {
     setError('')
@@ -111,62 +101,47 @@ export function Stats() {
       if(side){
         requestBody.side = side;
       }
-  
-      // Create a unique key for this set of parameters
-      const cacheKey = JSON.stringify(requestBody);
-  
-      // Try to load the data from localStorage
-      const cachedData = localStorage.getItem(cacheKey);
-  
-      if (cachedData) {
-        // If data is found in cache, use it
-        setTable(JSON.parse(cachedData));
-      } else {
-        // If no data is found in cache, fetch it from the server
-        fetchWithToken.post(`http://localhost:3000/stats/cpicksbans`, requestBody)
-          .then(response => {
-            const jsonData = {};
-            Object.entries(response.data).forEach(([championName, championData]) => {
-              let correctedChampionName = correctNames[championName] || championName;
-              let champImage;
-              for (let role in champs) {
-                if (champs[role][correctedChampionName]) {
-                  champImage = champs[role][correctedChampionName];
-                  break;
-                }
-              }
-              const data = {
-                Champion: correctedChampionName,
-                Picks: championData.picks,
-                Bans: championData.bans,
-                Presence: championData.presence,
-                Wins: championData.wins,
-                Losses: championData.losses,
-                Winrate: championData.winrate,
-                Image: champImage,
-              }
-              
-              if (Object.values(data).some(value => value !== null && value !== undefined && value !== '')) {
-                jsonData[data.Champion] = data;
-              }
-            });
-            setTable(jsonData);
-  
-            // Save the data to localStorage for future use
-            localStorage.setItem(cacheKey, JSON.stringify(jsonData));
-          })
-          .catch(error => {
-            if(error.response && error.response.status == 429){
-              setError('Too many requests. Please try again later.');
-            } else if (error.response.status == 400){
-              setError('No games found for selected parameters.');
-            } else {
-              setError('An error occurred. Please try again later.');
-              console.error(error);
-            }
-          });
+      
+      fetchWithToken.post(`http://localhost:3000/stats/cpicksbans`, requestBody)
+         .then(response => {
+           const jsonData = {};
+           Object.entries(response.data).forEach(([championName, championData]) => {
+             let correctedChampionName = correctNames[championName] || championName;
+             let champImage;
+             for (let role in champs) {
+               if (champs[role][correctedChampionName]) {
+                 champImage = champs[role][correctedChampionName];
+                 break;
+               }
+             }
+             const data = {
+               Champion: correctedChampionName,
+               Picks: championData.picks,
+               Bans: championData.bans,
+               Presence: championData.presence,
+               Wins: championData.wins,
+               Losses: championData.losses,
+               Winrate: championData.winrate,
+               Image: champImage,
+             }
+             
+             if (Object.values(data).some(value => value !== null && value !== undefined && value !== '')) {
+               jsonData[data.Champion] = data;
+             }
+           });
+           setTable(jsonData);
+         })
+         .catch(error => {
+           if(error.response && error.response.status == 429){
+             setError('Too many requests. Please try again later.');
+           } else if (error.response.status == 400){
+            setError('No games found for selected parameters.');
+           } else {
+             setError('An error occurred. Please try again later.');
+             console.error(error);
+           }
+         });
       }
-    }
   }
 
   function loadChampImages(champsData) {
@@ -196,7 +171,7 @@ export function Stats() {
         accessor: 'Champion',
         Cell: ({ row }) => (
           <div className='stat-champ-container'>
-            <img src={row.original.Image} alt="Champion" />
+            <img src={row.original.Image ? row.original.Image : placeholder} alt="Champion" />
             {row.original.Champion}
           </div>
         )
@@ -386,3 +361,4 @@ export function Stats() {
     </>
   )
 }
+

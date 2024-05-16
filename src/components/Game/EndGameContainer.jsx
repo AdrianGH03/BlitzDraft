@@ -10,6 +10,14 @@ import { AuthContext } from '../../contexts/AuthContext'
 
 export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame }) => {
 
+    //images
+    const topIcon = '/placeholders/topIcon.png'
+    const jungleIcon = '/placeholders/jungleIcon.png'
+    const midIcon = '/placeholders/midIcon.png'
+    const botIcon = '/placeholders/botIcon.png'
+    const supportIcon = '/placeholders/supportIcon.png'
+    const placeholder = '/placeholders/lolplaceholder.png'
+
     const [scoreRange, setScoreRange] = useState(0)
     const [emote, setEmote] = useState(null)
     const [totalPoints, setTotalPoints] = useState(0)
@@ -20,30 +28,24 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
     const { userInfo } = useContext(AuthContext);
     const [imagesLoaded, setImagesLoaded] = useState(false);
 
-    //images
-    const topIcon = '/placeholders/topIcon.png'
-    const jungleIcon = '/placeholders/jungleIcon.png'
-    const midIcon = '/placeholders/midIcon.png'
-    const botIcon = '/placeholders/botIcon.png'
-    const supportIcon = '/placeholders/supportIcon.png'
 
-    const lowscoreEmote = '/placeholders/lowscore.png'
-    const lowScoreEmote2 = '/placeholders/lowscore2.png'
-    const lowScoreEmote3 = '/placeholders/lowscore3.png'
-    const lowScoreEmote4 = '/placeholders/lowscore4.png'
-    const lowScoreEmote5 = '/placeholders/lowscore5.png'
+    const lowscoreEmote = '/emotes/lowscore.png'
+    const lowScoreEmote2 = '/emotes/lowscore2.png'
+    const lowScoreEmote3 = '/emotes/lowscore3.png'
+    const lowScoreEmote4 = '/emotes/lowscore4.png'
+    const lowScoreEmote5 = '/emotes/lowscore5.png'
 
-    const highscoreEmote = '/placeholders/highscore.png'
-    const highScoreEmote2 = '/placeholders/highscore2.png'
-    const highScoreEmote3 = '/placeholders/highscore3.png'
-    const highScoreEmote4 = '/placeholders/highscore4.png'
-    const highScoreEmote5 = '/placeholders/highscore5.png'
+    const highscoreEmote = '/emotes/highscore.png'
+    const highScoreEmote2 = '/emotes/highscore2.png'
+    const highScoreEmote3 = '/emotes/highscore3.png'
+    const highScoreEmote4 = '/emotes/highscore4.png'
+    const highScoreEmote5 = '/emotes/highscore5.png'
 
-    const medscoreEmote = '/placeholders/medscore.png'
-    const medScoreEmote2 = '/placeholders/medscore2.png'
-    const medScoreEmote3 = '/placeholders/medscore3.png'
-    const medScoreEmote4 = '/placeholders/medscore4.png'
-    const medScoreEmote5 = '/placeholders/medscore5.png'
+    const medscoreEmote = '/emotes/medscore.png'
+    const medScoreEmote2 = '/emotes/medscore2.png'
+    const medScoreEmote3 = '/emotes/medscore3.png'
+    const medScoreEmote4 = '/emotes/medscore4.png'
+    const medScoreEmote5 = '/emotes/medscore5.png'
 
     const emotes = {
         lowscore: [lowscoreEmote, lowScoreEmote2, lowScoreEmote3, lowScoreEmote4, lowScoreEmote5],
@@ -135,7 +137,7 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
     const goToGame = () => {
         navigate('/game/difficulty')
     }
-
+    
   return (
     <>
         {imagesLoaded && gameData && (
@@ -178,7 +180,7 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
                                 >{team.toUpperCase()}</span>
                                 {gameData.gameData.body.playerImages[team].map((player, playerIndex) => (
                                     <div key={playerIndex}>
-                                        <img src={player.image} alt={player.player} className='player-image' />
+                                        <img src={player.image ? player.image : placeholder} alt={player.player} className='player-image' />
                                         <img src={icons[playerIndex]} alt='role icon' className='role-icon' />
                                     </div>
                                 ))}

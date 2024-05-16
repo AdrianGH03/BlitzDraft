@@ -30,7 +30,7 @@ export function GameContainer() {
       nextCard
     } = useContext(GameContext);
     
-
+    
     useEffect(() => {
       fetchWithToken.get(`${import.meta.env.VITE_APP_GET_GAME_TOKEN}/${token}`)
       .then(response => {
@@ -65,10 +65,10 @@ export function GameContainer() {
           guesses: guesses,
           cardsRevealed: revealedCards,
         });
-        console.log("Game saved")
+        
       }
     }, [isComplete, nextCard]);
-  
+    
     return (
       <>
       {gameData && gameData.gameData && gameData.gameData.body && revealedCards ? (
