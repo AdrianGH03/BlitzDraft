@@ -38,3 +38,7 @@ src/components/Authentication/Login.jsx
 src/components/Authentication/Signup.jsx
 src/components/Authentication/PasswordReset.jsx
 src/components/Authentication/RenewPassword.jsx
+src/components/User
+src/components/User/ChangePFP.jsx
+src/components/User/HomeComponent.jsx
+src/components/User/EditPicture.jsx
