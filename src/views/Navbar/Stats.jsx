@@ -243,7 +243,7 @@ export function Stats() {
   return (
     <>
     
-        { champImagesLoaded && (
+        { champImagesLoaded && champs && (
           champs && (
           <main className="stat-container fade-in-fwd">
             <h1 className="stat-header">

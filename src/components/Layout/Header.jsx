@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 
 //Contexts
-import { AuthContext } from '../../contexts/AuthContext';
 import { StyleContext } from '../../contexts/StyleContext';
 
 //Assets
@@ -18,7 +17,6 @@ import { faPersonCircleQuestion, faPlay, faBook, faGamepad, faRightToBracket, fa
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { userInfo, setIsAuthenticated, isAuthenticated } = useContext(AuthContext);
   const { isLoading, setIsLoading } = useContext(StyleContext);
   const navigate = useNavigate();
   var profileImage = useProfileImage();
@@ -51,12 +49,6 @@ export const Header = () => {
     }
   }
 
-  function sendToProfile() {
-    navigate('/user/profile');
-    if (isOpen) {
-      setIsOpen(false);
-    }
-  }
   function goToDifficulty() {
     navigate('/game/difficulty');
     if (isOpen) {
@@ -71,14 +63,6 @@ export const Header = () => {
     }
   }
 
-  useEffect(() => {
-    if (userInfo && Object.keys(userInfo).length !== 0 && profileImage != '') {
-      setIsLoading(false); 
-      setIsAuthenticated(true); 
-    } else if (!isLoading) {
-      setIsAuthenticated(false);
-    }
-  }, [userInfo, profileImage, isLoading]);
 
   useEffect(() => {
     closeMenu();
@@ -90,17 +74,7 @@ export const Header = () => {
         <div className="navbar-desk">
           <div className="navbar">
             <div className="desk-nav-left">
-              <div className="user-info" onClick={() => sendToProfile()} style={{ display: isAuthenticated ? 'block' : 'none' }}>
-                <img src={profileImage ? profileImage : lolplaceholder} alt='profile' className='desk-nav-profile' crossOrigin={"anonymous"} />
-              </div>
 
-              
-                <Link to="/auth" className="desk-nav-account" style={{ display: isAuthenticated === false ? 'block' : 'none' }} onClick={() => scrollToTop()}>
-                  <FontAwesomeIcon icon={faRightToBracket} />&nbsp;
-                  <span>&nbsp;Sign Up</span>
-                </Link>
-              
-              
                 <Link to="/help" className="desk-nav-faq" onClick={() => scrollToTop()}>
                   <FontAwesomeIcon icon={faPersonCircleQuestion} />
                   <span>FAQ</span>
@@ -158,19 +132,7 @@ export const Header = () => {
             <div></div>
           </div>
           <div className={`nav-left ${isOpen ? 'open' : ''}`}>
-          {
-            userInfo && Object.keys(userInfo).length !== 0 && profileImage != '' ? (
-              <div className="user-info-mobile" onClick={() => sendToProfile()}>
-                <img src={profileImage ? profileImage : lolplaceholder} alt='profile' className='nav-profile' crossOrigin={"anonymous"} />
-                <p>{(userInfo.username.length > 11 ? userInfo.username.substring(0, 11) + "..." : userInfo.username).toUpperCase()}&apos;S PROFILE</p>
-              </div>
-            ) : (
-              <Link to="/auth" className="nav-account" onClick={() => closeMenu()}>
-                <FontAwesomeIcon icon={faRightToBracket} style={{color: '#fff'}}/>
-                <span>SIGN UP</span>
-              </Link>
-            )
-          }
+          
             
             <Link to="/help" className="nav-faq" onClick={() => closeMenu()}>
               <FontAwesomeIcon icon={faPersonCircleQuestion} style={{color: '#fff'}}/>

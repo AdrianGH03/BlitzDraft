@@ -25,40 +25,15 @@ export function App() {
       'x-server-secret': import.meta.env.VITE_APP_SERVER_USER,
     },
     withCredentials: true,
-  });
-  const [isAuthenticated, setIsAuthenticated] = useState(false); 
-  var { userInfo, setUserInfo } = useUserInfo(isAuthenticated, fetchWithToken); 
+  }); 
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-
-  
-
-
-  useEffect(() => {
-    const checkAuthentication = async () => {
-      try {
-        const response = await fetchWithToken.get(import.meta.env.VITE_APP_CHECK_AUTH, { withCredentials: true });
-        setIsAuthenticated(response.data.isAuthenticated);
-      } catch (error) {
-        console.error('Error checking authentication:', error);
-      }
-    };
-    checkAuthentication();
-  }, []);
-
-  useEffect(() => {
-    if(Object.keys(userInfo).length > 0){
-      setIsAuthenticated(true); 
-    }
-  }, [userInfo]);
 
 
   
   return (
     <AuthContext.Provider value={{ 
-      isAuthenticated, setIsAuthenticated, 
-      userInfo, setUserInfo,
        error, setError, 
        fetchWithToken, 
        success, setSuccess, 

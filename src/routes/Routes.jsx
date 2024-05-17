@@ -2,9 +2,8 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 //Views
-import { PasswordReset } from '../views/Auth/PasswordReset';
 import { UserProfile } from '../views/User/UserProfile';
-import { AuthPage } from '../views/Auth/AuthPage'; 
+
 import { Test } from '../tests/Test';
 //Navbar routes
 import { Tutorial } from '../views/Navbar/Tutorial';
@@ -27,7 +26,7 @@ import { AuthContext } from '../contexts/AuthContext';
 
 
 export function AppRoutes() {
-  const { isAuthenticated } = useContext(AuthContext);
+  
   
 
   return (
@@ -35,19 +34,12 @@ export function AppRoutes() {
       {/* Home Route */}
       <Route path="/" element={<Home />} />
 
-      {/* Auth Routes */}
-      <Route path="/auth" element={isAuthenticated ? <Navigate to="/user/profile" /> : <AuthPage />} />
-      <Route path="/reset/:token" element={<PasswordReset />} /> 
-
-      {/* User Routes */}
-      <Route path="/user/profile" element={isAuthenticated ? <UserProfile /> : <Navigate to="/auth" />} />
-
       {/* Nav Routes */}
       <Route path="/tutorial" element={<Tutorial />} />
       <Route path="/guides" element={<Guides />} />
       <Route path="/help" element={<Help />} />
       <Route path="/stats" element={<Stats />} />
-      <Route path="/test" element={<Test />} />
+      
 
       {/* Game Routes */}
       <Route path="/game/difficulty" element={<Difficulty />} />
