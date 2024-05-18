@@ -40,7 +40,7 @@ export function Stats() {
     "LeBlanc": "Leblanc",
     "Lee Sin": "LeeSin",
     "Belveth": "Belveth",
-    "Xin Zhao": "Xin Zhao",
+    "Xin Zhao": "XinZhao",
     "Aurelion Sol": "AurelionSol",
     "Renata Glasc": "Renata",
     "Tahm Kench": "TahmKench",
