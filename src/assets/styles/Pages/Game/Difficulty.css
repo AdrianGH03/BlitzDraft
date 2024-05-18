@@ -2,7 +2,7 @@
 .difficulty-container{
     overflow-y: scroll;
     height: 100%;
-    padding-bottom: 7rem;
+    padding-bottom: 12rem;
     display: flex;
     flex-direction: column;
     align-items: center;
