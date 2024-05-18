@@ -1,14 +1,11 @@
 // Hooks
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useProfileImage } from '../../hooks/useProfileImage';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 //REACT/NODEJS
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 
-//Contexts
-import { StyleContext } from '../../contexts/StyleContext';
 
 //Assets
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -17,13 +14,10 @@ import { faPersonCircleQuestion, faPlay, faBook, faGamepad, faRightToBracket, fa
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isLoading, setIsLoading } = useContext(StyleContext);
   const navigate = useNavigate();
-  var profileImage = useProfileImage();
   const location = useLocation();
 
   //Images
-  const lolplaceholder = '/placeholders/lolplaceholder.png';
   const logo = '/logoImages/smallLogo.png';
   const bigLogo = '/logoImages/logoTest-transformed.png';
   const discordLogo = '/logoImages/discordIcon.png';
@@ -49,12 +43,6 @@ export const Header = () => {
     }
   }
 
-  function goToDifficulty() {
-    navigate('/game/difficulty');
-    if (isOpen) {
-      setIsOpen(false);
-    }
-  }
 
   function scrollToTop() {
     const contentContainer = document.querySelector('.content');
