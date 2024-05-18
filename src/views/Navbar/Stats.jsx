@@ -68,7 +68,7 @@ export function Stats() {
         requestBody.side = side;
       }
       
-      fetchWithToken.post(`http://localhost:3000/stats/cpicksbans`, requestBody)
+      fetchWithToken.post(`${import.meta.env.VITE_APP_GET_STATS}`, requestBody)
          .then(response => {
            const jsonData = {};
            Object.entries(response.data).forEach(([championName, championData]) => {
