@@ -8,6 +8,7 @@ import PropTypes from 'prop-types'
 import { AuthContext } from '../../contexts/AuthContext'
 
 
+
 export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame }) => {
 
     //images
@@ -70,13 +71,14 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-
+    
     useEffect(() => {
         if(Object.keys(gameData).length > 0 && Object.keys(guesses).length > 0 && gameData.difficulty) {
             const requestBody = {
                 gameData: gameData.gameData.body.game.data,
                 difficulty: gameData.difficulty,
-                guesses: guesses
+                guesses: guesses,
+                difficultySettings: gameData.gameData.body.difficultySettings
             };
     
             if (userInfo) {
@@ -141,7 +143,7 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
   return (
     <>
         {imagesLoaded && gameData && (
-            <section className="end-game-container">
+            <section className="end-game-container fade-in-fwd">
                 <header className="end-game-heading-container">
                     {gameData.gameData.body.teamImages[teamNames[0]] != '' &&
                         <img className="team-image" src={gameData.gameData.body.teamImages[teamNames[0]]} alt={Object.values(gameData.gameData.body.teamImages)[0]} crossOrigin={"anonymous"}/>
@@ -195,9 +197,10 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
         )}
 
         {Object.keys(guesses).length == 0 && showEndGame && (
-                <>
-                <span className='noguesses'>You made no guesses. Your score was not calculated.</span>
-                </>
+               <div className="noguesses-container fade-in-fwd">
+                    <span className='noguesses'>You made no guesses. Your score was not calculated.</span>
+               </div>
+                
             )
         }
     </>

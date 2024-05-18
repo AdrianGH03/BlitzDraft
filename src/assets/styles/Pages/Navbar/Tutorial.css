@@ -176,7 +176,11 @@
     max-width: 80px;
 }
 
-
+@media(min-width: 550px){
+    .tutorial-img-container-mb img{
+        max-width: 50vw;
+    }
+}
 
 
 

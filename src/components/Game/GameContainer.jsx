@@ -26,8 +26,6 @@ export function GameContainer() {
       guesses, setGuesses,
       revealedCards, setRevealedCards,
       setSkipCard,
-      startGame,  
-      nextCard
     } = useContext(GameContext);
     
     
@@ -73,7 +71,7 @@ export function GameContainer() {
               showEndGame={showEndGame}
             />
           ) : isLoading ? (
-            <div className="loader-container">
+            <div className="loader-container loader-game" id='loader-game'>
               <span className="loader"></span>
               
             </div>

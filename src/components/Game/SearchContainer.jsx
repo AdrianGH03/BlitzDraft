@@ -5,7 +5,6 @@ import { useSpring, animated } from 'react-spring';
 //Contexts
 import { AuthContext } from '../../contexts/AuthContext';
 import { GameContext } from '../../contexts/GameContext';
-import { StyleContext } from '../../contexts/StyleContext';
 import PropTypes from 'prop-types';
 
 //assets
@@ -14,21 +13,15 @@ import SimpleBar from 'simplebar-react';
 export function SearchContainer({ gameData }) {
     const { fetchWithToken } = useContext(AuthContext);
     const {
-      isComplete, setIsComplete,  
+      isComplete, 
       setGuesses,
       revealedCards, setRevealedCards,
       setSkipCard,
       startGame, setStartGame,
-      setShowEndGame,
-      imagesLoaded,
-      pairs,
       currentCard, setCurrentCard,
-      nextCard, setNextCard,
       sequentialPicks,
-      cardAhead, setCardAhead,
-      previousCard, setPreviousCard
+      previousCard, 
     } = useContext(GameContext);
-    const { isLoading, setIsLoading } = useContext(StyleContext);
     
 
     //Images
@@ -52,7 +45,7 @@ export function SearchContainer({ gameData }) {
     const [champions, setChampions] = useState({});
     const [uniqueChampions, setUniqueChampions] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedRole, setSelectedRole] = useState('');
+    const [selectedRole, setSelectedRole] = useState('all');
     const scrollableContainerRef = useRef();
 
     //Gamedata endpoints
@@ -149,12 +142,10 @@ export function SearchContainer({ gameData }) {
     
     
     useEffect(() => {
-      // Try to get champions from local storage first
       const storedChampions = localStorage.getItem('champions');
       if (storedChampions) {
         let parsedChampions = JSON.parse(storedChampions);
     
-        // Apply correctNames transformation to parsedChampions
         parsedChampions = Object.entries(parsedChampions).reduce((acc, [role, champs]) => {
           acc[role] = Object.entries(champs).reduce((accChamps, [champ, sprite]) => {
             if (correctNames.hasOwnProperty(champ)) {
@@ -179,7 +170,6 @@ export function SearchContainer({ gameData }) {
         }
         setUniqueChampions(uniqueChamps);
       } else {
-        // If not in local storage, fetch from backend
         fetchWithToken.get(`${import.meta.env.VITE_APP_ALL_CHAMPS}`)
           .then(response => {
             const correctedData = Object.entries(response.data).reduce((acc, [role, champs]) => {
@@ -193,10 +183,8 @@ export function SearchContainer({ gameData }) {
               }, {});
               return acc;
             }, {});
-    
-            // Store champions in local storage
+
             localStorage.setItem('champions', JSON.stringify(correctedData));
-    
             setChampions(correctedData);
     
             let uniqueChamps = [];
@@ -326,19 +314,19 @@ export function SearchContainer({ gameData }) {
 
             <div className="game-searchbar">
               <div className="game-role-filters">
-                <img src={topIcon} alt="Top" onClick={() => selectedRole === 'top' ? (setSelectedRole(''), setSearchTerm('')) : setSelectedRole('top')} 
+                <img src={topIcon} alt="Top" onClick={() => selectedRole === 'top' ? (setSelectedRole('all'), setSearchTerm('')) : setSelectedRole('top')} 
                   style={{border: selectedRole === 'top' ? '2px solid #FFD700' : ''}} 
                 />
-                <img src={jungleIcon} alt="Jungle" onClick={() => selectedRole === 'jungle' ? (setSelectedRole(''), setSearchTerm('')) : setSelectedRole('jungle')} 
+                <img src={jungleIcon} alt="Jungle" onClick={() => selectedRole === 'jungle' ? (setSelectedRole('all'), setSearchTerm('')) : setSelectedRole('jungle')} 
                   style={{border: selectedRole === 'jungle' ? '2px solid #FFD700' : ''}}
                 />
-                <img src={midIcon} alt="Mid" onClick={() => selectedRole === 'mid' ? (setSelectedRole(''), setSearchTerm('')) : setSelectedRole('mid')} 
+                <img src={midIcon} alt="Mid" onClick={() => selectedRole === 'mid' ? (setSelectedRole('all'), setSearchTerm('')) : setSelectedRole('mid')} 
                   style={{border: selectedRole === 'mid' ? '2px solid #FFD700' : ''}}
                 />
-                <img src={botIcon} alt="Bot" onClick={() => selectedRole === 'adc' ? (setSelectedRole(''), setSearchTerm('')) : setSelectedRole('adc')} 
+                <img src={botIcon} alt="Bot" onClick={() => selectedRole === 'adc' ? (setSelectedRole('all'), setSearchTerm('')) : setSelectedRole('adc')} 
                   style={{border: selectedRole === 'adc' ? '2px solid #FFD700' : ''}}
                 />
-                <img src={supportIcon} alt="Support" onClick={() => selectedRole === 'support' ? (setSelectedRole(''), setSearchTerm('')) : setSelectedRole('support')} 
+                <img src={supportIcon} alt="Support" onClick={() => selectedRole === 'support' ? (setSelectedRole('all'), setSearchTerm('')) : setSelectedRole('support')} 
                   style={{border: selectedRole === 'support' ? '2px solid #FFD700' : ''}}
                 />
                 
@@ -401,11 +389,11 @@ export function SearchContainer({ gameData }) {
                       </button>
                     ): (
                       <button 
-                        className={`game-guess-button flash-animation ${isButtonClicked ? 'clicked' : ''}`} 
+                        className={` flash-animation ${isButtonClicked ? 'clicked' : ''}`} 
                         onMouseDown={() => setIsButtonClicked(true)}
                         onMouseUp={() => setIsButtonClicked(false)}
                         onClick={() => setStartGame(true)}
-                        style={{backgroundColor: '#b81111'}}
+                        
                       >
                         <span className="text">START</span>
                         

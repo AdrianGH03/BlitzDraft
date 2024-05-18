@@ -26,29 +26,7 @@ export function Stats() {
 
 
   const correctNames = {
-    "Wukong": "MonkeyKing",
-    "Miss Fortune": "MissFortune",
-    "ChoGath": "Cho'Gath",
-    "TahmKench": "Tahm Kench",
-    "RekSai": "RekSai",
-    "Vel'Koz": "Velkoz",
-    "Master Yi": "MasterYi",
-    "Twisted Fate": "TwistedFate",
-    "Dr. Mundo": "DrMundo",
-    "Jarvan IV": "JarvanIV",
-    "Kha'Zix": "Khazix",
-    "LeBlanc": "Leblanc",
-    "Lee Sin": "LeeSin",
-    "Belveth": "Belveth",
-    "Xin Zhao": "XinZhao",
-    "Aurelion Sol": "AurelionSol",
     "Renata Glasc": "Renata",
-    "Tahm Kench": "TahmKench",
-    "Kai'Sa": "Kaisa",
-    "K'Sante": "KSante",
-    "Rek'Sai": "RekSai",
-    "Bel'Veth": "Belveth",
-    "Kog'Maw": "KogMaw",
   };
 
   useEffect(() => {
@@ -245,7 +223,7 @@ export function Stats() {
   return (
     <>
     
-        { champImagesLoaded && champs && (
+        { champImagesLoaded && Object.keys(table).length > 0 ? (
           champs && (
           <main className="stat-container fade-in-fwd">
             <h1 className="stat-header">
@@ -357,7 +335,11 @@ export function Stats() {
           </main>
         
          )
-     )} 
+     ): 
+      <div className="loader-container">
+        <span className="loader"></span>
+      </div>
+     } 
 
       
     </>

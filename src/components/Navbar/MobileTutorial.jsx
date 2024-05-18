@@ -12,6 +12,7 @@ export function MobileTutorial() {
   const tutorial3 = '/placeholders/tutorialm3.png'
   const tutorial4 = '/placeholders/tutorialm4.png'
   const tutorial5 = '/placeholders/tutorialm5.png'
+  const tutorial6 = '/placeholders/tutorialm6.png'
 
   const tutorials = [
     { image: tutorial1, text: 'Head over to the difficulty page to load a game. A random game will be selected by default and difficulty is split into 4 modes, each with a different starting card. You have options to choose a valid tournament from an available region and/or patch games were played. Choose custom mode to select your starting card in the game.' },
@@ -37,7 +38,7 @@ export function MobileTutorial() {
     { image: tutorial3, text: 'A total of 20 cards will be shown. The order in which they appear is shown here marked 1-20. Each correct guess is 10 points. Lime/green colored order numbers mean sequential picks.' },
     { image: tutorial4, text: 'Sequential picks (ex. Blue Pick 4 and Blue Pick 5) will be marked by lime green borders as they appear. You must guess for BOTH picks before they are revealed. If you got the order of the sequential picks wrong, your score will still be calculated as if they were reversed.' },
     { image: tutorial5, text: 'When all cards are revealed, the game will calculate your score. Cards ARE sorted by role order here. Once a game is complete, you can refresh to retry, but you only have 30 minutes per game before it expires.' },
-    
+    { image: tutorial6, text: 'Additionally, check out the stats or guides page for more insight on pick and bans of champions and how to draft.' },
   ];
   const [currentTutorial, setCurrentTutorial] = useState(0);
 

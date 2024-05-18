@@ -28,6 +28,20 @@
 /* FOOTER TEXT ^ font-family: 'Varela Round', sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
 /* FOOTER TEXT ^ font-family: 'Orbitron', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* GAME TEXT ^ font-family: 'Press Start 2P', cursive; */
+@import url('https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* PARAGRAPH TEXT ^ font-family: "Asap Condensed", sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fugaz+One&display=swap');
+/* HEADER/MENU TEXT ^ font-family: 'Fugaz One', cursive; */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+/* BUTTON TEXT ^ font-family: 'Rubik Mono One', sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Jomhuria&display=swap');
+/* LOGO TEXT ^ font-family: 'Jomhuria', cursive; */
+
+
 #css-loaded-marker {
   display: none;
   color: #123456; 

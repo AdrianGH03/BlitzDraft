@@ -107,7 +107,7 @@ export function TeamContainer({ gameData, team }) {
         const nextIndex = revealedCards.length;
         setNextCard(pickOrder[nextIndex]);
         setPreviousCard(pickOrder[nextIndex - 1]);
-        //check if there is a card ahead
+        
         if(pickOrder[nextIndex + 1]) {
           setCardAhead(pickOrder[nextIndex + 1]);
         } else {
@@ -145,10 +145,8 @@ export function TeamContainer({ gameData, team }) {
   
   
   const isSequentialPick = (card) => {
-    // sequentialPicks is an array of pairs of sequential picks
     const pair = sequentialPicks.find(pair => pair.includes(card));
   
-    // If the card is part of a sequential pick and the other card in the pair has not been guessed yet
     if (pair && !revealedCards.includes(pair[0] === card ? pair[1] : pair[0])) {
       return true;
     }
@@ -159,7 +157,7 @@ export function TeamContainer({ gameData, team }) {
  
 
   return (
-    <div className={`game-team1-container`}>
+    <div className={isComplete ? `game-team1-container fade-in-fwd` : `game-team1-container`}>
   
       <div className={`game-team1-bans`}>
         <h2

@@ -7,6 +7,13 @@
     margin: 2rem 0 3rem 0;
     
 }
+.noguesses-container{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10rem 0;
+}
 .noguesses{
     text-align: center;
 }
@@ -124,10 +131,11 @@
 
 
 
-@media(min-width: 820px){
+@media(min-width: 840px){
     .end-game-container{
         justify-content: start;
         margin-top: 1rem;
+        width: 300px;
     }
     .end-game-details{
         gap: 0 1rem;
@@ -136,7 +144,9 @@
         padding: 1rem 0;
     }
 
-
+    .noguesses-container{
+        align-items: start;
+    }
 
     .end-game-details .end-game-emote img{
         max-width: 150px;
@@ -150,7 +160,15 @@
     }
     
 }
+@media(min-width: 1024px){
+    .end-game-container{
+        width: 500px;
+    }
+}
 @media(min-width: 1280px){
+    .end-game-container{
+        min-width: 600px;
+    }
     .end-game-details .end-game-emote img{
         max-width: 200px;
     }
