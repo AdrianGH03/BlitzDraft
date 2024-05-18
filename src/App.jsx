@@ -1,6 +1,6 @@
 //Hooks
-import { useEffect, useState } from 'react';
-import { useUserInfo } from './hooks/useUserInfo'; 
+import { useState } from 'react';
+
 
 // Contexts
 import { AuthContext } from './contexts/AuthContext'; 

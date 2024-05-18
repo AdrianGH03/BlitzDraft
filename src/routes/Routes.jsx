@@ -1,10 +1,6 @@
 //Routes
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes} from 'react-router-dom';
 
-//Views
-import { UserProfile } from '../views/User/UserProfile';
-
-import { Test } from '../tests/Test';
 //Navbar routes
 import { Tutorial } from '../views/Navbar/Tutorial';
 import { Guides } from '../views/Navbar/Guides';
@@ -21,8 +17,7 @@ import { NotFound } from '../views/NotFound';
 
 
 //Contexts
-import { useContext } from 'react';
-import { AuthContext } from '../contexts/AuthContext';
+
 
 
 export function AppRoutes() {

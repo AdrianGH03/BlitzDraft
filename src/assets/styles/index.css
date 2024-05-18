@@ -2,8 +2,6 @@
 @import './Layout/Header.css';
 @import './Layout/Footer.css';
 @import './Pages/Home.css';
-@import './Pages/Auth.css';
-@import './Pages/UserProfile.css';
 @import './Pages/Game/Difficulty.css';
 @import './Pages/Game/Game.css';
 @import './Pages/Game/EndGame.css';
