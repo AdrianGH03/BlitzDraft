@@ -141,6 +141,9 @@
 
 
 /*Styles*/
+.blocked-champion {
+    filter: grayscale(100%);
+  }
 .game-team1-bans img{
     border: 1.5px solid #800020;
 }
@@ -238,7 +241,9 @@
 .flash-animation:hover{
     animation: none;
 }
-
+.toomanyreqgame{
+    text-align: center;
+}
 
 
 
@@ -341,7 +346,7 @@
     
     .game-team-names > span{
         font-size: 1rem;
-        font-family: 'Rubik Mono One', sans-serif;
+        font-family: "Asap Condensed", sans-serif;
         color: #ffffff;
         white-space: nowrap;
     }

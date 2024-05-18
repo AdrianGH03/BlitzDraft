@@ -7,17 +7,14 @@ import { useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortUp, faSortDown, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useTournaments } from '../../hooks/useTournaments';
-import { usePatches } from '../../hooks/usePatches';
 
 
 export function Stats() {
   const { fetchWithToken } = useContext(AuthContext);
   const [table, setTable] = useState([]);
   const [champs, setChamps] = useState([]);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [error, setError] = useState('');
   const { tournaments } = useTournaments();
-  const [imagesLoaded, setImagesLoaded] = useState(false);
   const [champImagesLoaded, setChampImagesLoaded] = useState(false);
 
   const [selectedTournament, setSelectedTournament] = useState({ name: '2024 Mid-Season Invitational', patchesPlayed: '14.8' });
@@ -26,8 +23,6 @@ export function Stats() {
 
   const placeholder = '/placeholders/lolplaceholder.png'
 
-  //14.1-14.24
-  const patches = usePatches();
 
 
   const correctNames = {
@@ -55,6 +50,12 @@ export function Stats() {
     "Bel'Veth": "Belveth",
     "Kog'Maw": "KogMaw",
   };
+
+  useEffect(() => {
+    if (champImagesLoaded) {
+      handleChangeTable(selectedTournament);
+    }
+  }, [champImagesLoaded]);
   
   useEffect(() => {
     const localStorageChamps = localStorage.getItem('champions');
@@ -69,24 +70,11 @@ export function Stats() {
           setChamps(response.data);
           localStorage.setItem('champions', JSON.stringify(response.data));
           loadChampImages(response.data);
-        })
-        .catch(error => {
-          if(error.response.status == 429){
-            setError('Too many requests. Please try again later.');
-          } else if (error.response.status == 400){
-            setError('No games found for selected parameters.');
-          } else {
-            setError('An error occurred. Please try again later.');
-            console.error(error);
-          }
-          setTable([]);
         });
     }
   }, []);
   
-  useEffect(() => {
-    handleChangeTable(selectedTournament)
-  }, [champs]);
+  
  
   function handleChangeTable(tournament, patch, side) {
     setError('')
@@ -107,13 +95,13 @@ export function Stats() {
            const jsonData = {};
            Object.entries(response.data).forEach(([championName, championData]) => {
              let correctedChampionName = correctNames[championName] || championName;
-             let champImage;
-             for (let role in champs) {
-               if (champs[role][correctedChampionName]) {
-                 champImage = champs[role][correctedChampionName];
-                 break;
-               }
-             }
+             let champImage = placeholder; 
+              for (let role in champs) {
+                if (champs[role][correctedChampionName]) {
+                  champImage = champs[role][correctedChampionName];
+                  break;
+                }
+              }
              const data = {
                Champion: correctedChampionName,
                Picks: championData.picks,
@@ -217,7 +205,21 @@ export function Stats() {
     headerGroups,
     rows,
     prepareRow,
-  } = useTable({ columns, data }, useSortBy);
+  } = useTable(
+    { 
+      columns, 
+      data,
+      initialState: {
+        sortBy: [
+          {
+            id: 'Picks',
+            desc: true
+          }
+        ]
+      }
+    }, 
+    useSortBy
+  );
   
   
   function generatePatches(patchesPlayed) {
@@ -256,17 +258,17 @@ export function Stats() {
                 <label htmlFor="tournament">Tournament</label>
                 <select id="tournament" onChange={e => {
                   const tournamentName = e.target.value;
-                  const tournament = tournaments[tournamentName][0];
+                  const tournamentGroup = Object.values(tournaments).find(group => group.some(tournament => tournament.name === tournamentName));
+                  const tournament = tournamentGroup.find(tournament => tournament.name === tournamentName);
                   const nullPatch = ''
                   setSelectedPatch('')
                   setSelectedTournament(tournament);
                   handleChangeTable(tournament, nullPatch, selectedSide);
-                  
                 }}>
                   {Object.keys(tournaments).map((tournamentName, index) => (
                     <optgroup key={index} label={tournamentName}>
                       {tournaments[tournamentName].map((tournament, i) => (
-                        <option key={i} value={tournamentName}>{tournament.name}</option>
+                        <option key={i} value={tournament.name}>{tournament.name}</option>
                       ))}
                     </optgroup>
                   ))}
@@ -303,7 +305,7 @@ export function Stats() {
 
 
             { error && <div className='stat-error'>{error}</div> }
-              { table && !error && Object.keys(table).length > 0 && (
+              { table && !error && Object.keys(table).length > 0 && champImagesLoaded && (
                 <div className="stat-table-wrapper">
                 <div className="stat-table">
                   <table {...getTableProps()}>

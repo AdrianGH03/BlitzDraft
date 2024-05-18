@@ -8,18 +8,18 @@ import { Link } from 'react-router-dom';
 import { TeamImages } from '../Layout/TeamImages';
 
 export function DesktopTutorial() {
-  const tutorial1 = '/placeholders/tutorialtest.png'
-  const tutorial2 = '/placeholders/tutorialtest2.png'
-  const tutorial3 = '/placeholders/tutorialtest4.png'
-  const tutorial4 = '/placeholders/tutorialtest3.png'
-  const tutorial0 = '/placeholders/tutorialtest0.png'
+  const tutorial0 = '/placeholders/tutorialtest0.jpg'
+  const tutorial1 = '/placeholders/tutorialtest1.jpg'
+  const tutorial2 = '/placeholders/tutorialtest2.jpg'
+  const tutorial3 = '/placeholders/tutorialtest3.jpg'
+  const tutorial4 = '/placeholders/tutorialtest4.jpg'
 
   const tutorials = [
-    { image: tutorial0, text: 'Head over to the difficulty page to load a game. Feel free to select an available region or international of your choice or a random choice in the drop-down list. Points are not stored for non-registered users.' },
-    { image: tutorial1, text: 'All parts of the game are showcased in the yellow text. The goal of the game is to guess the correct pick or ban as they appear in a regular LoL esports game. Cards are NOT sorted by role order.' },
-    { image: tutorial2, text: 'A total of 20 cards will be shown. The order in which they appear is shown here marked 1-20. Each correct guess is 10 points. Sequential picks will be flashing on hover.' },
-    { image: tutorial3, text: 'The current card will be flashing yellow. To make a guess, select a champion and click the guess button. You may also use the filters and search bar to narrow down your guess.' },
-    { image: tutorial4, text: 'When all cards are revealed, the game will calculate your score. Cards ARE sorted by role order here. Once a game is complete, it cannot be replayed.' },
+    { image: tutorial0, text: 'Head over to the difficulty page to load a game. A random game will be selected by default and difficulty is split into 4 modes, each with a different starting card. You have options to choose a valid tournament from an available region and/or patch games were played. Choose custom mode to select your starting card in the game.' },
+    { image: tutorial1, text: 'All parts of the game are showcased by the text. The goal of the game is to guess the correct pick or ban as they would appear in a regular LoL esports game. Cards are NOT sorted by role order. The current card/guess will be flashing with either a yellow or lime border (if a sequential pick).' },
+    { image: tutorial2, text: 'A total of 20 cards will be shown. The order in which they appear is shown here marked 1-20. Each correct guess is 10 points. Lime/green colored order numbers mean sequential picks.' },
+    { image: tutorial3, text: 'Sequential picks (ex. Blue Pick 4 and Blue Pick 5) will be marked by lime green borders as they appear. You must guess for BOTH picks before they are revealed. If you got the order of the sequential picks wrong, your score will still be calculated as if they were reversed.' },
+    { image: tutorial4, text: 'When all cards are revealed, the game will calculate your score. Cards ARE sorted by role order here. Once a game is complete, you can refresh to retry, but you only have 30 minutes per game before it expires.' },
   ];
 
   const [currentTutorial, setCurrentTutorial] = useState(0);

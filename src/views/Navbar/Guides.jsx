@@ -1,11 +1,6 @@
-//Hooks
-import { useState, useEffect } from 'react';
+
 import { useYoutubeVideos } from '../../hooks/useYoutubeVideos';
 
-//NPM/React
-import { CustomSkeleton } from '../../components/CustomSkeleton';
-
-//assets
 
 
 

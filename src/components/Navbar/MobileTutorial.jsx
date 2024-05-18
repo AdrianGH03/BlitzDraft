@@ -7,33 +7,36 @@ import { Link } from 'react-router-dom';
 import { TeamImages } from '../Layout/TeamImages';
 
 export function MobileTutorial() {
+  const tutorial1 = '/placeholders/tutorialm1.png'
   const tutorial2 = '/placeholders/tutorialm2.png'
   const tutorial3 = '/placeholders/tutorialm3.png'
-  const tutorial4 = '/placeholders/home3.png'
-  const tutoriallast = '/placeholders/tutorialguessmobile.gif'
+  const tutorial4 = '/placeholders/tutorialm4.png'
+  const tutorial5 = '/placeholders/tutorialm5.png'
 
   const tutorials = [
+    { image: tutorial1, text: 'Head over to the difficulty page to load a game. A random game will be selected by default and difficulty is split into 4 modes, each with a different starting card. You have options to choose a valid tournament from an available region and/or patch games were played. Choose custom mode to select your starting card in the game.' },
     { 
       image: tutorial2, 
       text: [
-        'All parts of the game are numbered in yellow. The goal of the game is to guess the correct pick or ban as they appear. Picks are NOT sorted by role order. Team 1 is Blue side, Team 2 is Red side',
+        'All parts of the game are numbered here. The goal of the game is to guess the correct pick or ban as they appear. Picks are NOT sorted by role order. Top Team is Blue side, Bottom Team is Red side. Revealed cards will be greyed out.',
         'Team Bans',
         'Team Picks (Top, Jungle, Mid, ADC, Support)',
         'Role Filters',
         'Search Champions',
         'Selected champion guess',
-        'Team 1 Logo',
+        'Blue Team Logo',
         'Region',
         'Start Game / Guess Button',
         'Game Patch',
-        'Team 2 Logo',
+        'Red Team Logo',
         'Current card',
-        '30 Second Timer'
+        '30 Second Timer',
+        'Sequential Picks'
       ].map((item, index) => index === 0 ? item : `${index}. ${item}`),
     },
-    { image: tutorial3, text: 'A total of 20 cards will be shown. The amount of cards revealed when loading a game depends on your difficulty. The order in which they appear is shown above as marked by 1-20.' },
-    { image: tutoriallast, text: 'The current card will be flashing yellow. To make a guess, select a champion and click the guess button.' },
-    { image: tutorial4, text: 'When all cards are revealed, the game will be set to complete and showcase your score and accuracy. Picks ARE sorted by role order here. Sequential picks are calculated as if they were swapped.' },
+    { image: tutorial3, text: 'A total of 20 cards will be shown. The order in which they appear is shown here marked 1-20. Each correct guess is 10 points. Lime/green colored order numbers mean sequential picks.' },
+    { image: tutorial4, text: 'Sequential picks (ex. Blue Pick 4 and Blue Pick 5) will be marked by lime green borders as they appear. You must guess for BOTH picks before they are revealed. If you got the order of the sequential picks wrong, your score will still be calculated as if they were reversed.' },
+    { image: tutorial5, text: 'When all cards are revealed, the game will calculate your score. Cards ARE sorted by role order here. Once a game is complete, you can refresh to retry, but you only have 30 minutes per game before it expires.' },
     
   ];
   const [currentTutorial, setCurrentTutorial] = useState(0);

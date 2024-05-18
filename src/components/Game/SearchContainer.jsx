@@ -361,19 +361,23 @@ export function SearchContainer({ gameData }) {
             >
             <div className="game-search-champions">
               {Object.keys(filteredChampions).map(role =>
-                Object.keys(filteredChampions[role]).map(champ => (
-                  <div className="champ-container" key={champ} onClick={
-                    (revealedCards.includes(Object.keys(picks).find(key => picks[key] === champ)) && !(isSequentialPick(previousCard) && picks[previousCard] === champ)) ? () => {} : () => handleChampionClick(champ)}
-                  >
-                    <img src={filteredChampions[role][champ]} alt={champ} 
-                      style={{ 
-                        border: currentGuess === champ ? '2px solid #5be0e5ff' : ((revealedCards.includes(Object.keys(picks).find(key => picks[key] === champ)) && !(isSequentialPick(previousCard) && picks[previousCard] === champ)) ? '2px solid red' : ''),
-                        pointerEvents: (revealedCards.includes(Object.keys(picks).find(key => picks[key] === champ)) && !(isSequentialPick(previousCard) && picks[previousCard] === champ)) ? 'none' : ''
-                      }}
-                    />
-                    <span>{champ}</span>
-                  </div>
-                ))
+                Object.keys(filteredChampions[role]).map(champ => {
+                  const isBlocked = (revealedCards.includes(Object.keys(picks).find(key => picks[key] === champ)) && !(isSequentialPick(previousCard) && picks[previousCard] === champ));
+                  return (
+                    <div className="champ-container" key={champ} onClick={isBlocked ? () => {} : () => handleChampionClick(champ)}>
+                      <img 
+                        className={isBlocked ? 'blocked-champion' : ''}
+                        src={filteredChampions[role][champ]} 
+                        alt={champ} 
+                        style={{ 
+                          border: currentGuess === champ ? '2px solid #5be0e5ff' : isBlocked ? '2px solid red' : '',
+                          pointerEvents: isBlocked ? 'none' : ''
+                        }}
+                      />
+                      <span>{champ}</span>
+                    </div>
+                  );
+                })
               )}
             </div>
             </SimpleBar>

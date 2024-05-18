@@ -2,7 +2,6 @@
 //Hooks
 import { useState, useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { usePatches } from '../../hooks/usePatches';
 import { useTournaments } from '../../hooks/useTournaments';
 import { useOrder } from '../../hooks/useOrder';
 //REACT/NODEJS
@@ -49,7 +48,6 @@ export function Difficulty() {
   const [gameLoaded, setGameLoaded] = useState(true);
   const [gameLink, setGameLink] = useState('');
   const navigate = useNavigate();
-  const patches = usePatches();
   const { tournaments, getRandomTournament } = useTournaments();
   const order = useOrder();
   const [selectedTournament, setSelectedTournament] = useState(getRandomTournament());
@@ -263,8 +261,14 @@ export function Difficulty() {
                       </>
                     )}
                   </select>
-                </div>
+
                   
+                </div>
+                <section className="difficulty-lost">
+                    <Link to="/tutorial" className="difficulty-lost-link flash-animation">
+                      <span>Lost? Check out the tutorial!</span>
+                    </Link>
+                  </section>
             
             </section>
             <section className="difficulty-main">
@@ -332,6 +336,8 @@ export function Difficulty() {
               </div>
             </section>
          </div>
+
+         
 
           <section className="difficulty-regions">
             <TeamImages

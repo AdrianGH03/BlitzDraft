@@ -10,9 +10,9 @@ export const Tutorial = () => {
             
               <DesktopTutorial />
             
-            <div className="tutorial-mobile fade-in-fwd">
+            
               <MobileTutorial />
-            </div>
+            
         </section>
     </>
   )

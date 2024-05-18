@@ -138,7 +138,7 @@ left: 0;
 .home-bottom-region:hover{
   background-color: rgba(82, 6, 6, 0.8);
   transition: all 0.3s ease-in-out;
-  cursor: pointer;
+  
 }
 .home-bottom-region:hover img{
   transform: scale(1.1);

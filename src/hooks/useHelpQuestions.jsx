@@ -15,10 +15,6 @@ export const useHelpQuestions = () => {
             answer: "All games loaded are from the current season. Games are from all 4 majors regions (LPL, LCK, LCS, LEC) and minor regions (VCS, PCS, CBLOL, LLA) and range from regular season games to playoffs games. Worlds and MSI will be included accordingly."
         },
         {
-            question: "Do I even need an account?",
-            answer: "Signing up is optional for those who wish to store their points. It really means nothing. For now (possible leaderboard in the future)."
-        },
-        {
             question: "Can't you just cheat in this game?",
             answer: "Yes, but you learn absolutely nothing and gain absolutely nothing, so there is no point. It is almost impossible to control cheating here. The goal is to learn."
         },
@@ -32,7 +28,7 @@ export const useHelpQuestions = () => {
         },
         {
             question: "I lost my game, how do I go back?",
-            answer: "Please note that games are deleted every time you start a new game. Games are saved every time you complete a game. Games expire after 30 minutes. If you wish to go back to your current game, simply go back to the tab."
+            answer: "Please note that games are deleted every time you start a new game. Games expire after 30 minutes. If you wish to go back to your current game, simply go back to the tab. If you want to retry a game, also just refresh"
         },
         {
             question: "Why isn't X tournament here?",

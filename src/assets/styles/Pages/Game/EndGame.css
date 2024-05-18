@@ -75,10 +75,10 @@
     margin-bottom: 1rem;
 }
 .end-game-details .end-game-text p{
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 500;
     color: #fff;
-    font-family: 'Fugaz One', cursive; 
+    font-family: 'Orbitron', cursive; 
 }
 .end-game-details .end-game-emote img{
     max-width: 100px;
@@ -108,6 +108,7 @@
     font-size: 1rem;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
     border: none;
+    margin-top: 1rem;
 }
 
 .end-game-details-playagain-button:hover{
@@ -154,7 +155,7 @@
         max-width: 200px;
     }
     .end-game-details .end-game-text p{
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     
 }

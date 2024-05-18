@@ -56,18 +56,9 @@ export function GameContainer() {
         console.error('Error:', error);
         setIsLoading(false);
       });
-    }, [token]);
+    }, []);
     
-    useEffect(() => {
-      if (!isComplete && nextCard == undefined && !revealedCards.includes(nextCard)) {
-        fetchWithToken.put(`${import.meta.env.VITE_APP_SAVE_GAME}`, {
-          token: token,
-          guesses: guesses,
-          cardsRevealed: revealedCards,
-        });
-        
-      }
-    }, [isComplete, nextCard]);
+    
     
     return (
       <>
@@ -87,7 +78,7 @@ export function GameContainer() {
               
             </div>
           ) : error  ? (
-              <h1>Too many requests. Please try again later.</h1>
+              <h1 className='toomanyreqgame'>Too many requests. Please try again later.</h1>
           ) : (
             <SearchContainer gameData={gameData} />
           )}
