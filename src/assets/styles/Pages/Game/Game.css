@@ -169,7 +169,7 @@
 .game-timer {
     width: 100%;
     background-color: #121212;
-    
+    margin-top: -0.1rem;
 }
 .champ-container img {
     width: 70px;
@@ -217,7 +217,7 @@
     width: 100%; 
     background-color: var(--rich-black-2);
     padding: 0.4rem 1rem;
-    margin-top: -0.1rem;
+    margin-top: -0.15rem;
 
 }
 
