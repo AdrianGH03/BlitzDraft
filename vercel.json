@@ -1,16 +1,5 @@
 {
     "version": 2,
-    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }],
-    "headers": [
-        {
-          "source": "/public/(.*)",
-          "headers": [
-            {
-              "key": "Cache-Control",
-              "value": "public, max-age=28800"
-            }
-          ]
-        }
-    ]
+    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }]
       
 }
