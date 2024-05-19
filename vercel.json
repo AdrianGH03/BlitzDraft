@@ -13,14 +13,8 @@
     ],
     "rewrites": [
       {
-        "source": "/:path*",
-        "has": [
-          {
-            "type": "file",
-            "value": "/:path*"
-          }
-        ],
-        "destination": "/"
+        "source": "/(.*)",
+        "destination": "/index.html"
       }
     ]
   }
