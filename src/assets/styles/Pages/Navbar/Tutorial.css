@@ -48,7 +48,7 @@
     gap: 1rem;
 }
 .tutorial-img-container-mb img{
-    max-width: 80vw;
+    width: 60vw;
     object-fit: cover;
     border: 2px solid rgba(7, 3, 26, 0.39);
     border-radius: 10px;
@@ -88,8 +88,10 @@
 }
 /*Top Section Text*/
 .tutorial-text-container-mb{
-    max-width: 80vw;
+    max-width: 60vw;
     background-color: rgba(15, 15, 15, 0.507);
+    width: 80vw;
+    
 }
 .tutorial-text-container-mb > h2{
     padding: 1rem;
@@ -178,7 +180,12 @@
 
 @media(min-width: 550px){
     .tutorial-img-container-mb img{
-        max-width: 50vw;
+        max-width: 40vw;
+    }
+    .tutorial-text-container-mb{
+        max-width: 40vw;
+        background-color: rgba(15, 15, 15, 0.507);
+        
     }
 }
 
@@ -221,6 +228,13 @@
     .tutorial-text-container-desk{
         max-width: 20vw;
         background-color: rgba(15, 15, 15, 0.507);
+        height: 40vh;
+        max-height: 40vh;
+        overflow-y: hidden;
+        overflow: auto;
+    }
+    .tutorial-text-container-desk::-webkit-scrollbar{
+        display: none;
     }
     .tutorial-text-container-desk > h2{
         padding: 1rem;
@@ -312,6 +326,9 @@
 
     .tutorial-bot-links{
         display: flex;
+        flex-direction: row;
+        justify-content: center;
+        
         gap: 1rem;
         margin-top: 4rem;
         height: 35px;
@@ -339,6 +356,7 @@
     .tutorial-img-container-desk img{
         max-width: 600px;
     }
+    
 }
 @media(min-width: 1300px){
     .tutorial-regions-imagesL-desk{
@@ -349,15 +367,16 @@
     .tutorial-regions-imagesL-desk-2{
         display: none;
     }
+    .tutorial-text-container-desk{
+        height: 50vh;
+        max-height: 50vh;
+    }
 }
 @media(min-width: 1440px){
     .tutorial-img-container-desk img{
         max-width: 700px;
     }
-    .tutorial-bot-container-desk{
-        justify-content: start;
-        padding-left: 11rem;
-    }
+    
 }
 @media(min-width: 1600px){
     .tutorial-img-container-desk img{

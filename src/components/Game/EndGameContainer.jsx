@@ -17,7 +17,7 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
     const midIcon = '/placeholders/midIcon.png'
     const botIcon = '/placeholders/botIcon.png'
     const supportIcon = '/placeholders/supportIcon.png'
-    const placeholder = '/placeholders/lolplaceholder.png'
+    const placeholder = '/placeholders/lolplaceholder.jpg'
 
     const [scoreRange, setScoreRange] = useState(0)
     const [emote, setEmote] = useState(null)
@@ -30,29 +30,15 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
     const [imagesLoaded, setImagesLoaded] = useState(false);
 
 
-    const lowscoreEmote = '/emotes/lowscore.png'
-    const lowScoreEmote2 = '/emotes/lowscore2.png'
-    const lowScoreEmote3 = '/emotes/lowscore3.png'
-    const lowScoreEmote4 = '/emotes/lowscore4.png'
-    const lowScoreEmote5 = '/emotes/lowscore5.png'
-
-    const highscoreEmote = '/emotes/highscore.png'
-    const highScoreEmote2 = '/emotes/highscore2.png'
-    const highScoreEmote3 = '/emotes/highscore3.png'
-    const highScoreEmote4 = '/emotes/highscore4.png'
-    const highScoreEmote5 = '/emotes/highscore5.png'
-
-    const medscoreEmote = '/emotes/medscore.png'
-    const medScoreEmote2 = '/emotes/medscore2.png'
-    const medScoreEmote3 = '/emotes/medscore3.png'
-    const medScoreEmote4 = '/emotes/medscore4.png'
-    const medScoreEmote5 = '/emotes/medscore5.png'
+    const lowscoreEmote = '/emotes/lowscore2.png';
+    const highscoreEmote = '/emotes/highscore5.png';
+    const medscoreEmote = '/emotes/medscore2.png';
 
     const emotes = {
-        lowscore: [lowscoreEmote, lowScoreEmote2, lowScoreEmote3, lowScoreEmote4, lowScoreEmote5],
-        highscore: [highscoreEmote, highScoreEmote2, highScoreEmote3, highScoreEmote4, highScoreEmote5],
-        medscore: [medscoreEmote, medScoreEmote2, medScoreEmote3, medScoreEmote4, medScoreEmote5]
-    }
+        lowscore: [lowscoreEmote],
+        highscore: [highscoreEmote],
+        medscore: [medscoreEmote]
+    };
 
 
     const gameDataMatch = gameData.gameData.body.game.match;
@@ -104,11 +90,10 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
                     selectedEmotesArray = emotes.highscore;
                 }
 
-                let randomEmote = selectedEmotesArray[Math.floor(Math.random() * selectedEmotesArray.length)];
+                let randomEmote = selectedEmotesArray[0]; 
                 setEmote(randomEmote);
 
-                
-                const imageUrls = [topIcon, jungleIcon, midIcon, botIcon, supportIcon, lowscoreEmote, lowScoreEmote2, lowScoreEmote3, lowScoreEmote4, lowScoreEmote5, highscoreEmote, highScoreEmote2, highScoreEmote3, highScoreEmote4, highScoreEmote5, medscoreEmote, medScoreEmote2, medScoreEmote3, medScoreEmote4, medScoreEmote5];
+                const imageUrls = [topIcon, jungleIcon, midIcon, botIcon, supportIcon, lowscoreEmote, highscoreEmote, medscoreEmote];
                 let imagesToLoad = imageUrls.length;
 
                 

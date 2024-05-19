@@ -21,7 +21,7 @@ export function Stats() {
   const [selectedPatch, setSelectedPatch] = useState('');
   const [selectedSide, setSelectedSide] = useState('');
 
-  const placeholder = '/placeholders/lolplaceholder.png'
+  const placeholder = '/placeholders/lolplaceholder.jpg'
 
 
 

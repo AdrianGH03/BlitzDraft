@@ -25,7 +25,7 @@ export function TeamContainer({ gameData, team }) {
   const midIcon = '/placeholders/midIcon.png'
   const adcIcon = '/placeholders/botIcon.png'
   const supIcon = '/placeholders/supportIcon.png'
-  const placeholder = '/placeholders/lolplaceholder.png'
+  const placeholder = '/placeholders/lolplaceholder.jpg'
 
   
 

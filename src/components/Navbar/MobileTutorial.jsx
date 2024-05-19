@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 import { TeamImages } from '../Layout/TeamImages';
 
 export function MobileTutorial() {
-  const tutorial1 = '/placeholders/tutorialm1.png'
-  const tutorial2 = '/placeholders/tutorialm2.png'
-  const tutorial3 = '/placeholders/tutorialm3.png'
-  const tutorial4 = '/placeholders/tutorialm4.png'
-  const tutorial5 = '/placeholders/tutorialm5.png'
-  const tutorial6 = '/placeholders/tutorialm6.png'
+  const tutorial1 = '/placeholders/tutorialm1.jpg'
+  const tutorial2 = '/placeholders/tutorialm2.jpg'
+  const tutorial3 = '/placeholders/tutorialm3.jpg'
+  const tutorial4 = '/placeholders/tutorialm4.jpg'
+  const tutorial5 = '/placeholders/tutorialm5.jpg'
+  const tutorial6 = '/placeholders/tutorialm6.jpg'
 
   const tutorials = [
     { image: tutorial1, text: 'Head over to the difficulty page to load a game. A random game will be selected by default and difficulty is split into 4 modes, each with a different starting card. You have options to choose a valid tournament from an available region and/or patch games were played. Choose custom mode to select your starting card in the game.' },
