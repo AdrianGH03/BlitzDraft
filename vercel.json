@@ -2,7 +2,7 @@
     "version": 2,
     "headers": [
       {
-        "source": "/public/(.*)",
+        "source": "/(.*).(jpg|jpeg|png|gif)",
         "headers": [
           {
             "key": "Cache-Control",
