@@ -7,13 +7,19 @@
           {
             "key": "Cache-Control",
             "value": "no-store, max-age=31536000"
-          } 
+          }
         ]
       }
     ],
     "rewrites": [
       {
-        "source": "/[^.]+",
+        "source": "/:path*",
+        "has": [
+          {
+            "type": "file",
+            "value": "/:path*"
+          }
+        ],
         "destination": "/"
       }
     ]
