@@ -1,13 +1,16 @@
 {
+    "version": 2,
+    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }],
     "headers": [
-      {
-        "source": "/public/(.*)",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "public, max-age=14400"
-          }
-        ]
-      }
+        {
+          "source": "/public/(.*)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=28800"
+            }
+          ]
+        }
     ]
-  }
+      
+}
