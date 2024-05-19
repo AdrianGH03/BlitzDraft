@@ -10,13 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@cloudinary/react": "^1.13.0",
-    "@cloudinary/url-gen": "^1.19.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@tippyjs/react": "^4.2.6",
-    "@vercel/analytics": "^1.2.2",
     "axios": "^1.6.7",
     "bootstrap-icons": "^1.11.3",
     "dotenv": "^16.4.5",
