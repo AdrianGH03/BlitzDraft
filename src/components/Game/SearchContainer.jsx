@@ -89,10 +89,9 @@ export function SearchContainer({ gameData }) {
                 let nextCard = pickOrder[currentCardIndex + 1];
                 let cardAhead = pickOrder[currentCardIndex + 2];
                 let cardBehind = pickOrder[currentCardIndex - 1];
-                // Check if nextCard and cardAhead are a pair in sequentialPicks
+
                 const isSequentialPick = sequentialPicks.some(pair => pair.includes(nextCard) && pair.includes(cardAhead));
     
-                // If they are a pair, wait for both guesses before revealing the next card
                 if (isSequentialPick && !revealedCards.includes(cardAhead)) {
                   return 30;
                 }
@@ -259,11 +258,9 @@ export function SearchContainer({ gameData }) {
       let currentCardIndex = pickOrder.findIndex(card => card === currentCard);
       let nextCard = pickOrder[currentCardIndex + 1];
       let cardAhead = pickOrder[currentCardIndex + 2];
-    
-      // Check if nextCard and cardAhead are a pair in sequentialPicks
+
       const isSequentialPick = sequentialPicks.some(pair => pair.includes(nextCard) && pair.includes(cardAhead));
     
-      // If they are a pair, wait for both guesses before revealing the next card
       if (isSequentialPick && !revealedCards.includes(cardAhead)) {
         return;
       }
@@ -285,10 +282,8 @@ export function SearchContainer({ gameData }) {
     
 
     const isSequentialPick = (card) => {
-      // sequentialPicks is an array of pairs of sequential picks
       const pair = sequentialPicks.find(pair => pair.includes(card));
     
-      // If the card is part of a sequential pick and the other card in the pair has not been guessed yet
       if (pair && !revealedCards.includes(pair[0] === card ? pair[1] : pair[0])) {
         return true;
       }
