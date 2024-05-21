@@ -18,9 +18,7 @@ export const Header = () => {
   const location = useLocation();
 
   //Images
-  const logo = '/logoImages/smallLogo.png';
   const bigLogo = '/logoImages/logoTest-transformed.png';
-  const discordLogo = '/logoImages/discordIcon.png';
   
 
   const toggleMenu = () => {
@@ -92,9 +90,7 @@ export const Header = () => {
               
             </div>
             <div className="desk-nav-right">
-              <Tippy content="Join our Discord!" placement="bottom" className='move-left'>
-                <Link to="https://discord.gg/MgweDDrMHt" target='_blank'><img src={discordLogo} alt='logo' className='nav-discord' /></Link>
-              </Tippy>
+              
               <div className="play-container">
 
                 
@@ -106,8 +102,10 @@ export const Header = () => {
               </div>
               <div className="desk-logo-container">
                 
-                  <img src={logo} alt='logo' className='desk-nav-logo' onClick={() => goHome()} />
-                
+                <Link to="/" className="header-play">
+                  
+                  <span>HOME</span>
+                </Link>
               </div>
             </div>
           </div>
@@ -153,8 +151,8 @@ export const Header = () => {
           </div>
           <div className="nav-right">
             <div className="logo-container">
-              <Link to="https://discord.gg/MgweDDrMHt" target='_blank'><img src={discordLogo} alt='logo' className='nav-discord' /></Link>
-              <img src={logo} alt='logo' className='nav-logo' onClick={() => { goHome(); closeMenu() }} />
+              
+              
             </div>
           </div>
         </div>

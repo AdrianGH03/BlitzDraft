@@ -15,16 +15,12 @@ export const useHelpQuestions = () => {
             answer: "All games loaded are from the current season. Games are from all 4 majors regions (LPL, LCK, LCS, LEC) and minor regions (VCS, PCS, CBLOL, LLA) and range from regular season games to playoffs games. Worlds and MSI will be included accordingly."
         },
         {
-            question: "Can't you just cheat in this game?",
+            question: "I have X question or X issue, how can I contact you?",
+            answer: "You can contact me for inquiries at draftsimlol@gmail.com. I will gladly help to resolve any issue or question that arises. If any legal issues arise, please contact me immediately, I will resolve them as soon as possible."
+        },
+        {
+            question: "Can't you just cheat?",
             answer: "Yes, but you learn absolutely nothing and gain absolutely nothing, so there is no point. It is almost impossible to control cheating here. The goal is to learn."
-        },
-        {
-            question: "I encountered a bug, how do I report it?",
-            answer: "You can report bugs in the discord, located in the header menu."
-        },
-        {
-            question: "I have X feedback or X suggestion, how can I share it?",
-            answer: "You can share feedback or suggestions in the discord, located in the header menu."
         },
         {
             question: "I lost my game, how do I go back?",
@@ -32,16 +28,16 @@ export const useHelpQuestions = () => {
         },
         {
             question: "Why isn't X tournament here?",
-            answer: "Tournaments will be added as they start and have 10 games played (for population purposes). If you want support for a specific tournament, please let me know in the discord."
-        },
-        {
-            question: "I have X question or X issue, how can I contact you outside of discord?",
-            answer: "You can contact me for inquiries at draftsimlol@gmail.com. I will gladly help to resolve any issue or question that arises. If any legal issues arise, please contact me immediately, I will resolve them as soon as possible."
+            answer: "Tournaments will be added as they start and have 10 games played (for population purposes)."
         },
         {
             question: "Why was this created?",
             answer: "I made this as a learning tool and student project for myself and others. I love LoL Esports and I wanted to make something that would help me and others learn more about the game. I hope you enjoy it as much as I do! :)"
         },
+        {
+            question: "Is this site affiliated with Riot Games?",
+            answer: "No, BlitzDraft is a fan-made project. BlitzDraft isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc."
+        }
     ]);
     
     return [helpQuestions, setHelpQuestions];
