@@ -36,7 +36,7 @@ export const useHelpQuestions = () => {
         },
         {
             question: "I have X question or X issue, how can I contact you outside of discord?",
-            answer: "You can contact me for inquiries at loldraftsim@gmail.com. I will gladly help to resolve any issue or question that arises. If any legal issues arise, please contact me immediately, I will resolve them as soon as possible."
+            answer: "You can contact me for inquiries at draftsimlol@gmail.com. I will gladly help to resolve any issue or question that arises. If any legal issues arise, please contact me immediately, I will resolve them as soon as possible."
         },
         {
             question: "Why was this created?",
