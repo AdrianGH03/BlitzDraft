@@ -34,6 +34,14 @@ export const useHelpQuestions = () => {
             question: "Why isn't X tournament here?",
             answer: "Tournaments will be added as they start and have 10 games played (for population purposes). If you want support for a specific tournament, please let me know in the discord."
         },
+        {
+            question: "I have X question or X issue, how can I contact you outside of discord?",
+            answer: "You can contact me for inquiries at loldraftsim@gmail.com. I will gladly help to resolve any issue or question that arises. If any legal issues arise, please contact me immediately, I will resolve them as soon as possible."
+        },
+        {
+            question: "Why was this created?",
+            answer: "I made this as a learning tool and student project for myself and others. I love LoL Esports and I wanted to make something that would help me and others learn more about the game. I hope you enjoy it as much as I do! :)"
+        },
     ]);
     
     return [helpQuestions, setHelpQuestions];
