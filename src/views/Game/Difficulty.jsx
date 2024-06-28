@@ -164,6 +164,10 @@ export function Difficulty() {
     };
   }, []);
 
+  
+
+  
+
   function calculatePoints({startPick}){
     const startPickIndex = order.indexOf(startPick);
      if (startPickIndex === -1) {
@@ -178,24 +182,23 @@ export function Difficulty() {
     if (!patchesPlayed.includes('-')) {
       return [patchesPlayed];
     }
+    
   
-    const [start, end] = patchesPlayed.split('-').map(patch => parseFloat(patch));
-    const startInt = Math.floor(start);
-    const endInt = Math.floor(end);
-    const startDec = Math.round((start % 1) * 10);
-    const endDec = Math.round((end % 1) * 10);
+    const [start, end] = patchesPlayed.split('-');
+    const [startInt, startDec] = start.split('.').map(part => parseInt(part, 10));
+    const [endInt, endDec] = end.split('.').map(part => parseInt(part, 10));
   
     const patches = [];
   
     for (let i = startInt; i <= endInt; i++) {
-      const startPatch = i === startInt ? startDec : 0;
-      const endPatch = i === endInt ? endDec : 9;
+      let decStart = i === startInt ? startDec : 0;
+      let decEnd = i === endInt ? endDec : 9;
   
-      for (let j = startPatch; j <= endPatch; j++) {
-        patches.push(`${i}.${j}`);
+      for (let j = decStart; j <= decEnd; j++) {
+        patches.push(`${i}.${j < 10 ? j : j}`);
       }
     }
-  
+   
     return patches;
   }
  

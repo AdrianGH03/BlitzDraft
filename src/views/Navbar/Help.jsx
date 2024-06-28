@@ -28,7 +28,7 @@ export const Help = () => {
             </button>
             
               <p className='open'>
-                <p className="help-answer">{question.answer}</p>
+                <span className="help-answer">{question.answer}</span>
               </p>
             
           </div>

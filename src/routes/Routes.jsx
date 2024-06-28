@@ -1,5 +1,10 @@
 //Routes
-import { Route, Routes} from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
+
+//Views
+import { PasswordReset } from '../views/Auth/PasswordReset';
+import { UserProfile } from '../views/User/UserProfile';
+import { AuthPage } from '../views/Auth/AuthPage'; 
 
 //Navbar routes
 import { Tutorial } from '../views/Navbar/Tutorial';
@@ -17,17 +22,24 @@ import { NotFound } from '../views/NotFound';
 
 
 //Contexts
-
+import { useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
 
 
 export function AppRoutes() {
-  
-  
+  const { isAuthenticated } = useContext(AuthContext);
 
   return (
     <Routes>
       {/* Home Route */}
       <Route path="/" element={<Home />} />
+
+       {/* Auth Routes */}
+       <Route path="/auth" element={isAuthenticated ? <Navigate to="/user/profile" /> : <AuthPage />} />
+      <Route path="/reset/:token" element={<PasswordReset />} /> 
+
+      {/* User Routes */}
+      <Route path="/user/profile" element={isAuthenticated ? <UserProfile /> : <Navigate to="/auth" />} />
 
       {/* Nav Routes */}
       <Route path="/tutorial" element={<Tutorial />} />

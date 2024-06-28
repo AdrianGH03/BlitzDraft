@@ -1,11 +1,14 @@
 // Hooks
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useProfileImage } from '../../hooks/useProfileImage';
+import { useState, useContext, useEffect } from 'react';
 
 //REACT/NODEJS
 import { Link } from 'react-router-dom';
-import Tippy from '@tippyjs/react';
 
+//Contexts
+import { AuthContext } from '../../contexts/AuthContext';
+import { StyleContext } from '../../contexts/StyleContext';
 
 //Assets
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -14,8 +17,14 @@ import { faPersonCircleQuestion, faPlay, faBook, faGamepad, faRightToBracket, fa
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { userInfo, setIsAuthenticated, isAuthenticated } = useContext(AuthContext);
+  const { isLoading, setIsLoading } = useContext(StyleContext);
   const navigate = useNavigate();
+  var profileImage = useProfileImage();
   const location = useLocation();
+
+  //Images
+  const lolplaceholder = '/placeholders/lolplaceholder.png';
 
   //Images
   const bigLogo = '/logoImages/logoTest-transformed.png';
@@ -41,6 +50,13 @@ export const Header = () => {
     }
   }
 
+  function sendToProfile() {
+    navigate('/user/profile');
+    if (isOpen) {
+      setIsOpen(false);
+    }
+  }
+  
 
   function scrollToTop() {
     const contentContainer = document.querySelector('.content');
@@ -49,17 +65,35 @@ export const Header = () => {
     }
   }
 
+  useEffect(() => {
+    if (userInfo && Object.keys(userInfo).length !== 0 && profileImage != '') {
+      setIsLoading(false); 
+      setIsAuthenticated(true); 
+    } else if (!isLoading) {
+      setIsAuthenticated(false);
+    }
+  }, [userInfo, profileImage, isLoading]);
 
   useEffect(() => {
     closeMenu();
   }, [location]);
-
+  
   return (
     <>
       <div className={isOpen ? "header header-open" : "header"}>
         <div className="navbar-desk">
           <div className="navbar">
             <div className="desk-nav-left">
+
+                <div className="user-info" onClick={() => sendToProfile()} style={{ display: isAuthenticated ? 'block' : 'none' }}>
+                  <img src={profileImage ? profileImage : lolplaceholder} alt='profile' className='desk-nav-profile' crossOrigin={"anonymous"} />
+                </div>
+
+              
+                <Link to="/auth" className="desk-nav-account" style={{ display: isAuthenticated === false ? 'block' : 'none' }} onClick={() => scrollToTop()}>
+                  <FontAwesomeIcon icon={faRightToBracket} />&nbsp;
+                  <span>&nbsp;Sign Up</span>
+                </Link>
 
                 <Link to="/help" className="desk-nav-faq" onClick={() => scrollToTop()}>
                   <FontAwesomeIcon icon={faPersonCircleQuestion} />
@@ -119,6 +153,19 @@ export const Header = () => {
           </div>
           <div className={`nav-left ${isOpen ? 'open' : ''}`}>
           
+            {
+              userInfo && Object.keys(userInfo).length !== 0 && profileImage != '' ? (
+                <div className="user-info-mobile" onClick={() => sendToProfile()}>
+                  <img src={profileImage ? profileImage : lolplaceholder} alt='profile' className='nav-profile' crossOrigin={"anonymous"} />
+                  <p>{(userInfo.username.length > 11 ? userInfo.username.substring(0, 11) + "..." : userInfo.username).toUpperCase()}&apos;S PROFILE</p>
+                </div>
+              ) : (
+                <Link to="/auth" className="nav-account" onClick={() => closeMenu()}>
+                  <FontAwesomeIcon icon={faRightToBracket} style={{color: '#fff'}}/>
+                  <span>SIGN UP</span>
+                </Link>
+              )
+            }
             
             <Link to="/help" className="nav-faq" onClick={() => closeMenu()}>
               <FontAwesomeIcon icon={faPersonCircleQuestion} style={{color: '#fff'}}/>
