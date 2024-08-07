@@ -26,9 +26,9 @@ export function Difficulty() {
     },
     medium: {
       pointsPer: 10,
-      startCard: 'Team1Pick3',
-      cardsShown: 10,
-      total: 100
+      startCard: 'Team1Pick2',
+      cardsShown: 9,
+      total: 110
     },
     hard: {
       pointsPer: 10,
@@ -38,9 +38,9 @@ export function Difficulty() {
     },
     custom: {
       pointsPer: 10,
-      startCard: 'Team1Ban5',
-      cardsShown: 15,
-      total: 50
+      startCard: 'Team1Ban1',
+      cardsShown: 0,
+      total: 200
     }
   });
   const { fetchWithToken, error, setError } = useContext(AuthContext);
@@ -168,14 +168,28 @@ export function Difficulty() {
 
   
 
-  function calculatePoints({startPick}){
+  function calculatePoints({ startPick }) {
     const startPickIndex = order.indexOf(startPick);
-     if (startPickIndex === -1) {
-       setError('Invalid start pick.');
-     }
-     let total = (order.length - startPickIndex) * 10
-     let cardsShown = order.slice(0, startPickIndex).length
-     return {...difficultySettings, custom: {pointsPer: 10, startCard: startPick, cardsShown: cardsShown, total: total}}
+    
+    if (startPickIndex === -1) {
+      setError('Invalid start pick.');
+      return;
+    }
+    
+    let total = (order.length - startPickIndex) * 10;
+    const cardsShown = order.slice(0, startPickIndex).length;
+    
+    total += 30;
+    
+    return {
+      ...difficultySettings,
+      custom: {
+        pointsPer: 10,
+        startCard: startPick,
+        cardsShown: cardsShown,
+        total: total
+      }
+    };
   }
 
   function generatePatches(patchesPlayed) {
@@ -201,16 +215,28 @@ export function Difficulty() {
    
     return patches;
   }
+
+  const handleImageClick = (region) => {
+    const selectedTournament = tournaments[region][tournaments[region].length - 1];
+    setSelectedTournament(selectedTournament);
+    setSelectedPatch('');
+    setIsRandomTournament(false);
+  };
  
   return (
     <>
       <main className="difficulty-container fade-in-fwd">
         
         <div className="difficulty-wrapper">
+
+            {/* LEFT SIDE */}
             <section className="stat-filters">
               <div className="stat-filter">
                   <label htmlFor="tournament">Tournament</label>
-                  <select id="tournament" onChange={e => {
+                  <select 
+                    id="tournament" 
+                    value={isRandomTournament ? 'random' : selectedTournament?.name}
+                    onChange={e => {
                       if (e.target.value === 'random') {
                         setSelectedTournament(getRandomTournament());
                         setSelectedPatch('');
@@ -220,7 +246,8 @@ export function Difficulty() {
                         setSelectedTournament(selectedTournament);
                         setIsRandomTournament(false);
                       }
-                    }}>
+                    }}
+                  >
                     <option value="random">Random</option>
                     {Object.keys(tournaments).map((tournament, index) => (
                       <optgroup key={index} label={tournament}>
@@ -274,6 +301,9 @@ export function Difficulty() {
                   </section>
             
             </section>
+
+
+            {/* RIGHT SIDE */}
             <section className="difficulty-main">
               <div className="difficulty-main-text">
                 <div>
@@ -293,22 +323,22 @@ export function Difficulty() {
                   <ul className="difficulty-main-settings">
                     <li>
                       <span>
-                        Points Per&nbsp; ---- &nbsp;{difficultySettings[difficulty].pointsPer}
+                        <span>Points Per:</span> {difficultySettings[difficulty].pointsPer}
                       </span>
                     </li>
                     <li>
                       <span>
-                        Start Card&nbsp; ---- &nbsp;{difficulty == "custom" && selectedStart ? selectedStart : difficultySettings[difficulty].startCard}
+                        <span>Start Card:</span> {difficulty == "custom" && selectedStart ? selectedStart : difficultySettings[difficulty].startCard}
                       </span>
                     </li>
                     <li>
                       <span>
-                        Total Points&nbsp; ---- &nbsp;{difficultySettings[difficulty].total}
+                        <span>Total Points:</span> {difficultySettings[difficulty].total}
                       </span>
                     </li>
                     <li>
                       <span>
-                        Cards-Shown&nbsp; ---- &nbsp;{difficultySettings[difficulty].cardsShown+"/20"}
+                        <span>Cards-Shown:</span> {difficultySettings[difficulty].cardsShown+"/20"}
                       </span>
                     </li>
                   </ul>
@@ -341,12 +371,13 @@ export function Difficulty() {
          </div>
 
          
-
+          {/* BOTTOM SIDE */}
           <section className="difficulty-regions">
             <TeamImages
               containerClass="difficulty-regionimgs-container"
               itemClass="difficulty-region"
               showName={false}
+              onImageClick={handleImageClick}
             />
           </section>
          

@@ -2,29 +2,29 @@
 
 
 const logos = {
-  'MSI 2024': '/logoImages/msi.png',
+  'MSI': '/logoImages/msi.png',
   'LEC': '/logoImages/lec.png',
   'LCK': '/logoImages/lck.png',
   'LCS': '/logoImages/lcs.png',
   'LPL': '/logoImages/lpl.png',
-  'VCS':'/logoImages/vcs.png',
+  'VCS': '/logoImages/vcs.png',
   'PCS': '/logoImages/pcs.png',
   'CBLOL': '/logoImages/cblol.png',
   'LLA': '/logoImages/lla.png',
 };
 
-const regions = ['MSI 2024', 'LEC', 'LCK', 'LCS', 'LPL', 'VCS', 'PCS', 'CBLOL', 'LLA'];
+const regions = ['MSI', 'LEC', 'LCK', 'LCS', 'LPL', 'VCS', 'PCS', 'CBLOL', 'LLA'];
 
-export function TeamImages({ containerClass, itemClass, titleClass, showName }){
+export function TeamImages({ containerClass, itemClass, titleClass, showName, onImageClick }) {
   return (
     <ul className={containerClass}>
-        {regions.map((region, index) => (
-        <li key={index} className={itemClass}>
-            {showName && <span className={titleClass}>{region}</span> }
-            <img src={logos[region]} />
+      {regions.map((region, index) => (
+        <li key={index} className={itemClass} onClick={() => onImageClick(region)}>
+          {showName && <span className={titleClass}>{region}</span>}
+          <img src={logos[region]} alt={region} />
         </li>
-        ))}
+      ))}
     </ul>
-  )
-};
+  );
+}
 

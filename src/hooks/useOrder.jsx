@@ -10,9 +10,7 @@ export function useOrder() {
     "Team2Ban3",
     "Team1Pick1",
     "Team2Pick1",
-    "Team2Pick2",
     "Team1Pick2",
-    "Team1Pick3",
     "Team2Pick3",
     "Team2Ban4",
     "Team1Ban4",
@@ -20,7 +18,6 @@ export function useOrder() {
     "Team1Ban5",
     "Team2Pick4",
     "Team1Pick4",
-    "Team1Pick5",
     "Team2Pick5",
   ], []);
 

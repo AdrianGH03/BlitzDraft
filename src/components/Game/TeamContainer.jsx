@@ -18,6 +18,8 @@ export function TeamContainer({ gameData, team }) {
   const picksByRoleOrder = gameDataTeam[`${team}PicksByRoleOrder`].split(',');
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [imagesLoadedCount, setImagesLoadedCount] = useState(0);
+  const startedPick = gameData.gameData.body.startPick;
+  const sequentialPickStarts = ["Team2Pick2", "Team1Pick3", "Team1Pick5"]
   
   //Images
   const topIcon = '/placeholders/topIcon.png'
@@ -50,8 +52,6 @@ export function TeamContainer({ gameData, team }) {
     return pickKey;
   });
 
-  
-  
 
   useEffect(() => {
     const handleResize = () => {
@@ -113,6 +113,8 @@ export function TeamContainer({ gameData, team }) {
         } else {
           setCardAhead('');
         }
+
+        
   
         if (pickOrder.length === nextIndex && !isComplete) {
           setIsLoading(true);
@@ -163,6 +165,8 @@ export function TeamContainer({ gameData, team }) {
         <h2
           style={{ fontSize: '0.6rem', textAlign: 'start', color: 'red', padding: '10px'}}
         >{team == 'Team1' ? 'Blue' : 'Red'} side bans</h2>
+
+        {/* THIS IS THE BANS IMAGES */}
         {bans && (
           <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             {[...Array(5)].map((_, i) => (
@@ -186,11 +190,15 @@ export function TeamContainer({ gameData, team }) {
       <h2
         style={{ fontSize: '0.6rem', textAlign: 'end', color: team === 'Team1' ? '#5be0e5ff' : 'red', padding: '10px'}}
       >{team == 'Team1' ? 'Blue' : 'Red'} side picks &nbsp;(Top → Support)</h2>
+
+      
       <div className={'game-team1-picks'}>
         {picks && (
           <>
             {[...Array(5)].map((_, i) => (
               <div key={i} className={nextCard === `${team}Pick${i + 1}` && !isComplete ? 'flash-animation' : ''}>
+
+                {/* THIS IS THE IMAGE FOR PICKS */}
                 <img 
                   className={isComplete || revealedCards.includes(`${team}Pick${i + 1}`) ? 'card-image' : 'placeholder-image'}
                   src={
@@ -212,6 +220,8 @@ export function TeamContainer({ gameData, team }) {
                     objectFit: isComplete || (revealedCards.includes(`${team}Pick${i + 1}`) && !isSequentialPick(`${team}Pick${i + 1}`)) ? 'cover' : 'contain',
                   }}
                 />
+
+                {/* THIS IS THE TEXT FOR PICKS */}
                 <div className='game-team-names'>
                   <span
                     style={{ color: team === 'Team1' ? 'white' : 'white' }}

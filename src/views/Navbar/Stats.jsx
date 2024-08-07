@@ -26,29 +26,7 @@ export function Stats() {
 
 
   const correctNames = {
-    "Wukong": "MonkeyKing",
-    "Miss Fortune": "MissFortune",
-    "ChoGath": "Cho'Gath",
-    "TahmKench": "Tahm Kench",
-    "RekSai": "RekSai",
-    "Vel'Koz": "Velkoz",
-    "Master Yi": "MasterYi",
-    "Twisted Fate": "TwistedFate",
-    "Dr. Mundo": "DrMundo",
-    "Jarvan IV": "JarvanIV",
-    "Kha'Zix": "Khazix",
-    "LeBlanc": "Leblanc",
-    "Lee Sin": "LeeSin",
-    "Belveth": "Belveth",
-    "Xin Zhao": "XinZhao",
-    "Aurelion Sol": "AurelionSol",
     "Renata Glasc": "Renata",
-    "Tahm Kench": "TahmKench",
-    "Kai'Sa": "Kaisa",
-    "K'Sante": "KSante",
-    "Rek'Sai": "RekSai",
-    "Bel'Veth": "Belveth",
-    "Kog'Maw": "KogMaw",
   };
 
   useEffect(() => {
@@ -223,25 +201,39 @@ export function Stats() {
   
   
   function generatePatches(patchesPlayed) {
-    const [start, end] = patchesPlayed.split('-').map(patch => parseFloat(patch));
-    const startInt = Math.floor(start);
-    const endInt = Math.floor(end);
-    const startDec = Math.round((start % 1) * 10);
-    const endDec = Math.round((end % 1) * 10);
+    if (!patchesPlayed.includes('-')) {
+      return [patchesPlayed];
+    }
+    
+  
+    const [start, end] = patchesPlayed.split('-');
+    const [startInt, startDec] = start.split('.').map(part => parseInt(part, 10));
+    const [endInt, endDec] = end.split('.').map(part => parseInt(part, 10));
   
     const patches = [];
   
     for (let i = startInt; i <= endInt; i++) {
-      const startPatch = i === startInt ? startDec : 0;
-      const endPatch = i === endInt ? endDec : 9;
+      let decStart = i === startInt ? startDec : 0;
+      let decEnd = i === endInt ? endDec : 9;
   
-      for (let j = startPatch; j <= endPatch; j++) {
-        patches.push(`${i}.${j}`);
+      for (let j = decStart; j <= decEnd; j++) {
+        patches.push(`${i}.${j < 10 ? j : j}`);
       }
     }
-  
+   
     return patches;
   }
+
+  const handleImageClick = (region) => {
+    const selectedTournament = tournaments[region][tournaments[region].length - 1];
+    setSelectedTournament(selectedTournament);
+    setSelectedPatch(''); // Reset patch
+    setSelectedSide(''); // Reset side
+    handleChangeTable(selectedTournament); // Ensure the table updates with the correct tournament
+  
+  };
+
+
   return (
     <>
     
@@ -256,15 +248,18 @@ export function Stats() {
             <div className="stat-filters">
               <div className="stat-filter">
                 <label htmlFor="tournament">Tournament</label>
-                <select id="tournament" onChange={e => {
-                  const tournamentName = e.target.value;
-                  const tournamentGroup = Object.values(tournaments).find(group => group.some(tournament => tournament.name === tournamentName));
-                  const tournament = tournamentGroup.find(tournament => tournament.name === tournamentName);
-                  const nullPatch = ''
-                  setSelectedPatch('')
-                  setSelectedTournament(tournament);
-                  handleChangeTable(tournament, nullPatch, selectedSide);
-                }}>
+                <select
+                  id="tournament"
+                  value={selectedTournament.name}
+                  onChange={e => {
+                    const tournamentName = e.target.value;
+                    const tournamentGroup = Object.values(tournaments).find(group => group.some(tournament => tournament.name === tournamentName));
+                    const tournament = tournamentGroup.find(tournament => tournament.name === tournamentName);
+                    setSelectedPatch(''); // Reset patch
+                    setSelectedTournament(tournament);
+                    handleChangeTable(tournament, '', selectedSide);
+                  }}
+                >
                   {Object.keys(tournaments).map((tournamentName, index) => (
                     <optgroup key={index} label={tournamentName}>
                       {tournaments[tournamentName].map((tournament, i) => (
@@ -277,23 +272,37 @@ export function Stats() {
 
               <div className="stat-filter">
                 <label htmlFor="patch">Patch</label>
-                <select id="patch" onChange={e => {
-                  setSelectedPatch(e.target.value);
-                  handleChangeTable(selectedTournament, e.target.value, selectedSide);
-                }}>
-                  <option value="">All</option>
-                  {selectedTournament && generatePatches(selectedTournament.patchesPlayed).map((patch, index) => (
-                    <option key={index} value={patch}>{patch}</option>
-                  ))}
+                <select
+                  id="patch"
+                  value={selectedPatch}
+                  onChange={e => {
+                    setSelectedPatch(e.target.value);
+                    handleChangeTable(selectedTournament, e.target.value, selectedSide);
+                  }}
+                >
+                  {selectedTournament && generatePatches(selectedTournament.patchesPlayed).length === 1 ? (
+                    <option value="">All</option>
+                  ) : (
+                    <>
+                      <option value="">All</option>
+                      {selectedTournament && generatePatches(selectedTournament.patchesPlayed).map((patch, index) => (
+                        <option key={index} value={patch}>{patch}</option>
+                      ))}
+                    </>
+                  )}
                 </select>
               </div>
 
               <div className="stat-filter">
                 <label htmlFor="side">Side</label>
-                <select id="side" onChange={e => {
-                  setSelectedSide(e.target.value);
-                  handleChangeTable(selectedTournament, selectedPatch, e.target.value);
-                }}>
+                <select
+                  id="side"
+                  value={selectedSide}
+                  onChange={e => {
+                    setSelectedSide(e.target.value);
+                    handleChangeTable(selectedTournament, selectedPatch, e.target.value);
+                  }}
+                >
                   <option value="">All</option>
                   <option value="Team1">Blue</option>
                   <option value="Team2">Red</option>
@@ -351,6 +360,7 @@ export function Stats() {
                 containerClass="stat-teams-regions-container"
                 itemClass="stat-teams-region"
                 showName={false}
+                onImageClick={handleImageClick}
               />
             </div>
             </div>
