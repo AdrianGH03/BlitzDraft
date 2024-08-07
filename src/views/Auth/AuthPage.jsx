@@ -1,13 +1,13 @@
 //Hooks
 import { useState } from 'react'
-import { Login } from '../../components/Authentication/Login'
-import { Signup } from '../../components/Authentication/Signup'
-import  { PasswordReset }  from '../../components/Authentication/PasswordReset'
+import { Login } from '../../components/Authentication/Login.jsx'
+import { Signup } from '../../components/Authentication/Signup.jsx'
+import  { PasswordReset }  from '../../components/Authentication/PasswordReset.jsx'
 //Hooks
 import { useContext } from 'react';
 
 //Contexts
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../contexts/AuthContext.jsx';
 
 
 export function AuthPage() {

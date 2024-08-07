@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faQuestion } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import { TeamImages } from '../Layout/TeamImages';
+import { TeamImages } from '../Layout/TeamImages.jsx';
 
 export function MobileTutorial() {
   const tutorial1 = '/placeholders/tutorialm1.jpg'

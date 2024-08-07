@@ -5,7 +5,7 @@ import { faPlay, faSquarePollVertical } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 
 
-import { TeamImages } from '../Layout/TeamImages';
+import { TeamImages } from '../Layout/TeamImages.jsx';
 
 export function DesktopTutorial() {
   const tutorial0 = '/placeholders/tutorialtest0.jpg'

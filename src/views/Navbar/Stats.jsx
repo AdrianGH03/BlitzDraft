@@ -1,12 +1,12 @@
 
 import  { useEffect, useState, useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
-import { TeamImages } from '../../components/Layout/TeamImages';
+import { AuthContext } from '../../contexts/AuthContext.jsx';
+import { TeamImages } from '../../components/Layout/TeamImages.jsx';
 import { useTable, useSortBy } from 'react-table';
 import { useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortUp, faSortDown, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { useTournaments } from '../../hooks/useTournaments';
+import { useTournaments } from '../../hooks/useTournaments.jsx';
 
 
 export function Stats() {

@@ -1,15 +1,15 @@
 //Hooks and Context
 import { useContext, useEffect, useState } from 'react';
-import { StyleContext } from '../../contexts/StyleContext';
-import { GameContext } from '../../contexts/GameContext';
-import { AuthContext } from '../../contexts/AuthContext';
+import { StyleContext } from '../../contexts/StyleContext.jsx';
+import { GameContext } from '../../contexts/GameContext.jsx';
+import { AuthContext } from '../../contexts/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
 
 
 //Components
-import { TeamContainer } from './TeamContainer';
-import { SearchContainer } from './SearchContainer';
-import { EndGameContainer } from './EndGameContainer';
+import { TeamContainer } from './TeamContainer.jsx';
+import { SearchContainer } from './SearchContainer.jsx';
+import { EndGameContainer } from './EndGameContainer.jsx';
 
 
 export function GameContainer() {

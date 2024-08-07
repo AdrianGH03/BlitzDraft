@@ -1,5 +1,5 @@
 //Context
-import { GameContext } from '../../contexts/GameContext';
+import { GameContext } from '../../contexts/GameContext.jsx';
 
 //Hooks
 import {  useState } from 'react';
@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 
 
 //Assets
-import { GameContainer } from '../../components/Game/GameContainer';
+import { GameContainer } from '../../components/Game/GameContainer.jsx';
 
 
 export function Game() {

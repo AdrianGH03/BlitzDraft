@@ -1,6 +1,6 @@
 //Hooks
 import { useState } from "react";
-import { useHelpQuestions } from "../../hooks/useHelpQuestions"
+import { useHelpQuestions } from "../../hooks/useHelpQuestions.jsx"
 
 //NPM/React
 import { Link } from "react-router-dom";

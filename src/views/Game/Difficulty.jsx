@@ -2,14 +2,14 @@
 //Hooks
 import { useState, useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { useTournaments } from '../../hooks/useTournaments';
-import { useOrder } from '../../hooks/useOrder';
+import { useTournaments } from '../../hooks/useTournaments.jsx';
+import { useOrder } from '../../hooks/useOrder.jsx';
 //REACT/NODEJS
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../contexts/AuthContext.jsx';
 
 //Assets
 
-import { TeamImages } from '../../components/Layout/TeamImages';
+import { TeamImages } from '../../components/Layout/TeamImages.jsx';
 
 
 

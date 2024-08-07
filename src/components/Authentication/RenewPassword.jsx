@@ -2,12 +2,12 @@
 import { useState, useContext } from 'react';
 
 //Context
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../contexts/AuthContext.jsx';
 import { useNavigate, useParams } from 'react-router-dom';
 
 //Assets
-import { Button } from '../Forms/Button';
-import { InputField } from '../Forms/InputField';
+import { Button } from '../Forms/Button.jsx';
+import { InputField } from '../Forms/InputField.jsx';
 
 
 export const RenewPassword = () => {

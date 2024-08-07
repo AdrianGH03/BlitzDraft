@@ -1,10 +1,10 @@
 //Hooks
 import { useEffect, useState } from 'react';
-import { useUserInfo } from './hooks/useUserInfo'; 
+import { useUserInfo } from './hooks/useUserInfo.jsx'; 
 
 // Contexts
-import { AuthContext } from './contexts/AuthContext'; 
-import { StyleContext } from './contexts/StyleContext';
+import { AuthContext } from './contexts/AuthContext.jsx'; 
+import { StyleContext } from './contexts/StyleContext.jsx';
 
 //NPM/React
 import axios from 'axios';
@@ -12,8 +12,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 
 //Pages
-import { Layout } from './views/Layout';
-import { AppRoutes } from './routes/Routes';
+import { Layout } from './views/Layout.jsx';
+import { AppRoutes } from './routes/Routes.jsx';
 
 
 

@@ -2,11 +2,11 @@
 import { useState, useContext } from 'react';
 
 //Context
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../contexts/AuthContext.jsx';
 
 //Assets
-import { Button } from '../Forms/Button';
-import { InputField } from '../Forms/InputField';
+import { Button } from '../Forms/Button.jsx';
+import { InputField } from '../Forms/InputField.jsx';
 import PropTypes from 'prop-types';
 
 export const Login = ({ setForgotPassword }) => {

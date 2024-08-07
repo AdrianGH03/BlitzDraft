@@ -2,10 +2,10 @@
 import { useState, useEffect, useContext } from 'react';
 
 //Contexts
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../contexts/AuthContext.jsx';
 
 //NPM/REACT
-import Tippy from '@tippyjs/react';
+
 import PropTypes from 'prop-types';
 
 export const EditPicture = ({ setProfileImage }) => {

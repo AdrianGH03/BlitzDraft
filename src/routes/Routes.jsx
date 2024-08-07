@@ -2,28 +2,28 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 //Views
-import { PasswordReset } from '../views/Auth/PasswordReset';
-import { UserProfile } from '../views/User/UserProfile';
-import { AuthPage } from '../views/Auth/AuthPage'; 
+import { PasswordReset } from '../views/Auth/PasswordReset.jsx';
+import { UserProfile } from '../views/User/UserProfile.jsx';
+import { AuthPage } from '../views/Auth/AuthPage.jsx'; 
 
 //Navbar routes
-import { Tutorial } from '../views/Navbar/Tutorial';
-import { Guides } from '../views/Navbar/Guides';
-import { Help } from '../views/Navbar/Help';
-import { Home } from '../views/Navbar/Home';
-import { Stats } from '../views/Navbar/Stats';
+import { Tutorial } from '../views/Navbar/Tutorial.jsx';
+import { Guides } from '../views/Navbar/Guides.jsx';
+import { Help } from '../views/Navbar/Help.jsx';
+import { Home } from '../views/Navbar/Home.jsx';
+import { Stats } from '../views/Navbar/Stats.jsx';
 
 //Game Routes
-import { Difficulty } from '../views/Game/Difficulty';
-import { Game } from '../views/Game/Game';
+import { Difficulty } from '../views/Game/Difficulty.jsx';
+import { Game } from '../views/Game/Game.jsx';
 
 //404
-import { NotFound } from '../views/NotFound';
+import { NotFound } from '../views/NotFound.jsx';
 
 
 //Contexts
 import { useContext } from 'react';
-import { AuthContext } from '../contexts/AuthContext';
+import { AuthContext } from '../contexts/AuthContext.jsx';
 
 
 export function AppRoutes() {

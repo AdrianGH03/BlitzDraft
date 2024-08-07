@@ -1,14 +1,14 @@
 // Hooks
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useProfileImage } from '../../hooks/useProfileImage';
+import { useProfileImage } from '../../hooks/useProfileImage.jsx';
 import { useState, useContext, useEffect } from 'react';
 
 //REACT/NODEJS
 import { Link } from 'react-router-dom';
 
 //Contexts
-import { AuthContext } from '../../contexts/AuthContext';
-import { StyleContext } from '../../contexts/StyleContext';
+import { AuthContext } from '../../contexts/AuthContext.jsx';
+import { StyleContext } from '../../contexts/StyleContext.jsx';
 
 //Assets
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

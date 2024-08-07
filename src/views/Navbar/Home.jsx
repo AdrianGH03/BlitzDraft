@@ -2,7 +2,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faQuestion } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import { TeamImages } from '../../components/Layout/TeamImages'
+import { TeamImages } from '../../components/Layout/TeamImages.jsx'
 export function Home() {
   
   return (

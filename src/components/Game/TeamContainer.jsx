@@ -1,8 +1,8 @@
 //hooks and context
 import { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { StyleContext } from '../../contexts/StyleContext';
-import { GameContext } from '../../contexts/GameContext';
+import { StyleContext } from '../../contexts/StyleContext.jsx';
+import { GameContext } from '../../contexts/GameContext.jsx';
 
 //Assets
 

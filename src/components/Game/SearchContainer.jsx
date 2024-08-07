@@ -3,8 +3,8 @@ import { useState, useEffect, useRef, useContext } from 'react';
 import { useSpring, animated } from 'react-spring';
 
 //Contexts
-import { AuthContext } from '../../contexts/AuthContext';
-import { GameContext } from '../../contexts/GameContext';
+import { AuthContext } from '../../contexts/AuthContext.jsx';
+import { GameContext } from '../../contexts/GameContext.jsx';
 import PropTypes from 'prop-types';
 
 //assets

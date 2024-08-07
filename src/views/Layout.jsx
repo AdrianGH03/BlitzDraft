@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { Header } from '../components/Layout/Header';
-import { Footer } from '../components/Layout/Footer';
+import { Header } from '../components/Layout/Header.jsx';
+import { Footer } from '../components/Layout/Footer.jsx';
 
 
 export const Layout = ({ children }) => {

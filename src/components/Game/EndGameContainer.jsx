@@ -7,7 +7,7 @@ import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 
 //Contexts
-import { AuthContext } from '../../contexts/AuthContext'
+import { AuthContext } from '../../contexts/AuthContext.jsx'
 
 
 

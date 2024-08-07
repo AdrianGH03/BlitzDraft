@@ -1,18 +1,18 @@
 // Hooks
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useProfileImage } from '../../hooks/useProfileImage';
+import { useProfileImage } from '../../hooks/useProfileImage.jsx';
 
 // NPM/React
 import Tippy from '@tippyjs/react';
 
 //Contexts
-import { AuthContext } from '../../contexts/AuthContext';
-import { StyleContext } from '../../contexts/StyleContext';
+import { AuthContext } from '../../contexts/AuthContext.jsx';
+import { StyleContext } from '../../contexts/StyleContext.jsx';
 
 // Misc
-import { HomeComponent } from '../../components/User/HomeComponent';
-import { EditPicture } from '../../components/User/EditPicture';
+import { HomeComponent } from '../../components/User/HomeComponent.jsx';
+import { EditPicture } from '../../components/User/EditPicture.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faHouse, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
