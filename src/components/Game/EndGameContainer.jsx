@@ -241,7 +241,7 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
                                 >{team.toUpperCase()}</span>
                                 {gameData.gameData.body.playerImages[team].map((player, playerIndex) => (
                                     <div key={playerIndex}>
-                                        <img src={player == null ? placeholder : player.image ? player.image : placeholder} alt={player == null ? 'placeholder' : player.player} className='player-image' />
+                                        <img src={player && player.image ? player.image : placeholder} alt={player && player.player ? player.player : 'placeholder'} className='player-image' />
                                         <img src={icons[playerIndex]} alt='role icon' className='role-icon' />
                                     </div>
                                 ))}
