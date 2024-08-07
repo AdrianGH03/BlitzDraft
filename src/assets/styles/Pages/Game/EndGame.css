@@ -88,7 +88,7 @@
     font-family: 'Orbitron', cursive; 
 }
 .end-game-details .end-game-emote img{
-    max-width: 100px;
+    max-width: 80px;
 }
 .end-game-players span{
     font-family: 'Jomhuria', cursive;
@@ -107,7 +107,7 @@
     
 }
 .end-game-details-playagain-button{
-    padding: 1rem;
+    padding: 0.8rem;
     background-color: rgb(230, 59, 59);
     font-family: 'Orbitron', sans-serif;
     color: rgb(255, 255, 255);
@@ -128,10 +128,41 @@
 }
 
 
+.end-game-guess{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.end-game-guess > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0 1rem;
+}
+.end-game-guess > h2{
+    font-family: 'Orbitron', sans-serif;
+    padding-top: 0.5rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid #fff;
+    color: #fff;
+}
+.end-game-guess > div .end-game-details-playagain-button{
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 0.5rem;
+}
+.end-game-details-playagain-button.endgameblue{
+    background-color: rgba(91, 224, 229, 0.801);
+}
+.end-game-details-playagain-button.endgamered{
+    background-color: rgba(255, 0, 0, 0.801);
+}
 
-
-
-@media(min-width: 840px){
+@media(min-width: 924px){
     .end-game-container{
         justify-content: start;
         margin-top: 1rem;
@@ -164,13 +195,16 @@
     .end-game-container{
         width: 500px;
     }
+    .end-game-details .end-game-text{
+        width: 40%;
+    }
 }
 @media(min-width: 1280px){
     .end-game-container{
         min-width: 600px;
     }
     .end-game-details .end-game-emote img{
-        max-width: 200px;
+        max-width: 180px;
     }
     .end-game-details .end-game-text p{
         font-size: 1.3rem;

@@ -8,6 +8,7 @@
     padding-bottom: 10.5rem;
     height: 100vh;
     overflow-y: scroll;
+    
 }
 .game-container::-webkit-scrollbar{
     display: none;
@@ -295,6 +296,7 @@
         padding-top: 2rem;
         overflow-y: scroll;
         height: 100%;
+        
     }
     .game-team1-picks{
         display: flex;
@@ -370,7 +372,8 @@
     }
     .game-container{
         padding-top: 5rem;
-        padding: 5rem 2rem 0 3rem
+        padding: 5rem 2rem 0 3rem;
+        margin-bottom: 7rem;
     }
     .game-team1-container{
         align-items: center;
