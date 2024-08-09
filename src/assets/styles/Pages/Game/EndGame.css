@@ -1,11 +1,13 @@
 .end-game-container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     padding: 0 1rem;
     margin: 2rem 0 3rem 0;
     
+}
+.end-game-container::-webkit-scrollbar{
+    display: none;
 }
 
 .noguesses-container{
@@ -51,6 +53,7 @@
     display: flex;
     flex-direction: column;
     align-items: space-around;
+    gap: 0.2rem 0;
 }
 .end-game-players div div{
     max-width: 50px;
@@ -58,7 +61,12 @@
     display: flex;
     
 }
-
+.end-game-region-logo{
+    max-width: 20px;
+    object-fit: cover;
+    object-position: top;
+    margin-left: 0.5rem;
+}
 
 
 
@@ -113,7 +121,7 @@
     font-family: 'Orbitron', sans-serif;
     color: rgb(255, 255, 255);
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.8rem;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
     border: none;
     margin-top: 1rem;
@@ -200,7 +208,7 @@
         width: 40%;
     }
 }
-@media(min-width: 1280px){
+@media(min-width: 1440px){
     .end-game-container{
         min-width: 600px;
     }
@@ -208,7 +216,7 @@
         max-width: 180px;
     }
     .end-game-details .end-game-text p{
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
     
 }

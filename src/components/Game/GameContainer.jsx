@@ -57,7 +57,6 @@ export function GameContainer() {
     }, []);
     
     
-    
     return (
       <>
       {gameData && gameData.gameData && gameData.gameData.body && revealedCards ? (

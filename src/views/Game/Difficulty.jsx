@@ -4,6 +4,8 @@ import { useState, useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useTournaments } from '../../hooks/useTournaments.jsx';
 import { useOrder } from '../../hooks/useOrder.jsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGamepad } from '@fortawesome/free-solid-svg-icons';
 //REACT/NODEJS
 import { AuthContext } from '../../contexts/AuthContext.jsx';
 
@@ -15,7 +17,7 @@ import { TeamImages } from '../../components/Layout/TeamImages.jsx';
 
 
 export function Difficulty() {
-  const emote = '/emotes/olaf1.png'
+  const emote = '/emotes/pengu1.png'
   const [difficulty, setDifficulty] = useState('easy');
   const [difficultySettings, setDifficultySettings] = useState({
     easy: {
@@ -113,7 +115,7 @@ export function Difficulty() {
                 setError("CORS policy error. Please try again.");
                 
               } else if (error.response.status === 400) {
-                setError("No games found for selected parameters.");
+                setError("No games found. Try again.");
                 
               }  else {
                 console.error('Error:', error);
@@ -140,7 +142,7 @@ export function Difficulty() {
           setError("CORS policy error. Please try again.");
           
         } else if (error.response.status === 400) {
-          setError("No games found for selected parameters.");
+          setError("No games found, try again.");
           
         }  else {
           console.error('Error:', error);
@@ -178,8 +180,7 @@ export function Difficulty() {
     
     let total = (order.length - startPickIndex) * 10;
     const cardsShown = order.slice(0, startPickIndex).length;
-    
-    total += 30;
+
     
     return {
       ...difficultySettings,
@@ -196,23 +197,20 @@ export function Difficulty() {
     if (!patchesPlayed.includes('-')) {
       return [patchesPlayed];
     }
-    
   
     const [start, end] = patchesPlayed.split('-');
-    const [startInt, startDec] = start.split('.').map(part => parseInt(part, 10));
-    const [endInt, endDec] = end.split('.').map(part => parseInt(part, 10));
-  
     const patches = [];
+    let currentPatch = start;
   
-    for (let i = startInt; i <= endInt; i++) {
-      let decStart = i === startInt ? startDec : 0;
-      let decEnd = i === endInt ? endDec : 9;
-  
-      for (let j = decStart; j <= decEnd; j++) {
-        patches.push(`${i}.${j < 10 ? j : j}`);
-      }
+    while (currentPatch !== end) {
+      patches.push(currentPatch);
+      const [major, minor] = currentPatch.split('.');
+      const minorNumber = parseInt(minor, 10);
+      const nextMinor = isNaN(minorNumber) ? String.fromCharCode(minor.charCodeAt(0) + 1) : minorNumber + 1;
+      currentPatch = `${major}.${nextMinor}`;
     }
-   
+  
+    patches.push(end);
     return patches;
   }
 
@@ -252,7 +250,9 @@ export function Difficulty() {
                     {Object.keys(tournaments).map((tournament, index) => (
                       <optgroup key={index} label={tournament}>
                         {tournaments[tournament].map((t, i) => (
-                          <option key={i} value={t.name}>{t.name}</option>
+                          <option key={i} value={t.name}>
+                            {t.name.includes('/') ? t.name.split('/').slice(1).join('/') : t.name}
+                          </option>
                         ))}
                       </optgroup>
                     ))}
@@ -279,25 +279,26 @@ export function Difficulty() {
                   <select id="startPick" 
                     disabled={difficulty !== 'custom'}
                     onChange={e => {
-                    setSelectedStart(e.target.value);
-                    setDifficultySettings(calculatePoints({startPick: e.target.value}));
-                  }}>
+                      setSelectedStart(e.target.value);
+                      setDifficultySettings(calculatePoints({startPick: e.target.value}));
+                    }}>
                     {difficulty != 'custom' && (<option value="">Custom mode only</option>)}
                     {difficulty === 'custom' && (
                       <>
-                        {order.map((pick, index) => (
+                        {order.filter(pick => pick !== 'Filler').map((pick, index) => (
                           <option key={index} value={pick}>{pick}</option>
                         ))}
                       </>
                     )}
                   </select>
-
-                  
                 </div>
+
+
                 <section className="difficulty-lost">
-                    <Link to="/tutorial" className="difficulty-lost-link flash-animation">
-                      <span>Lost? Check out the tutorial!</span>
-                    </Link>
+                  <Link to="/tutorial" className="tutorial-bot-play">
+                    <FontAwesomeIcon icon={faGamepad} className='difficulty-lost-icon' />
+                    <span>TUTORIAL</span>
+                  </Link>
                   </section>
             
             </section>
@@ -338,7 +339,7 @@ export function Difficulty() {
                     </li>
                     <li>
                       <span>
-                        <span>Cards-Shown:</span> {difficultySettings[difficulty].cardsShown+"/20"}
+                        <span>Cards-Shown:</span> {(difficultySettings[difficulty].cardsShown)+"/20"}
                       </span>
                     </li>
                   </ul>
@@ -364,7 +365,7 @@ export function Difficulty() {
               <div className="difficulty-main-submit-button">
                 <button className={isLoading ? 'end-game-details-playagain-button difficulty-ellipsis-button' : 'end-game-details-playagain-button'} 
                   onClick={() => handleGetGame(selectedTournament, difficulty, selectedPatch, selectedStart)}>
-                  {isLoading ? 'LOADING' : 'PLAY'}
+                  {isLoading ? 'LOADING' : 'GENERATE GAME'}
                 </button>
               </div>
             </section>

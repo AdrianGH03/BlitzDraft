@@ -37,7 +37,7 @@ export function MobileTutorial() {
     },
     { image: tutorial3, text: 'A total of 20 cards will be shown. The order in which they appear is shown here marked 1-20. Each correct guess is 10 points. Lime/green colored order numbers mean sequential picks.' },
     { image: tutorial4, text: 'Sequential picks (ex. Blue Pick 4 and Blue Pick 5) will be marked by lime green borders as they appear. You must guess for BOTH picks before they are revealed. If you got the order of the sequential picks wrong, your score will still be calculated as if they were reversed.' },
-    { image: tutorial5, text: 'When all cards are revealed, the game will calculate your score. Cards ARE sorted by role order here. Once a game is complete, you can refresh to retry, but you only have 30 minutes per game before it expires.' },
+    { image: tutorial5, text: 'When all cards are revealed, the game will calculate your score. Cards ARE sorted by role order here. You can guess which side won for an extra 20 points.' },
     { image: tutorial6, text: 'Additionally, check out the stats or guides page for more insight on pick and bans of champions and how to draft.' },
   ];
   const [currentTutorial, setCurrentTutorial] = useState(0);

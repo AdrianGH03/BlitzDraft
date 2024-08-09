@@ -1,9 +1,24 @@
 //Hooks
+import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faQuestion } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { TeamImages } from '../../components/Layout/TeamImages.jsx'
 export function Home() {
+
+  useEffect(() => {
+    const container = document.querySelector('.home-bottom-regions-container');
+    const handleWheel = (e) => {
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        container.scrollLeft += e.deltaY;
+      }
+    };
+    container.addEventListener('wheel', handleWheel);
+    return () => {
+      container.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
   
   return (
     <>
@@ -40,7 +55,7 @@ export function Home() {
               </Link>
             </div>
           </main>
-          <img src='/placeholders/teamImages2.png' className="home-top-image" />
+          <img src='/emotes/test2.png' className="home-top-image" />
         </section>
 
 

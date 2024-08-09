@@ -30,7 +30,7 @@ export function SearchContainer({ gameData }) {
     const midIcon = '/placeholders/midIcon.png'
     const botIcon = '/placeholders/botIcon.png'
     const supportIcon = '/placeholders/supportIcon.png'
-   
+    const placeholder = '/placeholders/lolplaceholder.jpg'
     
 
     //Style states
@@ -367,8 +367,9 @@ export function SearchContainer({ gameData }) {
 
 
             <div className="game-search-submit">
-              {gameData.gameData.body.teamImages[teamNames[0]] != '' &&
-                <img className="team-image" src={gameData.gameData.body.teamImages[teamNames[0]]} alt={Object.values(gameData.gameData.body.teamImages)[0]} crossOrigin={"anonymous"}/>
+              {gameData.gameData.body.teamImages[teamNames[0]] != '' ?
+                <img className="team-image" src={gameData.gameData.body.teamImages[teamNames[0]]} alt={Object.values(gameData.gameData.body.teamImages)[0]} crossOrigin={"anonymous"}/> :
+                <img className="team-image" src={placeholder} alt={Object.values(gameData.gameData.body.teamImages)[0]} crossOrigin={"anonymous"}/>
               }
               <div className="game-region">
                 <h1>{gameData.gameData.body.region}</h1>
@@ -398,8 +399,9 @@ export function SearchContainer({ gameData }) {
               <div className="game-region">
                 <h1>{gameData.gameData.body.game.data.Patch}</h1>
               </div>
-              {gameData.gameData.body.teamImages[teamNames[1]] != '' &&
-                <img className="team-image" src={gameData.gameData.body.teamImages[teamNames[1]]} alt={gameData.gameData.body.game.data.Team2} crossOrigin={"anonymous"}/>
+              {gameData.gameData.body.teamImages[teamNames[1]] != '' ?
+                <img className="team-image" src={gameData.gameData.body.teamImages[teamNames[1]]} alt={gameData.gameData.body.game.data.Team2} crossOrigin={"anonymous"}/> :
+                <img className="team-image" src={placeholder} alt={gameData.gameData.body.game.data.Team2} crossOrigin={"anonymous"}/>
               }
             </div>
 

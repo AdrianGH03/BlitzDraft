@@ -9,7 +9,25 @@ import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
 //Contexts
 import { AuthContext } from '../../contexts/AuthContext.jsx'
 
-
+const logos = {
+    'MSI': '/logoImages/msi.png',
+    'LEC': '/logoImages/lec.png',
+    'LCK': '/logoImages/lck.png',
+    'LCS': '/logoImages/lcs.png',
+    'LPL': '/logoImages/lpl.png',
+    'VCS': '/logoImages/vcs.png',
+    'PCS': '/logoImages/pcs.png',
+    'CBLOL': '/logoImages/cblol.png',
+    'LLA': '/logoImages/lla.png',
+    "PCL": '/logoImages/pcl.png',
+    "LJL": '/logoImages/LJL.png',
+    "NACL": '/logoImages/nacl.png',
+    "LVPSL": '/logoImages/lvpsl.png',
+    "LFL": '/logoImages/lfl.png',
+    "EMEAM": '/logoImages/emeam.png',
+    "LCO": '/logoImages/LCO.png',
+    "LCKCL": '/logoImages/lckcl.png',
+};
 
 export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame }) => {
 
@@ -20,6 +38,7 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
     const botIcon = '/placeholders/botIcon.png'
     const supportIcon = '/placeholders/supportIcon.png'
     const placeholder = '/placeholders/lolplaceholder.jpg'
+
 
     const [scoreRange, setScoreRange] = useState(0)
     const [emote, setEmote] = useState(null)
@@ -177,7 +196,9 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
                             style={scoreRange < 33 ? {color: 'red'} : scoreRange < 66 ? {color: 'orange'} : {color: 'lime'}}
                         >ACCURACY: {Number.isInteger(scoreRange) ? scoreRange : Number(scoreRange).toFixed(2)}%</p>
                         <p className="end-game-details-text">TOTAL: {Number.isInteger(actualScore) ? actualScore : Number(actualScore).toFixed(2)}/{Number.isInteger(totalPoints) ? totalPoints : Number(totalPoints).toFixed(2)}</p>
-                        <p className="end-game-details-text">REGION: {gameData.gameData.body.region}</p>
+                        <p className="end-game-details-text">REGION: 
+                            <img src={logos[gameData.gameData.body.region]} alt={gameData.gameData.body.region} className='end-game-region-logo' />
+                        </p>
                         <p className="end-game-details-text">PATCH: {gameData.gameData.body.game.data.Patch}</p>
                         
                         <section className="end-game-guess">

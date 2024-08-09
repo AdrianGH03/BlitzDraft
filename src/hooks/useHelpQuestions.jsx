@@ -3,6 +3,10 @@ import { useState } from 'react';
 export const useHelpQuestions = () => {
     const [helpQuestions, setHelpQuestions] = useState([
         {
+            question: "Is this site affiliated with Riot Games or any organizations?",
+            answer: "No, BlitzDraft is a fan-made project. BlitzDraft isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc. All logos, images, and names are property of their respective owners."
+        },
+        {
             question: "I don't understand anything, how do I start?",
             answer: "Some basic knowledge of league of legends is needed in order to play. In addition, please check out the guides and tutorial pages for more information to get you started."
         },
@@ -12,7 +16,7 @@ export const useHelpQuestions = () => {
         },
         {
             question: "How far back do games date?",
-            answer: "All games loaded are from the current season. Games are from all 4 majors regions (LPL, LCK, LCS, LEC) and minor regions (VCS, PCS, CBLOL, LLA) and range from regular season games to playoffs games. Worlds and MSI will be included accordingly."
+            answer: "All games loaded are from the current season. Games are from all 4 majors regions (LPL, LCK, LCS, LEC), minor regions (VCS, PCS, CBLOL, LLA), and some 2nd/3rd tier professional leagues and range from regular season games to playoffs games. Worlds and MSI will be included accordingly. LDL support is not possible."
         },
         {
             question: "I have X question or X issue, how can I contact you?",
@@ -34,10 +38,6 @@ export const useHelpQuestions = () => {
             question: "Why was this created?",
             answer: "I made this as a learning tool and student project for myself and others. I love LoL Esports and I wanted to make something that would help me and others learn more about the game. I hope you enjoy it as much as I do! :)"
         },
-        {
-            question: "Is this site affiliated with Riot Games?",
-            answer: "No, BlitzDraft is a fan-made project. BlitzDraft isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc."
-        }
     ]);
     
     return [helpQuestions, setHelpQuestions];

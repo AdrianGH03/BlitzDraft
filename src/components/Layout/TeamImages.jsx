@@ -11,9 +11,17 @@ const logos = {
   'PCS': '/logoImages/pcs.png',
   'CBLOL': '/logoImages/cblol.png',
   'LLA': '/logoImages/lla.png',
+  "PCL": '/logoImages/pcl.png',
+  "LJL": '/logoImages/LJL.png',
+  "NACL": '/logoImages/nacl.png',
+  "LVPSL": '/logoImages/lvpsl.png',
+  "LFL": '/logoImages/lfl.png',
+  "EMEAM": '/logoImages/emeam.png',
+  "LCO": '/logoImages/LCO.png',
+  "LCKCL": '/logoImages/lckcl.png',
 };
 
-const regions = ['MSI', 'LEC', 'LCK', 'LCS', 'LPL', 'VCS', 'PCS', 'CBLOL', 'LLA'];
+const regions = ['MSI', 'LEC', 'LCK', 'LCS', 'LPL', 'VCS', 'PCS', 'CBLOL', 'LLA', "PCL", "LJL", "NACL", "LVPSL", "LFL", "EMEAM", "LCO", "LCKCL"];
 
 export function TeamImages({ containerClass, itemClass, titleClass, showName, onImageClick }) {
   return (

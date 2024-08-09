@@ -49,19 +49,20 @@
 
 
 /* HOME BOTTOM */
-.home-bottom-container{
+.home-bottom-container {
   display: flex;
   width: 100%;
   justify-content: center;
+  
 }
-.home-bottom-regions-container{
+
+.home-bottom-regions-container {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  justify-content: center; /* Align items to the start */
   gap: 1rem;
   padding: 0 1rem;
   padding-top: 4rem;
-  overflow-x: auto;
+  flex-wrap: wrap;
 }
 .home-bottom-region {
   position: relative;
@@ -71,14 +72,15 @@
   justify-content: center;
   padding: 2rem;
 }
-.home-bottom-region-title {
-position: absolute;
-bottom: 10%;
-padding-left: 10px;
-padding-top: 20px;
-left: 0;
 
+.home-bottom-region-title {
+  position: absolute;
+  bottom: 10%;
+  padding-left: 10px;
+  padding-top: 20px;
+  left: 0;
 }
+
 .home-bottom-region img {
   object-fit: contain;
   max-width: 80px;
@@ -182,7 +184,7 @@ left: 0;
     margin-left: -2rem;
   }
   .home-top-image{
-    max-width: 50vw;
+    max-width: 35vw;
     margin-top: 2rem;
     margin-right: 8rem;
   }
@@ -191,7 +193,11 @@ left: 0;
     margin-top: 4rem;
   }
   .home-bottom-regions-container{
-      justify-content: center;
+      justify-content: start;
+      flex-wrap: nowrap;
+      overflow-x: auto; /* Enable horizontal scrolling */
+      max-width: 80%; /* Ensure it takes full width */
+      white-space: nowrap; /* Prevent line breaks */
   }
   /* HOME IMAGES */
   .home-game-container{

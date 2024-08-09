@@ -229,6 +229,9 @@ export function TeamContainer({ gameData, team }) {
                   <span>{startingRosters[`${team}Players`].split(',')[i].split("(")[0]} 
                     <img src={i === 0 ? topIcon : i === 1 ? jgIcon : i === 2 ? midIcon : i === 3 ? adcIcon : supIcon} alt='role' className='role-icon' crossOrigin={"anonymous"}/>
                   </span>
+                  <div className='role-icon-mobile'>
+                    <img src={i === 0 ? topIcon : i === 1 ? jgIcon : i === 2 ? midIcon : i === 3 ? adcIcon : supIcon} alt='role' className='role-icon-mobile-img' crossOrigin={"anonymous"}/>
+                  </div>
                 </div>
               </div>
             ))}

@@ -7,7 +7,8 @@
     margin-top: -0.1rem;
     padding-bottom: 10.5rem;
     height: 100vh;
-    overflow-y: scroll;
+    overflow-y: auto; 
+    padding-bottom: 5rem; 
 }
 .game-container::-webkit-scrollbar{
     display: none;
@@ -117,14 +118,31 @@
     align-items: center;
     gap: 0 1rem;
 }
-.game-team-names{
+.game-team-names span{
     display: none;
 }
-.game-team-names span{
+.game-team1-picks div {
+    position: relative; /* Ensure the parent container is positioned relatively */
+  }
+  
+  .role-icon-mobile {
+    position: absolute;
+    bottom: 0;
+    left: 0; /* Set to 0 to align it to the left edge */
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 0 1rem;
-}
+    background-color: #121212af;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid white;
+    box-sizing: border-box;
+  }
+  
+  .role-icon-mobile-img {
+    width: 50px; /* Adjust the size as needed */
+    height: 40px; /* Adjust the size as needed */
+  }
+
 
 
 .search-container-sp{
@@ -295,6 +313,17 @@
         padding-top: 2rem;
         overflow-y: scroll;
         height: 100%;
+    }
+    .game-team-names .role-icon-mobile{
+        display: none;
+    }
+    .role-icon-mobile-img{
+        display: none;
+    }
+    .game-team-names span{
+        display: flex;
+        align-items: center;
+        gap: 0 1rem;
     }
     .game-team1-picks{
         display: flex;

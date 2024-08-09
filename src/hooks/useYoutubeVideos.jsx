@@ -43,9 +43,11 @@ export const useYoutubeVideos = () => {
     }, 
     {
         "Link": "https://www.youtube.com/embed/i4tPKWt5pBY?si=-gDpzEWuOr9r0MyC",
+        "LinkTo": "https://www.youtube.com/watch?v=i4tPKWt5pBY&t=4s"
     }, 
     {
-        "Link": "https://www.youtube.com/embed/UD17oTuE4rA?si=Wq1AMAPBxrVH3EXn"
+        "Link": "https://www.youtube.com/embed/UD17oTuE4rA?si=Wq1AMAPBxrVH3EXn",
+        "LinkTo": "https://www.youtube.com/watch?v=UD17oTuE4rA"
     }, 
     {
         "TITLE": "Caedrel's In-Depth Explanation On How Teams Draft In Pro Play (Worlds 2023)",

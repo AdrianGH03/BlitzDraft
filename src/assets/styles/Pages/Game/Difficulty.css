@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 1rem;
+    
 }
 .difficulty-wrapper{
     display: flex;
@@ -46,7 +46,7 @@
 .difficulty-main-submit-button button.end-game-details-playagain-button{
     width: 100%;
     margin-bottom: 1rem;
-    padding: 0.5rem;
+    padding: 0.8rem;
 }
 .difficulty-container .stat-filters{
     position: static;
@@ -86,17 +86,42 @@
     object-fit: contain;
     max-width: 80px;
 }
-.difficulty-lost-link{
-    margin: 2rem 0;
+
+
+.difficulty-lost{
+    width: 90%;
+    display: flex;
+    justify-content: center;
     
 }
-.difficulty-lost-link span{
-    color: yellow;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.8rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid yellow;
+.difficulty-lost > a {
+    padding: 0.9rem;
+    background-color: rgb(230, 59, 59);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+    border: none;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: -0.1rem;
 }
+.difficulty-lost > a:hover{
+    background-color: rgba(206, 44, 44, 0.9);
+    transition: all 0.3s ease-in-out;
+    transform: scale(0.9);
+}
+.difficulty-lost > a span{
+    font-family: 'Orbitron', sans-serif;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+.difficulty-lost > a .difficulty-lost-icon{
+    font-size: 0.8rem;
+    color: rgb(255, 255, 255);
+}
+
 
 /*Styles*/
 .difficulty-filter{
@@ -110,8 +135,9 @@
 }
 .difficulty-main-text{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 0.5rem;
+    align-items: center;
 }
 .difficulty-main-text > div > p{
     width: 220px;
@@ -127,7 +153,7 @@
 .difficulty-main-text > div{
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    
 }
 .difficulty-main-settings li span{
     font-family: 'Orbitron', sans-serif;
@@ -144,7 +170,7 @@
     align-self: start;
 }
 .difficulty-main-text > img{
-    display: none;
+    max-width: 150px;
 }
 .difficulty-main-buttons button{
     padding: 0.5rem;
@@ -180,6 +206,8 @@
     gap: 0.5rem;
     align-items: center;
     padding-bottom: 2rem;
+    padding-top: 1rem;
+    margin-bottom: -2rem;
 }
 @keyframes ellipsis {
   0% { content: ""; }
@@ -201,7 +229,7 @@
         max-width: 40%;
     }
     .difficulty-wrapper .stat-filters .stat-filter{
-        width: 90%;
+        width: 100%;
         
     }
     .difficulty-container{
@@ -216,8 +244,20 @@
     .difficulty-main-settings{
         align-items: end;
     }
+    .difficulty-main-text{
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        align-items: center;
+    }
     .difficulty-main-text > div > h1{
         text-align: start;
+    }
+    .difficulty-lost{
+        width: 100%;
+    }
+    .difficulty-lost > a{
+        width: 100%;
     }
 
 
@@ -228,7 +268,7 @@
         align-self: start;
     } 
     .difficulty-regionimgs-container{
-        max-width: 600px;
+        max-width: 1100px;
     }
     .difficulty-main-buttons{
         width: 80%;

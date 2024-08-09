@@ -263,7 +263,9 @@ export function Stats() {
                   {Object.keys(tournaments).map((tournamentName, index) => (
                     <optgroup key={index} label={tournamentName}>
                       {tournaments[tournamentName].map((tournament, i) => (
-                        <option key={i} value={tournament.name}>{tournament.name}</option>
+                        <option key={i} value={tournament.name}>
+                          {tournament.name.includes('/') ? tournament.name.split('/').slice(1).join('/') : tournament.name}
+                        </option>
                       ))}
                     </optgroup>
                   ))}
