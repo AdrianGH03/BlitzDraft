@@ -5,10 +5,9 @@
     flex-direction: column;
     justify-content: space-between;
     margin-top: -0.1rem;
-    padding-bottom: 10.5rem;
     height: 100vh;
     overflow-y: auto; 
-    padding-bottom: 5rem; 
+    padding-bottom: 10rem; 
 }
 .game-container::-webkit-scrollbar{
     display: none;
