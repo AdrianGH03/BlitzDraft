@@ -17,6 +17,7 @@ BlitzDraft is an engaging League of Legends drafting simulator that brings the e
 
 ### **Get Started:**
 LINK: https://blitzdraftlol.com
+
 Backend: Privated
 
 
