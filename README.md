@@ -1,27 +1,67 @@
-## **BlitzDraft - League of Legends Drafting Simulator**
+# ⚡ BlitzDraft
 
-BlitzDraft is an engaging League of Legends drafting simulator that brings the excitement of esports drafts to your fingertips. It taps into the top regions and tournaments of LoL esports - LCK, LPL, LEC, LLA, CBLOL, VCS, PCS, MSI, WORLDS, and LCS, allowing players to immerse themselves in the strategic world of pick and ban phases.
+**BlitzDraft** is an immersive League of Legends drafting simulator that captures the thrill of professional esports pick and ban phases. Dive into the strategic depth of LoL drafts from top global leagues and tournaments — all from your browser.
 
-### **Key Features:**
-- **Real Esports Experience:** Experience the thrill of drafting like the pros with real-time picks and bans from top-tier LoL esports matches.
-- **Comprehensive Guides:** Whether you're a newcomer or a seasoned player, BlitzDraft offers tutorials, guides, and a dedicated help page to help you master the game.
-- **Fullstack Implementation:** Built with Vite + React for the frontend and Node.js Express for the backend, BlitzDraft ensures a seamless user experience.
-- **Integration with Leaguepedia API:** Utilizing Leaguepedia's API, BlitzDraft fetches esports games, pick and bans, teams, players, and more, providing up-to-date information for an authentic experience.
+🌐 **Live Site:** [https://blitzdraftlol.com](https://blitzdraftlol.com)
 
-### **Technologies Used:**
-- **Frontend:** JavaScript, React, HTML, CSS, Vite
-- **Backend:** JavaScript, Node.js, Express
-- **Database:** MongoDB
-- **Deployment:** Vercel, Cloudflare
+> _Simulate. Strategize. Dominate._
 
+---
 
-### **Get Started:**
-LINK: https://blitzdraftlol.com
+## 🧠 What is BlitzDraft?
 
-Backend: Privated
+BlitzDraft taps into major **League of Legends esports leagues** — **LCK**, **LPL**, **LEC**, **LCS**, **LLA**, **CBLOL**, **VCS**, **PCS**, **MSI**, and **Worlds** — offering players the chance to simulate drafts with **real teams, players, and metas**.
 
+Whether you're a competitive strategist or a casual fan, BlitzDraft provides a dynamic environment to recreate or experiment with iconic drafts.
 
+---
+
+## 🚀 Key Features
+
+- 🎮 **Real Esports Experience**  
+  Simulate real-time pick/ban phases using data from official League of Legends esports matches.
+
+- 📘 **In-App Guides & Tutorials**  
+  Learn the ropes or refine your skills with built-in drafting tutorials and a dedicated help page.
+
+- 🔁 **Live Data Integration**  
+  Fetch up-to-date player, team, and match data using the **Leaguepedia API**.
+
+- 🖥️ **Full-Stack Implementation**  
+  Built with Vite + React on the frontend and Node.js + Express on the backend for a responsive, robust experience.
+
+---
+
+## 🧰 Tech Stack
+
+- **Frontend:** JavaScript, React, HTML, CSS, Vite  
+- **Backend:** JavaScript, Node.js, Express  
+- **Database:** MongoDB  
+- **API Integration:** [Leaguepedia API](https://leaguepedia.com)  
+- **Deployment:** Vercel (frontend), Cloudflare (domain + DNS)  
+- **Status:** ⚠️ Backend is currently **private**
+
+---
+
+## 📸 Screenshots
 ![ss1](https://github.com/MiguelGGithub/BlitzDraftPublic/assets/122931039/9d4bfa32-c4b3-4adc-8f9c-ac4d156dd6e0)
 
 
 ![ss2](https://github.com/MiguelGGithub/BlitzDraftPublic/assets/122931039/b5a0d71b-8a8e-404b-b5f4-5027d49ad5ec)
+
+
+## License
+
+    Copyright [2025] [Miguel Gomez]
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
