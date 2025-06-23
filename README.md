@@ -3,6 +3,7 @@
 **BlitzDraft** is an immersive League of Legends drafting simulator that captures the thrill of professional esports pick and ban phases. Dive into the strategic depth of LoL drafts from top global leagues and tournaments — all from your browser.
 
 🌐 **Live Site:** [https://blitzdraftlol.com](https://blitzdraftlol.com)
+🌐 **Backend:**  https://github.com/AdrianGH03/BlitzDraft-Backend
 
 > _Simulate. Strategize. Dominate._
 
@@ -39,7 +40,6 @@ Whether you're a competitive strategist or a casual fan, BlitzDraft provides a d
 - **Database:** MongoDB  
 - **API Integration:** [Leaguepedia API](https://leaguepedia.com)  
 - **Deployment:** Vercel (frontend), Cloudflare (domain + DNS)  
-- **Status:** ⚠️ Backend is currently **private**
 
 ---
 
