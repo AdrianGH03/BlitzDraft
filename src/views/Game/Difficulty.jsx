@@ -103,7 +103,7 @@ export function Difficulty() {
               setGameLink('');
               setIsLoading(false)
               if(error.response.status === 429) {
-                setError("Too many requests, please try again later.");
+                setError("Only 1 game per minute.");
                 
               } else if(error.response.status === 500) {
                 setError("Internal server error. Please try again.");
@@ -130,7 +130,7 @@ export function Difficulty() {
         setGameLink('');
         setIsLoading(false)
         if(error.response.status === 429) {
-          setError("Too many requests, please try again later.");
+          setError("Only 1 game per minute.");
           
         } else if(error.response.status === 500) {
           setError("Internal server error. Please try again.");

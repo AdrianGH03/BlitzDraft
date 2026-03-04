@@ -253,7 +253,7 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
                     </div>
                 </section>
 
-                <section className="end-game-players">
+                {/* <section className="end-game-players">
                     {
                         gameData.gameData.body.playerImages && Object.keys(gameData.gameData.body.playerImages).map((team, index) => (
                             <div key={index} className={`team-${index}`}> 
@@ -269,7 +269,7 @@ export const EndGameContainer = ({guesses, gameData, fetchWithToken, showEndGame
                             </div>
                         ))
                     }
-                </section>
+                </section> */}
 
                 
 
