@@ -16,12 +16,5 @@
         "source": "/(.*)",
         "destination": "/index.html"
       }
-    ],
-    "redirects": [
-      {
-        "source": "/",
-        "destination": "https://blitz-draft-git-main-miguelggithubs-projects.vercel.app",
-        "permanent": true
-      }
     ]
   }
